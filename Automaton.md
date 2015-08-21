@@ -1,1 +1,1 @@
-A multi tasking table driven finite state machine library
+A multi tasking table driven finite state machine library for Arduino
