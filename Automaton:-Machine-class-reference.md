@@ -1,3 +1,5 @@
+[States](.#States)
+
 * Machine constructor
 
 ***
@@ -8,6 +10,7 @@
 * cycle()
 
 ***
+### States
 
 * state( [state] )
 * toggle( state1, state2 )
