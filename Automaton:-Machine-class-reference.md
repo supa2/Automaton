@@ -1,5 +1,7 @@
 * Machine constructor
 
+***
+
 * table( tbl, w )
 * event( id )
 * action( id )
