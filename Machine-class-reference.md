@@ -7,6 +7,7 @@
 
 Calls the Machine base class initialization code. Links a *state transition table* to the machine and optionally adds an incoming messaging queue if the machine needs to be able to process incoming messages. Each machine subclass should define its own begin() method which, in turn should call Machine::begin() to get the ball rolling.
 
+
     Machine::begin( state_table, ELSE );
 	Machine::begin( state_table, ELSE, messages, MSG_END );
 
@@ -256,7 +257,8 @@ This label can be used to access the machine (via the Factory::find() method) or
 
 Registers a callback which will be called just before a machine status switch. May be used to selectively log machine behavior. 
 
-	void sw( const char label[], int current, int next, int trigger, uint32_t runtime, uint32_t cycles ) {
+	void sw( const char label[], int current, int next, 
+		int trigger, uint32_t runtime, uint32_t cycles ) {
 	  Serial.print( millis() );
 	  Serial.print( " Switching " );
 	  Serial.print( label );
@@ -278,7 +280,8 @@ Registers a callback which will be called just before a machine status switch. M
 
 The code above will log numeric values for states and events (triggers) which requires some interpretation. Use the extended version of this method to provide symbol tables for states and events. The symbol tables are string that contain NULL ('\0') separated lists of identifier names in the same order they occur in the *STATES* & *EVENTS* enums of the machine you want to monitor. 
 
-	void sw( const char label[], const char current[], const char next[], const char trigger[], uint32_t runtime, uint32_t cycles ) {
+	void sw( const char label[], const char current[], const char next[], 
+		const char trigger[], uint32_t runtime, uint32_t cycles ) {
 	  Serial.print( millis() );
 	  Serial.print( " Switching " );
 	  Serial.print( label );
@@ -295,7 +298,10 @@ The code above will log numeric values for states and events (triggers) which re
 	  Serial.println( " ms)" );
 	}
 
-	obj->onSwitch( sw, "IDLE\0WAIT\0PULSE", "EVT_TIMER\0EVT_HIGH\0EVT_LOW\0ELSE" ).label( "TST" );
+	obj->onSwitch( sw, 
+		"IDLE\0WAIT\0PULSE", 
+		"EVT_TIMER\0EVT_HIGH\0EVT_LOW\0ELSE" )
+			.label( "TST" );
 
 This will provide a considerable more understandable log output. Note that the callback functions in the two examples differ in argument types.
 
