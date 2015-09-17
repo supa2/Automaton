@@ -303,5 +303,5 @@ The code above will log numeric values for states and events (triggers) which re
 		"EVT_TIMER\0EVT_HIGH\0EVT_LOW\0ELSE" )
 			.label( "TST" );
 
-This will provide a considerable more understandable log output. Note that the callback functions in the two examples differ in argument types.
+This will provide a considerably more understandable log output. Note that the callback functions in the two examples differ in argument types.
 
