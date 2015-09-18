@@ -15,6 +15,14 @@ The *ELSE* and *MSG_END* parameters are identifiers from the *STATES* and *MESSA
 
 For this reason each *STATES* enum must end with an *ELSE* event and each *MESSAGES* enum must end with a *MSG_END* entry.
 
+	const static state_t state_table[] PROGMEM = {
+	/*                  ON_ENTER    ON_LOOP    ON_EXIT  EVT_INPUT   EVT_EOL   ELSE */
+	/* IDLE     */            -1,        -1,        -1,  READCHAR,       -1,    -1,
+	/* READCHAR */  ACT_READCHAR,        -1,        -1,  READCHAR,     SEND,    -1,
+	/* SEND     */      ACT_SEND,        -1,        -1,        -1,       -1,  IDLE,
+	};
+	Machine::begin( state_table, ELSE );
+
 The *ELSE* event is automatic (generates no call to the event() method), the *MSG_END* entry is purely used as an end-of-list marker.
 
 ### event( id ) ###
@@ -134,17 +142,17 @@ Returns true if the pin state has changed from low to high or high to low, optio
      case EVT_PRESSED :
           return pinChange( pin, LOW );
 
-### millis() ###
+### milli_runtime() ###
 
 Returns the runtime of the current object state in milliseconds.
 
-	Serial.print( led1.millis() );
+	Serial.print( led1.milli_runtime() );
 
-### micros() ###
+### micro_runtime() ###
 
 Returns the runtime of the current object state in microseconds.
 
-	Serial.print( led1.micros() );
+	Serial.print( led1.micro_runtime() );
 
 *Scheduling*
 ----------
@@ -278,7 +286,7 @@ Registers a callback which will be called just before a machine status switch. M
 	obj->onSwitch( sw ).label( "TST" );
 
 
-The code above will log numeric values for states and events (triggers) which requires some interpretation. Use the extended version of this method to provide symbol tables for states and events. The symbol tables are string that contain NULL ('\0') separated lists of identifier names in the same order they occur in the *STATES* & *EVENTS* enums of the machine you want to monitor. 
+The code above will log numeric values for states and events (triggers) which requires some interpretation. Use the extended version of this method to provide symbol tables for states and events. The symbol tables are strings that contain NULL ('\0') separated lists of identifier names in the same order they occur in the *STATES* & *EVENTS* enums of the machine you want to monitor. 
 
 	void sw( const char label[], const char current[], const char next[], 
 		const char trigger[], uint32_t runtime, uint32_t cycles ) {
