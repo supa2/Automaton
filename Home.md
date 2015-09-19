@@ -26,7 +26,7 @@ This state machine monitors an analog input with a configurable sample rate and 
 
 Control a led via a PWM enabled pin. Control blink speed, pause duration, fade in/out slope and number of repeats.
 
-### Atm_fade class (state machine) ###
+### Atm_led class (state machine) ###
 
 Control a led via a digital pin. Control blink speed, pause duration and number of repeats.
 
