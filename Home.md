@@ -1,6 +1,6 @@
 Welcome to the Automaton wiki!
 
-The following classes and state machines are documented here. The state machines can be used as self contained event-driven components that may be integrated with machines and logic that you build yourself.
+The following classes and finite state machines are documented here. The state machines can be used as self contained event-driven components that may be integrated with machines and logic that you build yourself.
 
 ### Machine class ###
 
