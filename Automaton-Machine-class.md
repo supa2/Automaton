@@ -46,6 +46,16 @@ You may now send messages to the machine object like this:
 	obj.msgWrite( MSG_OFF );
 	obj.MsgWrite( MSG_ON );
 
+And process them in the machine object's event() handler like this:
+
+	switch ( id ) {
+		case EVT_OFF :
+			  return msgRead( MSG_OFF );
+		case EVT_ON :
+			  return msgRead( MSG_ON );
+	}
+	
+
 The *MSG_END* identifier must always be last in the list because it is used to determine the size of the msg queue.
 
 
