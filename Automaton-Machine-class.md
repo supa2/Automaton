@@ -389,7 +389,7 @@ void sw( const char label[], int current, int next,
   Serial.print( current );
   Serial.print( " to " );
   Serial.print( next );
-  Serial.print( " on trigger " );
+  Serial.print( " on event " );
   Serial.print( trigger );
   Serial.print( " (" );
   Serial.print( cycles );
@@ -397,7 +397,11 @@ void sw( const char label[], int current, int next,
   Serial.print( runtime );
   Serial.println( " ms)" );
 }
+```
 
+And in the setup() function:
+
+```c++
 obj.onSwitch( sw ).label( "TST" );
 ```
 
@@ -413,7 +417,7 @@ void sw( const char label[], const char current[], const char next[],
   Serial.print( current );
   Serial.print( " to " );
   Serial.print( next );
-  Serial.print( " on trigger " );
+  Serial.print( " on event " );
   Serial.print( trigger );
   Serial.print( " (" );
   Serial.print( cycles );
@@ -421,7 +425,11 @@ void sw( const char label[], const char current[], const char next[],
   Serial.print( runtime );
   Serial.println( " ms)" );
 }
+```
 
+And in the setup() function:
+
+```c++
 obj.onSwitch( sw, 
 	"IDLE\0WAIT\0PULSE", 
 	"EVT_TIMER\0EVT_HIGH\0EVT_LOW\0ELSE" )
