@@ -9,12 +9,12 @@ Adds a Machine object to the factory. Places it into the appropriate queue accor
 
 	void setup() {
 		led1.begin( 4 );
-		led1->priority( 2 );
-		factory->add( led1 );
+		led1.priority( 2 );
+		factory.add( led1 );
 	}
 
 	void loop() {
-		factory->cycle();
+		factory.cycle();
 	}
 	
 
@@ -23,7 +23,7 @@ Adds a Machine object to the factory. Places it into the appropriate queue accor
 Executes a factory cycle. In a factory cycle all priority queues are cycled a number of times corresponding to their priority level. Called from the Arduino loop().
 
 	void loop() {
-		factory->cycle();
+		factory.cycle();
 	}
 
 ### find( label ) ###
