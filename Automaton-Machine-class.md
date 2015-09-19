@@ -14,21 +14,23 @@
 
 Calls the Machine base class initialization code. Links a *state transition table* to the machine. Each machine subclass should define its own begin() method which, in turn should call Machine::begin() to get the ball rolling.
 
-    Machine::begin( state_table, ELSE );
+```c++
+Machine::begin( state_table, ELSE );
+```
 
 The *ELSE* is an identifier from the *STATES* enum section of the class definition. It is used to determine the dimensions of the data structure.
 
 For this reason each *STATES* enum must end with an *ELSE* event.
 
-'''c++
-	const static state_t state_table[] PROGMEM = {
-	/*                  ON_ENTER    ON_LOOP    ON_EXIT  EVT_INPUT   EVT_EOL   ELSE */
-	/* IDLE     */            -1,        -1,        -1,  READCHAR,       -1,    -1,
-	/* READCHAR */  ACT_READCHAR,        -1,        -1,  READCHAR,     SEND,    -1,
-	/* SEND     */      ACT_SEND,        -1,        -1,        -1,       -1,  IDLE,
-	};
-	Machine::begin( state_table, ELSE );
-'''
+```c++
+const static state_t state_table[] PROGMEM = {
+/*                  ON_ENTER    ON_LOOP    ON_EXIT  EVT_INPUT   EVT_EOL   ELSE */
+/* IDLE     */            -1,        -1,        -1,  READCHAR,       -1,    -1,
+/* READCHAR */  ACT_READCHAR,        -1,        -1,  READCHAR,     SEND,    -1,
+/* SEND     */      ACT_SEND,        -1,        -1,        -1,       -1,  IDLE,
+};
+Machine::begin( state_table, ELSE );
+```
 
 The *ELSE* event is automatic (generates no call to the event() method).
 
@@ -38,29 +40,36 @@ The msgQueue() methods adds an incoming messaging queue if the machine needs to 
 
 In the Atm_xxx.h file:
 
-	enum { MSG_OFF, MSG_ON, MSG_END } MESSAGES;
+```c++
+enum { MSG_OFF, MSG_ON, MSG_END } MESSAGES;
 
-	atm_msg_t messages[MSG_END];
+atm_msg_t messages[MSG_END];
+```
 
 In the Atm_xxx.cpp file:
 
-	Machine::begin( state_table, ELSE );
-	Machine::msgQueue( messages, MSG_END );
+```c++
+Machine::begin( state_table, ELSE );
+Machine::msgQueue( messages, MSG_END );
+```
 
 You may now send messages to the machine object like this:
 
-	obj.msgWrite( MSG_OFF );
-	obj.MsgWrite( MSG_ON );
+```c++
+obj.msgWrite( MSG_OFF );
+obj.MsgWrite( MSG_ON );
+```
 
 And process them in the machine object's event() handler like this:
 
-	switch ( id ) {
-		case EVT_OFF :
-			  return msgRead( MSG_OFF );
-		case EVT_ON :
-			  return msgRead( MSG_ON );
-	}
-	
+```c++
+switch ( id ) {
+	case EVT_OFF :
+		  return msgRead( MSG_OFF );
+	case EVT_ON :
+		  return msgRead( MSG_ON );
+}
+```
 
 The *MSG_END* identifier must always be last in the list because it is used to determine the size of the msg queue.
 
@@ -73,45 +82,53 @@ The Machine class calls the subclass event() method to find out if a certain eve
 
 The state machine makes its state change decisions on the basis of what this handler returns combined with the contents of the state table.
 
-	int Atm_command::event( int id )
-	{
-	  switch ( id ) {
-	    case EVT_INPUT :
-	      return _stream->available();
-	    case EVT_EOL :
-	      return _buffer[_bufptr-1] == _eol || _bufptr >= _bufsize;
-	  }
-	  return 0;
-	}
+```c++
+int Atm_command::event( int id )
+{
+  switch ( id ) {
+    case EVT_INPUT :
+      return _stream->available();
+    case EVT_EOL :
+      return _buffer[_bufptr-1] == _eol || _bufptr >= _bufsize;
+  }
+  return 0;
+}
+```
 
 Failing to implement the event() method in a subclass generates the following compiler error: 
 
-	Cannot declare variable <objectname> to be of abstract type...
+```
+Cannot declare variable <objectname> to be of abstract type...
+```
 
 ### action( id ) ###
 
 Action handler. This is a pure virtual method (which means every subclass of Machine must implement it). This handler will be called for every action in the current state where the corresponding table entry is not -1. The id argument contains the action id for which the handler is called.
 
-	void Atm_led::action( int id )
-	{
-	  switch ( id ) {
-	    case ACT_INIT :
-	      set( counter, repeat_count );
-	      digitalWrite( pin, LOW );
-	      return;
-	    case ACT_ON :
-	      decrement( counter );
-	      digitalWrite( pin, HIGH );
-	      return;
-	    case ACT_OFF :
-	      digitalWrite( pin, LOW );
-	      return;
-	  }
-	}
+```c++
+void Atm_led::action( int id )
+{
+  switch ( id ) {
+    case ACT_INIT :
+      set( counter, repeat_count );
+      digitalWrite( pin, LOW );
+      return;
+    case ACT_ON :
+      decrement( counter );
+      digitalWrite( pin, HIGH );
+      return;
+    case ACT_OFF :
+      digitalWrite( pin, LOW );
+      return;
+  }
+}
+```
 
 Failing to implement the action() method in a subclass generates the following compiler error: 
 
-	Cannot declare variable <objectname> to be of abstract type...
+```
+Cannot declare variable <objectname> to be of abstract type...
+```
 
 ## States ##
 
@@ -119,24 +136,29 @@ Failing to implement the action() method in a subclass generates the following c
 
 Requests the current state of the machine, or if the *state* parameter is set, sets the state the machine will switch to at the start of the next machine cycle.
 
-	if ( led.state() != led.OFF ) {
-		led.state( led.OFF );
-	}
- 
+```c++
+if ( led.state() != led.OFF ) {
+	led.state( led.OFF );
+}
+```
 
 ### toggle( state1, state2 ) ###
 
 Toggles the machine's state, equivalent to the following if-else-statement:
 
-	if ( led1.state() == state1 ) {
-	     led1.state( state2 );
-	} else {
-	     led1.state( state1 );
-	}
+```c++
+if ( led1.state() == state1 ) {
+     led1.state( state2 );
+} else {
+     led1.state( state1 );
+}
+```
 	
 Example:
 
-	led1.toggle( LED_IDLE, LED_BLINKON );
+```c++
+led1.toggle( LED_IDLE, LED_BLINKON );
+```
 
 ## Timers, counters & pins ##
 
@@ -144,19 +166,23 @@ Example:
 
 Sets a timer or counter struct depending on the argument types passed. Normally used inside the object class.
 
-	atm_milli_timer timer1;
-	atm_micro_timer timer2;
-	atm_counter counter;
+```c++
+atm_milli_timer timer1;
+atm_micro_timer timer2;
+atm_counter counter;
 	
-	set(  timer1, 1000 ); // Set a timer to expire 1 second from now
-	set(  timer2, 100 ); // Set a timer to expire 100 microseconds from now
-	set( counter, 10   ); // Set a countdown counter to 10
+set(  timer1, 1000 ); // Set a timer to expire 1 second from now
+set(  timer2, 100 ); // Set a timer to expire 100 microseconds from now
+set( counter, 10   ); // Set a countdown counter to 10
+```
 
 ### decrement( counter ) ###
 
 Decrements the counter unless the counter value is already at 0 or the counter is equal to ATM\_COUNTER\_OFF. Returns the new counter value.
 
-	decrement( counter );
+```c++
+decrement( counter );
+```
 
 ### expired( timer | counter ) ###
 
@@ -168,30 +194,37 @@ Returns true if the counter argument has expired (counted down to 0).
 Always returns true if the counter was set to 0.
 Always returns false if the counter was set to ATM\_COUNTER\_OFF.
 
-	case EVT_TIMER :
-	     return expired( _timer );
-	case EVT_COUNTER :
-	     return expired( _counter );
+```c++
+case EVT_TIMER :
+     return expired( _timer );
+case EVT_COUNTER :
+     return expired( _counter );
+```
 
 ### pinChange( pin ) ###
 
 Returns true if the pin state has changed from low to high or high to low. Always clears any change.
 
-     case EVT_CHANGED :
-          return pinChange( pin );
+```c++
+case EVT_CHANGED :
+     return pinChange( pin );
+```
 
 ### runtime_millis() ###
 
 Returns the runtime of the current object state in milliseconds.
 
-	Serial.print( led1.runtime_millis() );
+```c++
+Serial.print( led1.runtime_millis() );
+```
 
 ### runtime_micros() ###
 
 Returns the runtime of the current object state in microseconds.
 
-	Serial.print( led1.runtime_micros() );
-
+```c++
+Serial.print( led1.runtime_micros() );
+```
 ## Scheduling ##
 ----------
 
@@ -199,19 +232,23 @@ Returns the runtime of the current object state in microseconds.
 
 Returns true if the object is in sleeping state (which is the case if the current state has the ATM\_SLEEP constant on the ON\_LOOP column). A machine in a sleeping state does not execute its event loop and does not call its action() handler, it does, however, process incoming messages.
 
-	led1.asleep();
+```c++
+led1.asleep();
+```
 
 ### priority( [prio] ) ###
 
 Sets or retrieves the state machine's priority setting. The default priority is 1, which runs the machine at full speed. Priority 2 runs it at half speed. Priority 3 runs at quarter speed. Finally, priority 4 runs at 1/8 speed.
 
-	led1.priority( 2 );
+```c++
+led1.priority( 2 );
 
-	// Disable button
-	button.priority( 0 );
+// Disable button
+button.priority( 0 );
 
-    // Re-enable it
-    button.priority( 1 ); 
+// Re-enable it
+button.priority( 1 ); 
+```
 
 Set a machine's priority to 0 to disable it altogether, This uses even less resources than sleeping. Incoming messages are not processed in this mode.
 
@@ -219,12 +256,14 @@ Set a machine's priority to 0 to disable it altogether, This uses even less reso
 
 Executes one cycle of the state machine. Normally only called by the factory class but can also be used directly inside the Arduino loop() function to bypass the factory class altogether. (may be slightly faster if you don't require different machine priorities - see the priority() method)
 
-	void loop()
-	{
-      led1.cycle();
-      led2.cycle();
-      led3.cycle();
-	}
+```c++
+void loop()
+{
+    led1.cycle();
+    led2.cycle();
+    led3.cycle();
+}
+```
 
 ## Message queue ##
 
@@ -237,11 +276,15 @@ Adds a new message to the machine's message queue. If the *cnt* argument is supp
 
 In the .h file:
 
-	enum { MSG_OFF, MSG_ON } MESSAGES;
+```c++
+enum { MSG_OFF, MSG_ON } MESSAGES;
+```
 
 In the main program:
 
-	obj.msgWrite( obj.MSG_ON );
+```c++
+obj.msgWrite( obj.MSG_ON );
+```
 
 To allow processing of incoming messages a sleeping machine is woken up by a call to msgWrite(). 
  
@@ -249,10 +292,12 @@ To allow processing of incoming messages a sleeping machine is woken up by a cal
 
 Checks the queue for the given message type (id), if one is found removes it from the queue and returns 1. This method is normally used in a machine's event handler.
 
-	case EVT_OFF :
-	  return msgRead( MSG_OFF );
-	case EVT_ON :
-	  return msgRead( MSG_ON );
+```c++
+case EVT_OFF :
+  return msgRead( MSG_OFF );
+case EVT_ON :
+  return msgRead( MSG_ON );
+```
  
 If the *cnt* argument is given removes *cnt* messages from the queue.
 
@@ -260,28 +305,35 @@ If the *cnt* argument is given removes *cnt* messages from the queue.
 
 Checks the queue for the given message type (id), if one is found leaves it in the queue and returns 1.
 
-	case EVT_DISABLED :
-		return msgPeek( MSG_DISABLED );
-
+```c++
+case EVT_DISABLED :
+	return msgPeek( MSG_DISABLED );
+```
 This method can be used in conjunction with msgWrite() and msgClear() to simulate setting, checking and clearing a flag.
 
 ### msgClear( [id] ) ###
 
 Clears all messages of a certain type (id) from the queue, or, if no id argument, is given flushes the entire queue.
 
-	obj.msgClear( MSG_DISABLED );
-	obj.msgClear(); 
+```c++
+obj.msgClear( MSG_DISABLED );
+obj.msgClear(); 
+```
 
 ### msgMap( bitmap ) ###
 
 Checks the bitmap variable and for each bit set executes a msgWrite() to the corresponding message id.
 
-	obj.msgMap( 4 );
+```c++
+obj.msgMap( 4 );
+```
 
 Is equivalent to:
 
-	obj.msgWrite( 0 );
-	obj.msgWrite( 2 );
+```c++
+obj.msgWrite( 0 );
+obj.msgWrite( 2 );
+```
 
 To allow processing of incoming messages a sleeping machine is woken up by a call to msgMap(). 
 
@@ -291,9 +343,11 @@ To allow processing of incoming messages a sleeping machine is woken up by a cal
 
 Overrides the machine's default (class based) label and sets a new one for the current instance.
 
-	led1.label( "LED_R" );
-	led2.label( "LED_G" );
-	led3.label( "LED_B" );
+```c++
+led1.label( "LED_R" );
+led2.label( "LED_G" );
+led3.label( "LED_B" );
+```
 
 This label can be used to access the machine (via the Factory::find() method) or to distinguish the machine from other instances in the same class in log output generated by onSwitch().    
 
@@ -301,51 +355,54 @@ This label can be used to access the machine (via the Factory::find() method) or
 
 Registers a callback which will be called just before a machine status switch. May be used to selectively log machine behavior. 
 
-	void sw( const char label[], int current, int next, 
-		int trigger, uint32_t runtime, uint32_t cycles ) {
-	  Serial.print( millis() );
-	  Serial.print( " Switching " );
-	  Serial.print( label );
-	  Serial.print( " from state " );
-	  Serial.print( current );
-	  Serial.print( " to " );
-	  Serial.print( next );
-	  Serial.print( " on trigger " );
-	  Serial.print( trigger );
-	  Serial.print( " (" );
-	  Serial.print( cycles );
-	  Serial.print( " cycles in " );
-	  Serial.print( runtime );
-	  Serial.println( " ms)" );
-	}
+```c++
+void sw( const char label[], int current, int next, 
+	int trigger, uint32_t runtime, uint32_t cycles ) {
+  Serial.print( millis() );
+  Serial.print( " Switching " );
+  Serial.print( label );
+  Serial.print( " from state " );
+  Serial.print( current );
+  Serial.print( " to " );
+  Serial.print( next );
+  Serial.print( " on trigger " );
+  Serial.print( trigger );
+  Serial.print( " (" );
+  Serial.print( cycles );
+  Serial.print( " cycles in " );
+  Serial.print( runtime );
+  Serial.println( " ms)" );
+}
 
-	obj.onSwitch( sw ).label( "TST" );
-
+obj.onSwitch( sw ).label( "TST" );
+```
 
 The code above will log numeric values for states and events (triggers) which requires some interpretation. Use the extended version of this method to provide symbol tables for states and events. The symbol tables are strings that contain NULL ('\0') separated lists of identifier names in the same order they occur in the *STATES* & *EVENTS* enums of the machine you want to monitor. 
 
-	void sw( const char label[], const char current[], const char next[], 
-		const char trigger[], uint32_t runtime, uint32_t cycles ) {
-	  Serial.print( millis() );
-	  Serial.print( " Switching " );
-	  Serial.print( label );
-	  Serial.print( " from state " );
-	  Serial.print( current );
-	  Serial.print( " to " );
-	  Serial.print( next );
-	  Serial.print( " on trigger " );
-	  Serial.print( trigger );
-	  Serial.print( " (" );
-	  Serial.print( cycles );
-	  Serial.print( " cycles in " );
-	  Serial.print( runtime );
-	  Serial.println( " ms)" );
-	}
+```c++
+void sw( const char label[], const char current[], const char next[], 
+	const char trigger[], uint32_t runtime, uint32_t cycles ) {
+  Serial.print( millis() );
+  Serial.print( " Switching " );
+  Serial.print( label );
+  Serial.print( " from state " );
+  Serial.print( current );
+  Serial.print( " to " );
+  Serial.print( next );
+  Serial.print( " on trigger " );
+  Serial.print( trigger );
+  Serial.print( " (" );
+  Serial.print( cycles );
+  Serial.print( " cycles in " );
+  Serial.print( runtime );
+  Serial.println( " ms)" );
+}
 
-	obj.onSwitch( sw, 
-		"IDLE\0WAIT\0PULSE", 
-		"EVT_TIMER\0EVT_HIGH\0EVT_LOW\0ELSE" )
-			.label( "TST" );
+obj.onSwitch( sw, 
+	"IDLE\0WAIT\0PULSE", 
+	"EVT_TIMER\0EVT_HIGH\0EVT_LOW\0ELSE" )
+		.label( "TST" );
+```
 
 This will provide a considerably more understandable log output. Note that the callback functions in the two examples differ in argument types.
 
