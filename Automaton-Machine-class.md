@@ -3,12 +3,34 @@
 
 *Machine* is an abstract class, which means it cannot be instantiated directly. It must be subclassed first. These subclasses define *Finite State Machines* which inherit all *Machine* functionality and *can* be instantiated (used as an object). Every Machine subclass should define its own version of the *begin*(), *event*() and *action*() methods. 
 
-* Initialization
-	* [begin](#begin-tbl-w-messages-msg_w-)
-	* [event](#event-id-)
+* [Initialization[(#initialization)
+ * [begin](#begin-tbl-w-messages-msg_w-)
+ * [event](#event-id-)
 * [States](#states)
-	* state()
-	* toggle()
+ * state()
+ * toggle()
+* [Timers, counters & pins](#user-content-timers-counters--pins)
+ * set()
+ * decrement()
+ * expired()
+ * pinChange()
+ * runtime_millis()
+ * runtime_micros()
+* [Scheduling](#scheduling)
+ * asleep()
+ * priority()
+ * cycle()
+* [Message queue](#message-queue)
+ * msgWrite()
+ * msgRead()
+ * msgPeek()
+ * msgClear()
+ * msgMap()
+* [Debugging](#debugging)
+ * label()
+ * onSwitch()
+
+## Initialization ##
 
 ### begin( tbl, width ) ###
 
