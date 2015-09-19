@@ -20,5 +20,5 @@ A state machine that handles commands coming in over a serial line (Stream), par
 
 ### Atm_comparator class (state machine) ###
 
-Monitors an analog input and fires off a callback whenever one of a list of thresholds are crossed. Optionally keeps a running average to smooth out peaks and troughs.
+Monitors an analog input with a configurable sample rate and fires off a callback whenever one of a list of thresholds are crossed. Optionally keeps a running average to smooth out peaks and troughs.
 
