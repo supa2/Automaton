@@ -34,7 +34,7 @@
 
 ## Initialization ##
 
-### begin( tbl, width ) ###
+### Machine & begin( const state_t* tbl, state_t width ) ###
 
 Calls the Machine base class initialization code. Links a *state transition table* to the machine. Each machine subclass should define its own begin() method which, in turn should call Machine::begin() to get the ball rolling.
 
@@ -58,7 +58,7 @@ Machine::begin( state_table, ELSE );
 
 The *ELSE* event is automatic (generates no call to the event() method).
 
-### msgQueue( msg, width ) ###
+### Machine & msgQueue( atm_msg_t msg[], int width )  ###
 
 The msgQueue() methods adds an incoming messaging queue if the machine needs to be able to process incoming messages.
 
@@ -97,8 +97,7 @@ switch ( id ) {
 
 The *MSG_END* identifier must always be last in the list because it is used to determine the size of the msg queue.
 
-
-### event( id ) ###
+### int event( int id ) ###
 
 Event handler. This is a *pure virtual method* (which means every subclass of Machine must implement it). This handler will be called for every event in the current state where the corresponding table entry is not -1. The id argument contains the event id for which the handler is called.
 
@@ -125,7 +124,7 @@ Failing to implement the event() method in a subclass generates the following co
 Cannot declare variable <objectname> to be of abstract type...
 ```
 
-### action( id ) ###
+### void action( int id ) ###
 
 Action handler. This is a pure virtual method (which means every subclass of Machine must implement it). This handler will be called for every action in the current state where the corresponding table entry is not -1. The id argument contains the action id for which the handler is called.
 
@@ -156,7 +155,7 @@ Cannot declare variable <objectname> to be of abstract type...
 
 ## States ##
 
-### state( [state] ) ###
+### Machine & state( state_t state) ###
 
 Requests the current state of the machine, or if the *state* parameter is set, sets the state the machine will switch to at the start of the next machine cycle.
 
@@ -166,7 +165,7 @@ if ( led.state() != led.OFF ) {
 }
 ```
 
-### toggle( state1, state2 ) ###
+### Machine & toggle( state_t state1, state_t state2 ) ###
 
 Toggles the machine's state, equivalent to the following if-else-statement:
 
@@ -186,7 +185,9 @@ led1.toggle( LED_IDLE, LED_BLINKON );
 
 ## Timers, counters & pins ##
 
-### set( timer | counter, value ) ###
+### Machine & set(atm_milli_timer &timer, uint32_t v) ###
+### Machine & set(atm_micro_timer &timer, uint32_t v) ###
+### Machine & set(atm_counter &counter, uint16_t v) ###
 
 Sets a timer or counter struct depending on the argument types passed. Normally used inside the object class.
 
@@ -200,7 +201,7 @@ set(  timer2, 100 ); // Set a timer to expire 100 microseconds from now
 set( counter, 10   ); // Set a countdown counter to 10
 ```
 
-### decrement( counter ) ###
+### uint16_t decrement(atm_counter &counter) ###
 
 Decrements the counter unless the counter value is already at 0 or the counter is equal to ATM\_COUNTER\_OFF. Returns the new counter value.
 
@@ -208,7 +209,9 @@ Decrements the counter unless the counter value is already at 0 or the counter i
 decrement( counter );
 ```
 
-### expired( timer | counter ) ###
+### uint8_t expired(atm_milli_timer timer) ###
+### uint8_t expired(atm_micro_timer timer) ###
+### uint8_t expired(atm_counter &counter) ###
 
 Returns true if the timer argument has expired.
 Always returns true if the timer was set to 0.
@@ -225,7 +228,7 @@ case EVT_COUNTER :
      return expired( _counter );
 ```
 
-### pinChange( pin ) ###
+### uint8_t pinChange( uint8_t pin ) ###
 
 Returns true if the pin state has changed from low to high or high to low. Always clears any change.
 
@@ -234,7 +237,7 @@ case EVT_CHANGED :
      return pinChange( pin );
 ```
 
-### runtime_millis() ###
+### uint32_t runtime_millis( void ) ###
 
 Returns the runtime of the current object state in milliseconds.
 
@@ -242,7 +245,7 @@ Returns the runtime of the current object state in milliseconds.
 Serial.print( led1.runtime_millis() );
 ```
 
-### runtime_micros() ###
+### uint32_t runtime_micros( void ) ###
 
 Returns the runtime of the current object state in microseconds.
 
@@ -252,7 +255,7 @@ Serial.print( led1.runtime_micros() );
 ## Scheduling ##
 ----------
 
-### asleep() ###
+### uint8_t asleep( void ) ###
 
 Returns true if the object is in sleeping state (which is the case if the current state has the ATM\_SLEEP constant on the ON\_LOOP column). A machine in a sleeping state does not execute its event loop and does not call its action() handler, it does, however, process incoming messages.
 
@@ -260,7 +263,7 @@ Returns true if the object is in sleeping state (which is the case if the curren
 led1.asleep();
 ```
 
-### priority( [prio] ) ###
+### Machine & priority( int8_t priority ) ###
 
 Sets or retrieves the state machine's priority setting. The default priority is 1, which runs the machine at full speed. Priority 2 runs it at half speed. Priority 3 runs at quarter speed. Finally, priority 4 runs at 1/8 speed.
 
@@ -284,7 +287,7 @@ button.priority( 1 );
 
 Set a machine's priority to 0 to disable it altogether, This uses even less resources than sleeping. Incoming messages are not processed in this mode.
 
-### cycle() ###
+### Machine & cycle( void ) ###
 
 Executes one cycle of the state machine. Normally only called by the factory class but can also be used directly inside the Arduino loop() function to bypass the factory class altogether. (may be slightly faster if you don't require different machine priorities - see the priority() method)
 
@@ -301,7 +304,7 @@ void loop()
 
 The Machine class defines a simulated messaging queue via which messages can be sent from machine to machine or from the main Arduino program to a machine. Multiple messages can be queued.  
 
-### msgWrite( id, [cnt] ) ###
+### Machine & msgWrite( uint8_t id_msg, [int cnt] ) ###
 
 Adds a new message to the machine's message queue. If the *cnt* argument is supplied adds that number of messages to the queue. The available message types (id) are defined in the machine's .h file.
 
@@ -320,7 +323,7 @@ obj.msgWrite( obj.MSG_ON );
 
 To allow processing of incoming messages a sleeping machine is woken up by a call to msgWrite(). 
  
-### msgRead( id, [cnt] ) ###
+### int msgRead( uint8_t id_msg, [int cnt] ) ###
 
 Checks the queue for the given message type (id), if one is found removes it from the queue and returns 1. This method is normally used in a machine's event handler.
 
@@ -333,7 +336,7 @@ case EVT_ON :
  
 If the *cnt* argument is given removes *cnt* messages from the queue.
 
-### msgPeek( id ) ###
+### int msgPeek( uint8_t id_msg ) ###
 
 Checks the queue for the given message type (id), if one is found leaves it in the queue and returns 1.
 
@@ -343,7 +346,7 @@ case EVT_DISABLED :
 ```
 This method can be used in conjunction with msgWrite() and msgClear() to simulate setting, checking and clearing a flag.
 
-### msgClear( [id] ) ###
+### int msgClear( [uint8_t id_msg] ) ###
 
 Clears all messages of a certain type (id) from the queue, or, if no id argument, is given flushes the entire queue.
 
@@ -352,7 +355,7 @@ obj.msgClear( MSG_DISABLED );
 obj.msgClear(); 
 ```
 
-### msgMap( bitmap ) ###
+### Machine & msgMap( uint32_t map ) ###
 
 Checks the bitmap variable and for each bit set executes a msgWrite() to the corresponding message id.
 
@@ -371,7 +374,7 @@ To allow processing of incoming messages a sleeping machine is woken up by a cal
 
 ## Debugging ##
 
-### label( inst_label ) ###
+### Machine & label( const char label[] ) ###
 
 Overrides the machine's default (class based) label and sets a new one for the current instance.
 
@@ -383,7 +386,8 @@ led3.label( "LED_B" );
 
 This label can be used to access the machine (via the Factory::find() method) or to distinguish the machine from other instances in the same class in log output generated by onSwitch().    
 
-### onSwitch( callback, [sym\_states], [sym\_events] ) ###
+### Machine & onSwitch( swcb_num_t callback ) ###
+### Machine & onSwitch( swcb_sym_t callback, const char sym_s[], const char sym_e[] ) ###
 
 Registers a callback which will be called just before a machine status switch. May be used to selectively log machine behavior. 
 
