@@ -43,8 +43,8 @@ In the Atm_xxx.cpp file:
 
 You may now send messages to the machine object like this:
 
-	obj->msgWrite( MSG_OFF );
-	obj_MsgWrite( MSG_ON );
+	obj.msgWrite( MSG_OFF );
+	obj.MsgWrite( MSG_ON );
 
 The *MSG_END* identifier must always be last in the list because it is used to determine the size of the msg queue.
 
@@ -159,12 +159,12 @@ Always returns false if the counter was set to ATM\_COUNTER\_OFF.
 	case EVT_COUNTER :
 	     return expired( _counter );
 
-### pinChange( pin, [hilo] ) ###
+### pinChange( pin ) ###
 
-Returns true if the pin state has changed from low to high or high to low, optionally, if the hilo argument was specified only returns true if the change was in the specified direction. Always clears any change.
+Returns true if the pin state has changed from low to high or high to low. Always clears any change.
 
-     case EVT_PRESSED :
-          return pinChange( pin, LOW );
+     case EVT_CHANGED :
+          return pinChange( pin );
 
 ### runtime_millis() ###
 
