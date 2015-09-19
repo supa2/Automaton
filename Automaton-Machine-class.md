@@ -3,8 +3,12 @@
 
 *Machine* is an abstract class, which means it cannot be instantiated directly. It must be subclassed first. These subclasses define *Finite State Machines* which inherit all *Machine* functionality and *can* be instantiated (used as an object). Every Machine subclass should define its own version of the *begin*(), *event*() and *action*() methods. 
 
-* [begin](#begin-tbl-w-messages-msg_w-)
-* [event](#event-id-)
+* Initialization
+	* [begin](#begin-tbl-w-messages-msg_w-)
+	* [event](#event-id-)
+* [States](#states)
+	* state()
+	* toggle()
 
 ### begin( tbl, width ) ###
 
@@ -16,6 +20,7 @@ The *ELSE* is an identifier from the *STATES* enum section of the class definiti
 
 For this reason each *STATES* enum must end with an *ELSE* event.
 
+'''c++
 	const static state_t state_table[] PROGMEM = {
 	/*                  ON_ENTER    ON_LOOP    ON_EXIT  EVT_INPUT   EVT_EOL   ELSE */
 	/* IDLE     */            -1,        -1,        -1,  READCHAR,       -1,    -1,
@@ -23,6 +28,7 @@ For this reason each *STATES* enum must end with an *ELSE* event.
 	/* SEND     */      ACT_SEND,        -1,        -1,        -1,       -1,  IDLE,
 	};
 	Machine::begin( state_table, ELSE );
+'''
 
 The *ELSE* event is automatic (generates no call to the event() method).
 
@@ -107,8 +113,7 @@ Failing to implement the action() method in a subclass generates the following c
 
 	Cannot declare variable <objectname> to be of abstract type...
 
-*States*
-----------
+## States ##
 
 ### state( [state] ) ###
 
@@ -133,8 +138,7 @@ Example:
 
 	led1.toggle( LED_IDLE, LED_BLINKON );
 
-*Timers, counters & pins*
-----------
+## Timers, counters & pins ##
 
 ### set( timer | counter, value ) ###
 
@@ -188,7 +192,7 @@ Returns the runtime of the current object state in microseconds.
 
 	Serial.print( led1.runtime_micros() );
 
-*Scheduling*
+## Scheduling ##
 ----------
 
 ### asleep() ###
@@ -222,8 +226,7 @@ Executes one cycle of the state machine. Normally only called by the factory cla
       led3.cycle();
 	}
 
-*Message queue*
-----------
+## Message queue ##
 
 The Machine class defines a simulated messaging queue via which messages can be sent from machine to machine or from the main Arduino program to a machine. Multiple messages can be queued.  
 
@@ -282,8 +285,7 @@ Is equivalent to:
 
 To allow processing of incoming messages a sleeping machine is woken up by a call to msgMap(). 
 
-*Debugging*
-----------
+## Debugging ##
 
 ### label( inst_label ) ###
 
