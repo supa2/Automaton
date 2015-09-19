@@ -1,4 +1,3 @@
-
 # Automaton Machine class #
 ----------
 
@@ -7,17 +6,15 @@
 * [begin](#begin-tbl-w-messages-msg_w-)
 * [event](#event-id-)
 
-### begin( tbl, w, [messages], [msg_w] ) ###
+### begin( tbl, width ) ###
 
-Calls the Machine base class initialization code. Links a *state transition table* to the machine and optionally adds an incoming messaging queue if the machine needs to be able to process incoming messages. Each machine subclass should define its own begin() method which, in turn should call Machine::begin() to get the ball rolling.
-
+Calls the Machine base class initialization code. Links a *state transition table* to the machine. Each machine subclass should define its own begin() method which, in turn should call Machine::begin() to get the ball rolling.
 
     Machine::begin( state_table, ELSE );
-	Machine::begin( state_table, ELSE, messages, MSG_END );
 
-The *ELSE* and *MSG_END* parameters are identifiers from the *STATES* and *MESSAGES* enum section of the class definition. They are used to determine the dimensions of the data structures.
+The *ELSE* is an identifier from the *STATES* enum section of the class definition. It is used to determine the dimensions of the data structure.
 
-For this reason each *STATES* enum must end with an *ELSE* event and each *MESSAGES* enum must end with a *MSG_END* entry.
+For this reason each *STATES* enum must end with an *ELSE* event.
 
 	const static state_t state_table[] PROGMEM = {
 	/*                  ON_ENTER    ON_LOOP    ON_EXIT  EVT_INPUT   EVT_EOL   ELSE */
@@ -27,7 +24,30 @@ For this reason each *STATES* enum must end with an *ELSE* event and each *MESSA
 	};
 	Machine::begin( state_table, ELSE );
 
-The *ELSE* event is automatic (generates no call to the event() method), the *MSG_END* entry is purely used as an end-of-list marker.
+The *ELSE* event is automatic (generates no call to the event() method).
+
+### msgQueue( msg, width ) ###
+
+The msgQueue() methods adds an incoming messaging queue if the machine needs to be able to process incoming messages.
+
+In the Atm_xxx.h file:
+
+	enum { MSG_OFF, MSG_ON, MSG_END } MESSAGES;
+
+	atm_msg_t messages[MSG_END];
+
+In the Atm_xxx.cpp file:
+
+	Machine::begin( state_table, ELSE );
+	Machine::msgQueue( messages, MSG_END );
+
+You may now send messages to the machine object like this:
+
+	obj->msgWrite( MSG_OFF );
+	obj_MsgWrite( MSG_ON );
+
+The *MSG_END* identifier must always be last in the list because it is used to determine the size of the msg queue.
+
 
 ### event( id ) ###
 
@@ -146,17 +166,17 @@ Returns true if the pin state has changed from low to high or high to low, optio
      case EVT_PRESSED :
           return pinChange( pin, LOW );
 
-### milli_runtime() ###
+### runtime_millis() ###
 
 Returns the runtime of the current object state in milliseconds.
 
-	Serial.print( led1.milli_runtime() );
+	Serial.print( led1.runtime_millis() );
 
-### micro_runtime() ###
+### runtime_micros() ###
 
 Returns the runtime of the current object state in microseconds.
 
-	Serial.print( led1.micro_runtime() );
+	Serial.print( led1.runtime_micros() );
 
 *Scheduling*
 ----------
