@@ -5,7 +5,7 @@ Runs state machines according to their priority.
 
 ### add( machine ) ###
 
-Adds a Machine object to the factory. Places it into the appropriate queue according to its priority setting.
+Adds a Machine object to the factory. Places it into the appropriate queue according to its priority setting. (See the Machine::priority() method documentation for more info)
 
 ```c++
 void setup() {
