@@ -67,6 +67,7 @@ void setup()
 {
   led1.begin( 3 );
   led1.blink( 40 );
+  led1.pause( 100 );
   ...
 }
 ```
