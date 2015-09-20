@@ -1,4 +1,4 @@
-Runs state machines according to their priority.
+Multitasks Automaton state machines according to their priority.
 
 ### Factory & add( Machine & machine ) ###
 
