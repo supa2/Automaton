@@ -120,7 +120,7 @@ void setup() {
 To monitor the behavior of this machine you may connect a monitoring function with the Machine::onSwitch() method. 
 
 ```c++
-void sw( const char label[], const char current[], const char next[], 
+void sw_callback( const char label[], const char current[], const char next[], 
       const char trigger[], uint32_t runtime, uint32_t cycles ) {
   Serial.print( millis() );
   Serial.print( " Switching " );
