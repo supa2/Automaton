@@ -46,7 +46,7 @@ Control a led via a digital pin. Control blink speed, pause duration and number 
 
 ### Atm_pulse class (state machine) ###
 
-Monitor digital pin for incoming pulses, fire a callback or send a message on minimum duration.
+Monitor a digital pin for incoming pulses, fire a callback or send a message on minimum duration.
 
 ### Atm_teensywave class (state machine) ###
 
