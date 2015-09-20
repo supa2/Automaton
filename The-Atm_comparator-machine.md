@@ -96,7 +96,7 @@ void setup()
   factory.add( cmp );
 }
 ```
-The buffer variable is used as a ring buffer to store the sampled values. The value the comparator uses to check the thresholds is computed as the average of de values in the ring buffer. The call to average() fills up the ringbuffer with samples so the average will make sense right from the start.
+The buffer variable is used as a ring buffer to store the sampled values. The value the comparator uses to check the thresholds is computed as the average of the values in the ring buffer. The call to average() fills up the ringbuffer with samples so the average will make sense right from the start.
 
 ### Machine & onSwitch( swcb_sym_t callback, const char sym_s[], const char sym_e[] ) ###
 
