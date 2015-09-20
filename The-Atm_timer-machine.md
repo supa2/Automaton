@@ -1,11 +1,11 @@
 Atm_timer implements a timer mechanism as a simple state machine.
 
-* begin()
-* onTimer()
-* interval()
-* repeat()
-* id()
-* onSwitch()
+* [begin()](#begin)
+* [onTimer()](#atm_timer--ontimer-timer_cb_t-timer_callback-)
+* [interval()](#atm_timer--interval-int-v-)
+* [repeat()](#atm_timer--repeat-int-v-)
+* [id()](#atm_timer--id-int-v-)
+* [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
 
 ## Synopsis ##
 
@@ -32,6 +32,18 @@ void setup()
 void loop()
 {
   factory.cycle();
+}
+```
+
+### Atm_timer & begin( void ) ###
+
+The begin() method has no arguments.
+
+```c++
+void setup()
+{
+  timer.begin();
+  ...
 }
 ```
 
