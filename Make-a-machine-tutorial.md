@@ -2,7 +2,17 @@ The idea is to subdivide your program into subtasks, usually but not exclusively
 
 Traditionally, let's start with the simplest possible application: blinking a Led.
 
-### Subclass Automaton ###
+* [The skeleton](#the-skeleton)
+* [The beginning](#the-beginning)
+* [The state table](#the-state-table)
+* [The events](#the-events)
+* [The actions](#the-actions)
+* [Linking it all up](#linking-it-all-up)
+* [Admiring the result](#admiring-the-result)
+* [Wrap up](#wrap-up)
+
+
+### The skeleton ###
 
 To create a new Automaton (state machine) you must first subclass the Automaton base class. You also give it a short class label by which we can recognize it later, when it's up and running.
 
@@ -55,7 +65,7 @@ class Blink : public Machine {
 };
 ```
 
-### The State table ###
+### The state table ###
 
 The Automaton state machines are table based, so obviously we need a table. This so called *State transition table* has a row for every state the machine can be in. Per state we store the actions that should be taken (the first 3 columns) and the events that must be monitored (the following columns). If a monitored event occurs this will lead to a change in the machine state.
 
@@ -81,7 +91,7 @@ Don't forget to declare the state table as static and PROGMEM. The *static* mean
 
 For now the state table consists of two rows (the LED_OFF and LED_ON states we just thought of) and four columns. All fields are filled with the value -1, which means as much as 'do nothing'. And that's exactly what your new machine does - for now.
 
-### Events ###
+### The events ###
 
 A state machine changes it's state in response to events. The only event we need for our machine is time based, the timer we already declared. Now we expand our EVENTS list with a timer event (let's call it EVT_TIMER) and add an extra column to the state table to accomodate it.
 
@@ -132,7 +142,7 @@ Each Automaton state machine must define an event() and an action() method so we
 
 The expired() method checks the timer against the number of millisecond the state has been active and returns either 0 (still running) or 1 (expired). 
 
-### Actions ###
+### The actions ###
 
 Events are the inputs of a state machine. Our blink machine only needs one, a timer. It also needs outputs, we call them actions. In the case of our blink machine it needs two actions. One that turns the led on (let's call it *ACT_ON*) and one that turns it off again (*ACT_OFF*).
 
@@ -180,7 +190,7 @@ We've linked our outputs, but we're not done yet. We need to link our inputs as 
       /* LED_OFF */  ACT_OFF,        -1,      -1,      LED_ON,   -1,
       };
 ```
-### Admire the result ###
+### Admiring the result ###
 
 Now all we need to do to admire our gloriously blinking led is to instanciate the class in an object. A fancy way of saying:
 
