@@ -1,6 +1,6 @@
 Atm_timer implements a timer mechanism as a simple state machine.
 
-* [begin()](#begin)
+* [begin()](#atm_timer--begin-void-)
 * [onTimer()](#atm_timer--ontimer-timer_cb_t-timer_callback-)
 * [interval()](#atm_timer--interval-int-v-)
 * [repeat()](#atm_timer--repeat-int-v-)
