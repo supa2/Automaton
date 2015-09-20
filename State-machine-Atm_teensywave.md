@@ -4,6 +4,8 @@ Generate different waveforms (sine, sawtooth, reverse sawtooth, square, triangle
 * onSwitch()
 * MSG_TOGGLE
 
+## Waveforms ## 
+
 Index | Waveform
 ------------ | -------------
 1 | Sine wave
@@ -93,7 +95,8 @@ Use the code below to pass STATES and EVENTS symbol tables to the state machine,
 
 ```c++
 cmd.onSwitch( sw, 
-  "IDLE\0START_SN\0SINE\0START_SW\0SAW\0START_SR\0SAWR\0START_TR\0TRI\0START_SQ\0SQON\0SQOFF",
+  "IDLE\0START_SN\0SINE\0START_SW\0SAW\0START_SR\0SAWR"
+  "\0START_TR\0TRI\0START_SQ\0SQON\0SQOFF",
   "EVT_COUNTER\0EVT_TIMER\0EVT_TOGGLE\0ELSE" );
 ```
 
