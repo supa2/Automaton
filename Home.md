@@ -1,6 +1,17 @@
-Welcome to the Automaton wiki!
 
-The following classes and finite state machines are documented here. The state machines can be used as self contained event-driven components that may be integrated with machines and logic that you build yourself.
+Automaton is a way to create Arduino applications that consist entirely of concurrently running state machines interacting with each other. 
+
+**Features**
+- Cooperative multi tasking finite state machines base class for building your own state machines 
+- Lightweight machine scheduling class with priorities 
+- Built in state timers (with milli- and microsecond resolutions)
+- Built in counters
+- Communication between machines via a messaging queue
+- Sleep states to save microcontroller cycles
+- Pin state monitor
+- Debugging (state monitor) hooks (that let you see what the machines are doing)
+- Enables modular design and separation of concerns
+- State machines can be shared as stand alone Arduino libraries (dependent only on the Automaton library)
 
 Documentation links are in the textbox on the right.
 
