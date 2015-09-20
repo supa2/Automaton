@@ -203,7 +203,6 @@ Blink led;
 
 ```c++
 void setup() {
-  // put your setup code here, to run once:
   led.begin( 3, 250 );
 }
 ```
@@ -212,7 +211,6 @@ void setup() {
 
 ```c++
 void loop() {
-  // put your main code here, to run repeatedly:
   led.cycle();
 }
 ```
@@ -275,13 +273,11 @@ class Blink : public Machine {
 Blink led;
 
 void setup() {
-  // put your setup code here, to run once:
   led.begin( 3, 250 );
 
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   led.cycle();
 }
 ```
@@ -310,7 +306,6 @@ void sw( const char label[], const char current[], const char next[],
 }
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin( 9600 );
   led.onSwitch( sw, "LED_ON\0LED_OFF","EVT_TIMER\0ELSE" );
   led.begin( 3, 250 );
