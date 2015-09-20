@@ -24,6 +24,10 @@ Base class for defining self contained multi-tasking state machine objects.
 
 Add your state machines to the factory class, assign them a priority and run them from the Arduino loop().
 
+## Bundled state machines ##
+
+To get you up and running quickly we've bundled a number of ready to use state machines. Combine them to create your application.
+
 ### Atm_button class (state machine) ###
 
 A state machine for handling button presses, longpresses, repeats, debouncing, etc.
@@ -42,11 +46,11 @@ Control a led via a PWM enabled pin. Control blink speed, pause duration, fade i
 
 ### Atm_led class (state machine) ###
 
-Control a led via a digital pin. Control blink speed, pause duration and number of repeats.
+Control a led via a digital pin. Control blink speed, pause duration and number of repeats. Can also be used to control other on/off devices like relays and buzzers.
 
 ### Atm_pulse class (state machine) ###
 
-Monitor a digital pin for incoming pulses, fire a callback or send a message on minimum duration.
+Monitor a digital pin for incoming pulses, fire a callback or send a message to another machine.
 
 ### Atm_teensywave class (state machine) ###
 
