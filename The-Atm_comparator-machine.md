@@ -87,7 +87,8 @@ uint16_t avgbuffer[256];
 
 void setup()
 {
-  static uint16_t threshold_list[] = { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }; 
+  static uint16_t threshold_list[] = 
+    { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }; 
 
   cmp.begin( A2, 50, cmp_callback );
   cmp.threshold( threshold_list, 10 );
