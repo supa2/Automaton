@@ -1,6 +1,3 @@
-# Automaton Factory class #
-----------
-
 Runs state machines according to their priority.
 
 ### add( machine ) ###
