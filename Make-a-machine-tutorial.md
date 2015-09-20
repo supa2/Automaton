@@ -81,3 +81,52 @@ Don't forget to declare the state table as static and PROGMEM. The *static* mean
 
 For now the state table consists of two rows (the LED_OFF and LED_ON states we just thought of) and four columns. All fields are filled with the value -1, which means as much as 'do nothing'. And that's exactly what your new machine does - for now.
 
+### Events & actions ###
+
+A state machine changes it's state in response to events. The only event we need for our machine is time based, the timer we already declared. Now we expand our EVENTS list with a timer event (let's call it EVT_TIMER) and add an extra column to the state table to accomodate it.
+
+
+```c++
+    enum { LED_ON, LED_OFF } STATES;
+    enum { EVT_TIMER, ELSE } EVENTS;
+
+    Blink & begin( int attached_pin, int blinkrate )
+    {
+      const static state_t state_table[] PROGMEM = {
+      /*            ON_ENTER    ON_LOOP  ON_EXIT    EVT_TIMER  ELSE */
+      /* LED_ON  */       -1,        -1,      -1,          -1,   -1,
+      /* LED_OFF */       -1,        -1,      -1,          -1,   -1,
+      };
+      Machine::begin( state_table, ELSE );
+      pin = attached_pin; 
+      set( timer, blinkrate ); 
+      pinMode( pin, OUTPUT ); 
+      return *this;          
+    }
+
+    int event( int id ) 
+    {
+    }
+
+    void action( int id ) 
+    {
+
+    }
+
+```
+
+PLease note that the order of the events in the *EVENTS* enum must be the same as the order of the events in the state table columns (starting with column 4). Similarly, the order of the rows in the state table must be the same as the order of the states in the *STATES* enum. It's very important to update the comments surrounding the state table rows and headers so you stand a chance of understanding what's happening when you look at your code at a later time. 
+
+Each Automaton state machine must define an event() and an action() method so we created two empty ones. The event handler is called by the state machine whenever it need to know if an event has occured. If wants to know if the timer we just declared has expired it call event with our *EVT_TIMER* value as a parameter. The handler must respond to that request with either a 0 (event did not occur) or 1 (event occurred). We can do that with the following code:
+
+```c++
+    int event( int id ) 
+    {
+      switch ( id ) {
+        case EVT_TIMER :
+          return expired( timer );
+      }
+    }
+```
+
+The expired() method checks the timer against the number of millisecond the state has been active and returns either 0 (still running) or 1 (expired). 
