@@ -127,7 +127,7 @@ A state machine changes it's state in response to events. The only event we need
 
 PLease note that the order of the events in the *EVENTS* enum must be the same as the order of the events in the state table columns (starting with column 4). Similarly, the order of the rows in the state table must be the same as the order of the states in the *STATES* enum. It's very important to update the comments surrounding the state table rows and headers so you stand a chance of understanding what's happening when you look at your code at a later time. 
 
-Each Automaton state machine must define an event() and an action() method so we created two empty ones. The event handler is called by the state machine whenever it need to know if an event has occured. If wants to know if the timer we just declared has expired it call event with our *EVT_TIMER* value as a parameter. The handler must respond to that request with either a 0 (event did not occur) or 1 (event occurred). We can do that with the following code:
+Each Automaton state machine must define an event() and an action() method so we created two empty ones. The event handler is called by the state machine whenever it needs to know if an event has occured. If it wants to know if the timer we just declared has expired it calls the event() handler with our *EVT_TIMER* value as a parameter. The handler must respond to that request with either a 0 (event did not occur) or 1 (event occurred). We can achieve that with the following code:
 
 ```c++
     int event( int id ) 
@@ -171,7 +171,7 @@ Whenever the state machine calls action( ACT_ON ) it turns the led on and when i
 
 ### Linking it all up ###
 
-Writing the begin(), event() and action() method is all the programming we have to do in this case. All we need to get a working state machine is to tell it what we want it to do. We do that by filling in the state transition table. Let's start with the actions. We want the led to switch on when the machine enters the *LED_ON* state (*ON_ENTER*: *ACT_ON*). Find the row that defines the *LED_ON* state and put the value *ACT_ON* in the *ON_ENTER* column. And similarly we want the led to switch off when the machine enters the *LED_OFF* state (*ON_ENTER*: *ACT_OFF*) We fill in that value in the second column. You can also choose to perform an action when the machine exits a certain state or whenever it cycles in that state, but we don't need that for our blink machine.
+Writing the begin(), event() and action() method is all the programming we have to do in this case. All we need to get a working state machine is to tell it what we want it to do. We do that by filling in the state transition table. Let's start with the actions. We want the led to switch on when the machine enters the *LED_ON* state (*ON_ENTER*: *ACT_ON*). Find the row that defines the *LED_ON* state and put the value *ACT_ON* in the *ON_ENTER* column. And similarly we want the led to switch off when the machine enters the *LED_OFF* state (*ON_ENTER*: *ACT_OFF*) We fill in that value in the second row. You can also choose to perform an action when the machine exits a certain state or whenever it cycles in that state, but we don't need that for our blink machine.
 
 ```c++
       const static state_t state_table[] PROGMEM = {
@@ -181,7 +181,7 @@ Writing the begin(), event() and action() method is all the programming we have 
       };
 ```
 
-We've linked our outputs, but we're not done yet. We need to link our inputs as well. Whenever the timer expires we want the machine to switch from LED_ON to LED_OFF and vice versa. So, when the the machine is in state *LED_ON* we want it to check if the timer has expired and if it has we want the machine to switch to state *LED_OFF*. In an Automaton machine we achive this by putting *LED_OFF* in the *EVT_TIMER* column in the *LED_ON* row. We do the similar but opposite thing for the *LED_OFF* state and we end up with a finished state table.
+We've now linked our outputs, but we're not done yet. We need to link our inputs as well. Whenever the timer expires we want the machine to switch from *LED_ON* to *LED_OFF* and vice versa. So, when the the machine is in state *LED_ON* we want it to check if the timer has expired and if it has we want the machine to switch to state *LED_OFF*. In an Automaton machine we achieve this by putting *LED_OFF* in the *EVT_TIMER* column in the *LED_ON* row. We do the similar but opposite thing for the *LED_OFF* state and we end up with a finished state table.
 
 ```c++
       const static state_t state_table[] PROGMEM = {
@@ -192,13 +192,13 @@ We've linked our outputs, but we're not done yet. We need to link our inputs as 
 ```
 ### Admiring the result ###
 
-Now all we need to do to admire our gloriously blinking led is to instanciate the class in an object. A fancy way of saying:
+Now all we need to do to admire our gloriously blinking led is to instanciate the class in an object which is just a fancy way of saying...
 
 ```c++
 Blink led;
 ```
 
-Initialize our object in the Arduino's setup() function:
+...initialize our object in the Arduino's setup() function...
 
 ```c++
 void setup() {
@@ -207,7 +207,7 @@ void setup() {
 }
 ```
 
-And call the Blink state machines cycle() method from the Arduino loop:
+...and call the Blink machine's cycle() method from the Arduino loop:
 
 ```c++
 void loop() {
@@ -216,9 +216,9 @@ void loop() {
 }
 ```
 
-And the machine blinks at two blinks per second.
+And presto, the machine blinks at two blinks per second.
 
-This is the complete code 
+This is the complete code as a single Arduino sketch file
 
 ```c++
 #include <Automaton.h>
@@ -287,7 +287,7 @@ void loop() {
 
 ### Wrap up ###
 
-I can hear some of you saying: "That's a lot of work for just blinking a led! I can do that in two lines!". And of course you can. But the advantage of using state machines is that you can run dozens of state machines at the same time, each performing its own subtask (preferably inside a factory object). The machines can communicate asynchronously via the message queue and you can easily perform complicated tasks while your Arduino stays responsive to user input. Many of today's hottest technologies like Node.JS and Python's twisted use event driven frameworks. Now your Arduino can have one too.
+I can hear some of you saying: "That's a lot of work for just blinking a led! I can do that in two lines!". And of course you can. But the advantage of using state machines is that you can run dozens of state machines at the same time, each performing its own subtask (preferably inside a factory object). The machines can communicate asynchronously via the message queue and you can easily perform complicated tasks while your Arduino stays responsive to user input. Many of today's hottest technologies like Node.JS and Python's twisted are based on event driven frameworks. Now your Arduino can have one too.
 
 For the sake of this tutorial I've kept everything in a single .ino file, but ideally a state machine would be packaged in its own separate .cpp and .h files that can be distributed and shared just like any Arduino library. Look at the source of one of the bundled state machines to see how that's done.
 
