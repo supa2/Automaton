@@ -4,7 +4,7 @@ Generate different waveforms (sine, sawtooth, reverse sawtooth, square, triangle
 * onSwitch()
 * MSG_TOGGLE
 
-## Waveforms ## 
+## Waveforms ##
 
 Index | Waveform
 ------------ | -------------
