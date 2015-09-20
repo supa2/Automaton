@@ -43,7 +43,7 @@ void setup()
 }
 ```
 
-Please note that the Atm_fade machine starts up in state *IDLE*, this means it won't start until its state is changed to Atm_led::START.
+Please note that the Atm_fade machine starts up in state *IDLE*, this means it won't start until its state is changed to Atm_fade::START.
 
 ### Atm_fade & blink( int duration ) ###
 
