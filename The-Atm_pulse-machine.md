@@ -1,4 +1,4 @@
-Monitor a digital pin for incoming pulses, fire a callback or send a message on minimum duration.
+Monitor a digital pin for incoming pulses, fire a callback or send a message when a pulse is detected.
 
 * begin()
 * onPulse()
@@ -38,7 +38,22 @@ Attaches an Atm_pulse machine to a pin and sets the minimum duration of pulses t
 pulse.begin( 11, 20 ).onPulse( pulse_callback );
 ```
 
+### Atm_pulse & onPulse( pulsecb_t press_callback ) ###
+### Atm_pulse & onPulse( Machine * machine, uint8_t msg ) ###
 
+Registers a callback that gets called when a pulse is detected.
+
+```c++
+pulse.begin( 11, 20 );
+pulse.onPulse( pulse_callback );
+```
+
+Or registers a state machine that gets a message when a puls is detected.
+
+```c++
+pulse.begin( 11, 20 );
+pulse.onPulse( &door, MSG_OPEN );
+```
 
 ### Machine & onSwitch( swcb_sym_t callback, const char sym_s[], const char sym_e[] ) ###
 
