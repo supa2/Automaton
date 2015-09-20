@@ -1,11 +1,11 @@
 A state machine that handles commands coming in over a serial line (Stream), parses and interprets them and fires off a handler callback.
 
-* begin()
-* onCommand()
-* separator()
-* lookup()
-* arg()
-* onSwitch()
+* [begin()](#atm_command--begin-stream--stream-char-buffer-int-size-)
+* [onCommand()](#atm_command--oncommandvoid-callback-int-idx--const-char--cmds--)
+* [separator()](#atm_command--separator-const-char-sep-)
+* [lookup()](#int-lookup-int-id-const-char--cmdlist-)
+* [arg()](#char--arg-int-id-)
+* [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
 
 ## Synopsis ##
 
