@@ -48,7 +48,7 @@ pulse.begin( 11, 20 );
 pulse.onPulse( pulse_callback );
 ```
 
-Or registers a state machine that gets a message when a puls is detected.
+Or registers a state machine that gets a message when a pulse is detected.
 
 ```c++
 pulse.begin( 11, 20 );
