@@ -14,7 +14,7 @@ Automaton is an event driven framework that allows you to create Arduino applica
 - Enables modular design and separation of concerns
 - State machines can be shared as stand alone Arduino libraries (dependent only on the Automaton library)
 
-Documentation to the (Factory & Machine) base classes and the bundled state machines are in the textbox on the right.
+Documentation for the (Factory & Machine) base classes and the bundled state machines is linked in the textbox on the right.
 
 ### Machine class ###
 
