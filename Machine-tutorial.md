@@ -39,8 +39,7 @@ void loop()
 
 ### The beginning ###
 
-The Blink subclass needs a new constructor that sets the class_label and calls the parent class' constructor
-, you want to be able to pass it two arguments, the pin that the led is connected to and the blinkrate in milliseconds. You also need the state table that will contain the Led class's possible states, say LED_ON and LED_OFF.
+The Blink subclass needs a new begin() method that sets the class_label and calls the parent class' begin() method, we pass it two arguments, the pin that the led is connected to and the blinkrate in milliseconds. You also need the STATES enum that will contain the Led class's possible states, say LED_ON and LED_OFF.
 
 You need a pin variable to hold the number of the pin the Led object is attached to and when you're at it you can set the pinmode to OUTPUT here. You'll be needing a millisecond timer, so we declare that as well. We'll also need an *EVENTS* enum which for now we fill with just the *ELSE* pseudo-event which must always be the last of the EVENTS.
 
