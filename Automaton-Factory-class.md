@@ -16,7 +16,7 @@ void loop() {
 }
 ```	
 
-### cycle() ###
+### Factory & cycle( void ) ###
 
 Executes a factory cycle. In a factory cycle all priority queues are cycled a number of times corresponding to their priority level. Called from the Arduino loop().
 
@@ -26,7 +26,7 @@ void loop() {
 }
 ```
 
-### find( label ) ###
+### Machine * find( const char label[] ) ###
 
 Finds a machine that has previously been added to the factory according to its label. Returns a pointer to the machine object.
 
