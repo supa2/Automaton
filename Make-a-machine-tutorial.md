@@ -9,6 +9,7 @@ Traditionally, let's start with the simplest possible application: blinking a Le
 * [The actions](#the-actions)
 * [Linking it all up](#linking-it-all-up)
 * [Admiring the result](#admiring-the-result)
+* [Add some debugging](#add-some-debugging)
 * [Wrap up](#wrap-up)
 
 
@@ -285,12 +286,6 @@ void loop() {
 }
 ```
 
-### Wrap up ###
-
-I can hear some of you saying: "That's a lot of work for just blinking a led! I can do that in two lines!". And of course you can. But the advantage of using state machines is that you can run dozens of state machines at the same time, each performing its own subtask (preferably inside a factory object). The machines can communicate asynchronously via the message queue and you can easily perform complicated tasks while your Arduino stays responsive to user input. Many of today's hottest technologies like Node.JS and Python's twisted are based on event driven frameworks. Now your Arduino can have one too.
-
-For the sake of this tutorial I've kept everything in a single .ino file, but ideally a state machine would be packaged in its own separate .cpp and .h files that can be distributed and shared just like any Arduino library. Look at the source of one of the bundled state machines to see how that's done.
-
 ### Add some debugging ###
 
 Blink is a rather trivial machine and it's easy to picture how it works, but sometimes it's nice to be able to look inside a machine object and see it switch states as it happens. There's a hook inside the Machine that allows just that. Add a callback function that prints information about the current state and modify the setup() function so that a Serial port is opened and the callback function is passe dto the onSwitch() method.
@@ -337,4 +332,9 @@ The onSwitch() method takes three arguments. The first is the function to call j
 
 You can monitor exactly what machine (class or instance label) switched from one state to another and on which event and at what time (in milliseconds). A very helpful function to help you understand what exactly is going on inside your machines. (it's easy to monitor multiple machines with one callback funcction)
 
+### Wrap up ###
+
+I can hear some of you saying: "That's a lot of work for just blinking a led! I can do that in two lines!". And of course you can. But the advantage of using state machines is that you can run dozens of state machines at the same time, each performing its own subtask (preferably inside a factory object). The machines can communicate asynchronously via the message queue and you can easily perform complicated tasks while your Arduino stays responsive to user input. Many of today's hottest technologies like Node.JS and Python's twisted are based on event driven frameworks. Now your Arduino can have one too.
+
+For the sake of this tutorial I've kept everything in a single .ino file, but ideally a state machine would be packaged in its own separate .cpp and .h files that can be distributed and shared just like any Arduino library. Look at the source of one of the bundled state machines to see how that's done.
 
