@@ -1,4 +1,4 @@
-Generate different waveforms (sine, sawtooth, reverse sawtooth, square, triangle) via the analog out pin of a teensy 3.1. This machine is only compatible with the Teensy 3.1 which has a true analog output pin: A14. The code is partially based on Sine wave example by Paul Stoffregen (maker of Teensy).
+This state machine generates different waveforms (sine, sawtooth, reverse sawtooth, square, triangle) via the analog out pin of a teensy 3.1. This machine is only compatible with the Teensy 3.1 and LC which have a true analog output pin. The code is partially based on sine wave example code by Paul Stoffregen (maker of Teensy).
 
 * begin()
 * onSwitch()
