@@ -101,3 +101,33 @@ This command looks up the second token in the buffer to see if it contains eithe
 
 Returns the n-th argument found in the cmdline string. To be used inside the callback routine that's called after an incoming command line has been parsed.
 
+### Machine & onSwitch( swcb_sym_t callback, const char sym_s[], const char sym_e[] ) ###
+
+To monitor the behavior of this machine you may connect a monitoring function with the Machine::onSwitch() method. 
+
+```c++
+void sw( const char label[], const char current[], const char next[], 
+      const char trigger[], uint32_t runtime, uint32_t cycles ) {
+  Serial.print( millis() );
+  Serial.print( " Switching " );
+  Serial.print( label );
+  Serial.print( " from state " );
+  Serial.print( current );
+  Serial.print( " to " );
+  Serial.print( next );
+  Serial.print( " on trigger " );
+  Serial.print( trigger );
+  Serial.print( " (" );
+  Serial.print( cycles );
+  Serial.print( " cycles in " );
+  Serial.print( runtime );
+  Serial.println( " ms)" );
+}
+```
+
+Use the code below to pass Atm_button's STATES and EVENTS symbol tables to the state machine, open up a serial terminal and watch the machine change states. 
+
+```c++
+cmd.onSwitch( sw, "IDLE\0READCHAR\0SEND","EVT_INPUT\0EVT_EOL\0ELSE" );
+```
+
