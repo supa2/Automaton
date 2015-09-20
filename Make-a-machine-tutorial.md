@@ -14,7 +14,7 @@ class Blink : public Machine {
   public:
     Blink( void ) : Machine() { class_label = "BLNK"; };
 
-}
+};
 
 void setup()
 {
@@ -52,7 +52,7 @@ class Blink : public Machine {
       pinMode( pin, OUTPUT ); 
       return *this;          
     }
-}
+};
 ```
 
 ### The State table ###
@@ -81,7 +81,7 @@ Don't forget to declare the state table as static and PROGMEM. The *static* mean
 
 For now the state table consists of two rows (the LED_OFF and LED_ON states we just thought of) and four columns. All fields are filled with the value -1, which means as much as 'do nothing'. And that's exactly what your new machine does - for now.
 
-### Events & actions ###
+### Events ###
 
 A state machine changes it's state in response to events. The only event we need for our machine is time based, the timer we already declared. Now we expand our EVENTS list with a timer event (let's call it EVT_TIMER) and add an extra column to the state table to accomodate it.
 
@@ -126,7 +126,158 @@ Each Automaton state machine must define an event() and an action() method so we
         case EVT_TIMER :
           return expired( timer );
       }
+      return 0;
     }
 ```
 
 The expired() method checks the timer against the number of millisecond the state has been active and returns either 0 (still running) or 1 (expired). 
+
+### Actions ###
+
+Events are the inputs of a state machine. Our blink machine only needs one, a timer. It also needs outputs, we call them actions. In the case of our blink machine it needs two actions. One that turns the led on (let's call it *ACT_ON*) and one that turns it off again (*ACT_OFF*).
+
+```c++
+    enum { LED_ON, LED_OFF } STATES;
+    enum { EVT_TIMER, ELSE } EVENTS;
+    enum { ACT_ON, ACT_OFF } ACTIONS;
+```
+For a change, order isn't important and we also don't need some magic value at the end. To process the actions our machine has an action() method similar to the event() method.
+
+```c++
+    void action( int id ) 
+    {
+      switch ( id ) {
+        case ACT_ON :
+          digitalWrite( pin, HIGH );
+          return;
+        case ACT_OFF :
+          digitalWrite( pin, LOW );
+          return;
+       }
+    }
+```
+
+Whenever the state machine calls action( ACT_ON ) it turns the led on and when it calls action( ACT_OFF) it turns the led off. 
+
+### Linking it all up ###
+
+Writing the begin(), event() and action() method is all the programming we have to do in this case. All we need to get a working state machine is to tell it what we want it to do. We do that by filling in the state transition table. Let's start with the actions. We want the led to switch on when the machine enters the *LED_ON* state (*ON_ENTER*: *ACT_ON*). Find the row that defines the *LED_ON* state and put the value *ACT_ON* in the *ON_ENTER* column. And similarly we want the led to switch off when the machine enters the *LED_OFF* state (*ON_ENTER*: *ACT_OFF*) We fill in that value in the second column. You can also choose to perform an action when the machine exits a certain state or whenever it cycles in that state, but we don't need that for our blink machine.
+
+```c++
+      const static state_t state_table[] PROGMEM = {
+      /*            ON_ENTER    ON_LOOP  ON_EXIT    EVT_TIMER  ELSE */
+      /* LED_ON  */   ACT_ON,        -1,      -1,          -1,   -1,
+      /* LED_OFF */  ACT_OFF,        -1,      -1,          -1,   -1,
+      };
+```
+
+We've linked our outputs, but we're not done yet. We need to link our inputs as well. Whenever the timer expires we want the machine to switch from LED_ON to LED_OFF and vice versa. So, when the the machine is in state *LED_ON* we want it to check if the timer has expired and if it has we want the machine to switch to state *LED_OFF*. In an Automaton machine we achive this by putting *LED_OFF* in the *EVT_TIMER* column in the *LED_ON* row. We do the similar but opposite thing for the *LED_OFF* state and we end up with a finished state table.
+
+```c++
+      const static state_t state_table[] PROGMEM = {
+      /*            ON_ENTER    ON_LOOP  ON_EXIT    EVT_TIMER  ELSE */
+      /* LED_ON  */   ACT_ON,        -1,      -1,     LED_OFF,   -1,
+      /* LED_OFF */  ACT_OFF,        -1,      -1,      LED_ON,   -1,
+      };
+```
+### Admire the result ###
+
+Now all we need to do to admire our gloriously blinking led is to instanciate the class in an object. A fancy way of saying:
+
+```c++
+Blink led;
+```
+
+Initialize our object in the Arduino's setup() function:
+
+```c++
+void setup() {
+  // put your setup code here, to run once:
+  led.begin( 3, 250 );
+}
+```
+
+And call the Blink state machines cycle() method from the Arduino loop:
+
+```c++
+void loop() {
+  // put your main code here, to run repeatedly:
+  led.cycle();
+}
+```
+
+And the machine blinks at two blinks per second.
+
+This is the complete code 
+
+```c++
+#include <Automaton.h>
+
+class Blink : public Machine {
+
+  public:
+    Blink( void ) : Machine() { class_label = "BLNK"; };
+
+    short pin;
+    atm_milli_timer timer;
+
+    enum { LED_ON, LED_OFF } STATES;
+    enum { EVT_TIMER, ELSE } EVENTS;
+    enum { ACT_ON, ACT_OFF } ACTIONS;
+
+    Blink & begin( int attached_pin, int blinkrate )
+    {
+      const static state_t state_table[] PROGMEM = {
+      /*            ON_ENTER    ON_LOOP  ON_EXIT    EVT_TIMER  ELSE */
+      /* LED_ON  */   ACT_ON,        -1,      -1,     LED_OFF,   -1,
+      /* LED_OFF */  ACT_OFF,        -1,      -1,      LED_ON,   -1,
+      };
+      Machine::begin( state_table, ELSE );
+      pin = attached_pin; 
+      set( timer, blinkrate ); 
+      pinMode( pin, OUTPUT ); 
+      return *this;          
+    }
+
+    int event( int id ) 
+    {
+      switch ( id ) {
+        case EVT_TIMER :
+          return expired( timer );
+      }
+      return 0;
+    }
+    
+    void action( int id ) 
+    {
+      switch ( id ) {
+        case ACT_ON :
+          digitalWrite( pin, HIGH );
+          return;
+        case ACT_OFF :
+          digitalWrite( pin, LOW );
+          return;
+       }
+    }
+};
+
+Blink led;
+
+void setup() {
+  // put your setup code here, to run once:
+  led.begin( 3, 250 );
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  led.cycle();
+}
+```
+
+### Wrap up ###
+
+I can hear some of you saying: "That's a lot of work for just blinking a led! I can do that in two lines!". And of course you can. But the advantage of using state machines is that you can runs dozens of state machines at the same time, each performing its own subtask. The machines can communicate asynchronously via the message queue and you can easily perform complicated tasks while your Arduino stays responsive to user input. Many of today's hottest technologies like Node.JS and Python's twisted use event driven frameworks. Now your Arduino can have one too.
+
+Ideally a State machine is packaged in a separate .cpp and .h file and can be distributed and shared just like any Arduino library. Look at the source of one of the bundled state machines to see how that's done.
+
