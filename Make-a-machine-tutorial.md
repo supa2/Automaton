@@ -4,7 +4,7 @@ Traditionally, let's start with the simplest possible application: blinking a Le
 
 ### Subclass Automaton ###
 
-To create a new Automaton (state machine) you must first subclass the Automaton base class.
+To create a new Automaton (state machine) you must first subclass the Automaton base class. We also give it a short class label by which we can recognize it later, when it's up and running.
 
 ```c++
 #include <Automaton.h>
