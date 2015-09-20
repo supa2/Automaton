@@ -16,7 +16,7 @@ Factory factory;
 
 void cmp_callback( int v, int up, int idx_threshold, int v_threshold )
 {
-  // Do something when a threshold is crossed
+  // Do something when one of the thresholds is crossed
 }
 
 void setup()
@@ -42,7 +42,7 @@ Attaches the comparator to an analog input pin, sets the samplerate and the call
 ```c++
 void cmp_callback( int v, int up, int idx_threshold, int v_threshold )
 {
-  // Do something when a threshold is crossed
+  // Do something when one of the thresholds is crossed
 }
 
 void setup()
@@ -59,7 +59,7 @@ Argument | Function
 -------- | --------
 v | the last measured value (or running average)
 up  | The direction in which the threshold was crossed (1 = up, 0 = down)
-idx_threshold | The idx of the threshold that was crossed
+idx_threshold | The index of the threshold that was crossed
 v_threshold | The value of the threshold that was crossed
 
 ### Atm_comparator & threshold( uint16_t * v, uint16_t size) ###
