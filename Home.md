@@ -13,7 +13,7 @@ Automaton is a way to create Arduino applications that consist entirely of concu
 - Enables modular design and separation of concerns
 - State machines can be shared as stand alone Arduino libraries (dependent only on the Automaton library)
 
-Documentation links are in the textbox on the right.
+Documentation to the base classes and the bundled state machines are in the textbox on the right.
 
 ### Machine class ###
 
