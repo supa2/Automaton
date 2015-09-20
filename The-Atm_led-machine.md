@@ -1,4 +1,4 @@
-Control a led via a digital pin. Control blink speed, pause duration and number of repeats. Also very useful for controlling other types of hardware asynchronously, like pulsing buzzers or relays. Object interface is compatible with Atm_led.
+Control a led via a digital pin. Control blink speed, pause duration and number of repeats. Also very useful for controlling other types of hardware asynchronously, like pulsing buzzers or relays. Object interface is compatible with Atm_fade.
 
 * begin()
 * blink()
@@ -29,7 +29,7 @@ void loop()
 }
 ```
 
-### Atm_fade & begin( int attached_pin ) ###
+### Atm_led & begin( int attached_pin ) ###
 
 Attaches a digital I/O pin to the Atm_led machine. The pin will be placed in *OUTPUT* mode.
 
@@ -45,7 +45,7 @@ void setup()
 
 Please note that the Atm_led machine starts up in state *IDLE*, this means it won't start until its state is changed to Atm_led::START.
 
-### Atm_fade & blink( int duration ) ###
+### Atm_led & blink( int duration ) ###
 
 Sets the time that the led is fully ON during a cycle in milliseconds.
 
@@ -58,7 +58,7 @@ void setup()
 }
 ```
 
-### Atm_fade & pause( int duration ) ###
+### Atm_led & pause( int duration ) ###
 
 Sets the time that the led is fully OFF during a cycle in milliseconds.
 
@@ -72,11 +72,11 @@ void setup()
 }
 ```
 
-### Atm_fade & fade( int fade ) ###
+### Atm_led & fade( int fade ) ###
 
 This is a dummy method for interface compatibility with the Atm_fade machine. It does nothing here.
 
-### Atm_fade & repeat( int repeat ) ###
+### Atm_led & repeat( int repeat ) ###
 
 Sets how many times the blink pattern should repeat. Default is *ATM_COUNTER_OFF* which means it will blink indefinitely. Use *1* to blink once, etc...
 
@@ -121,6 +121,3 @@ cmd.onSwitch( sw,
   "IDLE\0ON\0START\0BLINK_OFF",
   "EVT_ON_TIMER\0EVT_OFF_TIMER\0EVT_COUNTER\0ELSE" );
 ```
-
-
-
