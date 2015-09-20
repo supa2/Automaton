@@ -37,7 +37,7 @@ void loop()
 
 ### Atm_comparator & begin( int attached_pin, int samplerate, triggercb_t cb ) ###
 
-Attaches the comparator to an analog input pin, sets the samplerate and the callback routine.
+Attaches the comparator to an analog input pin, sets the samplerate and the callback routine. The samplerate is in milliseconds per sample.
 
 ```c++
 void cmp_callback( int v, int up, int idx_threshold, int v_threshold )
