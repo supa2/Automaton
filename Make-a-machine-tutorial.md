@@ -288,7 +288,7 @@ void loop() {
 
 ### Add some debugging ###
 
-Blink is a rather trivial machine and it's easy to picture how it works, but sometimes it's nice to be able to look inside a machine object and see it switch states as it happens. There's a hook inside the Machine that allows just that. Add a callback function that prints information about the current state and modify the setup() function so that a Serial port is opened and the callback function is passe dto the onSwitch() method.
+Blink is a rather trivial machine and it's easy to picture how it works, but sometimes it's nice to be able to look inside a machine object and see it switch states as it happens. There's a hook inside the Machine class that allows just that. Add a callback function that prints information about the current state and modify the setup() function so that a Serial port is opened and the callback function is passed to the onSwitch() method.
 
 ```c++
 void sw( const char label[], const char current[], const char next[], 
@@ -317,7 +317,7 @@ void setup() {
 }
 ```
 
-The onSwitch() method takes three arguments. The first is the function to call just before a state switch. The second and third are NULL delimited strings that hold the state and event labels that your machine uses. They must be in the same order as the enums in your class. Now when you run the tutorial example with the Serial monitor open you'll see something like this:
+The onSwitch() method takes three arguments. The first is the function to call just before a state switch. The second and third are NULL delimited strings that hold the state and event labels that your machine uses. They must be in the same order as the enums in your class. Now, when you run the tutorial example with the Serial monitor open you'll see something like this:
 
 ```
 0 Switching BLNK from state *NONE* to LED_ON on trigger *NONE* (1 cycles in 0 ms)
@@ -330,7 +330,7 @@ The onSwitch() method takes three arguments. The first is the function to call j
 1949 Switching BLNK from state LED_ON to LED_OFF on trigger EVT_TIMER (7973 cycles in 250 ms)
 ```
 
-You can monitor exactly what machine (class or instance label) switched from one state to another and on which event and at what time (in milliseconds). A very helpful function to help you understand what exactly is going on inside your machines. (it's easy to monitor multiple machines with one callback funcction)
+You can monitor exactly what machine (class or instance label) switched from one state to another and on which event and at what time (in milliseconds). A very helpful function to help you understand what exactly is going on inside your machines. (it's easy to monitor multiple machines with one callback function)
 
 ### Wrap up ###
 
