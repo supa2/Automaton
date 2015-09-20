@@ -92,7 +92,7 @@ void setup() {
 ```
 ### Machine & onSwitch( swcb_sym_t callback, const char sym_s[], const char sym_e[] ) ###
 
-To monitor the behavior of Atm_button you may connect a monitoring function with the Machine::onSwitch() method. 
+To monitor the behavior of this machine you may connect a monitoring function with the Machine::onSwitch() method. 
 
 ```c++
 void sw( const char label[], const char current[], const char next[], 
