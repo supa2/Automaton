@@ -14,7 +14,7 @@ Index | Waveform
 4 | Triangle wave
 5 | Square wave
 
-Synopsis
+## Synopsis ##
 
 ```c++
 #include <Automaton.h>
