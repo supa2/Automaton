@@ -7,6 +7,34 @@ Atm_button is a state machine for implementing buttons. Connected it to a digita
 * autoPress()
 * onSwitch()
 
+## Synopsis ##
+
+```c++
+#include <Automaton.h>
+#include <Atm_button.h>
+
+Atm_button btn; 
+Factory factory; 
+
+void btn_change( int press ) 
+{
+  if ( press ) {
+    // Do something when button is pressed
+  }
+}
+
+void setup() {
+  btn.begin( 11, btn_change );
+  factory.add( btn );
+}
+
+void setup() {
+  factory.cycle();
+}
+
+
+```
+
 ### Atm_button & begin( int attached_pin, presscb_t press_callback ) ###
 
 Initializes an Atm_button object and attaches it to an I/O pin and a callback routine. For every keypress event the callback routine will be called. The I/O pin will be placed in *INPUT_PULLUP* mode so the hardware button connected should connect the pin to ground when pressed.
