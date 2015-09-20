@@ -21,7 +21,8 @@ void cmp_callback( int v, int up, int idx_threshold, int v_threshold )
 
 void setup()
 {
-  static uint16_t threshold_list[] = { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }; 
+  static uint16_t threshold_list[] = 
+    { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }; 
 
   cmp.begin( A2, 50, cmp_callback );
   cmp.threshold( threshold_list, 10 );
@@ -68,7 +69,8 @@ Sets a list of thresholds to monitor. If the measured analog input crosses one o
 ```c++
 void setup()
 {
-  static uint16_t threshold_list[] = { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }; 
+  static uint16_t threshold_list[] = 
+    { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }; 
 
   cmp.begin( A2, 50, cmp_callback );
   cmp.threshold( threshold_list, 10 );
