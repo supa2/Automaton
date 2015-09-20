@@ -57,9 +57,9 @@ class Blink : public Machine {
 
 ### The State table ###
 
-The Automaton state machines are table based, so obviously we need a table. This so called *State transition table* has a row for every state the machine can be in. Per state we store the actions that should be taken (the first 3 columns) and the events that must be monitored. If a monitored event occurs this will lead to a change in the machine state.
+The Automaton state machines are table based, so obviously we need a table. This so called *State transition table* has a row for every state the machine can be in. Per state we store the actions that should be taken (the first 3 columns) and the events that must be monitored (the following columns). If a monitored event occurs this will lead to a change in the machine state.
 
-The state table must be defined in the machine's begin() method. The address and the width of the table (that's part of the reason the *ELSE* must be there) are passed to the base class Machine::begin() method.
+The state table must be defined in our machine's begin() method. The address and the width of the table (that's part of the reason the *ELSE* must be there) are passed to the base class Machine::begin() method.
 
 ```c++
     Blink & begin( int attached_pin, int blinkrate )
@@ -79,5 +79,5 @@ The state table must be defined in the machine's begin() method. The address and
 
 Don't forget to declare the state table as static and PROGMEM. The *static* means the table contents will still be there when your machine's begin() method exits, the *PROGMEM* keyword makes sure the data is kept in flash memory which is much more abundant than RAM.
 
-For now the state table consists of two rows (the LED_OFF and LED_ON states we just thought of) and five collumns. Al fields are filled with the value -1, which means as much as 'do nothing'. And that's exactly what our new machine does - for now.
+For now the state table consists of two rows (the LED_OFF and LED_ON states we just thought of) and four columns. Al fields are filled with the value -1, which means as much as 'do nothing'. And that's exactly what our new machine does - for now.
 
