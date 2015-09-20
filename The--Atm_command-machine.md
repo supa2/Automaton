@@ -15,6 +15,7 @@ A state machine that handles commands coming in over a serial line (Stream), par
 
 char cmd_buffer[80];
 Atm_command cmd;
+Factory factory;
 
 enum { PULSE, LOCK };
 const char cmdlist[] = "pulse lock";
@@ -43,6 +44,11 @@ void cmd_callback( int idx ) {
 void setup() {
   cmd.begin( &Serial, cmd_buffer, sizeof( cmd_buffer ) );
   cmd.onCommand( cmd_callback, cmdlist );
+  factory.add( cmd );
+}
+
+void loop() {
+  factory.cycle();
 }
 ```
 
