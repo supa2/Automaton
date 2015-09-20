@@ -125,7 +125,7 @@ void sw( const char label[], const char current[], const char next[],
 }
 ```
 
-Use the code below to pass Atm_button's STATES and EVENTS symbol tables to the state machine, open up a serial terminal and watch the machine change states. 
+Use the code below to pass STATES and EVENTS symbol tables to the state machine, open up a serial terminal and watch the machine change states. 
 
 ```c++
 cmd.onSwitch( sw, "IDLE\0READCHAR\0SEND","EVT_INPUT\0EVT_EOL\0ELSE" );
