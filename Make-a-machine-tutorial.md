@@ -291,3 +291,50 @@ I can hear some of you saying: "That's a lot of work for just blinking a led! I 
 
 For the sake of this tutorial I've kept everything in a single .ino file, but ideally a state machine would be packaged in its own separate .cpp and .h files that can be distributed and shared just like any Arduino library. Look at the source of one of the bundled state machines to see how that's done.
 
+### Add some debugging ###
+
+Blink is a rather trivial machine and it's easy to picture how it works, but sometimes it's nice to be able to look inside a machine object and see it switch states as it happens. There's a hook inside the Machine that allows just that. Add a callback function that prints information about the current state and modify the setup() function so that a Serial port is opened and the callback function is passe dto the onSwitch() method.
+
+```c++
+void sw( const char label[], const char current[], const char next[], 
+      const char trigger[], uint32_t runtime, uint32_t cycles ) {
+  Serial.print( millis() );
+  Serial.print( " Switching " );
+  Serial.print( label );
+  Serial.print( " from state " );
+  Serial.print( current );
+  Serial.print( " to " );
+  Serial.print( next );
+  Serial.print( " on trigger " );
+  Serial.print( trigger );
+  Serial.print( " (" );
+  Serial.print( cycles );
+  Serial.print( " cycles in " );
+  Serial.print( runtime );
+  Serial.println( " ms)" );
+}
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin( 9600 );
+  led.onSwitch( sw, "LED_ON\0LED_OFF","EVT_TIMER\0ELSE" );
+  led.begin( 3, 250 );
+}
+```
+
+The onSwitch() method takes three arguments. The first is the function to call just before a state switch. The second and third are NULL delimited strings that hold the state and event labels that your machine uses. They must be in the same order as the enums in your class. Now when you run the tutorial example with the Serial monitor open you'll see something like this:
+
+```
+0 Switching BLNK from state *NONE* to LED_ON on trigger *NONE* (1 cycles in 0 ms)
+268 Switching BLNK from state LED_ON to LED_OFF on trigger EVT_TIMER (7982 cycles in 250 ms)
+547 Switching BLNK from state LED_OFF to LED_ON on trigger EVT_TIMER (7974 cycles in 250 ms)
+827 Switching BLNK from state LED_ON to LED_OFF on trigger EVT_TIMER (7974 cycles in 250 ms)
+1107 Switching BLNK from state LED_OFF to LED_ON on trigger EVT_TIMER (8007 cycles in 250 ms)
+1388 Switching BLNK from state LED_ON to LED_OFF on trigger EVT_TIMER (7972 cycles in 250 ms)
+1669 Switching BLNK from state LED_OFF to LED_ON on trigger EVT_TIMER (7972 cycles in 250 ms)
+1949 Switching BLNK from state LED_ON to LED_OFF on trigger EVT_TIMER (7973 cycles in 250 ms)
+```
+
+You can monitor exactly what machine (class or instance label) switched from one state to another and on which event and at what time (in milliseconds). A very helpful function to help you understand what exactly is going on inside your machines. (it's easy to monitor multiple machines with one callback funcction)
+
+
