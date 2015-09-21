@@ -1,11 +1,11 @@
 Control a led via a PWM enabled pin. Control blink speed, pause duration, fade in/out slope and number of repeats.
 
-* begin()
-* blink()
-* pause()
-* fade()
-* repeat()
-* onSwitch()
+* [begin()](#atm_fade--begin-int-attached_pin-)
+* [blink()](#atm_fade--blink-int-duration-)
+* [pause()](#atm_fade--pause-int-duration-)
+* [fade()](#atm_fade--fade-int-fade-)
+* [repeat()](#atm_fade--repeat-int-repeat-)
+* [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
 
 ## Synopsis ##
 
