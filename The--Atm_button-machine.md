@@ -95,6 +95,8 @@ Messaging another machine on a button press & release (a led will be lit as long
 btn.onPress( &led1, led1.MSG_ON, led1.MSG_OFF );
 ```
 
+The nice thing about using onPress() with a message argument is that a callback routine is not required. If you want to use the longpress mode you must use a callback to handle all the different button press events.
+
 ### Atm_button & debounce( int delay ) ###
 
 Adds a debounce delay of *delay* milliseconds. Default debounce delay is 5 milliseconds.
