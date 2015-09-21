@@ -5,9 +5,9 @@ Control a led via a digital pin. Control blink speed, pause duration and number 
 * [pause()](#atm_led--pause-int-duration-)
 * [fade()](#atm_led--fade-int-fade-)
 * [repeat()](#atm_led--repeat-int-repeat-)
-* [MSG_ON](#msg-on)
-* [MSG_OFF](#msg-off)
-* [MSG_BLINK](#msg-blink)
+* [MSG_ON](#msg_on)
+* [MSG_OFF](#msg_off)
+* [MSG_BLINK](#msg_blink)
 * [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
 
 ## Synopsis ##
