@@ -5,6 +5,9 @@ Control a led via a PWM enabled pin. Control blink speed, pause duration, fade i
 * [pause()](#atm_fade--pause-int-duration-)
 * [fade()](#atm_fade--fade-int-fade-)
 * [repeat()](#atm_fade--repeat-int-repeat-)
+* [MSG_ON](#msg_on)
+* [MSG_OFF](#msg_off)
+* [MSG_BLINK](#msg_blink)
 * [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
 
 ## Synopsis ##
