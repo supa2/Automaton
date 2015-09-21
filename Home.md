@@ -24,8 +24,8 @@ Factory factory;
 
 void setup() 
 {
-  led1.begin( 3 ).blink( 40 ).pause( 250 ).fade( 5 ).state( led1.START );
-  led2.begin( 5 ).blink( 40 ).pause( 50 ).fade( 5 ).state( led2.START );
+  led1.begin( 3 ).blink( 100 ).fade( 5 ).state( led1.START );
+  led2.begin( 5 ).blink(  50 ).fade( 5 ).state( led2.START );
   factory.add (led1 ).add( led2 );
 }
 
