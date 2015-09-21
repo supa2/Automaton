@@ -117,7 +117,7 @@ void sw( const char label[], const char current[], const char next[],
 Use the code below to pass STATES and EVENTS symbol tables to the state machine, open up a serial terminal and watch the machine change states. 
 
 ```c++
-cmd.onSwitch( sw, 
+led.onSwitch( sw, 
   "IDLE\0ON\0START\0BLINK_OFF",
-  "EVT_ON_TIMER\0EVT_OFF_TIMER\0EVT_COUNTER\0ELSE" );
+  "EVT_ON_TIMER\0EVT_OFF_TIMER\0EVT_COUNTER\0EVT_ON\0EVT_OFF\0EVT_BLINK\0ELSE" );
 ```
