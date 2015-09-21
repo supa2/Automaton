@@ -1,11 +1,11 @@
 Control a led via a digital pin. Control blink speed, pause duration and number of repeats. Also very useful for controlling other types of hardware asynchronously, like pulsing buzzers or relays. Object interface is compatible with Atm_fade.
 
-* begin()
-* blink()
-* pause()
-* fade()
-* repeat()
-* onSwitch()
+* [begin()](#atm_led--begin-int-attached_pin-)
+* [blink()](#atm_led--blink-int-duration-)
+* [pause()](#atm_led--pause-int-duration-)
+* [fade()](#atm_led--fade-int-fade-)
+* [repeat()](#atm_led--repeat-int-repeat-)
+* [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
 
 ## Synopsis ##
 
