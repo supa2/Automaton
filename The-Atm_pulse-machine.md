@@ -1,8 +1,8 @@
 Monitor a digital pin for incoming pulses, fire a callback or send a message when a pulse is detected.
 
-* begin()
-* onPulse()
-* onSwitch()
+* [begin()](#atm_pulse--begin-int-attached_pin-int-minimum_duration-)
+* [onPulse()](#atm_pulse--onpulse-pulsecb_t-press_callback-)
+* [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
 
 ## Synopsis ##
 
