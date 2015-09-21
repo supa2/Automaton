@@ -84,6 +84,23 @@ Sets the id for the timer. The id is passed to the callback routine so it may be
 ```c++
 timer.onTimer( timer_callback ).id( 5 );
 ```
+
+### MSG_ON ###
+
+Turns an idle timer on.
+
+```c++
+timer.msgWrite( MSG_ON );
+```
+
+### MSG_OFF ###
+
+Turns a running timer off.
+
+```c++
+timer.msgWrite( MSG_OFF );
+```
+
 ### Machine & onSwitch( swcb_sym_t callback, const char sym_s[], const char sym_e[] ) ###
 
 To monitor the behavior of this machine you may connect a monitoring function with the Machine::onSwitch() method. 
@@ -111,5 +128,7 @@ void sw( const char label[], const char current[], const char next[],
 Use the code below to pass STATES and EVENTS symbol tables to the state machine, open up a serial terminal and watch the machine change states. 
 
 ```c++
-cmd.onSwitch( sw, "IDLE\0WAIT\0TRIGGER", "EVT_TIMER\0EVT_COUNTER\0EVT_OFF\0EVT_ON\0ELSE" );
+timer.onSwitch( sw, 
+  "IDLE\0WAIT\0TRIGGER", 
+  "EVT_TIMER\0EVT_COUNTER\0EVT_OFF\0EVT_ON\0ELSE" );
 ```
