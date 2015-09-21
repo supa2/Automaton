@@ -1,8 +1,8 @@
 This state machine generates different waveforms (sine, sawtooth, reverse sawtooth, square, triangle) via the analog out pin of a teensy 3.1. This machine is only compatible with the Teensy 3.1 and LC which have a true analog output pin. The code is partially based on sine wave example code by Paul Stoffregen (maker of Teensy).
 
-* begin()
-* onSwitch()
-* MSG_TOGGLE
+* [begin()](#atm_teensywave--begin-int-attached_pin-int-steps-int-delay-)
+* [MSG_TOGGLE](#msg_toggle)
+* [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
 
 ## Waveforms ##
 
