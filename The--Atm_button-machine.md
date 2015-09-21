@@ -25,15 +25,14 @@ void btn_change( int press )
 }
 
 void setup() {
-  btn.begin( 11, btn_change );
+  btn.begin( 11 );
+  btn.onPress( btn_change );
   factory.add( btn );
 }
 
 void setup() {
   factory.cycle();
 }
-
-
 ```
 
 ### Atm_button & begin( int attached_pin ) ###
