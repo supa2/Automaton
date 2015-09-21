@@ -76,7 +76,7 @@ void setup()
   cmp.threshold( threshold_list, 10 );
 }
 ```
-Declare the list as a global variable or as *static*. 
+Declare the list as a global variable or as *static*. The threshold list can hold a maximum of 64 entries.
 
 ### Atm_comparator &  average( uint16_t * v, uint16_t size ) ###
 
