@@ -5,6 +5,9 @@ Control a led via a digital pin. Control blink speed, pause duration and number 
 * [pause()](#atm_led--pause-int-duration-)
 * [fade()](#atm_led--fade-int-fade-)
 * [repeat()](#atm_led--repeat-int-repeat-)
+* [MSG_ON](#msg-on)
+* [MSG_OFF](#msg-off)
+* [MSG_BLINK](#msg-blink)
 * [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
 
 ## Synopsis ##
@@ -89,6 +92,33 @@ void setup()
 ```
 
 The example above gives off a single 50 millisecond pulse and then goes back to sleep (state IDLE).
+
+### MSG_ON ###
+
+Turns the led on.
+
+```c++
+led.msgWrite( MSG_ON );
+```
+
+### MSG_OFF ###
+
+Turns the led off.
+
+```c++
+led.msgWrite( MSG_OFF );
+```
+
+### MSG_BLINK ###
+
+Starts the led blinking.
+
+```c++
+led.begin( 3 ).blink( 200 ).repeat( 1 );
+led.msgWrite( MSG_BLINK, 3 );
+```
+
+Sending three MSG_BLINK messages to the led object makes the led blink three times (since repeat = 1).
 
 ### Machine & onSwitch( swcb_sym_t callback, const char sym_s[], const char sym_e[] ) ###
 
