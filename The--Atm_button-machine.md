@@ -5,6 +5,7 @@ Atm_button is a state machine for implementing buttons. Connected it to a digita
 * [longPress()](#atm_button--longpress-int-max-int-delay-)
 * [repeat()](#atm_button--repeat-int-delay-int-speed-)
 * [autoPress()](#atm_button--autopress-int-delay-int-press-)
+* [onPress]
 * [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
 
 ## Synopsis ##
@@ -36,6 +37,7 @@ void setup() {
 ```
 
 ### Atm_button & begin( int attached_pin, presscb_t press_callback ) ###
+### Atm_button & begin( int attached_pin ) ###
 
 Initializes an Atm_button object and attaches it to an I/O pin and a callback routine. For every keypress event the callback routine will be called. The I/O pin will be placed in *INPUT_PULLUP* mode so the hardware button connected should connect the pin to ground when pressed.
 
@@ -55,6 +57,11 @@ void setup() {
 ```
 
 The press argument contains 0 if the event is a button release and 1 if the event is a button press. When in *longpress mode* the press argument may contain other values.
+
+### Atm_button & onPress( Machine * machine, int msg ) ###
+### Atm_button & onPress( Machine * machine, int msg_press, int msg_release ) ###
+### Atm_button & onPress( presscb_t press_callback ) ###
+
 
 ### Atm_button & debounce( int delay ) ###
 
