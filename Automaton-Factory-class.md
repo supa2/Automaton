@@ -1,5 +1,9 @@
 Multitasks Automaton state machines according to their priority.
 
+* [add()](#factory--add-machine--machine-)
+* [cycle()](#factory--cycle-void-)
+* [find()](#machine--find-const-char-label-)
+
 ### Factory & add( Machine & machine ) ###
 
 Adds a Machine object to the factory. Places it into the appropriate queue according to its priority setting. (See the Machine::priority() method documentation for more info)
