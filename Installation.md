@@ -23,13 +23,14 @@ or like this (on Mac and Linux):
 - Documents/Arduino/libraries/Automaton/examples
 - ....
 
+Start your Arduino application and the library should be under `Sketch > Include library`.
+
+
 ## Quick start ##
 
 Connect an led and an appropriate current limiting resistor (330 ohm will probably do) between pin 3 and GND.
 
-Start your Arduino application.
-
-In the Arduino menu choose: File > Examples > Automaton > blink_modular
+In the Arduino menu choose: `File > Examples > Automaton > blink_modular`
 
 Run the example sketch.
 
