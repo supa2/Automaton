@@ -36,8 +36,8 @@ void setup() {
 
 ```
 
-### Atm_button & begin( int attached_pin, presscb_t press_callback ) ###
 ### Atm_button & begin( int attached_pin ) ###
+Alternative: Atm_button & begin( int attached_pin, presscb_t press_callback ) 
 
 Initializes an Atm_button object and attaches it to an I/O pin and a callback routine. For every keypress event the callback routine will be called. The I/O pin will be placed in *INPUT_PULLUP* mode so the hardware button connected should connect the pin to ground when pressed.
 
@@ -59,9 +59,38 @@ void setup() {
 The press argument contains 0 if the event is a button release and 1 if the event is a button press. When in *longpress mode* the press argument may contain other values.
 
 ### Atm_button & onPress( Machine * machine, int msg ) ###
-### Atm_button & onPress( Machine * machine, int msg_press, int msg_release ) ###
-### Atm_button & onPress( presscb_t press_callback ) ###
+Alternative: Atm_button & onPress( Machine * machine, int msg_press, int msg_release )  
+Alternative: Atm_button & onPress( presscb_t press_callback ) 
 
+Registers a callback or a message destination to be called when a button is pressed.
+
+Specifying a callback:
+
+```c++
+void btn_change( int press ) 
+{
+  if ( press ) {
+    led1.toggle( led1.IDLE, led1.START );
+  }
+}
+
+void setup() {
+  btn.begin( 11 );
+  btn.onPress( btn_callback );
+}
+```
+
+Messaging another machine on a button press (pressing the button will start a led blinking):
+
+```c++
+btn.onPress( &led1, led1.MSG_BLINK );
+```
+
+Messaging another machine on a button press & release (a led will be lit as long as the button is pressed):
+
+```c++
+btn.onPress( &led1, led1.MSG_ON, led1.MSG_OFF );
+```
 
 ### Atm_button & debounce( int delay ) ###
 
