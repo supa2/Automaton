@@ -30,6 +30,6 @@ Start your Arduino application.
 
 In the Arduino menu choose: File > Examples > Automaton > blink_modular
 
-Run the sketch.
+Run the example sketch.
 
 If your led blinks the installation was successful!
