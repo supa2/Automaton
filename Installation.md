@@ -25,7 +25,7 @@ or like this (on Mac and Linux):
 - Documents/Arduino/libraries/Automaton/examples
 - ....
 
-## Quickstart ##
+## Quick start ##
 
 Connect an led and an appropriate current limiting resistor (330 ohm will probably do) between pin 3 and GND.
 
