@@ -282,6 +282,8 @@ button.priority( 0 );
 button.priority( 1 ); 
 ```
 
+The use of the term speed may be confusing. If a led blinking machine runs at priority 2, that doesn't mean the led will blink twice as slow. It means it won't be updated as often. Which in the case of a blinking led probably won't be noticable.
+
 Set a machine's priority to 0 to disable it altogether, This uses even less resources than sleeping. Incoming messages are not processed in this mode.
 
 ### Machine & cycle( void ) ###
