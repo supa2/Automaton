@@ -15,6 +15,26 @@ Automaton is an event driven framework that allows you to create Arduino applica
 
 Documentation for the (Factory & Machine) base classes and the bundled state machines is linked in the textbox on the right. If you want to make your own machines, look at the machine tutorial.
 
+```c++
+#include <Automaton.h>
+#include <Atm_fade.h>
+
+Atm_fade led1, led2;
+Factory factory;
+
+void setup() 
+{
+  led1.begin( 3 ).blink( 40 ).pause( 250 ).fade( 5 ).state( led1.START );
+  led2.begin( 5 ).blink( 40 ).pause( 50 ).fade( 5 ).state( led2.START );
+  factory.add (led1 ).add( led2 );
+}
+
+void loop() 
+{
+  factory.cycle();
+}
+```
+
 ### Machine class ###
 
 Base class for defining self contained multi-tasking state machine objects.
