@@ -5,8 +5,8 @@ Atm_timer implements a timer mechanism as a simple state machine.
 * [interval()](#atm_timer--interval-int-v-)
 * [repeat()](#atm_timer--repeat-int-v-)
 * [id()](#atm_timer--id-int-v-)
-* [MSG_ON]
-* [MSG_OFF]
+* [MSG_ON](#msg_on)
+* [MSG_OFF](#msg_off)
 * [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
 
 ## Synopsis ##
