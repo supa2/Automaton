@@ -42,11 +42,17 @@ void setup()
   led1.begin( 3 );
   led1.blink( 40 );
   ...
-  led1.state( led1.START );
+  led1.msgWrite( led1.MSG_BLINK );
 }
 ```
 
-Please note that the Atm_led machine starts up in state *IDLE*, this means it won't start until its state is changed to Atm_led::START.
+Please note that the Atm_led machine starts up in state *IDLE*. You can turn the led on by sending a MSG_ON message or start it blinking with a MSG_BLINK message.
+
+```c++
+  led1.msgWrite( led1.MSG_ON );
+  led1.msgWrite( led1.MSG_BLINK );
+  led1.msgWrite( led1.MSG_OFF );
+```
 
 ### Atm_led & blink( int duration ) ###
 
