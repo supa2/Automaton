@@ -15,6 +15,8 @@ Automaton is an event driven framework that allows you to create Arduino applica
 
 Documentation for the (Factory & Machine) base classes and the bundled state machines is linked in the textbox on the right. If you want to make your own machines, look at the machine tutorial.
 
+<tinkerspy@myown.mailcan.com>
+
 ```c++
 #include <Automaton.h>
 #include <Atm_led.h>
