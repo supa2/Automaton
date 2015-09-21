@@ -135,10 +135,9 @@ void sw( const char label[], const char current[], const char next[],
 Use the code below to pass STATES and EVENTS symbol tables to the state machine, open up a serial terminal and watch the machine change states. 
 
 ```c++
-cmd.onSwitch( sw, 
+led.onSwitch( sw, 
   "IDLE\0ON\0START\0STARTU\0UP\0STARTD\0DOWN\0REPEAT",
-  "EVT_CNT_FADE\0EVT_TM_FADE\0EVT_TM_ON\0EVT_TM_OFF\0EVT_CNT_RPT\0ELSE" );
-```
+  "EVT_CNT_FADE\0EVT_TM_FADE\0EVT_TM_ON\0EVT_TM_OFF\0EVT_CNT_RPT\0EVT_ON\0EVT_OFF\0EVT_BLINK\0ELSE" );```
 
 **WARNING: This machine changes state 66 times for every fade cycle and will produce a lot of log output quickly**
 
