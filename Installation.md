@@ -35,4 +35,21 @@ In the Arduino menu choose: File > Examples > Automaton > blink_modular
 
 Run the example sketch.
 
+```c++
+#include <Automaton.h>
+#include "Atm_blink.h"
+
+Atm_blink led;
+
+void setup()
+{
+  led.begin( 3, 200 );
+}
+
+void loop()
+{
+  led.cycle();
+}
+```
+
 If your led blinks the installation was successful!
