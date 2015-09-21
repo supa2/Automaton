@@ -24,13 +24,15 @@ void btn_change( int press )
   }
 }
 
-void setup() {
+void setup() 
+{
   btn.begin( 11 );
   btn.onPress( btn_change );
   factory.add( btn );
 }
 
-void setup() {
+void setup() 
+{
   factory.cycle();
 }
 ```
@@ -50,7 +52,8 @@ void btn_change( int press )
   }
 }
 
-void setup() {
+void setup() 
+{
     btn.begin( 11, btn_change );
 }
 ```
@@ -73,7 +76,8 @@ void btn_change( int press )
   }
 }
 
-void setup() {
+void setup() 
+{
   btn.begin( 11 );
   btn.onPress( btn_callback );
 }
@@ -97,7 +101,8 @@ Adds a debounce delay of *delay* milliseconds. Default debounce delay is 5 milli
 
 
 ```c++
-void setup() {
+void setup() 
+{
     btn.begin( 11, btn_change );
     btn.debounce( 10 );
 }
@@ -110,7 +115,8 @@ Switches the Atm_button machine to *longpress* mode. In *longpress* mode the eve
 The *delay* parameter controls the time the user should keep the button pressed (in millis) for the next event to register. The *max* parameter controls how many events are handled by the button. 
 
 ```c++
-void setup() {
+void setup() 
+{
     btn.begin( 11, btn_change );
     btn.longPress( 2, 200 );
 }
@@ -132,7 +138,8 @@ Normally your would only handle the positive 1..n events to respond to. The nega
 Makes the button auto-repeat just like the keys on your keyboard. This is great for navigation keys controlling menus and such. Obviously this is not available in *longpress* mode. Calling *repeat() without parameters will select a 500 millisecond delay and a 50 millisecond repeat interval, which feels just like my keyboard.
 
 ```c++
-void setup() {
+void setup() 
+{
     btn.begin( 11, btn_change );
     btn.repeat();
 }
@@ -145,7 +152,8 @@ The *delay* parameter controls the delay before the first button repeat (default
 For testing purposes the machine may be configured to automatically generate *press* events with the *autoPress()* method. The *delay* parameter controls the delay between presses. The *press* parameter is passed straight to the callback routine as a parameter.
 
 ```c++
-void setup() {
+void setup() 
+{
     btn.begin( 11, btn_change );
     btn.autoPress( 1000, 1 );
 }
