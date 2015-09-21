@@ -1,7 +1,7 @@
 Atm_button is a state machine for implementing buttons. Connected it to a digital input pin (in *PULLUP* mode) it will handle button presses, releases and holds. You'll need a single Atm_button instance for each button you want to service.
 
-* [begin()](#atm_button--begin-int-attached_pin-presscb_t-press_callback-)
-* [onPress]
+* [begin()](#atm_button--begin-int-attached_pin-)
+* [onPress](#atm_button--onpress-machine--machine-int-msg-)
 * [debounce()](#atm_button--debounce-int-delay-)
 * [longPress()](#atm_button--longpress-int-max-int-delay-)
 * [repeat()](#atm_button--repeat-int-delay-int-speed-)
