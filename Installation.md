@@ -1,5 +1,3 @@
-## Installation ##
-
 Download the library from Github  by clicking here: <https://github.com/tinkerspy/Automaton/archive/master.zip>
 
 Save the zip file Automaton-master.zip to your desktop. Uncompress the zip file, you should end up with a folder called 'Automaton-master' which contains 'Automaton.cpp' and other files. 
