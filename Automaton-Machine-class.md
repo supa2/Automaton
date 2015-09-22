@@ -9,9 +9,9 @@
  * state()
  * toggle()
 * [Timers, counters & pins](#user-content-timers-counters--pins)
- * set()
- * decrement()
- * expired()
+ * set() FIX
+ * decrement() FIX
+ * expired() FIX
  * pinChange()
  * runtime_millis()
  * runtime_micros()
@@ -130,7 +130,7 @@ void Atm_led::action( int id )
 {
   switch ( id ) {
     case ACT_INIT :
-      set( counter, repeat_count );
+      counter.set( repeat_count );
       digitalWrite( pin, LOW );
       return;
     case ACT_ON :
@@ -182,9 +182,9 @@ led1.toggle( LED_IDLE, LED_BLINKON );
 
 ## Timers, counters & pins ##
 
-### Machine & set(atm_milli_timer &timer, uint32_t v) ###
-### Machine & set(atm_micro_timer &timer, uint32_t v) ###
-### Machine & set(atm_counter &counter, uint16_t v) ###
+### Machine & set(atm_milli_timer &timer, uint32_t v) ### FIX
+### Machine & set(atm_micro_timer &timer, uint32_t v) ### FIX 
+### Machine & set(atm_counter &counter, uint16_t v) ### FIX
 
 Sets a timer or counter struct depending on the argument types passed. Normally used inside the object class.
 
@@ -198,7 +198,7 @@ set(  timer2, 100 ); // Set a timer to expire 100 microseconds from now
 set( counter, 10   ); // Set a countdown counter to 10
 ```
 
-### uint16_t decrement(atm_counter &counter) ###
+### uint16_t decrement(atm_counter &counter) ### FIX
 
 Decrements the counter unless the counter value is already at 0 or the counter is equal to ATM\_COUNTER\_OFF. Returns the new counter value.
 
@@ -206,9 +206,9 @@ Decrements the counter unless the counter value is already at 0 or the counter i
 decrement( counter );
 ```
 
-### uint8_t expired(atm_milli_timer timer) ###
-### uint8_t expired(atm_micro_timer timer) ###
-### uint8_t expired(atm_counter &counter) ###
+### uint8_t expired(atm_milli_timer timer) ### FIX
+### uint8_t expired(atm_micro_timer timer) ### FIX
+### uint8_t expired(atm_counter &counter) ### FIX
 
 Returns true if the timer argument has expired.
 Always returns true if the timer was set to 0.
