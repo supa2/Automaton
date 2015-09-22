@@ -50,7 +50,7 @@ class Blink : public Machine {
     Blink( void ) : Machine() { class_label = "BLNK"; };
 
     short pin;
-    atm_milli_timer timer;
+    atm_timer_millis timer;
 
     enum { LED_ON, LED_OFF } STATES;
     enum { ELSE } EVENTS;
@@ -58,7 +58,7 @@ class Blink : public Machine {
     Blink & begin( int attached_pin, int blinkrate )
     {
       pin = attached_pin; 
-      set( timer, blinkrate ); 
+      timer.begin( this, blinkrate ); 
       pinMode( pin, OUTPUT ); 
       return *this;          
     }
@@ -81,7 +81,7 @@ The state table must be defined in our machine's begin() method. The address and
       };
       Machine::begin( state_table, ELSE );
       pin = attached_pin; 
-      set( timer, blinkrate ); 
+      timer.begin( this, blinkrate ); 
       pinMode( pin, OUTPUT ); 
       return *this;          
     }
@@ -109,7 +109,7 @@ A state machine changes its state in response to events. The only event we need 
       };
       Machine::begin( state_table, ELSE );
       pin = attached_pin; 
-      set( timer, blinkrate ); 
+      timer.begin( this, blinkrate ); 
       pinMode( pin, OUTPUT ); 
       return *this;          
     }
@@ -134,7 +134,7 @@ Each Automaton state machine must define an event() and an action() method so we
     {
       switch ( id ) {
         case EVT_TIMER :
-          return expired( timer );
+          return timer.expired();
       }
       return 0;
     }
@@ -227,7 +227,7 @@ class Blink : public Machine {
     Blink( void ) : Machine() { class_label = "BLNK"; };
 
     short pin;
-    atm_milli_timer timer;
+    atm_timer_millis timer;
 
     enum { LED_ON, LED_OFF } STATES;
     enum { EVT_TIMER, ELSE } EVENTS;
@@ -242,7 +242,7 @@ class Blink : public Machine {
       };
       Machine::begin( state_table, ELSE );
       pin = attached_pin; 
-      set( timer, blinkrate ); 
+      timer.begin( this, blinkrate ); 
       pinMode( pin, OUTPUT ); 
       return *this;          
     }
@@ -251,7 +251,7 @@ class Blink : public Machine {
     {
       switch ( id ) {
         case EVT_TIMER :
-          return expired( timer );
+          return timer.expired();
       }
       return 0;
     }
