@@ -10,7 +10,7 @@ Automaton is an event driven framework that allows you to create Arduino applica
 - Sleep states to save microcontroller cycles
 - Pin state monitor
 - Debugging (state monitor) hooks (that let you see what the machines are doing)
-- Enables modular design and separation of concerns
+- Encourages modular design and separation of concerns
 - State machines can be shared as stand alone Arduino libraries (dependent only on the Automaton library)
 
 Documentation for the (Factory & Machine) base classes and the bundled state machines is linked in the textbox on the right. If you want to make your own machines, look at the machine tutorial.
