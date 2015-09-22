@@ -31,18 +31,25 @@ Factory factory;
 
 void setup() 
 {
+  // Initialize two buttons
   button1.begin( 11 );
   button2.begin( 12 );
+
+  // And two fading leds
   led1.begin( 3 ).blink( 500 ).fade( 5 ).repeat( 1 );
   led2.begin( 5 ).blink( 500 ).fade( 5 ).repeat( 1 );
+
+  // Tell the buttons to send a MSG_BLINK message to the leds when they're pressed
   button1.onPress( &led1, led1.MSG_BLINK );    
   button2.onPress( &led2, led2.MSG_BLINK );    
+
+  // Add the machines to a factory
   factory.add (led1 ).add( led2 ).add( button1 ).add( button2 );
 }
 
 void loop() 
 {
-  factory.cycle(); // The factory manages it all
+  factory.cycle(); // And run the factory
 }
 ```
 
