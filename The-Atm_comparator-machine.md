@@ -1,4 +1,4 @@
-This state machine monitors an analog input with a configurable sample rate and fires off a callback whenever one of a list of thresholds are crossed. Optionally keeps a running average to smooth out peaks and troughs.
+This state machine monitors an analog input with a configurable sample rate and fires off a callback whenever one of a list of thresholds are crossed. Optionally keeps a moving average to smooth out peaks and troughs.
 
 * [begin()](#atm_comparator--begin-int-attached_pin-int-samplerate-triggercb_t-cb-)
 * [threshold()](#atm_comparator--threshold-uint16_t--v-uint16_t-size)
@@ -57,7 +57,7 @@ The callback has 4 arguments:
 
 Argument | Function
 -------- | --------
-v | the last measured value (or running average)
+v | the last measured value (or moving average)
 up  | The direction in which the threshold was crossed (1 = up, 0 = down)
 idx_threshold | The index of the threshold that was crossed
 v_threshold | The value of the threshold that was crossed
@@ -80,7 +80,7 @@ Declare the list as a global variable or as *static*. The threshold list can hol
 
 ### Atm_comparator &  average( uint16_t * v, uint16_t size ) ###
 
-Connects an averaging buffer to the state machine. This will cause the state machine to monitor a *running average* instead of the momentary value. Tune the size of this buffer and the sample rate to get the smoothing behavior you want.
+Connects an averaging buffer to the state machine. This will cause the state machine to monitor a *moving average* instead of the momentary value. Tune the size of this buffer and the sample rate to get the smoothing behavior you want.
 
 ```c++
 uint16_t avgbuffer[256];
