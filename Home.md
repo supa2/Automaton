@@ -43,7 +43,7 @@ void setup()
   button2.onPress( &led2, led2.MSG_BLINK );    
 
   // Add the machines to a multitasking factory
-  factory.add (led1 ).add( led2 ).add( button1 ).add( button2 );
+  factory.add( led1 ).add( led2 ).add( button1 ).add( button2 );
 }
 
 void loop() 
