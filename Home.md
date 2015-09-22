@@ -22,6 +22,8 @@ Documentation for the (Factory & Machine) base classes and the bundled state mac
 #include <Atm_fade.h>
 #include <Atm_button.h>
 
+// Two buttons trigger two fading leds
+
 Atm_fade led1, led2;
 Atm_button button1, button2;
 Factory factory;
