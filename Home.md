@@ -19,18 +19,22 @@ Documentation for the (Factory & Machine) base classes and the bundled state mac
 
 ```c++
 #include <Automaton.h>
-#include <Atm_led.h>
+#include <Atm_fade.h>
+#include <Atm_button.h>
 
-Atm_led led1, led2;
+Atm_fade led1, led2;
+Atm_button button1, button2;
 Factory factory;
 
 void setup() 
 {
-  led1.begin( 3 ).blink( 200 ).pause( 400 );
-  led2.begin( 5 ).blink( 200 ).pause( 200 );
-  factory.add (led1 ).add( led2 );
-  led1.msgWrite( led1.MSG_BLINK );
-  led2.msgWrite( led2.MSG_BLINK );
+  button1.begin( 11 );
+  button2.begin( 12 );
+  led1.begin( 3 ).blink( 500 ).fade( 5 ).repeat( 1 );
+  led2.begin( 5 ).blink( 500 ).fade( 5 ).repeat( 1 );
+  button1.onPress( &led1, led1.MSG_BLINK );    
+  button2.onPress( &led2, led2.MSG_BLINK );    
+  factory.add (led1 ).add( led2 ).add( button1 ).add( button2 );
 }
 
 void loop() 
