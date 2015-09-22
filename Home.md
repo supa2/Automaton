@@ -74,7 +74,7 @@ A state machine that handles commands coming in over a serial line (Stream), par
 
 ### Atm_comparator class (state machine) ###
 
-This state machine monitors an analog input with a configurable sample rate and fires off a callback whenever one of a list of thresholds are crossed. Optionally keeps a running average to smooth out peaks and troughs.
+This state machine monitors an analog input with a configurable sample rate and fires off a callback whenever one of a list of thresholds are crossed. Optionally keeps a moving average to smooth out peaks and troughs.
 
 ### Atm_fade class (state machine) ###
 
