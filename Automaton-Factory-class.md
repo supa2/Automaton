@@ -1,4 +1,4 @@
-Multitasks Automaton state machines according to their priority.
+Multitasks Automaton state machines according to their priority. This is a great way of running an application that consists entirely of state machines. If you want to mix state machines with other code in the Arduino loop(), you may be better off calling the individual machine's cycle() methods instead.  
 
 * [add()](#factory--add-machine--machine-)
 * [cycle()](#factory--cycle-void-)
