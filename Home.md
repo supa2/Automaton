@@ -30,11 +30,11 @@ Factory factory;
 
 void setup() 
 {
-  // Initialize two buttons
+  // Initialize two buttons on pins 11 and 12
   button1.begin( 11 );
   button2.begin( 12 );
 
-  // And two fading leds
+  // And two fading leds on PWM pins 3 & 5 
   led1.begin( 3 ).blink( 500 ).fade( 5 ).repeat( 1 );
   led2.begin( 5 ).blink( 500 ).fade( 5 ).repeat( 1 );
 
