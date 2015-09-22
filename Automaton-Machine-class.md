@@ -29,6 +29,8 @@
  * label()
  * onSwitch()
 
+WARNING: Timers & counters changed, documentation must be updated.
+
 ## Initialization ##
 
 ### Machine & begin( const state_t* tbl, state_t width ) ###
