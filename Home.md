@@ -39,7 +39,7 @@ void setup()
   led1.begin( 3 ).blink( 500 ).fade( 5 ).repeat( 1 );
   led2.begin( 5 ).blink( 500 ).fade( 5 ).repeat( 1 );
 
-  // Tell the buttons to send a MSG_BLINK message to the leds when they're pressed
+  // Tell the buttons to send a MSG_BLINK message to the leds when pressed
   button1.onPress( &led1, led1.MSG_BLINK );    
   button2.onPress( &led2, led2.MSG_BLINK );    
 
