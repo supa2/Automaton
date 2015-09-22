@@ -22,6 +22,7 @@ Documentation for the (Factory & Machine) base classes and the bundled state mac
 #include <Atm_fade.h>
 #include <Atm_button.h>
 
+// Four state machines
 // Two buttons trigger two fading leds
 
 Atm_fade led1, led2;
@@ -41,7 +42,7 @@ void setup()
 
 void loop() 
 {
-  factory.cycle();
+  factory.cycle(); // The factory manages it all
 }
 ```
 
