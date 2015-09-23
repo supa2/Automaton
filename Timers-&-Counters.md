@@ -71,6 +71,8 @@ Returns 1 if a timer or counter has expired and 0 if it has not. (which happens 
   switch ( id ) {
     case EVT_TIMER1 :
       return timer1.expired();
+    case EVT_TIMER2 :
+      return timer2.expired();
     case EVT_COUNTER :
       return counter.expired();
   }
