@@ -15,7 +15,7 @@ The timer will expire immediately when set to zero, never when set to *ATM_TIMER
 An atm_counter object counts down from the set value to 0.
 The counter will ignore decrement() calls and never expire() when set to *ATM_COUNTER_OFF*.
 
-* [begin()](#begin) (Timer objects only)
+* [begin()](#begin) (Timers only)
 * [set()](#set)
-* [decrement()](#decrement) (Counter objects only)
+* [decrement()](#decrement) (Counters only)
 * [expire()](#expire)
