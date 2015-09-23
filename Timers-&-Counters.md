@@ -21,3 +21,29 @@ The counter will ignore decrement() calls and will never expire() when set to th
 * [set()](#set)
 * [decrement()](#decrement) (Counters only)
 * [expire()](#expire)
+
+
+### void begin( Machine * machine, uint32_t v ) ###
+
+(Timers only)
+
+Initializes a timer object by linking it to a Machine object and setting the initial value.
+
+In the Atm_* class definition:
+```c++
+atm_timer_millis timer1;
+atm_timer_micros timer2;
+```
+In the Atm_*::begin() method:
+
+```c++
+timer1.begin( this, 10000 );  // 10 seconds delay
+timer2.begin( this, 10000 );  // 10 millisecond delay
+```
+
+### void set( uint32_t v ) ###
+
+###  virtual int expired( void ) ###
+
+### uint16_t decrement( void ) ###
+
