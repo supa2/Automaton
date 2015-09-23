@@ -63,5 +63,24 @@ To use set() on a timer you must first have called begin().
 
 ###  virtual int expired( void ) ###
 
+Returns 1 if a timer or counter has expired and 0 if it has not.
+
+```c++
+  switch ( id ) {
+    case EVT_TIMER1 :
+      return timer1.expired();
+    case EVT_COUNTER :
+      return counter.expired();
+  }
+```
+
 ### uint16_t decrement( void ) ###
 
+(Counters only)
+[IDEA: Make automatically decrementing counters -- based on 32 bit state change counter]
+
+Decrements a counter.
+
+```c++
+  counter.decrement();
+```
