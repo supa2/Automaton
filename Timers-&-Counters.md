@@ -61,7 +61,7 @@ counter.set( ATM_COUNTER_OFF ); // Set counter not to expire at all
 
 ```
 
-To use set() on a timer you must first have called begin().
+To use set() on a timer you must have called begin() first.
 
 ###  int expired( void ) ###
 
