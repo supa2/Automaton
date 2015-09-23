@@ -8,10 +8,7 @@
 * [States](#states)
  * state()
  * toggle()
-* [Timers, counters & pins](#user-content-timers-counters--pins)
- * set() FIX
- * decrement() FIX
- * expired() FIX
+* [Timers & pins](#user-content-timers--pins)
  * pinChange()
  * runtime_millis()
  * runtime_micros()
@@ -28,8 +25,6 @@
 * [Debugging](#debugging)
  * label()
  * onSwitch()
-
-WARNING: Timers & counters changed, documentation must be updated.
 
 ## Initialization ##
 
@@ -182,50 +177,7 @@ Example:
 led1.toggle( LED_IDLE, LED_BLINKON );
 ```
 
-## Timers, counters & pins ##
-
-### Machine & set(atm_milli_timer &timer, uint32_t v) ### FIX
-### Machine & set(atm_micro_timer &timer, uint32_t v) ### FIX 
-### Machine & set(atm_counter &counter, uint16_t v) ### FIX
-
-Sets a timer or counter struct depending on the argument types passed. Normally used inside the object class.
-
-```c++
-atm_milli_timer timer1;
-atm_micro_timer timer2;
-atm_counter counter;
-	
-set(  timer1, 1000 ); // Set a timer to expire 1 second from now
-set(  timer2, 100 ); // Set a timer to expire 100 microseconds from now
-set( counter, 10   ); // Set a countdown counter to 10
-```
-
-### uint16_t decrement(atm_counter &counter) ### FIX
-
-Decrements the counter unless the counter value is already at 0 or the counter is equal to ATM\_COUNTER\_OFF. Returns the new counter value.
-
-```c++
-decrement( counter );
-```
-
-### uint8_t expired(atm_milli_timer timer) ### FIX
-### uint8_t expired(atm_micro_timer timer) ### FIX
-### uint8_t expired(atm_counter &counter) ### FIX
-
-Returns true if the timer argument has expired.
-Always returns true if the timer was set to 0.
-Always returns false if the timer was set to ATM\_TIMER\_OFF.
-
-Returns true if the counter argument has expired (counted down to 0).
-Always returns true if the counter was set to 0.
-Always returns false if the counter was set to ATM\_COUNTER\_OFF.
-
-```c++
-case EVT_TIMER :
-     return expired( _timer );
-case EVT_COUNTER :
-     return expired( _counter );
-```
+## Timers & pins ##
 
 ### uint8_t pinChange( uint8_t pin ) ###
 
