@@ -37,11 +37,29 @@ atm_timer_micros timer2;
 In the Atm_*::begin() method:
 
 ```c++
-timer1.begin( this, 10000 );  // 10 seconds delay
-timer2.begin( this, 10000 );  // 10 millisecond delay
+timer1.begin( this, 10000 );  // Set timer to a 10 seconds delay
+timer2.begin( this, 10000 );  // Set timer to a 10 millisecond delay
 ```
+The begin() method must be called on a timer object before it's used.
 
 ### void set( uint32_t v ) ###
+
+Sets a timer of counter to a value.
+
+```c++
+timer1.set( 10000 );  // Set timer to a 10 seconds delay
+timer2.set( 10000 );  // Set timer to a 10 millisecond delay
+
+timer1.set( 0 );  // Set timer to expire immediately
+timer1.set( ATM_TIMER_OFF );  // Set timer not to expire at all
+
+counter.set( 10 ); // Set counter to expire after 10 decrements
+counter.set( 0 ); // Set counter to expire immediately
+counter.set( ATM_COUNTER_OFF ); // Set counter not to expire at all
+
+```
+
+To use set() on a timer you must first have called begin().
 
 ###  virtual int expired( void ) ###
 
