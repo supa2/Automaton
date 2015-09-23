@@ -33,12 +33,14 @@ In the Atm_* class definition:
 ```c++
 atm_timer_millis timer1;
 atm_timer_micros timer2;
+atm_counter counter;
 ```
 In the Atm_*::begin() method:
 
 ```c++
 timer1.begin( this, 10000 );  // Set timer to a 10 seconds delay
 timer2.begin( this, 10000 );  // Set timer to a 10 millisecond delay
+counter.set( 10 );
 ```
 The begin() method must be called on a timer object before it's used.
 
