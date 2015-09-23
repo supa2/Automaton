@@ -61,9 +61,9 @@ counter.set( ATM_COUNTER_OFF ); // Set counter not to expire at all
 
 To use set() on a timer you must first have called begin().
 
-###  virtual int expired( void ) ###
+###  int expired( void ) ###
 
-Returns 1 if a timer or counter has expired and 0 if it has not.
+Returns 1 if a timer or counter has expired and 0 if it has not. (which happens to be exactly what the event() handler needs)
 
 ```c++
   switch ( id ) {
@@ -77,6 +77,7 @@ Returns 1 if a timer or counter has expired and 0 if it has not.
 ### uint16_t decrement( void ) ###
 
 (Counters only)
+
 [IDEA: Make automatically decrementing counters -- based on 32 bit state change counter]
 
 Decrements a counter.
