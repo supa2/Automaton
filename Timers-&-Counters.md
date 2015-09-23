@@ -82,7 +82,7 @@ Returns 1 if a timer or counter has expired and 0 if it has not. (which happens 
 
 [IDEA: Make automatically decrementing counters -- based on 32 bit state change counter]
 
-Decrements a counter.
+Decrements a counter. (typically done inside the action() handler)
 
 ```c++
   counter.decrement();
