@@ -203,6 +203,9 @@ Returns the runtime of the current object state in microseconds.
 ```c++
 Serial.print( led1.runtime_micros() );
 ```
+
+More about timers and counters: [here](https://github.com/tinkerspy/Automaton/wiki/Timers-&-Counters)
+
 ## Scheduling ##
 ----------
 
