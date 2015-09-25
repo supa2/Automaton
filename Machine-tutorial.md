@@ -332,5 +332,5 @@ I can hear some of you saying: "That's a lot of work for just blinking a led! I 
 
 For the sake of this tutorial I've kept everything in a single .ino file, but ideally a state machine would be packaged in its own separate .cpp and .h files that can be distributed and shared just like any Arduino library. Look at the source of one of the bundled state machines to see how that's done. 
 
-The blink example included in the library contains the tutorial source code, the blink_modular example has the same code with the blink machine in separate .cpp/.h files.
+The blink example included in the library contains the tutorial source code, the blink_modular example has the same code with the blink machine in separate .cpp/.h files. For a more capable led blinker state machine have a look at the Atm_led and Atm_fade state machines.
 
