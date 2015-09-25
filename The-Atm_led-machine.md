@@ -21,9 +21,11 @@ Factory factory;
 
 void setup() 
 {
-  led1.begin( 3 ).blink( 40 ).pause( 250 ).state( led1.START );
-  led2.begin( 5 ).blink( 40 ).pause( 50 ).state( led2.START );
-  factory.add (led1 ).add( led2 );
+  led1.begin( 3 ).blink( 40 ).pause( 250 ); // Setup 
+  led2.begin( 5 ).blink( 40 ).pause( 50 ); 
+  factory.add (led1 ).add( led2 );          // Add to a factory
+  led1.msgWrite( led1.MSG_BLINK );          // Start blinking
+  led2.msgWrite( led2.MSG_BLINK );
 }
 
 void loop() 
