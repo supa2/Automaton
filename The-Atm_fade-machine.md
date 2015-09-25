@@ -21,9 +21,11 @@ Factory factory;
 
 void setup() 
 {
-  led1.begin( 3 ).blink( 40 ).pause( 250 ).fade( 5 ).state( led1.START );
-  led2.begin( 5 ).blink( 40 ).pause( 50 ).fade( 5 ).state( led2.START );
-  factory.add (led1 ).add( led2 );
+  led1.begin( 3 ).blink( 40 ).pause( 250 ).fade( 5 );  // Set up
+  led2.begin( 5 ).blink( 40 ).pause( 50 ).fade( 5 );
+  factory.add (led1 ).add( led2 );                     // Add to a factory
+  led1.msgWrite( led1.MSG_BLINK );                     // Start fading
+  led2.msgWrite( led2.MSG_BLINK );
 }
 
 void loop() 
@@ -46,7 +48,11 @@ void setup()
 }
 ```
 
-Please note that the Atm_fade machine starts up in state *IDLE*, this means it won't start until its state is changed to Atm_fade::START.
+Please note that the Atm_fade machine starts up in state IDLE. You can turn the led on by sending a MSG_ON message or start it blinking with a MSG_BLINK message.
+
+  led1.msgWrite( led1.MSG_ON );
+  led1.msgWrite( led1.MSG_BLINK );
+  led1.msgWrite( led1.MSG_OFF );
 
 ### Atm_fade & blink( int duration ) ###
 
