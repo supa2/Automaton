@@ -171,7 +171,7 @@ Whenever the state machine calls action( ACT_ON ) it turns the led on and when i
 
 ### Linking it all up ###
 
-Writing the begin(), event() and action() method is all the programming we have to do in this case. All we need to get a working state machine is to tell it what we want it to do. We do that by filling in the state transition table. Let's start with the actions. We want the led to switch on when the machine enters the *LED_ON* state (*ON_ENTER*: *ACT_ON*). Find the row that defines the *LED_ON* state and put the value *ACT_ON* in the *ON_ENTER* column. And similarly we want the led to switch off when the machine enters the *LED_OFF* state (*ON_ENTER*: *ACT_OFF*) We fill in that value in the second row. You can also choose to perform an action when the machine exits a certain state or whenever it cycles in that state, but we don't need that for our blink machine.
+Writing the begin(), event() and action() method is all the programming we have to do in this case. All we need to add to get a working state machine is to tell it what we want it to do. We do that by filling in the state transition table. Let's start with the actions. We want the led to switch on when the machine enters the *LED_ON* state (*ON_ENTER*: *ACT_ON*). Find the row that defines the *LED_ON* state and put the value *ACT_ON* in the *ON_ENTER* column. And similarly we want the led to switch off when the machine enters the *LED_OFF* state (*ON_ENTER*: *ACT_OFF*) We fill in that value in the second row. You can also choose to perform an action when the machine exits a certain state (*ON_EXIT* column) or whenever it cycles in that state (*ON_LOOP* column), but we don't need that for our blink machine.
 
 ```c++
       const static state_t state_table[] PROGMEM = {
