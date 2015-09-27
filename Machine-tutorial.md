@@ -1,3 +1,5 @@
+This tutorial shows you how to build your own self contained state machine.
+
 The idea is to subdivide your programs into subtasks, usually but not exclusively, centered around one or more inputs or outputs and to create a Finite State Machine (or Automaton) for each of them. The machines can interact with each other by setting the other machines' states or sending signals or messages. In my experience this results in modular, easy to understand code that runs extremely stable. In fact most of your application won't even be coded, but described as a table of states that uses pins, timers and counters as input. 
 
 Traditionally, let's start with the simplest possible application: blinking a Led.
