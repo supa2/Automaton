@@ -91,7 +91,7 @@ void btn_change( int press, int idx )
 {
   if ( press ) {
     if ( idx == 1 ) led1.toggle( led1.IDLE, led1.START );
-    if ( idx == 2 ) led3.toggle( led2.IDLE, led2.START );
+    if ( idx == 2 ) led2.toggle( led2.IDLE, led2.START );
   }
 }
 
