@@ -63,6 +63,7 @@ The press argument contains 0 if the event is a button release and 1 if the even
 ### Atm_button & onPress( Machine * machine, int msg ) ###
 Alternative: Atm_button & onPress( Machine * machine, int msg_press, int msg_release )  
 Alternative: Atm_button & onPress( presscb_t press_callback ) 
+Alternative: Atm_button & onPress( presscb_id_t press_callback, int idx ) 
 
 Registers a callback or a message destination to be called when a button is pressed.
 
@@ -82,6 +83,26 @@ void setup()
   btn.onPress( btn_callback );
 }
 ```
+
+Alternatively pass an idx parameter to the callback to reuse a single callback for multiple Atm_button objects:
+
+```c++
+void btn_change( int press, int idx ) 
+{
+  if ( press ) {
+    if ( idx == 1 ) led1.toggle( led1.IDLE, led1.START );
+    if ( idx == 2 ) led3.toggle( led2.IDLE, led2.START );
+  }
+}
+
+void setup() 
+{
+  btn.begin( 11 ).onPress( btn_callback, 1 );
+  btn.begin( 12 ).onPress( btn_callback, 2 );
+}
+```
+
+
 
 Messaging another machine on a button press (pressing the button will start a led blinking):
 
