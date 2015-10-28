@@ -62,8 +62,8 @@ The press argument contains 0 if the event is a button release and 1 if the even
 
 ### Atm_button & onPress( Machine * machine, int msg ) ###
 Alternative: Atm_button & onPress( Machine * machine, int msg_press, int msg_release )  
-Alternative: Atm_button & onPress( presscb_t press_callback ) 
-Alternative: Atm_button & onPress( presscb_id_t press_callback, int idx ) 
+Alternative: Atm_button & onPress( presscb_t press_callback )  
+Alternative: Atm_button & onPress( presscb_id_t press_callback, int idx )  
 
 Registers a callback or a message destination to be called when a button is pressed.
 
