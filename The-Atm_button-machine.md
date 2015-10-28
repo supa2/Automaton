@@ -80,7 +80,7 @@ void btn_change( int press )
 void setup() 
 {
   btn.begin( 11 );
-  btn.onPress( btn_callback );
+  btn.onPress( btn_change );
 }
 ```
 
@@ -97,8 +97,8 @@ void btn_change( int press, int idx )
 
 void setup() 
 {
-  btn.begin( 11 ).onPress( btn_callback, 1 );
-  btn.begin( 12 ).onPress( btn_callback, 2 );
+  btn.begin( 11 ).onPress( btn_change, 1 );
+  btn.begin( 12 ).onPress( btn_change, 2 );
 }
 ```
 
