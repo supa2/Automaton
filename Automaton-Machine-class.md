@@ -302,7 +302,8 @@ case EVT_DISABLED :
 ```
 This method can be used in conjunction with msgWrite() and msgClear() to simulate setting, checking and clearing a flag.
 
-### int msgClear( [uint8_t id_msg] ) ###
+### int msgClear( uint8_t id_msg ) ###
+Alternative: Machine & msgClear()  
 
 Clears all messages of a certain type (id) from the queue, or, if no id argument, is given flushes the entire queue.
 
