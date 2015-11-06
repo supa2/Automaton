@@ -1,7 +1,7 @@
-This state machine monitors an analog input with a configurable sample rate and fires off a callback whenever one of a list of thresholds are crossed. Optionally keeps a moving average to smooth out peaks and troughs.
+This state machine monitors an analog input with a configurable sample period and fires off a callback whenever one of a list of thresholds are crossed. Optionally keeps a moving average to smooth out peaks and troughs.
 
 * [begin()](#atm_comparator--begin-int-attached_pin-int-samplerate-triggercb_t-cb-)
-* [threshold()](#atm_comparator--threshold-uint16_t--v-uint16_t-size)
+* [threshold()](#atm_comparator--threshold-uint16_t--v-uint16_t-size--bool-catchUp-false-))
 * [average()](#atm_comparator---average-uint16_t--v-uint16_t-size-)
 * [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
 
@@ -37,7 +37,7 @@ void loop()
 
 ### Atm_comparator & begin( int attached_pin, int samplerate, triggercb_t cb ) ###
 
-Attaches the comparator to an analog input pin, sets the samplerate and the callback routine. The samplerate is in milliseconds per sample.
+Attaches the comparator to an analog input pin, sets the sample period and the callback routine. The sample period is in milliseconds per sample.
 
 ```c++
 void cmp_callback( int v, int up, int idx_threshold, int v_threshold )
@@ -62,7 +62,7 @@ up  | The direction in which the threshold was crossed (1 = up, 0 = down)
 idx_threshold | The index of the threshold that was crossed
 v_threshold | The value of the threshold that was crossed
 
-### Atm_comparator & threshold( uint16_t * v, uint16_t size) ###
+### Atm_comparator & threshold( uint16_t * v, uint16_t size, bool catchUp=false ) ###
 
 Sets a list of thresholds to monitor. If the measured analog input crosses one of these thresholds the callback is called. Arguments are a pointer to a list of 16 bit unsigned integers and the size of the list.
 
@@ -77,6 +77,12 @@ void setup()
 }
 ```
 Declare the list as a global variable or as *static*. The threshold list can hold a maximum of 64 entries.
+
+If the optional catchUp argument is set to `true`
+```c++
+cmp.threshold( threshold_list, 10, true );
+```
+the state machine will catch up to the current value as soon as the state machine starts cycling. It does this by calling your callback as many times as necessary if the current value is larger than at least one threshold value. So in the above situation, if you have a thermistor attached to A2 and its current value is 511, the callback will be called 5 times in quick succession, once each for the 100, 200, 300, 400 and 500 threshold values. If catchUp is set to `false` or omitted from the `threshold()` call, when the state machine starts, the callback will not be called until a threshold is crossed.
 
 ### Atm_comparator &  average( uint16_t * v, uint16_t size ) ###
 
