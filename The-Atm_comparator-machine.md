@@ -125,7 +125,7 @@ void sw( const char label[], const char current[], const char next[],
 Use the code below to pass STATES and EVENTS symbol tables to the state machine, open up a serial terminal and watch the machine change states. 
 
 ```c++
-cmd.onSwitch( sw, "IDLE\0READCHAR\0SEND","EVT_INPUT\0EVT_EOL\0ELSE" );
+cmd.onSwitch( sw, "IDLE\0SAMPLE\0SEND","EVT_TRIGGER\0EVT_TIMER\0ELSE" );
 ```
 
 **WARNING: This machine changes state for every sample taken and will produce a lot of log output quickly**
