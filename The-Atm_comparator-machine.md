@@ -1,7 +1,7 @@
 This state machine monitors an analog input with a configurable sample period and fires off a callback whenever one of a list of thresholds are crossed. Optionally keeps a moving average to smooth out peaks and troughs.
 
 * [begin()](#atm_comparator--begin-int-attached_pin-int-samplerate-triggercb_t-cb-)
-* [threshold()](#atm_comparator--threshold-uint16_t--v-uint16_t-size--bool-catchUp-false-))
+* [threshold()](atm_comparator--threshold-uint16_t--v-uint16_t-size-bool-catchupfalse-)
 * [average()](#atm_comparator---average-uint16_t--v-uint16_t-size-)
 * [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
 
