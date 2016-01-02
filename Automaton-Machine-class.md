@@ -314,7 +314,7 @@ obj.msgClear( MSG_DISABLED );
 obj.msgClear(); 
 ```
 
-When the id argument is given returns 1 when one or more messages weere present or 0 if there was none. This allows msgClear() to be used instead of msgRead() if the latter's message buffering is not wanted.
+When the id argument is given returns 1 when one or more messages were present or 0 if there was none. This allows msgClear() to be used instead of msgRead() if the latter's message buffering is not wanted.
 
 ### Machine & msgMap( uint32_t map ) ###
 
