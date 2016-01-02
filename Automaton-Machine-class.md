@@ -292,6 +292,8 @@ case EVT_ON :
  
 If the *cnt* argument is given removes *cnt* messages from the queue.
 
+Note that the Automaton's messaging queue buffers messages. Two consecutive calls to msgWrite( MSG_ON ) will lead two calls to msgRead( MSG_ON ) to return true. If that's not what you want you may use msgClear( MSG_ON ) as a replacement, this will return true just a single time.
+
 ### int msgPeek( uint8_t id_msg ) ###
 
 Checks the queue for the given message type (id), if one is found leaves it in the queue and returns 1.
@@ -311,6 +313,8 @@ Clears all messages of a certain type (id) from the queue, or, if no id argument
 obj.msgClear( MSG_DISABLED );
 obj.msgClear(); 
 ```
+
+When the id argument is given returns 1 when one or more messages weere present or 0 if there was none. This allows msgClear() to be used instead of msgRead() if the latter's message buffering is not wanted.
 
 ### Machine & msgMap( uint32_t map ) ###
 
