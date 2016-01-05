@@ -112,8 +112,6 @@ int Atm_command::event( int id )
 }
 ```
 
-Just before every state change (and just before the onSwitch() callback, see below) the state machine calls the event loop with an *ATM_ON_SWITCH* event. In that case the 'next' variable contains the new state and the 'current' variable contains the old (present) state.
-
 Failing to implement the event() method in a subclass generates the following compiler error: 
 
 ```
@@ -142,6 +140,8 @@ void Atm_led::action( int id )
   }
 }
 ```
+
+Just before every state change (and just before the onSwitch() callback, see below) the state machine calls the action handler with the *ATM_ON_SWITCH* id. In that case the 'next' variable contains the new state and the 'current' variable contains the old (present) state.
 
 Failing to implement the action() method in a subclass generates the following compiler error: 
 
