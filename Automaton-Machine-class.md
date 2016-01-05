@@ -279,7 +279,7 @@ In the main program:
 obj.msgWrite( obj.MSG_ON );
 ```
 
-To allow processing of incoming messages a sleeping machine is woken up by a call to msgWrite(). 
+To allow processing of incoming messages a call to msgWrite() wakes up a sleeping machine for the duration of one cycle. 
  
 ### int msgRead( uint8_t id_msg, [int cnt] ) ###
 
@@ -333,7 +333,7 @@ obj.msgWrite( 0 );
 obj.msgWrite( 2 );
 ```
 
-To allow processing of incoming messages a sleeping machine is woken up by a call to msgMap(). 
+To allow processing of incoming messages a call to msgMap() wakes up a sleeping machine for the duration of one cycle. 
 
 ## Debugging ##
 
