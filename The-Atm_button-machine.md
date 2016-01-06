@@ -31,7 +31,7 @@ void setup()
   factory.add( btn );
 }
 
-void setup() 
+void loop() 
 {
   factory.cycle();
 }
