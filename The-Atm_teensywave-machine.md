@@ -4,6 +4,11 @@ This state machine generates different waveforms (sine, sawtooth, reverse sawtoo
 * [MSG_TOGGLE](#msg_toggle)
 * [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
 
+The output of a teensy 3.1 running teensywave on a scope:
+
+[[images/scope.png]]
+
+
 ## Waveforms ##
 
 Index | Waveform
@@ -13,8 +18,6 @@ Index | Waveform
 3 | Reverse Sawtooth wave
 4 | Triangle wave
 5 | Square wave
-
-[[images/scope.png]]
 
 ## Synopsis ##
 
