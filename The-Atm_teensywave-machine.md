@@ -14,6 +14,8 @@ Index | Waveform
 4 | Triangle wave
 5 | Square wave
 
+[[images/scope.png]]
+
 ## Synopsis ##
 
 ```c++
