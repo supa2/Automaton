@@ -161,6 +161,8 @@ if ( led.state() != led.OFF ) {
 }
 ```
 
+The ATM_EXIT event of the old state is not fired when the state() method is used to change states.
+
 ### Machine & toggle( state_t state1, state_t state2 ) ###
 
 Toggles the machine's state, equivalent to the following if-else-statement:
