@@ -161,7 +161,7 @@ if ( led.state() != led.OFF ) {
 }
 ```
 
-The ON_EXIT event of the previous state is not fired when the state() method is used to change states. The next state's ON_ENTER event is fired as normal.
+The ON_EXIT event of the previous state is fired when the state() method is used to change states (previous versions of Automaton had a different behaviour). The next state's ON_ENTER event is fired as normal.
 
 ### Machine & toggle( state_t state1, state_t state2 ) ###
 
