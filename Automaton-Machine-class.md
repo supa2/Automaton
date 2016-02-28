@@ -283,7 +283,7 @@ obj.msgWrite( obj.MSG_ON );
 
 To allow processing of incoming messages a call to msgWrite() wakes up a sleeping machine for the duration of one cycle. 
  
-### int msgRead( uint8_t id_msg, [int cnt] ) ###
+### int msgRead( uint8_t id_msg, [int cnt], [int clear] ) ###
 
 Checks the queue for the given message type (id), if one is found removes it from the queue and returns 1. This method is normally used in a machine's event handler.
 
@@ -294,7 +294,9 @@ case EVT_ON :
   return msgRead( MSG_ON );
 ```
  
-If the *cnt* argument is given removes *cnt* messages from the queue.
+If the *cnt* argument is given removes *cnt* messages from the queue. (default: 1)
+
+If the *clear* argument is given clears the entire message queue of all messages.
 
 Note that the Automaton's messaging queue buffers messages. Two consecutive calls to msgWrite( MSG_ON ) will lead two calls to msgRead( MSG_ON ) to return true. If that's not what you want you may use msgClear( MSG_ON ) as a replacement, this will return true just a single time.
 
