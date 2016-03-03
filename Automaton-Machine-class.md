@@ -52,7 +52,7 @@ Machine::begin( state_table, ELSE );
 
 The *ELSE* event is automatic (generates no call to the event() method).
 
-### Machine & msgQueue( atm_msg_t msg[], int width )  ###
+### Machine & msgQueue( atm_msg_t msg[], int width [, int auto_clear] )  ###
 
 The msgQueue() methods adds an incoming messaging queue if the machine needs to be able to process incoming messages.
 
@@ -82,7 +82,7 @@ And process them in the machine object's event() handler like this:
 
 ```c++
 switch ( id ) {
-	case EVT_OFF :
+  case EVT_OFF :
 		  return msgRead( MSG_OFF );
 	case EVT_ON :
 		  return msgRead( MSG_ON );
@@ -90,6 +90,7 @@ switch ( id ) {
 ```
 
 The *MSG_END* identifier must always be last in the list because it is used to determine the size of the msg queue.
+If the *autoclear* parameter is set the state machine will automatically clear the message queue on every state switch. It's a good idea to set this to 1 to avoid common pitfalls in message handling. If you want to keep messages between state switches (in some cases that's useful) set it to 0 or leave it out altogether. Default value is 0 for backwards compatibility.
 
 ### int event( int id ) ###
 
