@@ -226,13 +226,13 @@ led1.asleep();
 
 Sets or retrieves the state machine's priority setting. The default priority is 1, which runs the machine at full speed. Priority 2 runs it at half speed. Priority 3 runs at quarter speed. Finally, priority 4 runs at 1/8 speed.
 
-Priority | Speed
------------- | -------------:
-0 | 0%
-1 | 100%
-2 | 50%
-3 | 25%
-4 | 12.5%
+Priority | Speed | Machine cycles per factory cycle
+------------ | ------------- | -------------:
+0 | 0% | 0
+1 | 100% | 8
+2 | 50% | 4
+3 | 25% | 2
+4 | 12.5% | 1
 
 ```c++
 led1.priority( 2 );
