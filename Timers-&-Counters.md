@@ -20,7 +20,7 @@ The counter will ignore decrement() calls and will never expire() when set to th
 * [begin()](#begin) (Timers only)
 * [set()](#set)
 * [decrement()](#decrement) (Counters only)
-* [expire()](#expire)
+* [expired()](#expired)
 
 
 ### void begin( Machine * machine, uint32_t v ) ###
