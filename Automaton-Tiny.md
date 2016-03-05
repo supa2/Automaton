@@ -57,7 +57,7 @@ class Att_button : public TinyMachine {
         Att_button( void ) : TinyMachine() { };
 ```
 
-The naming convention for Tiny machines uses the Att_ prefix instead of the standard Atm_. Replace all mentions of Atm_button by Att_button. The Tiny machine use a 8 bit value to hold the state identifier in contrast to the 16 bit value used by the full size machines;
+The naming convention for Tiny machines uses the Att_ prefix instead of the standard Atm_. Replace all mentions of Atm_button by Att_button. The Tiny machine use a 8 bit value to hold the state identifier in contrast to the 16 bit value used by the full size machines. (tiny_state_t instead of state_t)
 
 ```c++
 Atm_button & Atm_button::begin( int attached_pin )
