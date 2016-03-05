@@ -1,3 +1,5 @@
+### Low memory state machines ###
+
 A standard Automaton state machine uses about 70 bytes SRAM overhead per state machine instance. In some cases, like when you're trying to run 50 machines on an Arduino Uno or a dozen machines on a tiny AtTiny85 controller that's just too much. For these use cases Automaton Tiny was created. Automaton Tiny consists of a TinyMachine and a TinyFactory class that contain nothing but the minimal functions needed for running state machines. The resulting machine run at about half the SRAM overhead of the standard Machine class based state machines.
 
 What we left out:
@@ -36,6 +38,9 @@ The TinyFactory class can only manage TinyMachine-based state machines just as t
 add | Available | Available
 find | Available | -
 cycle | Available | Available 
+compatibility | Machine derivations | TinyMachine derivations
+
+### Creating a Tiny Machine ###
 
 To create a Tiny machine base you child class off the *TinyMachine* class instead.
 
@@ -74,5 +79,41 @@ Att_button & Att_button::begin( int attached_pin )
         const static tiny_state_t state_table[] PROGMEM = {
 ```
 
-Again replace Atm_ with Att_ and replace 'Machine' with 'TinyMachine' and everything should be fine as long as you haven't use any Machine methods and properties that were dropped for TinyMachine.
+Again replace Atm_ with Att_ and replace 'Machine' with 'TinyMachine' and everything should be fine as long as you haven't use any Machine-only methods and properties.
+
+### Bundled Tiny state machines ###
+
+The bundled state machines are provided in standard as well as Tiny versions
+
+&nbsp; | Machine | TinyMachine
+------------ | ------------- | ---------
+Button | Atm_button | Att_button
+Serial command processor | Atm_command | Att_command
+Analog voltage detector | Atm_comparator | Att_comparator
+Blinking led | Atm_led | Att_led
+Fading led | Atm_fade | Att_fade
+Pulse detection | Atm_pulse | Att_pulse
+Waveform generator | Atm_teensywave | Att_teensywave
+Timer | Atm_timer | Att_timer
+
+The Att_ versions of these machines lack debugging, messaging and advanced scheduling functions and must be run inside a TinyFactory.
+
+```c++
+Att_led led;
+TinyFactory factory;
+
+void setup() 
+{
+    led.begin( 4 ).blink( 200 );
+    factory.add( led );
+}
+
+void loop() 
+{
+    factory.cycle();
+}
+
+```
+
+
 
