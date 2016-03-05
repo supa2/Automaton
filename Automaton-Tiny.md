@@ -115,5 +115,6 @@ void loop()
 
 ```
 
+The examples directory contains a *Tiny* version of the blink sketch call blink_tiny. The blink and blink_tiny sketches illustrate the differences between *Machine* and *TinyMachine* based state machines.
 
 
