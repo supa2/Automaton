@@ -40,6 +40,8 @@ find | Available | -
 cycle | Available | Available 
 compatibility | Machine derivations | TinyMachine derivations
 
+It's probably a good strategy to begin by developing a standard *Machine* based machine with the help of the debugging functions and convert to a *TinyMachine* based machine later to squeeze the most out of your microcontroller in a production setup.
+
 ### Creating a Tiny Machine ###
 
 To create a Tiny machine base you child class off the *TinyMachine* class instead.
