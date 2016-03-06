@@ -2,3 +2,35 @@
 - Triggering state events
 - Calling state() method
 - Calling custom methods
+
+### Message queue ###
+
+```c++
+
+led.msgWrite( led.MSG_ON );
+
+```
+
+### Triggering state events ###
+
+```c++
+
+led.trigger( led.EVT_ON );
+
+```
+
+### Calling state() method ###
+
+```c++
+
+led.trigger( led.ON );
+
+```
+
+### Calling custom methods ###
+
+```c++
+
+led.on();
+
+```
