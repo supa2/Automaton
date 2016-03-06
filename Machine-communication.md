@@ -1,0 +1,4 @@
+- Message queue
+- Triggering state events
+- Calling state() method
+- Calling custom methods
