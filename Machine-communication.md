@@ -23,7 +23,7 @@ led.trigger( led.EVT_ON );
 
 ```c++
 
-led.trigger( led.ON );
+led.state( led.ON );
 
 ```
 
