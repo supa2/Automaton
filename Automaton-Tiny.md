@@ -101,12 +101,15 @@ Timer | Atm_timer | Att_timer
 The Att_ versions of these machines lack debugging, messaging and advanced scheduling functions and must be run inside a TinyFactory.
 
 ```c++
+#include <Automaton.h>
+#include <Atm_led.h>
+
 Att_led led;
 TinyFactory factory;
 
 void setup() 
 {
-    led.begin( 4 ).blink( 200 );
+    led.begin( 4 ).blink( 200 ).state( led.START );
     factory.add( led );
 }
 
@@ -114,7 +117,6 @@ void loop()
 {
     factory.cycle();
 }
-
 ```
 
 The examples directory contains a *Tiny* version of the blink sketch called blink_tiny. The blink and blink_tiny sketches illustrate the differences between *Machine* and *TinyMachine* based state machines.
