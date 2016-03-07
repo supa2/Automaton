@@ -111,7 +111,7 @@ void setup()
 {
     led.begin( 4 ).blink( 200 );
     factory.add( led );
-    led.trigger( led.EVT_START );
+    led.trigger( led.EVT_BLINK );
 }
 
 void loop() 
