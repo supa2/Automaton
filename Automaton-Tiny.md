@@ -109,8 +109,9 @@ TinyFactory factory;
 
 void setup() 
 {
-    led.begin( 4 ).blink( 200 ).state( led.START );
+    led.begin( 4 ).blink( 200 );
     factory.add( led );
+    led.trigger( led.EVT_START );
 }
 
 void loop() 
