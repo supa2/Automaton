@@ -120,7 +120,7 @@ void loop()
 }
 ```
 
-This tiny sketch uses 72 of dynamic memory and 2038 bytes of program storage.
+This tiny sketch uses 72 of dynamic memory and 2038 bytes of program storage on an Arduino Uno.
 The standard sketch uses 138 of dynamic memory and 3318 bytes of program storage.
 
 The examples directory contains a *Tiny* version of the blink sketch called blink_tiny. The blink and blink_tiny sketches illustrate the differences between *Machine* and *TinyMachine* based state machines.
