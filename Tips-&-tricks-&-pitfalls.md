@@ -5,5 +5,5 @@
 
 ### Pitfalls ###
 
-- Hanging messages in the message queue
-- Start up race condition with machine->trigger( EVT_XXX )
+## Hanging messages in the message queue
+## Start up race condition with machine->trigger( EVT_XXX )
