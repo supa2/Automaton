@@ -12,7 +12,6 @@ What we left out:
 &nbsp; | Machine | TinyMachine
 ------------ | ------------- | ---------
 begin | Available | Available
-msgQueue | Available | -
 event | Available | Available 
 action | Available | Available
 state | Available | Available
@@ -22,6 +21,7 @@ runtime_micros | Available | Available
 asleep | Available | Available
 priority | Available | -
 cycle | Available | Available
+msgQueue | Available | -
 msgWrite | Available | -
 msgRead | Available | -
 msgPeek | Available | -
