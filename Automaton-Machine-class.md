@@ -25,6 +25,8 @@
  * label() *
  * onSwitch() *
 
+( methods marked with an asterisk * are not present in a TinyMachine )
+
 ## Initialization ##
 
 ### Machine & begin( const state_t* tbl, state_t width ) ###
