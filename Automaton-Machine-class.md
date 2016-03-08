@@ -2,7 +2,7 @@
 
 * [Initialization](#initialization)
  * begin()
- * msgQueue()
+ * msgQueue() *
  * event()
  * action()
 * [States](#states)
