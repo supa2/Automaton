@@ -304,7 +304,7 @@ Note that the Automaton's messaging queue buffers messages. Two consecutive call
 
 ### int msgPeek( uint8_t id_msg ) ###
 
-Checks the queue for the given message type (id), if one is found leaves it in the queue and returns 1.
+Checks the queue for the given message type (id), if one is found the number of messages is returned. The queue is left unchanged.
 
 ```c++
 case EVT_DISABLED :
