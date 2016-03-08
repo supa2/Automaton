@@ -2,7 +2,6 @@
 
 * [Initialization](#initialization)
  * begin()
- * msgQueue() *
  * event()
  * action()
 * [States](#states)
@@ -17,6 +16,7 @@
  * priority() *
  * cycle()
 * [Message queue](#message-queue)
+ * msgQueue() *
  * msgWrite() *
  * msgRead() *
  * msgPeek() *
@@ -52,46 +52,6 @@ Machine::begin( state_table, ELSE );
 ```
 
 The *ELSE* event is automatic (generates no call to the event() method).
-
-### Machine & msgQueue( atm_msg_t msg[], int width [, int auto_clear] )  ###
-
-The msgQueue() methods adds an incoming messaging queue if the machine needs to be able to process incoming messages.
-
-In the Atm_xxx.h file:
-
-```c++
-enum { MSG_OFF, MSG_ON, MSG_END } MESSAGES;
-
-atm_msg_t messages[MSG_END];
-```
-
-In the Atm_xxx.cpp file:
-
-```c++
-Machine::begin( state_table, ELSE );
-Machine::msgQueue( messages, MSG_END );
-```
-
-You may now send messages to the machine object like this:
-
-```c++
-obj.msgWrite( obj.MSG_OFF );
-obj.MsgWrite( obj.MSG_ON );
-```
-
-And process them in the machine object's event() handler like this:
-
-```c++
-switch ( id ) {
-  case EVT_OFF :
-		  return msgRead( MSG_OFF );
-	case EVT_ON :
-		  return msgRead( MSG_ON );
-}
-```
-
-The *MSG_END* identifier must always be last in the list because it is used to determine the size of the msg queue.
-If the *autoclear* parameter is set the state machine will automatically clear the message queue on every state switch. It's often a good idea to set this to 1 to avoid common pitfalls in message handling. If you want to keep messages between state switches (in some cases that's useful) set it to 0 or leave it out altogether. Default value is 0 for backwards compatibility.
 
 ### int event( int id ) ###
 
@@ -269,6 +229,48 @@ void loop()
 ## Message queue ##
 
 The Machine class defines a simulated messaging queue via which messages can be sent from machine to machine or from the main Arduino program to a machine. Multiple messages can be queued.  
+
+### Machine & msgQueue( atm_msg_t msg[], int width [, int auto_clear] )  ###
+
+The msgQueue() methods adds an incoming messaging queue if the machine needs to be able to process incoming messages.
+
+In the Atm_xxx.h file:
+
+```c++
+enum { MSG_OFF, MSG_ON, MSG_END } MESSAGES;
+
+atm_msg_t messages[MSG_END];
+```
+
+In the Atm_xxx.cpp file:
+
+```c++
+Machine::begin( state_table, ELSE );
+Machine::msgQueue( messages, MSG_END );
+```
+
+You may now send messages to the machine object like this:
+
+```c++
+obj.msgWrite( obj.MSG_OFF );
+obj.MsgWrite( obj.MSG_ON );
+```
+
+And process them in the machine object's event() handler like this:
+
+```c++
+switch ( id ) {
+  case EVT_OFF :
+		  return msgRead( MSG_OFF );
+	case EVT_ON :
+		  return msgRead( MSG_ON );
+}
+```
+
+The *MSG_END* identifier must always be last in the list because it is used to determine the size of the msg queue.
+If the *autoclear* parameter is set the state machine will automatically clear the message queue on every state switch. It's often a good idea to set this to 1 to avoid common pitfalls in message handling. If you want to keep messages between state switches (in some cases that's useful) set it to 0 or leave it out altogether. Default value is 0 for backwards compatibility.
+
+
 
 ### Machine & msgWrite( uint8_t id_msg, [int cnt] ) ###
 
