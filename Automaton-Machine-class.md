@@ -171,9 +171,11 @@ Triggers an event for the current state. If there's a positive number in the eve
 
 
 ```c++
+void setup() {
   led1.begin( 4 );
   factory.add( led1 );
   led1.trigger( EVT_BLINK );
+}
 ```
 
 Note that the machine being triggered must have been initialized which means it must have been cycled at least once since the call to begin(). The factory.add() methods will automatically cycle each machine added once so that it will have been initialized. This can also be done explicitely like this:
