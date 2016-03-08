@@ -167,7 +167,7 @@ It's considered somewhat bad practice to set a machine's state directly from the
 
 ### int trigger( int event ) ###
 
-Triggers an event for the current state. If there's a positive number in the event column for the current state the machine will switch to that state on the next cycle.
+Triggers an event for the current state. If there's a positive number in the event column for the current state the machine will switch to that state on the next cycle. The method will return 1 if the trigger has resulted in a state change or 0 if it hasn't.
 
 
 ```c++
@@ -176,7 +176,7 @@ Triggers an event for the current state. If there's a positive number in the eve
   led1.trigger( EVT_BLINK );
 ```
 
-Note that the machine being triggered must have been cycled at least once since the call to begin(). The factory.add() methods will automatically cycle each machine added once so that it will have been initialized. This can also be done explicitely like this:
+Note that the machine being triggered must have been initialized which means it must have been cycled at least once since the call to begin(). The factory.add() methods will automatically cycle each machine added once so that it will have been initialized. This can also be done explicitely like this:
 
 ```c++
   led1.begin( 4 );
