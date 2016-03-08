@@ -9,22 +9,21 @@
  * state()
  * toggle()
 * [Timers & pins](#user-content-timers--pins)
- * pinChange()
+ * pinChange() *
  * runtime_millis()
  * runtime_micros()
 * [Scheduling](#scheduling)
  * asleep()
- * priority()
+ * priority() *
  * cycle()
 * [Message queue](#message-queue)
- * msgWrite()
- * msgRead()
- * msgPeek()
- * msgClear()
- * msgMap()
+ * msgWrite() *
+ * msgRead() *
+ * msgPeek() *
+ * msgClear() *
 * [Debugging](#debugging)
- * label()
- * onSwitch()
+ * label() *
+ * onSwitch() *
 
 ## Initialization ##
 
