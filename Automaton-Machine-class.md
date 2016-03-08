@@ -163,7 +163,7 @@ if ( led.state() != led.OFF ) {
 }
 ```
 
-The ON_EXIT event of the previous state is fired when the state() method is used to change states (previous versions of Automaton had a different behaviour). The next state's ON_ENTER event is fired as normal.
+It's considered somewhat bad practice to set a machine's state directly from the outside because you're in fact bypassing the state transition table. Use of the trigger() or messaging methods is preferred.
 
 ### int trigger( int event ) ###
 
