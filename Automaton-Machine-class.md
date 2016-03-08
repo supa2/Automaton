@@ -145,7 +145,7 @@ Note that the machine being triggered must have been initialized which means it 
   led1.cycle().trigger( led1.EVT_BLINK );
 ```
 
-The trigger() method is a lightweight alternative to the message queue (which uses SRAM). Triggered events can not be stored but must be processed immediately.
+The trigger() method is a lightweight alternative to the message queue (which uses SRAM). Triggered events can not be stored but are processed immediately or discarded.
 
 ## Timers & pins ##
 
