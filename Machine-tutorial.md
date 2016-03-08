@@ -194,7 +194,7 @@ We've now linked our outputs, but we're not done yet. We need to link our inputs
 ```
 ### Admiring the result ###
 
-Now all we need to do to admire our gloriously blinking led is to instanciate the class in an object which is just a fancy way of saying...
+Now all we need to do to admire our gloriously blinking led is to instantiate the class in an object which is just a fancy way of saying...
 
 ```c++
 Blink led;
