@@ -7,7 +7,7 @@
  * action()
 * [States](#states)
  * state()
- * toggle()
+ * trigger()
 * [Timers & pins](#user-content-timers--pins)
  * pinChange() *
  * runtime_millis()
