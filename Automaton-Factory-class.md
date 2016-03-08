@@ -25,7 +25,7 @@ After adding a machine to the factory, the add() method will cycle() it exactly 
 
 ### Factory & cycle( void ) ###
 
-Executes a factory cycle. In a factory cycle all priority queues are cycled a number of times corresponding to their priority level. Called from the Arduino loop().
+Executes a factory cycle. In a factory cycle all priority queues are cycled a number of times corresponding to their priority level. Normally called from the Arduino loop().
 
 ```c++
 void loop() {
