@@ -138,7 +138,7 @@ void setup() {
 }
 ```
 
-Note that the machine being triggered must have been initialized which means it must have been cycled at least once since the call to begin(). The factory.add() methods will automatically cycle each machine added once so that it will have been initialized. This can also be done explicitely like this:
+Note that the machine being triggered must have been initialized which means it must have been cycled at least once since the call to begin(). The factory.add() methods will automatically cycle each added machine once so that it will have been initialized. This can also be done explicitely like this in case you don't use Factory:
 
 ```c++
   led1.begin( 4 );
