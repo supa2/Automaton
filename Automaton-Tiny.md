@@ -27,7 +27,6 @@ msgWrite | Available | -
 msgRead | Available | -
 msgPeek | Available | -
 msgClear | Available | -
-msgMap | Available | -
 label | Available | -
 onSwitch | Available | -
 
