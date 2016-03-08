@@ -2,6 +2,7 @@
 
 - Sending and receiving messages with data
 - Hiding machines and factories inside other machines
+- Simulating priorities with TinyFactory
 
 ### Pitfalls ###
 
