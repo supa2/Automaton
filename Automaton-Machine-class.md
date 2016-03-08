@@ -134,7 +134,7 @@ Triggers an event for the current state. If there's a positive number in the eve
 void setup() {
   led1.begin( 4 );
   factory.add( led1 );
-  led1.trigger( EVT_BLINK );
+  led1.trigger( led1.EVT_BLINK );
 }
 ```
 
@@ -142,7 +142,7 @@ Note that the machine being triggered must have been initialized which means it 
 
 ```c++
   led1.begin( 4 );
-  led1.cycle().trigger( EVT_BLINK );
+  led1.cycle().trigger( led1.EVT_BLINK );
 ```
 
 The trigger() method is a lightweight alternative to the message queue (which uses SRAM). Triggered events can not be stored but must be processed immediately.
