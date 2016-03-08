@@ -2,7 +2,9 @@ Multitasks Automaton state machines according to their priority. This is a great
 
 * [add()](#factory--add-machine--machine-)
 * [cycle()](#factory--cycle-void-)
-* [find()](#machine--find-const-char-label-)
+* [find()](#machine--find-const-char-label-) *
+
+(methods marked with an asterisk * are not available in a TinyFactory)
 
 ### Factory & add( Machine & machine ) ###
 
@@ -19,6 +21,7 @@ void loop() {
 	factory.cycle();
 }
 ```	
+After adding a machine to the factory, the add() method will cycle() it exactly once to make sure it's in an initialized state.
 
 ### Factory & cycle( void ) ###
 
