@@ -165,23 +165,24 @@ if ( led.state() != led.OFF ) {
 
 The ON_EXIT event of the previous state is fired when the state() method is used to change states (previous versions of Automaton had a different behaviour). The next state's ON_ENTER event is fired as normal.
 
-### Machine & toggle( state_t state1, state_t state2 ) ###
+### int trigger( int event ) ###
 
-Toggles the machine's state, equivalent to the following if-else-statement:
+Triggers an event for the current state. If there's a positive number in the event column for the current state the machine will switch to that state on the next cycle.
 
-```c++
-if ( led1.state() == state1 ) {
-     led1.state( state2 );
-} else {
-     led1.state( state1 );
-}
-```
-	
-Example:
 
 ```c++
-led1.toggle( LED_IDLE, LED_BLINKON );
+  led1.begin( 4 );
+  factory.add( led1 );
+  led1.trigger( EVT_BLINK );
 ```
+
+Note that the machine being triggered must have been cycled at least once since the call to begin(). The factory.add() methods will automatically cycle each machine added once so that it will have been initialized. This can also be done explicitely like this:
+
+```c++
+  led1.begin( 4 );
+  led1.cycle().trigger( EVT_BLINK );
+```
+
 
 ## Timers & pins ##
 
