@@ -74,8 +74,8 @@ Machine::msgQueue( messages, MSG_END );
 You may now send messages to the machine object like this:
 
 ```c++
-obj.msgWrite( MSG_OFF );
-obj.MsgWrite( MSG_ON );
+obj.msgWrite( obj.MSG_OFF );
+obj.MsgWrite( obj.MSG_ON );
 ```
 
 And process them in the machine object's event() handler like this:
