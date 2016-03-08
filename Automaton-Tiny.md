@@ -4,7 +4,7 @@ A standard Automaton state machine uses about 70 bytes SRAM overhead per state m
 
 What we left out:
 
-- The debugging code (onSwitch)
+- The debugging code
 - The scheduling priorities
 - The machine labels
 - The messaging queue
