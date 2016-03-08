@@ -125,4 +125,4 @@ The standard sketch uses 138 of dynamic memory and 3318 bytes of program storage
 
 The examples directory contains a *Tiny* version of the blink sketch called blink_tiny. The blink and blink_tiny sketches illustrate the differences between *Machine* and *TinyMachine* based state machines.
 
-
+(granted: there are cheaper ways to blink a led, but it's much more fun to build a factory and a machine to do it!)
