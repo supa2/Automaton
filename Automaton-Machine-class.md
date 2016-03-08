@@ -25,7 +25,7 @@
  * label() *
  * onSwitch() *
 
-( methods marked with an asterisk * are not present in a TinyMachine )
+(methods marked with an asterisk * are not present in a TinyMachine)
 
 ## Initialization ##
 
