@@ -328,23 +328,6 @@ obj.msgClear();
 
 When the id argument is given returns 1 when one or more messages were present or 0 if there was none. This allows msgClear() to be used instead of msgRead() if the latter's message buffering is not wanted.
 
-### Machine & msgMap( uint32_t map ) ###
-
-Checks the bitmap variable and for each bit set executes a msgWrite() to the corresponding message id.
-
-```c++
-obj.msgMap( 4 );
-```
-
-Is equivalent to:
-
-```c++
-obj.msgWrite( 0 );
-obj.msgWrite( 2 );
-```
-
-To allow processing of incoming messages a call to msgMap() wakes up a sleeping machine for the duration of one cycle. 
-
 ## Debugging ##
 
 ### Machine & label( const char label[] ) ###
