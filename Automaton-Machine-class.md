@@ -183,6 +183,7 @@ Note that the machine being triggered must have been cycled at least once since 
   led1.cycle().trigger( EVT_BLINK );
 ```
 
+The trigger() method is a lightweight alternative for the message queue. Triggered events can not be stored but must be processed immediately.
 
 ## Timers & pins ##
 
