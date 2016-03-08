@@ -11,7 +11,6 @@ What we left out:
 
 &nbsp; | Machine | TinyMachine
 ------------ | ------------- | ---------
-*maximum number of states* | 32,768 | 128
 begin | Available | Available
 msgQueue | Available | -
 event | Available | Available 
@@ -29,6 +28,7 @@ msgPeek | Available | -
 msgClear | Available | -
 label | Available | -
 onSwitch | Available | -
+*maximum number of states* | 32,768 | 128
 *SRAM bytes per machine* | 70 | 35
 
 The TinyFactory class can only manage TinyMachine-based state machines just as the Factory class can only manage Machine-derived state machines.
