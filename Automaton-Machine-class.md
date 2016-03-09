@@ -7,10 +7,7 @@
 * [States](#states)
  * state()
  * trigger()
-* [Timers & pins](#user-content-timers--pins)
  * pinChange() *
- * runtime_millis()
- * runtime_micros()
 * [Scheduling](#scheduling)
  * asleep()
  * priority() *
@@ -148,8 +145,6 @@ Note that the machine being triggered must have been initialized which means it 
 
 The trigger() method is a lightweight alternative to the message queue (which uses SRAM). Triggered events can not be stored but are processed immediately or discarded.
 
-## Timers & pins ##
-
 ### uint8_t pinChange( uint8_t pin ) ###
 
 Returns true if the pin state has changed from low to high or high to low. Always clears any change.
@@ -158,24 +153,6 @@ Returns true if the pin state has changed from low to high or high to low. Alway
 case EVT_CHANGED :
      return pinChange( pin );
 ```
-
-### uint32_t runtime_millis( void ) ###
-
-Returns the runtime of the current object state in milliseconds. Normally you would use a atm_timer_millis object to time states.
-
-```c++
-Serial.print( led1.runtime_millis() );
-```
-
-### uint32_t runtime_micros( void ) ###
-
-Returns the runtime of the current object state in microseconds. Normally you would use a atm_timer_micros object to time states.
-
-```c++
-Serial.print( led1.runtime_micros() );
-```
-
-More about timers and counters: [here](https://github.com/tinkerspy/Automaton/wiki/Timers-&-Counters)
 
 ## Scheduling ##
 ----------
