@@ -420,9 +420,9 @@ next | state_t | Holds the numeric value of next state (or -1)
 previous * | state_t | Holds the numeric value of previous state
 sleep | uint8_t | Value is 1 when the machine is asleep, else 0
 cycles * | uint32_t | Cyle counter for the current state
-state_millis | uint32_t | Number of millis recorded when the current state started
-state_micros | uint32_t | Number of micros recorded when the current state started
-last_trigger * | uint8_t | Numeric value of the event that triggered the last state switch
+state_millis | uint32_t | Number of millis since the last state switch
+state_micros | uint32_t | Number of micros since the last state switch
+last_trigger * | uint8_t | The event that triggered the last state switch
 msg_table * | atm_msg_t* | Pointer to the message table
 msg_width * | uint8_t | Number of message types that can be stored in the message table
 msg_autoclear * | uint8_t | Flag that controls automatic clearing of the message queue during state switches
