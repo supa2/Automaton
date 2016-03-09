@@ -426,3 +426,5 @@ last_trigger * | uint8_t | Numeric value of the event that triggered the last st
 msg_table * | atm_msg_t* | Pointer to the message table
 msg_width * | uint8_t | Number of message types that can be stored in the message table
 msg_autoclear * | uint8_t | Flag that controls automatic clearing of the message queue during state switches
+
+(variables marked with an asterisk * are not available in a TinyMachine subclass)
