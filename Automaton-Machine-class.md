@@ -160,7 +160,7 @@ case EVT_CHANGED :
 
 ### uint32_t runtime_millis( void ) ###
 
-Returns the runtime of the current object state in milliseconds.
+Returns the runtime of the current object state in milliseconds. Normally you would use a atm_timer_millis object to time states.
 
 ```c++
 Serial.print( led1.runtime_millis() );
@@ -168,7 +168,7 @@ Serial.print( led1.runtime_millis() );
 
 ### uint32_t runtime_micros( void ) ###
 
-Returns the runtime of the current object state in microseconds.
+Returns the runtime of the current object state in microseconds. Normally you would use a atm_timer_micros object to time states.
 
 ```c++
 Serial.print( led1.runtime_micros() );
