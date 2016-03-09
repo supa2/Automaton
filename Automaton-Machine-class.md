@@ -213,6 +213,8 @@ The use of the term speed may be confusing. If a led blinking machine runs at pr
 
 Set a machine's priority to 0 to disable it altogether, This uses even less resources than sleeping. Incoming messages are not processed in this mode.
 
+In a TinyFactory the TinyMachines (this is starting to sound like a fairy tale) always run at priority 4 which means that each machine is cycled once in every factory cycle.
+
 ### Machine & cycle( void ) ###
 
 Executes one cycle of the state machine. Normally only called by the factory class but can also be used directly inside the Arduino loop() function to bypass the factory class altogether. (may be slightly faster if you don't require different machine priorities - see the priority() method)
