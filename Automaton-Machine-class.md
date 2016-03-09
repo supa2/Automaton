@@ -24,6 +24,7 @@
 * [Debugging](#debugging)
  * label() *
  * onSwitch() *
+* [Machine variables](#machine-variables)
 
 (methods marked with an asterisk * are not available in a TinyMachine subclass)
 
