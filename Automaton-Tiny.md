@@ -16,8 +16,7 @@ event | Available | Available
 action | Available | Available
 state | Available | Available
 trigger | Available | Available
-runtime_millis | Available | Available
-runtime_micros | Available | Available
+pinChange | Available | -
 asleep | Available | Available
 priority | Available | -
 cycle | Available | Available
