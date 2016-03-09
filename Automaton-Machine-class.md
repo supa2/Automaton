@@ -394,7 +394,7 @@ Variable | Type | Function
 -------- | -------- | --------
 current | state_t | Holds the numeric value of current state
 next | state_t | Holds the numeric value of next state (or -1)
-previous * | state_t | Holds the numeric value of previous state
+previous | state_t | Holds the numeric value of previous state
 sleep | uint8_t | Value is 1 when the machine is asleep, else 0
 cycles * | uint32_t | Cycles counted since the last state switch
 state_millis | uint32_t | Value of millis() at the last state switch
