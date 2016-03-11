@@ -42,3 +42,36 @@ Machine * led;
 led = factory.find( 'LED_R' );
 led->msgWrite( 0 );
 ```
+
+### Machine * msgSend( const char label[], int msg ) ###
+
+Sends a message to the machine(s) with instance label 'label'. Returns number of matching machines found.
+
+```c++
+Machine * led1, led2, led3;
+
+led1.begin( 3 ).label( "LED_R" );
+led1.begin( 4 ).label( "LED_G" );
+led1.begin( 5 ).label( "LED_B" );
+
+factory.add( led1 ).add( led2 ).add( led3 );
+
+factory.msgSend( "LED_R", Atm_led::MSG_BLINK ); // Blinks red led
+```
+
+
+### Machine * msgSend( const char label[], int msg ) ###
+
+Sends a message to the machine(s) with class label 'label'. Returns number of matching machines found.
+
+```c++
+Machine * led1, led2, led3;
+
+led1.begin( 3 ).label( "LED_R" );
+led1.begin( 4 ).label( "LED_G" );
+led1.begin( 5 ).label( "LED_B" );
+
+factory.add( led1 ).add( led2 ).add( led3 );
+
+factory.msgSend( "LED", Atm_led::MSG_BLINK ); // Blinks all leds
+```
