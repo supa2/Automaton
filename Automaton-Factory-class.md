@@ -47,7 +47,7 @@ led->msgWrite( 0 );
 
 ### int msgSend( const char label[], int msg ) ###
 
-Sends a message to the machine(s) with the specified instance label attached to this factory. Returns number of matching machines found.
+Broadcasts a message to the machine(s) with the specified instance label attached to this factory. Returns number of matching machines found.
 
 ```c++
 Machine * led1, led2, led3;
@@ -67,7 +67,7 @@ void setup() {
 
 ### int msgSendClass( const char label[], int msg ) ###
 
-Sends a message to the machine(s) with the specified class label attached to this factory. Returns number of matching machines found.
+Broadcasts a message to the machine(s) with the specified class label attached to this factory. Returns number of matching machines found.
 
 ```c++
 Machine * led1, led2, led3;
