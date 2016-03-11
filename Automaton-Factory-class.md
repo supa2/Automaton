@@ -53,6 +53,7 @@ Sends a message to the machine(s) with the specified instance label attached to 
 Machine * led1, led2, led3;
 
 void setup() {
+
   led1.begin( 3 ).label( "LED_R" );
   led2.begin( 4 ).label( "LED_G" );
   led3.begin( 5 ).label( "LED_B" );
