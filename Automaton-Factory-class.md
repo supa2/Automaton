@@ -60,7 +60,7 @@ factory.msgSend( "LED_R", Atm_led::MSG_BLINK ); // Blinks red led
 ```
 
 
-### Machine * msgSend( const char label[], int msg ) ###
+### Machine * msgSendClass( const char label[], int msg ) ###
 
 Sends a message to the machine(s) with class label 'label'. Returns number of matching machines found.
 
@@ -73,5 +73,5 @@ led1.begin( 5 ).label( "LED_B" );
 
 factory.add( led1 ).add( led2 ).add( led3 );
 
-factory.msgSend( "LED", Atm_led::MSG_BLINK ); // Blinks all leds
+factory.msgSendClass( "LED", Atm_led::MSG_BLINK ); // Blinks all leds
 ```
