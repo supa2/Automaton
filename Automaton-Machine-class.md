@@ -314,7 +314,7 @@ When the id argument is given returns 1 when one or more messages were present o
 
 ### Machine & label( const char label[] ) ###
 
-Overrides the machine's default (class based) label and sets a new one for the current instance. Labels can also be used to send messages to specific machines over a simulated message bus.
+Overrides the machine's default (class based) label and sets a new one for the current instance. 
 
 ```c++
 led1.label( "LED_R" );
