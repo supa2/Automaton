@@ -1,7 +1,7 @@
 ### Tips & tricks ###
 
 - Sending and receiving messages with data
-- Hiding machines and factories inside other machines
+- Machines and factories within machines
 - Simulating priorities with TinyFactory
 
 ### Pitfalls ###
