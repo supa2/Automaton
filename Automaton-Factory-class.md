@@ -3,8 +3,8 @@ Multitasks Automaton state machines according to their priority. This is a great
 * [add()](#factory--add-machine--machine-)
 * [cycle()](#factory--cycle-void-)
 * [find()](#machine--find-const-char-label-) *
-* [msgSend()](#int-msgsend-const-char-label-int-msg-) *
-* [msgSendClass()](#int-msgsendclass-const-char-label-int-msg-) *
+* [msgSend()](#int-msgsend-const-char-label-int-msg--int-cnt-) *
+* [msgSendClass()](#int-msgsendclass-const-char-label-int-msg--int-cnt-) *
 
 (methods marked with an asterisk * are not available in a TinyFactory)
 
