@@ -81,4 +81,5 @@ void setup() {
   factory.add( led1 ).add( led2 ).add( led3 );
 
   factory.msgSendClass( "LED", Atm_led::MSG_BLINK ); // Blinks all leds
+}
 ```
