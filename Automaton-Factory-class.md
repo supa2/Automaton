@@ -81,5 +81,4 @@ void setup() {
   factory.add( led1 ).add( led2 ).add( led3 );
 
   factory.msgSendClass( "LED", Atm_led::MSG_BLINK ); // Blinks all leds
-  factory.msgSend( "LED_G", Atm_led::MSG_OFF ); // Turns the green led off
 ```
