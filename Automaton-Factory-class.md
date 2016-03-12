@@ -50,7 +50,7 @@ led->msgWrite( 0 );
 Broadcasts a message to the machine(s) with the specified instance label attached to this factory. Returns number of matching machines found. Default value for cnt is 1.
 
 ```c++
-Machine * led1, led2, led3;
+Atm_led led1, led2, led3;
 
 void setup() {
 
@@ -70,7 +70,7 @@ void setup() {
 Broadcasts a message to the machine(s) with the specified class label attached to this factory. Returns number of matching machines found. Default value for cnt is 1.
 
 ```c++
-Machine * led1, led2, led3;
+Atm_led led1, led2, led3;
 
 void setup() {
 
