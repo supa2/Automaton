@@ -63,7 +63,7 @@ void setup() {
   factory.msgSend( "LED_R", Atm_led::MSG_BLINK ); // Blinks red led
 }
 ```
-If no instance label has been set for a machine with the label() method the msgSend() method will use the class label which in the case of the Amt_led class is set to 'LED'.
+If no instance label has been set for a machine with the label() method the msgSend() method will use the class label which in the case of the Atm_led class is set to 'LED'.
 
 ### int msgSendClass( const char label[], int msg [, int cnt] ) ###
 
