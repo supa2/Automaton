@@ -3,6 +3,7 @@
 - Sending and receiving messages with data
 - Machines and factories within machines
 - Simulating priorities with TinyFactory
+- Taking timers beyond the 49.7 day millis() rollover limit 
 
 ### Pitfalls ###
 
