@@ -15,7 +15,7 @@ A timer doesn't need to be reset when a state change occurs. The reset will be a
 ### atm_counter class ###
 
 An atm_counter object counts down from the set() value to 0.
-The counter will ignore decrement() calls and will never expire() when set to the value *ATM_COUNTER_OFF*.
+The counter will ignore decrement() calls and will never expire() when set to the value *ATM_COUNTER_OFF*. Counters are 16 bit unsigned integer values and the highset value is reserved for the *ATM_COUNTER_OFF* flag, so the maximum value that can be counted is 65534.
 
 * [begin()](#begin) (Timers only)
 * [set()](#set)
