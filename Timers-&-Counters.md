@@ -4,13 +4,13 @@ The Automaton timers & counters are implemented as classes with a similar interf
 
 A millisecond timer that starts running from the moment a state change occurs and expire() at the set() number of milliseconds. The timer will expire immediately when set to zero and will never expire when set to the value *ATM_TIMER_OFF*. 
 
-A timer doesn't need to be reset when a state change occurs. The reset will be automatic because the state timer resets and the timer is relative to the current state timer.
+A timer doesn't need to be reset when a state change occurs. The reset will be automatic because the state timer resets and the timer is relative to the current state timer. The atm_timer_millis class can handle one millis() rollover but to create intervals greater than 4,294,967,295 ms (about 49.7 days) you should combine a timer with a counter. That should take you well beyond the expected lifetime of your microcontroller.
 
 ### atm_timer_micros class ###
 
 A microsecond timer that starts running from the moment a state change occurs and expire() at the set() number of microseconds. The timer will expire immediately when set to zero and will never expire when set to the value *ATM_TIMER_OFF*.
 
-A timer doesn't need to be reset when a state change occurs. The reset will be automatic because the state timer resets and the timer is relative to the current state timer.
+A timer doesn't need to be reset when a state change occurs. The reset will be automatic because the state timer resets and the timer is relative to the current state timer. The atm_timer_micros class can handle one micros() rollover. If you need larger intervals than 71 minutes switch to an atm_timer_millis object.
 
 ### atm_counter class ###
 
