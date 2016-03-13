@@ -14,10 +14,10 @@ Such a machine's begin function could look like this:
 
 ```c++
 static const state_t state_table[] PROGMEM = {
-/*                ON_ENTER    ON_LOOP  ON_EXIT  EVT_START  EVT_TIMER  EVT_COUNTER  ELSE */
-/* IDLE      */   ACT_INIT, ATM_SLEEP,      -1,      WAIT,        -1,          -1,   -1, 
-/* WAIT      */  ACT_COUNT,        -1,      -1,        -1,      WAIT,      FINISH,   -1, 
-/* FINISH    */ ACT_FINISH,        -1,      -1,        -1,        -1,          -1, IDLE, 
+/*             ON_ENTER    ON_LOOP  ON_EXIT EVT_START EVT_TIMER  EVT_COUNTER  ELSE */
+/* IDLE   */   ACT_INIT, ATM_SLEEP,      -1,     WAIT,       -1,          -1,   -1, 
+/* WAIT   */  ACT_COUNT,        -1,      -1,       -1,     WAIT,      FINISH,   -1, 
+/* FINISH */ ACT_FINISH,        -1,      -1,       -1,       -1,          -1, IDLE, 
 };
 timer.begin( this, 86400000 );
 counter.set( 365 );
