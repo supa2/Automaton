@@ -186,31 +186,7 @@ void setup()
 To monitor the behavior of this machine you may connect a monitoring function with the Machine::onSwitch() method. 
 
 ```c++
-void sw_callback( const char label[], const char current[], const char next[], 
-      const char trigger[], uint32_t runtime, uint32_t cycles ) {
-  Serial.print( millis() );
-  Serial.print( " Switching " );
-  Serial.print( label );
-  Serial.print( " from state " );
-  Serial.print( current );
-  Serial.print( " to " );
-  Serial.print( next );
-  Serial.print( " on trigger " );
-  Serial.print( trigger );
-  Serial.print( " (" );
-  Serial.print( cycles );
-  Serial.print( " cycles in " );
-  Serial.print( runtime );
-  Serial.println( " ms)" );
-}
-```
-
-Use the code below to pass Atm_button's STATES and EVENTS symbol tables to the state machine, open up a serial terminal and watch the machine change states. 
-
-```c++
-btn.onSwitch( sw_callback,
-    "IDLE\0WAIT\0PRESSED\0REPEAT\0RELEASE\0LIDLE\0LWAIT\0LPRESSED\0LRELEASE\0WRELEASE\0AUTO",
-    "EVT_LMODE\0EVT_TIMER\0EVT_DELAY\0EVT_REPEAT\0EVT_PRESS\0EVT_RELEASE\0EVT_COUNTER\0EVT_AUTO\0ELSE" ); 
+btn.onSwitch( atm_serial_debug::onSwitch );
 ```
 
 
