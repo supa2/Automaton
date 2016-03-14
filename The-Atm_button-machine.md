@@ -181,7 +181,7 @@ void setup()
     btn.autoPress( 1000, 1 );
 }
 ```
-### Machine & onSwitch( swcb_sym_t callback, const char sym_s[], const char sym_e[] ) ###
+### Machine & onSwitch( swcb_sym_t callback ) ###
 
 To monitor the behavior of this machine you may connect a monitoring function with the Machine::onSwitch() method. 
 
