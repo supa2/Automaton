@@ -76,5 +76,5 @@ wave.msgWrite( MSG_TOGGLE );
 To monitor the behavior of this machine you may connect a monitoring function with the Machine::onSwitch() method. 
 
 ```c++
-btn.onSwitch( atm_serial_debug::onSwitch );
+wave.onSwitch( atm_serial_debug::onSwitch );
 ```
