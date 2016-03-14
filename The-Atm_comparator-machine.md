@@ -104,34 +104,12 @@ void setup()
 ```
 The buffer variable is used as a ring buffer to store the sampled values. The value the comparator uses to check the thresholds is computed as the average of the values in the ring buffer. The call to average() fills up the ringbuffer with samples so the average will make sense right from the start.
 
-### Machine & onSwitch( swcb_sym_t callback, const char sym_s[], const char sym_e[] ) ###
+### Machine & onSwitch( swcb_sym_t callback ) ###
 
 To monitor the behavior of this machine you may connect a monitoring function with the Machine::onSwitch() method. 
 
 ```c++
-void sw( const char label[], const char current[], const char next[], 
-      const char trigger[], uint32_t runtime, uint32_t cycles ) {
-  Serial.print( millis() );
-  Serial.print( " Switching " );
-  Serial.print( label );
-  Serial.print( " from state " );
-  Serial.print( current );
-  Serial.print( " to " );
-  Serial.print( next );
-  Serial.print( " on trigger " );
-  Serial.print( trigger );
-  Serial.print( " (" );
-  Serial.print( cycles );
-  Serial.print( " cycles in " );
-  Serial.print( runtime );
-  Serial.println( " ms)" );
-}
-```
-
-Use the code below to pass STATES and EVENTS symbol tables to the state machine, open up a serial terminal and watch the machine change states. 
-
-```c++
-cmd.onSwitch( sw, "IDLE\0SAMPLE\0SEND","EVT_TRIGGER\0EVT_TIMER\0ELSE" );
+cmp.onSwitch( atm_serial_debug::onSwitch );
 ```
 
 **WARNING: This machine changes state for every sample taken and will produce a lot of log output quickly**
