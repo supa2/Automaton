@@ -71,37 +71,10 @@ The machine will switch from one waveform to another on receipt of a MSG_TOGGLE 
 wave.msgWrite( MSG_TOGGLE );
 ```
 
-
-### Machine & onSwitch( swcb_sym_t callback, const char sym_s[], const char sym_e[] ) ###
+### Machine & onSwitch( swcb_sym_t callback ) ###
 
 To monitor the behavior of this machine you may connect a monitoring function with the Machine::onSwitch() method. 
 
 ```c++
-void sw( const char label[], const char current[], const char next[], 
-      const char trigger[], uint32_t runtime, uint32_t cycles ) {
-  Serial.print( millis() );
-  Serial.print( " Switching " );
-  Serial.print( label );
-  Serial.print( " from state " );
-  Serial.print( current );
-  Serial.print( " to " );
-  Serial.print( next );
-  Serial.print( " on trigger " );
-  Serial.print( trigger );
-  Serial.print( " (" );
-  Serial.print( cycles );
-  Serial.print( " cycles in " );
-  Serial.print( runtime );
-  Serial.println( " ms)" );
-}
+btn.onSwitch( atm_serial_debug::onSwitch );
 ```
-
-Use the code below to pass STATES and EVENTS symbol tables to the state machine, open up a serial terminal and watch the machine change states. 
-
-```c++
-cmd.onSwitch( sw, 
-  "IDLE\0START_SN\0SINE\0START_SW\0SAW\0START_SR\0SAWR"
-  "\0START_TR\0TRI\0START_SQ\0SQON\0SQOFF",
-  "EVT_COUNTER\0EVT_TIMER\0EVT_TOGGLE\0ELSE" );
-```
-
