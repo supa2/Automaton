@@ -6,7 +6,7 @@ Atm_button is a state machine for implementing buttons. Connected to a digital i
 * [longPress()](#atm_button--longpress-int-max-int-delay-)
 * [repeat()](#atm_button--repeat-int-delay-int-speed-)
 * [autoPress()](#atm_button--autopress-int-delay-int-press-)
-* [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
+* [onSwitch()](#machine--onswitch-swcb_sym_t-callback-)
 
 ## Synopsis ##
 
