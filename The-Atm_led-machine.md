@@ -8,7 +8,7 @@ Control a led via a digital pin. Control blink speed, pause duration and number 
 * [MSG_ON](#msg_on)
 * [MSG_OFF](#msg_off)
 * [MSG_BLINK](#msg_blink)
-* [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
+* [onSwitch()](#machine--onswitch-swcb_sym_t-callback-)
 
 ## Synopsis ##
 
