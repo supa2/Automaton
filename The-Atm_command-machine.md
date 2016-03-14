@@ -5,7 +5,7 @@ A state machine that handles commands coming in over a serial line (Stream), par
 * [separator()](#atm_command--separator-const-char-sep-)
 * [lookup()](#int-lookup-int-id-const-char--cmdlist-)
 * [arg()](#char--arg-int-id-)
-* [onSwitch()](#machine--onswitch-swcb_sym_t-callback-const-char-sym_s-const-char-sym_e-)
+* [onSwitch()](#machine--onswitch-swcb_sym_t-callback-)
 
 ## Synopsis ##
 
