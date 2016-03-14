@@ -100,35 +100,10 @@ Turns a running timer off.
 ```c++
 timer.msgWrite( MSG_OFF );
 ```
-
-### Machine & onSwitch( swcb_sym_t callback, const char sym_s[], const char sym_e[] ) ###
+### Machine & onSwitch( swcb_sym_t callback ) ###
 
 To monitor the behavior of this machine you may connect a monitoring function with the Machine::onSwitch() method. 
 
 ```c++
-void sw( const char label[], const char current[], const char next[], 
-      const char trigger[], uint32_t runtime, uint32_t cycles ) {
-  Serial.print( millis() );
-  Serial.print( " Switching " );
-  Serial.print( label );
-  Serial.print( " from state " );
-  Serial.print( current );
-  Serial.print( " to " );
-  Serial.print( next );
-  Serial.print( " on trigger " );
-  Serial.print( trigger );
-  Serial.print( " (" );
-  Serial.print( cycles );
-  Serial.print( " cycles in " );
-  Serial.print( runtime );
-  Serial.println( " ms)" );
-}
-```
-
-Use the code below to pass STATES and EVENTS symbol tables to the state machine, open up a serial terminal and watch the machine change states. 
-
-```c++
-timer.onSwitch( sw, 
-  "IDLE\0WAIT\0TRIGGER", 
-  "EVT_TIMER\0EVT_COUNTER\0EVT_OFF\0EVT_ON\0ELSE" );
+timer.onSwitch( atm_serial_debug::onSwitch );
 ```
