@@ -128,34 +128,10 @@ led.msgWrite( MSG_BLINK, 3 );
 
 Sending three MSG_BLINK messages to the led object makes the led blink three times (since repeat = 1).
 
-### Machine & onSwitch( swcb_sym_t callback, const char sym_s[], const char sym_e[] ) ###
+### Machine & onSwitch( swcb_sym_t callback ) ###
 
 To monitor the behavior of this machine you may connect a monitoring function with the Machine::onSwitch() method. 
 
 ```c++
-void sw( const char label[], const char current[], const char next[], 
-      const char trigger[], uint32_t runtime, uint32_t cycles ) {
-  Serial.print( millis() );
-  Serial.print( " Switching " );
-  Serial.print( label );
-  Serial.print( " from state " );
-  Serial.print( current );
-  Serial.print( " to " );
-  Serial.print( next );
-  Serial.print( " on trigger " );
-  Serial.print( trigger );
-  Serial.print( " (" );
-  Serial.print( cycles );
-  Serial.print( " cycles in " );
-  Serial.print( runtime );
-  Serial.println( " ms)" );
-}
-```
-
-Use the code below to pass STATES and EVENTS symbol tables to the state machine, open up a serial terminal and watch the machine change states. 
-
-```c++
-led.onSwitch( sw, 
-  "IDLE\0ON\0START\0BLINK_OFF",
-  "EVT_ON_TIMER\0EVT_OFF_TIMER\0EVT_COUNTER\0EVT_ON\0EVT_OFF\0EVT_BLINK\0ELSE" );
+led.onSwitch( atm_serial_debug::onSwitch );
 ```
