@@ -1,6 +1,6 @@
 ### Low memory state machines ###
 
-A standard Automaton state machine uses about 70 bytes SRAM overhead per state machine instance. In some cases, like when you're trying to run 50 machines on an Arduino Uno or a dozen machines on a tiny AtTiny85 controller that's just too much. For these use cases we created *Automaton Tiny*. Automaton Tiny consists of a TinyMachine and a TinyFactory class that contain nothing but the minimal functions needed for running state machines. The resulting machines run at about half the SRAM overhead of the standard Machine class based state machines.
+A standard Automaton state machine uses about 70 bytes SRAM overhead per state machine instance. In some cases, like when you're trying to run 50 machines on an Arduino Uno or a dozen machines on a tiny AtTiny85 controller that's just too much. For these use cases we created *Automaton Tiny*. Automaton Tiny consists of a TinyMachine and a TinyFactory class that contain nothing but the minimal functions needed for running state machines. The resulting machines run at about half the SRAM overhead of the standard Machine class based state machines. Automaton on a diet.
 
 What we left out:
 
