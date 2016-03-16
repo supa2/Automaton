@@ -308,17 +308,17 @@ void setup()
 Now, when you run the tutorial example with the Serial monitor open you'll see something like this:
 
 ```
-0 Switching BLNK from state *NONE* to LED_ON on trigger *NONE* (1 cycles in 0 ms)
-268 Switching BLNK from state LED_ON to LED_OFF on trigger EVT_TIMER (7982 cycles in 250 ms)
-547 Switching BLNK from state LED_OFF to LED_ON on trigger EVT_TIMER (7974 cycles in 250 ms)
-827 Switching BLNK from state LED_ON to LED_OFF on trigger EVT_TIMER (7974 cycles in 250 ms)
-1107 Switching BLNK from state LED_OFF to LED_ON on trigger EVT_TIMER (8007 cycles in 250 ms)
-1388 Switching BLNK from state LED_ON to LED_OFF on trigger EVT_TIMER (7972 cycles in 250 ms)
-1669 Switching BLNK from state LED_OFF to LED_ON on trigger EVT_TIMER (7972 cycles in 250 ms)
-1949 Switching BLNK from state LED_ON to LED_OFF on trigger EVT_TIMER (7973 cycles in 250 ms)
+0 Switch BLNK from *NONE* to LED_ON on *NONE* (1 cycles in 0 ms)
+201 Switch BLNK from LED_ON to LED_OFF on EVT_TIMER (6698 cycles in 200 ms)
+414 Switch BLNK from LED_OFF to LED_ON on EVT_TIMER (6690 cycles in 200 ms)
+627 Switch BLNK from LED_ON to LED_OFF on EVT_TIMER (6690 cycles in 200 ms)
+840 Switch BLNK from LED_OFF to LED_ON on EVT_TIMER (6690 cycles in 200 ms)
+1052 Switch BLNK from LED_ON to LED_OFF on EVT_TIMER (6655 cycles in 200 ms)
+1265 Switch BLNK from LED_OFF to LED_ON on EVT_TIMER (6655 cycles in 200 ms)
+1478 Switch BLNK from LED_ON to LED_OFF on EVT_TIMER (6654 cycles in 200 ms)
 ```
 
-You can monitor exactly what machine (class or instance label) switched from one state to another and on which event and at what time (in milliseconds). A very helpful function to help you understand what exactly is going on inside your machines. (it's easy to monitor multiple machines with one callback function)
+You can monitor exactly what machine (class or instance label) switched from one state to another and on which event and at what time (in milliseconds). A very helpful function to help you understand what exactly is going on inside your machines.
 
 ### Wrap up ###
 
