@@ -7,7 +7,12 @@
 
 ```c++
 
+// Sending messages:
 led.msgWrite( led.MSG_ON );
+factory.msgSend( 'LED', led.MSG_ON );
+
+// Receiving messages
+msgRead( MSG_ON );
 
 ```
 
@@ -15,6 +20,7 @@ led.msgWrite( led.MSG_ON );
 
 ```c++
 
+// Triggering an event
 led.trigger( led.EVT_ON );
 
 ```
@@ -23,6 +29,7 @@ led.trigger( led.EVT_ON );
 
 ```c++
 
+// Directly change the led machine's state
 led.state( led.ON );
 
 ```
@@ -31,6 +38,7 @@ led.state( led.ON );
 
 ```c++
 
+// Call the led machine's on() method
 led.on();
 
 ```
