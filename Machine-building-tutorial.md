@@ -285,35 +285,27 @@ void loop() {
 
 ### Add some debugging ###
 
-Blink is a rather trivial machine and it's easy to picture how it works, but sometimes it's nice to be able to look inside a machine object and see it switch states as it happens. There's a hook inside the Machine class that allows just that. Add a callback function that prints information about the current state and modify the setup() function so that a Serial port is opened and the callback function is passed to the onSwitch() method.
+Blink is a rather trivial machine and it's easy to picture how it works, but sometimes it's nice to be able to look inside a machine object and see it switch states as it happens. Enable your new machine to send state change messages by adding the following method to the class:
 
 ```c++
-void sw( const char label[], const char current[], const char next[], 
-      const char trigger[], uint32_t runtime, uint32_t cycles ) {
-  Serial.print( millis() );
-  Serial.print( " Switching " );
-  Serial.print( label );
-  Serial.print( " from state " );
-  Serial.print( current );
-  Serial.print( " to " );
-  Serial.print( next );
-  Serial.print( " on trigger " );
-  Serial.print( trigger );
-  Serial.print( " (" );
-  Serial.print( cycles );
-  Serial.print( " cycles in " );
-  Serial.print( runtime );
-  Serial.println( " ms)" );
+Atm_blink & Atm_blink::onSwitch( swcb_sym_t switch_callback ) 
+{
+  Machine::onSwitch( switch_callback, "LED_ON\0LED_OFF", "EVT_TIMER\0ELSE" );
+  return *this;
 }
+```
+The Machine::onSwitch() method takes three arguments, the second and the third are strings containing the (null separated) names of states and events as they are defined in the machine. Then, whenever you want to monitor an individual machine instance's state just add an onSwitch() call to your sketch's setup() method.
 
-void setup() {
+```c++
+void setup() 
+{
   Serial.begin( 9600 );
-  led.onSwitch( sw, "LED_ON\0LED_OFF","EVT_TIMER\0ELSE" );
   led.begin( 3, 250 );
+  led.onSwitch( atm_serial_debug::onSwitch );
 }
 ```
 
-The onSwitch() method takes three arguments. The first is the function to call just before a state switch. The second and third are NULL delimited strings that hold the state and event labels that your machine uses. They must be in the same order as the enums in your class. Now, when you run the tutorial example with the Serial monitor open you'll see something like this:
+Now, when you run the tutorial example with the Serial monitor open you'll see something like this:
 
 ```
 0 Switching BLNK from state *NONE* to LED_ON on trigger *NONE* (1 cycles in 0 ms)
