@@ -27,6 +27,10 @@ Taking the counter value up to the maximum 65534 would give you about 179 years.
 ## Pitfalls ##
 
 ### Hanging messages in the message queue ###
+### Forgetting to use begin() on a timer ###
+
+In this case expire() will probably always return true and the timer will expire immediately.
+
 ### Start up race condition with machine->trigger( EVT_XXX ) ###
 
 ```c++
