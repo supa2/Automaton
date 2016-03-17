@@ -1,4 +1,4 @@
-Atm_timer implements a timer mechanism as a simple state machine.
+Atm_timer implements a timer mechanism as a simple state machine. Atm_timer works around the millis() rollover to support intervals of up to 136.2 years.
 
 * [begin()](#atm_timer--begin-void-)
 * [onTimer()](#atm_timer--ontimer-timer_cb_t-timer_callback-)
