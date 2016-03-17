@@ -95,5 +95,5 @@ Generate different waveforms (sine, sawtooth, reverse sawtooth, square, triangle
 
 ### Atm_timer class (state machine) ###
 
-Simple state machine that provides standard timing event functionality. Configure interval and number of repeats. Can be controlled via the message queue. Fires a callback or sends a message via the message queue when the timer triggers. Delays of up to 136 years.
+Simple state machine that provides standard timing event functionality. Configure interval and number of repeats. Can be controlled via the message queue. Fires a callback or sends a message via the message queue when the timer triggers. Create timers of up to 136 years.
 
