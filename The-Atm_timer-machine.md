@@ -18,7 +18,7 @@ Atm_timer implements a timer mechanism as a simple state machine.
 Atm_timer timer;
 Factory factory;
 
-void timer_callback( int id ) 
+void timer_callback( int id, uint16_t cnt ) 
 {
   // Something to do when the timer goes off
 }
@@ -26,7 +26,7 @@ void timer_callback( int id )
 void setup()
 {
   timer.begin();
-  timer.interval( 2000 ).repeat( 2 );
+  timer.interval_seconds( 2 ).repeat( 2 );
   timer.onTimer( timer_callback ).id( 5 );
   factory.add( timer );
 }
@@ -37,15 +37,18 @@ void loop()
 }
 ```
 
-### Atm_timer & begin( void ) ###
+### Atm_timer & begin( [int ms] ) ###
 
-The begin() method has no arguments.
+The begin() method has one optional argument, the interval in milliseconds.
 
 ```c++
 void setup()
 {
   timer.begin();
   ...
+  timer.begin();
+  ...
+
 }
 ```
 
@@ -60,14 +63,43 @@ timer.onTimer( timer_callback );
 timer.onTimer( &door, door.MSG_OPEN );
 ```
 
-### Atm_timer & interval( int v ) ###
+### Atm_timer & interval_millis( int v ) ###
 
 Sets the timer interval, the period after which the timer is fired. The value of *v* is in milliseconds. By default the timer is fired only once after which the timer machine goes to sleep.
 
 ```c++
-timer.interval( 2000 );
+timer.interval( 2000 ); // Wait for 2 seconds
 timer.repeat( 2 );
 ```
+
+Legal values are:
+
+Value | Function
+----- | -----
+0 | Timer always returns true
+1..4294967294 | Returns true if state has been active for at least that many millis
+4294967295 | Always returns false (ATM_TIMER_OFF constant)
+
+The interval_millis() method can specify intervals of up to 4294967294 milliseconds (49.7 days)
+
+### Atm_timer & interval_seconds( int v ) ###
+
+Sets the timer interval, the period after which the timer is fired. The value of *v* is in seconds. By default the timer is fired only once after which the timer machine goes to sleep.
+
+```c++
+timer.interval_seconds( 2000 ); // Wait for 2000 seconds
+timer.repeat( 2 );
+```
+
+Legal values are:
+
+Value | Function
+----- | -----
+0 | Timer always returns true
+1..4294967294 | Returns true if state has been active for at least that many seconds
+4294967295 | Always returns false (ATM_TIMER_OFF constant)
+
+The interval_seconds() method can specify intervals of up to 4294967294 seconds (about 136.2 years)
 
 ### Atm_timer & repeat( int v ) ###
 
