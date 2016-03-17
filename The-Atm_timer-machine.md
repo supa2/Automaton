@@ -48,7 +48,7 @@ void setup()
 {
   timer.begin();
   ...
-  timer.begin();
+  timer.begin( 2000 );
   ...
 
 }
