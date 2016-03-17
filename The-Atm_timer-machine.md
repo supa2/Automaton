@@ -101,6 +101,10 @@ Value | Function
 
 The interval_seconds() method can specify intervals of up to 4294967294 seconds (about 136.2 years)
 
+### Atm_timer & interval( int v ) ###
+
+Synonym of interval_millis().
+
 ### Atm_timer & repeat( int v ) ###
 
 Sets the number of times the timer will be repeated. Default is 1. If you set this value to *ATM_COUNTER_OFF* the timer will repeat indefinitely.
