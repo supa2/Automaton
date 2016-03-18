@@ -80,7 +80,7 @@ Cannot declare variable <objectname> to be of abstract type...
 
 ### void action( int id ) ###
 
-Action handler. This is a pure virtual method (which means every subclass of Machine must implement it). This handler will be called for every action in the current state where the corresponding table entry is not -1. The id argument contains the action id for which the handler is called.
+Action handler. This is a pure virtual method (which means every subclass of Machine must implement it). This handler will be called for every action in the current state where the corresponding table entry is not -1*. The id argument contains the action id for which the handler is called.
 
 ```c++
 void Atm_led::action( int id )
@@ -108,6 +108,8 @@ Failing to implement the action() method in a subclass generates the following c
 ```
 Cannot declare variable <objectname> to be of abstract type...
 ```
+
+*NOTE: The action method is actually called for every ON_ENTER event of every state regardless of what's in the ON_ENTER column. Any signed integer value (8bit in the case of TinyMachine) in that column is passed on in 'id'. The same goed for ON_ENTER. For ON_LOOP the -1 value does not trigger a call to action().
 
 ## States ##
 
