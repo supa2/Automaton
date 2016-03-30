@@ -13,23 +13,6 @@ led1.begin( 3 ).repeat( 5 ).blink( 25 ).pause( 500 ).trigger( led1.EVT_BLINK );
 while ( led1.cycle().state() ) { };
 
 ```
-
-### Waiting while cycling ###
-
-Sometimes, especially in the setup phase of a sketch it can be useful to just wait a period without resorting to Atm_timer and callbacks. In that case use Atm_wait to insert a wait loop while the factory keeps running.
-
-```cpp
-Atm_wait wait;
-
-wait.begin( 2000 ); // Set wait time to 2 seconds
-while ( wait.cycle().state() ) { // Wait while cycling the factory
-  factory.cycle(); 
-};
-// Continue after 2 seconds
-
-```
-
-
 ### Taking timers beyond the 49.7 day millis() rollover limit ###
 
 You can easily combine a timer with a counter to achieve longer delays than the millis maximum of 49.7 days even within one state. A timer expiry switches the state back to itself while the counter is decremented in the ON_ENTER handler. That way the state refreshes its timer long before a second millis() rollover could occur.
