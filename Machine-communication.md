@@ -9,7 +9,7 @@
 
 // Sending messages:
 led.msgWrite( led.MSG_ON );
-factory.msgSend( 'LED', Atm_led::MSG_ON );
+factory.msgSend( "LED", Atm_led::MSG_ON );
 
 // Receiving messages
 msgRead( MSG_ON );
