@@ -46,7 +46,7 @@ The begin() method must be called on a timer object before it's used.
 
 ### void set( uint32_t v ) ###
 
-Sets a timer of counter to a value.
+Sets a timer or counter to a value.
 
 ```c++
 timer1.set( 10000 );  // Set timer to a 10 seconds delay
