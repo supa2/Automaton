@@ -99,8 +99,8 @@ A state machine changes its state in response to events. The only event we need 
 
 
 ```c++
-    enum { LED_ON, LED_OFF } STATES;
-    enum { EVT_TIMER, ELSE } EVENTS;
+    enum { LED_ON, LED_OFF }; // STATES
+    enum { EVT_TIMER, ELSE }; // EVENTS
 
     Blink & begin( int attached_pin, int blinkrate )
     {
@@ -149,9 +149,9 @@ The expired() method checks the timer against the number of millisecond the stat
 Events are the inputs of a state machine. Our blink machine only needs one, a timer. It also needs outputs, we call them actions. In the case of our blink machine it needs two actions. One that turns the led on (let's call it *ACT_ON*) and one that turns it off again (*ACT_OFF*).
 
 ```c++
-    enum { LED_ON, LED_OFF } STATES;
-    enum { EVT_TIMER, ELSE } EVENTS;
-    enum { ACT_ON, ACT_OFF } ACTIONS;
+    enum { LED_ON, LED_OFF }; // STATES
+    enum { EVT_TIMER, ELSE }; // EVENTS
+    enum { ACT_ON, ACT_OFF }; // ACTIONS
 ```
 For a change, order isn't important and we also don't need some magic value at the end. To process the actions our machine has an action() method similar to the event() method.
 
@@ -231,9 +231,9 @@ class Blink : public Machine {
     short pin;
     atm_timer_millis timer;
 
-    enum { LED_ON, LED_OFF } STATES;
-    enum { EVT_TIMER, ELSE } EVENTS;
-    enum { ACT_ON, ACT_OFF } ACTIONS;
+    enum { LED_ON, LED_OFF }; // STATES
+    enum { EVT_TIMER, ELSE }; // EVENTS
+    enum { ACT_ON, ACT_OFF }; // ACTIONS
 
     Blink & begin( int attached_pin, int blinkrate )
     {
