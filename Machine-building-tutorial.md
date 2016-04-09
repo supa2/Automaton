@@ -54,8 +54,8 @@ class Blink : public Machine {
     short pin;
     atm_timer_millis timer;
 
-    enum { LED_ON, LED_OFF } STATES;
-    enum { ELSE } EVENTS;
+    enum { LED_ON, LED_OFF } // STATES
+    enum { ELSE } // EVENTS
 
     Blink & begin( int attached_pin, int blinkrate )
     {
