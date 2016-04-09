@@ -95,7 +95,7 @@ For now the state table consists of two rows (the LED_OFF and LED_ON states we j
 
 ### The events ###
 
-A state machine changes its state in response to events. The only event we need for our machine is time based, the timer we already declared. Now we expand our EVENTS list with a timer event (let's call it EVT_TIMER) and add an extra column to the state table to accomodate it.
+A state machine changes its state in response to events. The only event we need for our machine is time based, the timer we already declared. Now we expand our EVENTS list with a timer event (let's call it EVT_TIMER) and add an extra column to the state table to accommodate it.
 
 
 ```c++
