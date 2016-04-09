@@ -1,5 +1,5 @@
 
-Automaton is an event driven framework that allows you to create Arduino applications that consist entirely of concurrently running state machines interacting with each other. 
+Automaton is an event driven framework that allows you to create Arduino applications that consist entirely of concurrently running finite state machines (FSM) interacting with one another. 
 
 **Features**
 - Cooperative multi tasking finite state machines base class for building your own state machines 
