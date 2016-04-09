@@ -204,7 +204,7 @@ Blink led;
 
 ```c++
 void setup() {
-  led.begin( 3, 250 );
+  led.begin( 3, 250 ); // Pin 3, blinkrate 250 ms
 }
 ```
 
@@ -274,8 +274,7 @@ class Blink : public Machine {
 Blink led;
 
 void setup() {
-  led.begin( 3, 250 );
-
+  led.begin( 3, 250 ); // Pin 3, blinkrate 250 ms
 }
 
 void loop() {
