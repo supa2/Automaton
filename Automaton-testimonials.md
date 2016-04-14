@@ -12,3 +12,6 @@ rhoude57 on Arduino forum
 
 dani via e-mail
 
+> That's amazing! Looks perfect for the sensor monitoring project I am creating. 
+
+girishso on reddit
