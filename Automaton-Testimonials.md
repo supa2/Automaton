@@ -5,7 +5,7 @@ User feedback keeps this project running and there's been some very positive fee
 
 mpenna on Github
 
-> Fantastic. Everything is working just fine now. 
+> Fantastic. (...) 
 > This is truly a beautiful work of programming you have put together!
 
 rhoude via Arduino forum
