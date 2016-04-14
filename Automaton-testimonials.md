@@ -1,3 +1,5 @@
+User feedback keeps this project running and there's been some very positive feedback indeed. A few examples.
+
 > BTW, this library of yours is absolutely fantastic. 
 > Congratulations on this amazing piece of software!
 
