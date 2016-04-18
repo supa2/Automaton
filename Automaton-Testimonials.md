@@ -1,5 +1,9 @@
 User feedback keeps this project running and there's been some very positive feedback indeed. A few examples.
 
+> First off, I'm very excited about this framework. I believe this is the only Arduino Finite State Machine framework that models the concept of an Automaton. I'm trying to visualize how a group of Automatons interact to define the behavior of a single system.
+
+Reddit
+
 > BTW, this library of yours is absolutely fantastic. 
 > Congratulations on this amazing piece of software!
 
