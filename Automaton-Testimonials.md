@@ -21,3 +21,8 @@ dani via e-mail
 > That's amazing! Looks perfect for the sensor monitoring project I am creating. 
 
 girishso on reddit
+
+> Really like what you have done with this library, very cool !!
+
+harmon on Github
+
