@@ -91,7 +91,7 @@ void btn_change( int press, int idx )
 {
   if ( press ) {
     if ( idx == 1 ) led1.trigger( led1.state() ? led1.EVT_OFF : led1.EVT_BLINK );  
-    if ( idx == 2 ) led1.trigger( led1.state() ? led1.EVT_OFF : led1.EVT_BLINK );  
+    if ( idx == 2 ) led2.trigger( led2.state() ? led2.EVT_OFF : led2.EVT_BLINK );  
   }
 }
 
