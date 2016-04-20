@@ -48,7 +48,7 @@ Atm_button btn;
 void btn_change( int press ) 
 {
   if ( press ) {
-    led1.toggle( led1.IDLE, led1.START );
+    led1.trigger( led1.state() ? led1.EVT_OFF : led1.EVT_BLINK );  
   }
 }
 
@@ -73,7 +73,7 @@ Specifying a callback:
 void btn_change( int press ) 
 {
   if ( press ) {
-    led1.toggle( led1.IDLE, led1.START );
+    led1.trigger( led1.state() ? led1.EVT_OFF : led1.EVT_BLINK );  
   }
 }
 
@@ -90,8 +90,8 @@ Alternatively pass an idx parameter to the callback to reuse a single callback f
 void btn_change( int press, int idx ) 
 {
   if ( press ) {
-    if ( idx == 1 ) led1.toggle( led1.IDLE, led1.START );
-    if ( idx == 2 ) led2.toggle( led2.IDLE, led2.START );
+    if ( idx == 1 ) led1.trigger( led1.state() ? led1.EVT_OFF : led1.EVT_BLINK );  
+    if ( idx == 2 ) led1.trigger( led1.state() ? led1.EVT_OFF : led1.EVT_BLINK );  
   }
 }
 
