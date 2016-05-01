@@ -1,4 +1,4 @@
-A state machine that handles commands coming in over a serial line (Stream), parses and interprets them and fires off a handler callback. Make sure you set the Arduino monitor to send newlines when testing.
+A state machine that handles commands coming in over a serial line (Stream), parses and interprets them and fires off a handler callback. Make sure you set the Arduino monitor to 9600 baud and to send newlines when testing.
 
 * [begin()](#atm_command--begin-stream--stream-char-buffer-int-size-)
 * [onCommand()](#atm_command--oncommandvoid-callback-int-idx--const-char--cmds--)
