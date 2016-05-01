@@ -42,6 +42,7 @@ void cmd_callback( int idx ) {
 }
 
 void setup() {
+  Serial.begin( 9600 );
   cmd.begin( &Serial, cmd_buffer, sizeof( cmd_buffer ) );
   cmd.onCommand( cmd_callback, cmdlist );
   factory.add( cmd );
