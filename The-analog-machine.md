@@ -52,9 +52,9 @@ Attaches the analog machine to an analog input pin and sets the sample period. T
 ```c++
 Atm_analog sensor;
 
-bool change_callback( int idx, int v, int up ) {
+void change_callback( int idx, int v, int up ) {
   // Do something when the analog value changes
-  return true;
+
 }
 
 void setup() {
