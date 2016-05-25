@@ -143,39 +143,39 @@ The expired() method checks the timer against the number of millisecond the stat
 
 ### The actions ###
 
-Events are the inputs of a state machine. Our blink machine only needs one, a timer. It also needs outputs, we call them actions. In the case of our blink machine it needs two actions. One that turns the led on (let's call it *ACT_ON*) and one that turns it off again (*ACT_OFF*).
+Events are the inputs of a state machine. Our blink machine only needs one, a timer. It also needs outputs, we call them actions. In the case of our blink machine it needs two actions. One that turns the led on (let's call it *ENT_ON*) and one that turns it off again (*ENT_OFF*).
 
 ```c++
     enum { LED_ON, LED_OFF }; // STATES
     enum { EVT_TIMER, ELSE }; // EVENTS
-    enum { ACT_ON, ACT_OFF }; // ACTIONS
+    enum { ENT_ON, ENT_OFF }; // ACTIONS
 ```
 For a change, order isn't important and we also don't need some magic value at the end. To process the actions our machine has an action() method similar to the event() method.
 
 ```c++
     void action( int id ) {
       switch ( id ) {
-        case ACT_ON :
+        case ENT_ON :
           digitalWrite( pin, HIGH );
           return;
-        case ACT_OFF :
+        case ENT_OFF :
           digitalWrite( pin, LOW );
           return;
        }
     }
 ```
 
-Whenever the state machine calls action( ACT_ON ) it turns the led on and when it calls action( ACT_OFF) it turns the led off. 
+Whenever the state machine calls action( ENT_ON ) it turns the led on and when it calls action( ENT_OFF) it turns the led off. 
 
 ### Linking it all up ###
 
-Writing the begin(), event() and action() method is all the programming we have to do in this case. All we need to add to get a working state machine is to tell it what we want it to do. We do that by filling in the state transition table. Let's start with the actions. We want the led to switch on when the machine enters the *LED_ON* state (*ON_ENTER*: *ACT_ON*). Find the row that defines the *LED_ON* state and put the value *ACT_ON* in the *ON_ENTER* column. And similarly we want the led to switch off when the machine enters the *LED_OFF* state (*ON_ENTER*: *ACT_OFF*) We fill in that value in the second row. You can also choose to perform an action when the machine exits a certain state (*ON_EXIT* column) or whenever it cycles in that state (*ON_LOOP* column), but we don't need that for our blink machine.
+Writing the begin(), event() and action() method is all the programming we have to do in this case. All we need to add to get a working state machine is to tell it what we want it to do. We do that by filling in the state transition table. Let's start with the actions. We want the led to switch on when the machine enters the *LED_ON* state (*ON_ENTER*: *ENT_ON*). Find the row that defines the *LED_ON* state and put the value *ENT_ON* in the *ON_ENTER* column. And similarly we want the led to switch off when the machine enters the *LED_OFF* state (*ON_ENTER*: *ENT_OFF*) We fill in that value in the second row. You can also choose to perform an action when the machine exits a certain state (*ON_EXIT* column) or whenever it cycles in that state (*ON_LOOP* column), but we don't need that for our blink machine.
 
 ```c++
       const static state_t state_table[] PROGMEM = {
       /*            ON_ENTER    ON_LOOP  ON_EXIT    EVT_TIMER  ELSE */
-      /* LED_ON  */   ACT_ON,        -1,      -1,          -1,   -1,
-      /* LED_OFF */  ACT_OFF,        -1,      -1,          -1,   -1,
+      /* LED_ON  */   ENT_ON,        -1,      -1,          -1,   -1,
+      /* LED_OFF */  ENT_OFF,        -1,      -1,          -1,   -1,
       };
 ```
 
@@ -184,8 +184,8 @@ We've now linked our outputs, but we're not done yet. We need to link our inputs
 ```c++
       const static state_t state_table[] PROGMEM = {
       /*            ON_ENTER    ON_LOOP  ON_EXIT    EVT_TIMER  ELSE */
-      /* LED_ON  */   ACT_ON,        -1,      -1,     LED_OFF,   -1,
-      /* LED_OFF */  ACT_OFF,        -1,      -1,      LED_ON,   -1,
+      /* LED_ON  */   ENT_ON,        -1,      -1,     LED_OFF,   -1,
+      /* LED_OFF */  ENT_OFF,        -1,      -1,      LED_ON,   -1,
       };
 ```
 
@@ -219,16 +219,16 @@ And presto, the machine blinks at two blinks per second.
 
 ### Adding external events ###
 
-So our blinking machine works but perhaps it's just a bit too simple. We can't even turn it on or off with a button. To allow the machine to respond to external events we must extend it. First off all we add a state that allows the machine to be idle, to do nothing. By convention this is usually the first state, state 0. We add a new state named *IDLE* to the states enum and add a new row to the state transition table. The ON_ENTER column of the new state turns the led off by calling the ACT_OFF action. Make sure that the order of the states in the state table is the same as the order of the STATES enum. IDLE comes first in both cases.
+So our blinking machine works but perhaps it's just a bit too simple. We can't even turn it on or off with a button. To allow the machine to respond to external events we must extend it. First off all we add a state that allows the machine to be idle, to do nothing. By convention this is usually the first state, state 0. We add a new state named *IDLE* to the states enum and add a new row to the state transition table. The ON_ENTER column of the new state turns the led off by calling the ENT_OFF action. Make sure that the order of the states in the state table is the same as the order of the STATES enum. IDLE comes first in both cases.
 
 ```c++
       enum { IDLE, LED_ON, LED_OFF }; // STATES
 
       const static state_t state_table[] PROGMEM = {
       /*            ON_ENTER    ON_LOOP  ON_EXIT    EVT_TIMER  ELSE */
-      /* IDLE    */  ACT_OFF,        -1,      -1,          -1,   -1,
-      /* LED_ON  */   ACT_ON,        -1,      -1,     LED_OFF,   -1,
-      /* LED_OFF */  ACT_OFF,        -1,      -1,      LED_ON,   -1,
+      /* IDLE    */  ENT_OFF,        -1,      -1,          -1,   -1,
+      /* LED_ON  */   ENT_ON,        -1,      -1,     LED_OFF,   -1,
+      /* LED_OFF */  ENT_OFF,        -1,      -1,      LED_ON,   -1,
       };
 ```
 
@@ -240,9 +240,9 @@ We need two new events, EVT_ON for turning the machine on and another named EVT_
 
       const static tiny_state_t state_table[] PROGMEM = {
         /*            ON_ENTER    ON_LOOP  ON_EXIT  EVT_TIMER  EVT_ON  EVT_OFF  ELSE */
-        /* IDLE    */  ACT_OFF,        -1,      -1,        -1, LED_ON,      -1,   -1,
-        /* LED_ON  */   ACT_ON,        -1,      -1,   LED_OFF,     -1,    IDLE,   -1,
-        /* LED_OFF */  ACT_OFF,        -1,      -1,    LED_ON,     -1,    IDLE,   -1,
+        /* IDLE    */  ENT_OFF,        -1,      -1,        -1, LED_ON,      -1,   -1,
+        /* LED_ON  */   ENT_ON,        -1,      -1,   LED_OFF,     -1,    IDLE,   -1,
+        /* LED_OFF */  ENT_OFF,        -1,      -1,    LED_ON,     -1,    IDLE,   -1,
       };
 ```
 
@@ -279,15 +279,15 @@ class Atm_blink : public Machine {
 
     enum { IDLE, LED_ON, LED_OFF }; // STATES
     enum { EVT_TIMER, EVT_ON, EVT_OFF, ELSE }; // EVENTS
-    enum { ACT_ON, ACT_OFF }; //ACTIONS
+    enum { ENT_ON, ENT_OFF }; //ACTIONS
 		
     Atm_blink & begin( int attached_pin, uint32_t blinkrate )
     {
       const static state_t state_table[] PROGMEM = {
       /*            ON_ENTER    ON_LOOP  ON_EXIT  EVT_TIMER  EVT_ON  EVT_OFF  ELSE */
-      /* IDLE    */  ACT_OFF,        -1,      -1,        -1, LED_ON,      -1,   -1,
-      /* LED_ON  */   ACT_ON,        -1,      -1,   LED_OFF,     -1,    IDLE,   -1,
-      /* LED_OFF */  ACT_OFF,        -1,      -1,    LED_ON,     -1,    IDLE,   -1, 
+      /* IDLE    */  ENT_OFF,        -1,      -1,        -1, LED_ON,      -1,   -1,
+      /* LED_ON  */   ENT_ON,        -1,      -1,   LED_OFF,     -1,    IDLE,   -1,
+      /* LED_OFF */  ENT_OFF,        -1,      -1,    LED_ON,     -1,    IDLE,   -1, 
       }; 
       Machine::begin( state_table, ELSE );
       pin = attached_pin; 
@@ -306,10 +306,10 @@ class Atm_blink : public Machine {
 	
     void action( int id ) {
       switch ( id ) {
-        case ACT_ON :
+        case ENT_ON :
           digitalWrite( pin, HIGH );
           return;
-        case ACT_OFF :
+        case ENT_OFF :
           digitalWrite( pin, LOW );
           return;
        }

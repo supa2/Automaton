@@ -31,8 +31,8 @@ For this reason each *STATES* enum must end with an *ELSE* event.
 const static state_t state_table[] PROGMEM = {
 /*                  ON_ENTER    ON_LOOP    ON_EXIT  EVT_INPUT   EVT_EOL   ELSE */
 /* IDLE     */            -1,        -1,        -1,  READCHAR,       -1,    -1,
-/* READCHAR */  ACT_READCHAR,        -1,        -1,  READCHAR,     SEND,    -1,
-/* SEND     */      ACT_SEND,        -1,        -1,        -1,       -1,  IDLE,
+/* READCHAR */  ENT_READCHAR,        -1,        -1,  READCHAR,     SEND,    -1,
+/* SEND     */      ENT_SEND,        -1,        -1,        -1,       -1,  IDLE,
 };
 Machine::begin( state_table, ELSE );
 ```
@@ -74,15 +74,15 @@ Action handler. This is a pure virtual method (which means every subclass of Mac
 void Atm_led::action( int id )
 {
   switch ( id ) {
-    case ACT_INIT :
+    case ENT_INIT :
       counter.set( repeat_count );
       digitalWrite( pin, LOW );
       return;
-    case ACT_ON :
+    case ENT_ON :
       decrement( counter );
       digitalWrite( pin, HIGH );
       return;
-    case ACT_OFF :
+    case ENT_OFF :
       digitalWrite( pin, LOW );
       return;
   }
