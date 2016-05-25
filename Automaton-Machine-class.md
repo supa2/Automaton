@@ -8,7 +8,7 @@
 * [trigger()](#int-trigger-int-event-)  
 * [sleep()](#uint8_t-sleep-int8_t-v-)  
 * [cycle()](#machine--cycle-uint32_t-time-)  
-* [trace()](#machine--trace-stream--stream-)  
+* [setTrace()](#machine-machinesettrace-stream-stream-swcb_sym_t-callback-const-char-symbols-)  
 * [Machine variables](#machine-variables)  
 
 <!-- md-tocify-end -->
