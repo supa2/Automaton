@@ -17,6 +17,8 @@ This state machine monitors an analog input with a configurable sample period an
 ```c++
 #include <Automaton.h>
 
+// A software thermostat monitors a sensor and controls a heater 
+
 Atm_analog thermometer;
 Atm_controller thermostat;
 Atm_led heater;
