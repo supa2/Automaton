@@ -33,31 +33,32 @@ Documentation for the (Appliance & Machine) base classes and the bundled state m
 ```c++
 #include <Automaton.h>
 
-// Four state machines: Two buttons toggle two fading leds on and off
+// A software thermostat monitors a sensor and controls a heater 
 
-Atm_fade led1, led2;
-Atm_button button1, button2;
+Atm_analog thermometer;
+Atm_controller thermostat;
+Atm_led heater;
 Appliance app;
 
 void setup() {
-  // Initialize two fading leds on PWM pins 5 & 6 
-  app.component( led1.begin( 5 ).blink( 500 ).fade( 5 ) );
-  app.component( led2.begin( 6 ).blink( 500 ).fade( 5 ) );
+  // Heater controlled by pin 4
+  app.component( heater.begin( 4 ) ); 
 
-  // And two buttons on pins 2 and 3 to control them
+  // Temperature sensor on analog pin A0
+  app.component( thermometer.begin( A0 ) ); 
+
+  // Link them with a controller
   app.component( 
-    button1.begin( 2 )
-      .onPress( led1, led1.EVT_TOGGLE_BLINK ) 
+    thermostat.begin()
+      .IF( thermometer, '<', 500 )
+      .onChange( true, heater, heater.EVT_ON )
+      .onChange( false, heater, heater.EVT_OFF )
   );
 
-  app.component( 
-    button2.begin( 3 )
-      .onPress( led2, led2.EVT_TOGGLE_BLINK ) 
-  );
 }
 
 void loop() {
-  app.run(); // And run the appliance
+  app.run();
 }
 ```
 
