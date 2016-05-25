@@ -208,7 +208,8 @@ This pattern can be useful when you're starting up your sketch or when - for som
 Log a machine's state changes and events to the serial Arduino terminal or any other Stream object;
 
 ```c++
-setTrace( stream, atm_serial_debug::trace, "BIT\0EVT_ON\0EVT_OFF\0EVT_TOGGLE\0EVT_INPUT\0ELSE\0OFF\0ON\0INPUTM" );
+setTrace( stream, atm_serial_debug::trace, 
+          "BIT\0EVT_ON\0EVT_OFF\0EVT_TOGGLE\0EVT_INPUT\0ELSE\0OFF\0ON\0INPUTM" );
 ```
 
 ### Machine variables ###
