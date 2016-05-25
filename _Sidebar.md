@@ -1,0 +1,26 @@
+* [Home](.)  
+* Classes
+  * [Automaton Appliance](Automaton-Appliance-class)  
+  * [Automaton Machine](Automaton-Machine-class)  
+* Topics
+  * [Installation](Installation)  
+  * [Automaton Testimonials](Automaton-Testimonials)  
+  * [Machine building tutorial](Machine-building-tutorial)  
+  * [Machine communication](Machine-communication)  
+  * [Timers & counters](Timers-&-Counters)  
+  * [Tips & tricks & pitfalls](Tips-&-tricks-&-pitfalls)
+* Bundled state machines
+  * [The analog machine](The-analog-machine)  
+  * [The bit machine](The-bit-machine)  
+  * [The button machine](The-button-machine)  
+  * [The command machine](The-command-machine)  
+  * [The comparator machine](The-comparator-machine)  
+  * [The controller machine](The-controller-machine)  
+  * [The digital machine](The-digital-machine)  
+  * [The encoder machine](The-encoder-machine)  
+  * [The fade machine](The-fade-machine)  
+  * [The fan machine](The-fan-machine)  
+  * [The led machine](The-led-machine)  
+  * [The step machine](The-step-machine)  
+  * [The timer machine](The-timer-machine)  
+

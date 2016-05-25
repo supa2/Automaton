@@ -1,52 +1,35 @@
-- Using the message queue
-- Triggering state events
+<!-- md-tocify-begin -->
+- trigger()
+- state()
+- Connectors
+- Callbacks
+- Lambda functions (closures)  
 - Calling custom methods
-- Calling state() method
 
-### Using the message queue ###
+<!-- md-tocify-end -->
 
-```c++
+### Triggering machine events ###
 
-// Sending messages:
-led.msgWrite( led.MSG_ON );
-factory.msgSend( "LED", Atm_led::MSG_ON );
+The preferred way for state machines to communicate with each other is the trigger() method. With a trigger() call you can cause an event to occur inside a state machine. For this to work the machine must actually be listening to the event (the event's column in the current state must be greater than -1). 
 
-// Receiving messages
-msgRead( MSG_ON );
+The trigger call cycles a machine at least once before triggering the event and cycles it twice after triggering the event to allow the event to be picked up and processed by the machine. If after the initial cycle the machine is not receptive (not listening to the triggered event or still waiting to process a previous trigger) the trigger method will cycle the machine up to 8 times waiting for it to become responsive. If it still isn't ready by the 8th cycle the event is discarded.
 
-```
-
-This is the highest level of machine-to-machine communication. Messages can be sent directly to a machine object or via the factory message queue. When using the factory msgSend() method messages can be broadcast to multiple machines with the same class or instance label.
-
-Messages are read from the machine's event() method and handled according to the state transition table.
-
-### Triggering state events ###
+Events can be triggered by a direct call to the state machine's trigger() method:
 
 ```c++
 
 // Triggering an event
-led.trigger( led.EVT_ON );
+led.begin( 4 ).trigger( led.EVT_ON );
 
 ```
-Directly changes the target machine to the new state matching the event and current state indicated in the state transition table. The state transition table determines how (and if) an event is processed.
 
 ### Calling custom methods ###
 
 ```c++
 
 // Call the led machine's custom on() method
-led.on();
+led.on(); // Note: the Atm_led class doesn't really have an on method
 
 ```
 The custom method has all freedom in processing the call and can switch state, trigger() an event or change a machine variable.
 
-### Calling state() method ###
-
-```c++
-
-// Directly change the led machine's state
-led.state( led.ON );
-
-```
-
-This bypasses the machine's internal state logic and changes the state in a manner not necessarily foreseen by the machine's creator. Only use from outside the machine if you know what you're doing.

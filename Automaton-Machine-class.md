@@ -1,29 +1,17 @@
 *Machine* is an abstract class, which means it cannot be instantiated directly. It must be subclassed first. These subclasses define *Finite State Machines* which inherit all *Machine* functionality and *can* be instantiated (used as an object). Every Machine subclass should define its own version of the *begin*(), *event*() and *action*() methods. 
 
-* [Initialization](#initialization)
- * begin()
- * event()
- * action()
-* [States](#states)
- * state()
- * trigger()
- * pinChange() *
-* [Scheduling](#scheduling)
- * asleep()
- * priority() *
- * cycle()
-* [Message queue](#message-queue)
- * msgQueue() *
- * msgWrite() *
- * msgRead() *
- * msgPeek() *
- * msgClear() *
-* [Debugging](#debugging)
- * label() *
- * onSwitch() *
-* [Machine variables](#machine-variables)
+<!-- md-tocify-begin -->
+* [begin()](#machine--begin-const-state_t-tbl-state_t-width-)  
+* [event()](#int-event-int-id-)  
+* [action()](#void-action-int-id-)  
+* [state()](#machine--state-void-)  
+* [trigger()](#int-trigger-int-event-)  
+* [sleep()](#uint8_t-sleep-int8_t-v-)  
+* [cycle()](#machine--cycle-uint32_t-time-)  
+* [trace()](#machine--trace-stream--stream-)  
+* [Machine variables](#machine-variables)  
 
-(methods marked with an asterisk * are not available in a TinyMachine subclass)
+<!-- md-tocify-end -->
 
 ## Initialization ##
 
@@ -101,7 +89,7 @@ void Atm_led::action( int id )
 }
 ```
 
-Just before every state change (and just before the onSwitch() callback, see below) the state machine calls the action handler with the *ATM_ON_SWITCH* id. In that case the 'next' variable contains the new state and the 'current' variable contains the old (present) state.
+Just before every state change the state machine calls the action handler with the *ATM_ON_SWITCH* id. In that case the 'next' variable contains the new state and the 'current' variable contains the old (present) state.
 
 Failing to implement the action() method in a subclass generates the following compiler error: 
 
@@ -109,95 +97,68 @@ Failing to implement the action() method in a subclass generates the following c
 Cannot declare variable <objectname> to be of abstract type...
 ```
 
-* NOTE: The action method is actually called for every ON_ENTER event of every state regardless of what's in the ON_ENTER column. Any signed integer value (8bit in the case of TinyMachine) in that column is passed on in 'id'. The same goes for ON_ENTER. In the case of ON_LOOP the -1 value does not trigger a call to action().
+* NOTE: The action method is actually called for every ON_ENTER event of every state regardless of what's in the ON_ENTER column. Any signed 8bit integer value in that column is passed on in 'id'. The same goes for ON_ENTER. In the case of ON_LOOP the -1 value does not trigger a call to action().
 
 ## States ##
 
-### Machine & state( state_t state) ###
+### Machine & state( void ) ###
 
-Requests the current state of the machine, or if the *state* parameter is set, sets the state the machine will switch to at the start of the next machine cycle.
+Returns the current (numeric) state of the machine.
 
 ```c++
-if ( led.state() != led.OFF ) {
-	led.state( led.OFF );
+if ( led.state() != led.IDLE ) {
+	led.trigger( led.EVT_OFF );
 }
 ```
 
-It's considered somewhat bad practice to set a machine's state directly from the outside because you're in fact bypassing the state transition table. Use of the trigger() or messaging methods is preferred.
+Versions before 0.2.0 supported setting a machine's state with this method. This is now strongly advised against and the state( new_state ) method has been made protected (only accessible from inside a machine), if you insist on allowing this for your own custom machines create a custom method that calls it. The preferred way of changing states is through the trigger() methods.
+
+By default state() will return the current machine state (the row of the state table that is currently active) but a machine's author may override the state() method to make it return whatever state makes sense in the context of the machine. For example the Atm_encoder's state() method returns the value of the internal counter instead.
 
 ### int trigger( int event ) ###
 
 Triggers an event for the current state. If there's a positive number in the event column for the current state the machine will switch to that state on the next cycle. The method will return 1 if the trigger has resulted in a state change or 0 if it hasn't.
 
+A machine's author may subclass the trigger() method to handle more (or less) than the machine's internal events thereby controlling the machine's (incoming) interface to the world.
 
 ```c++
 void setup() {
   led1.begin( 4 );
-  factory.add( led1 );
+  app.component( led1 );
   led1.trigger( led1.EVT_BLINK );
 }
 ```
 
-Note that the machine being triggered must have been initialized which means it must have been cycled at least once since the call to begin(). The factory.add() methods will automatically cycle each added machine once so that it will have been initialized. This can also be done explicitely like this in case you don't use Factory:
+The trigger method will cycle a machine up to 8 times until it has become responsive (which means that there is an non negative value in the corresponding state table column for the current state. Then the machine will be cycled twice, once for picking up the event, once for the ensuing state change.
 
 ```c++
   led1.begin( 4 );
-  led1.cycle().trigger( led1.EVT_BLINK );
+  led1.trigger( led1.EVT_BLINK );
 ```
 
-The trigger() method is a lightweight alternative to the message queue (which uses SRAM). Triggered events can not be stored but are processed immediately or discarded.
-
-### uint8_t pinChange( uint8_t pin ) ###
-
-Returns true if the pin state has changed from low to high or high to low. Always clears any change.
-
-```c++
-case EVT_CHANGED :
-     return pinChange( pin );
-```
+Triggered events can not be stored but are processed immediately or are discarded.
 
 ## Scheduling ##
 ----------
 
-### uint8_t asleep( void ) ###
+### uint8_t sleep( [int8_t v] ) ###
 
 Returns true if the object is in sleeping state (which is the case if the current state has the ATM\_SLEEP constant on the ON\_LOOP column). A machine in a sleeping state does not execute its event loop and does not call its action() handler, it does, however, process incoming messages.
 
-```c++
-led1.asleep();
-```
-
-### Machine & priority( int8_t priority ) ###
-
-Sets or retrieves the state machine's priority setting. The default priority is 1, which runs the machine at full speed. Priority 2 runs it at half speed. Priority 3 runs at quarter speed. Finally, priority 4 runs at 1/8 speed.
-
-Priority | Speed | Machine cycles per factory cycle
------------- | ------------- | -------------:
-0 | 0% | 0
-1 | 100% | 8
-2 | 50% | 4
-3 | 25% | 2
-4 | 12.5% | 1
+By setting the v argument to a non zero value the machine is brought into a sleeping state. By setting the v value to zero the machine is put to sleep.
 
 ```c++
-led1.priority( 2 );
+if ( led1.sleep() ) {
+  ...
+}
 
-// Disable button
-button.priority( 0 );
-
-// Re-enable it
-button.priority( 1 ); 
+led1.sleep( 1 );
 ```
 
-The use of the term speed may be confusing. If a led blinking machine runs at priority 2, that doesn't mean the led will blink twice as slow. It means it won't be updated as often. Which in the case of a blinking led probably won't be noticable.
 
-Set a machine's priority to 0 to disable it altogether, This uses even less resources than sleeping. Incoming messages are not processed in this mode.
+### Machine & cycle( [uint32_t time] ) ###
 
-In a TinyFactory the TinyMachines (this is starting to sound like a fairy tale) always run at priority 4 which means that each machine is cycled once in every factory cycle.
-
-### Machine & cycle( void ) ###
-
-Executes one cycle of the state machine. Normally only called by the factory class but can also be used directly inside the Arduino loop() function to bypass the factory class altogether. (may be slightly faster if you don't require different machine priorities - see the priority() method)
+Executes one cycle of the state machine. Normally only called by the appliance class but can also be used directly inside the Arduino loop() function to bypass the appliance class altogether.
 
 ```c++
 void loop()
@@ -208,133 +169,48 @@ void loop()
 }
 ```
 
-## Message queue ##
-
-The Machine class defines a simulated messaging queue via which messages can be sent from machine to machine or from the main Arduino program to a machine. Multiple messages can be queued.  
-
-### Machine & msgQueue( atm_msg_t msg[], int width [, int auto_clear] )  ###
-
-The msgQueue() methods adds an incoming messaging queue if the machine needs to be able to process incoming messages.
-
-In the Atm_xxx.h file:
+When the time argument is specified and greater than zero, the cycle() method will cycle until the corresponding number of milliseconds has passed. This can be handy if you want to run state machines in a sequential pattern (usually from the setup method) like this:
 
 ```c++
-enum { MSG_OFF, MSG_ON, MSG_END } MESSAGES;
+void setup()
+{
+  // Blink a led slowly three times
+  led.begin( 4 ).blink( 500, 500, 3 ).trigger( Atm_led::EVT_BLINK );
 
-atm_msg_t messages[MSG_END];
-```
+  // Wait until it finishes
+  while ( led.cycle().state() );
 
-In the Atm_xxx.cpp file:
+  // Now wait one second
+  led.cycle( 1000 );
+ 
+  // Blink the same led quickly 
+  led.blink( 50, 50 ).trigger( Atm_led::EVT_BLINK );
 
-```c++
-Machine::begin( state_table, ELSE );
-Machine::msgQueue( messages, MSG_END );
-```
+  // Let it blink for 5 seconds
+  led.cycle( 5000 );  
 
-You may now send messages to the machine object like this:
-
-```c++
-obj.msgWrite( obj.MSG_OFF );
-obj.MsgWrite( obj.MSG_ON );
-```
-
-And process them in the machine object's event() handler like this:
-
-```c++
-switch ( id ) {
-  case EVT_OFF :
-		  return msgRead( MSG_OFF );
-	case EVT_ON :
-		  return msgRead( MSG_ON );
+  // And turn it off
+  led.trigger( Atm_led::EVT_OFF );
 }
+
+void loop() {
+}
+
 ```
 
-The *MSG_END* identifier must always be last in the list because it is used to determine the size of the msg queue.
-If the *autoclear* parameter is set the state machine will automatically clear the message queue on every state switch. It's often a good idea to set this to 1 to avoid common pitfalls in message handling. If you want to keep messages between state switches (in some cases that's useful) set it to 0 or leave it out altogether. Default value is 0 for backwards compatibility.
-
-
-
-### Machine & msgWrite( uint8_t id_msg, [int cnt] ) ###
-
-Adds a new message to the machine's message queue. If the *cnt* argument is supplied adds that number of messages to the queue. The available message types (id) are defined in the machine's .h file.
-
-
-In the .h file:
-
-```c++
-enum { MSG_OFF, MSG_ON } MESSAGES;
-```
-
-In the main program:
-
-```c++
-obj.msgWrite( obj.MSG_ON );
-```
-
-To allow processing of incoming messages a call to msgWrite() wakes up a sleeping machine for the duration of one cycle. 
- 
-### int msgRead( uint8_t id_msg, [int cnt], [int clear] ) ###
-
-Checks the queue for the given message type (id), if one is found removes it from the queue and returns 1. This method is normally used in a machine's event handler.
-
-```c++
-case EVT_OFF :
-  return msgRead( MSG_OFF );
-case EVT_ON :
-  return msgRead( MSG_ON );
-```
- 
-If the *cnt* argument is given removes *cnt* messages from the queue. (default: 1)
-
-If the *clear* argument is given clears the entire message queue of all messages.
-
-Note that the Automaton's messaging queue buffers messages. Two consecutive calls to msgWrite( MSG_ON ) will lead two calls to msgRead( MSG_ON ) to return true. If that's not what you want you may use msgClear( MSG_ON ) as a replacement, this will return true just a single time.
-
-### int msgPeek( uint8_t id_msg ) ###
-
-Checks the queue for the given message type (id), if one is found the number of messages is returned. The queue is left unchanged.
-
-```c++
-case EVT_DISABLED :
-	return msgPeek( MSG_DISABLED );
-```
-This method can be used in conjunction with msgWrite() and msgClear() to simulate setting, checking and clearing a flag.
-
-### int msgClear( uint8_t id_msg ) ###
-Alternative: Machine & msgClear()  
-
-Clears all messages of a certain type (id) from the queue, or, if no id argument, is given flushes the entire queue.
-
-```c++
-obj.msgClear( MSG_DISABLED );
-obj.msgClear(); 
-```
-
-When the id argument is given returns 1 when one or more messages were present or 0 if there was none. This allows msgClear() to be used instead of msgRead() if the latter's message buffering is not wanted.
+This pattern can be useful when you're starting up your sketch or when - for some reason - you don't need the whole multi-tasking multi-state machine shebang (yet). Look at the sos1 example and compare it to the sos2 and sos3 examples to see why this can sometimes be very efficient.
 
 ## Debugging ##
 
-### Machine & label( const char label[] ) ###
 
-Overrides the machine's default (class based) label and sets a new one for the current instance. 
+### Machine & trace( Stream & stream ) ###
 
-```c++
-led1.label( "LED_R" );
-led2.label( "LED_G" );
-led3.label( "LED_B" );
-```
-
-This label can be used to access the machine (via the Factory::find() method) or to distinguish the machine from other instances in the same class in log output generated by onSwitch(). Labels can also be used to send messages to specific machines over a simulated factory message bus with msgSend().
-   
-### Machine & onSwitch( swcb_sym_t callback ) ###
-
-Registers a callback which will be called just before a machine status switch. May be used to selectively log machine behavior to the serial console. 
+Log a machine's state changes and events to the serial Arduino terminal or any other Stream object;
 
 ```c++
-obj.onSwitch( atm_serial_debug::onSwitch ).label( "TST" );
+Serial.begin( 9600 );
+led1.trace( Serial );
 ```
-
-The static atm_serial_debug::onSwitch method logs the switch output to the serial port.
 
 ### Machine variables ###
 
@@ -342,14 +218,9 @@ Variable | Type | Function
 -------- | -------- | --------
 current | state_t | Holds the numeric value of current state
 next | state_t | Holds the numeric value of next state (or -1)
-previous | state_t | Holds the numeric value of previous state
 sleep | uint8_t | Value is 1 when the machine is asleep, else 0
-cycles * | uint32_t | Cycles counted since the last state switch
+cycles | uint32_t | Cycles counted since the last state switch
 state_millis | uint32_t | Value of millis() at the last state switch
-state_micros | uint32_t | Value of micros() at the last state switch
-last_trigger * | uint8_t | The event that triggered the last state switch
-msg_table * | atm_msg_t* | Pointer to the message table
-msg_width * | uint8_t | Number of message types that can be stored in the message table
-msg_autoclear * | uint8_t | Flag that controls automatic clearing of the message queue during state switches
+last_trigger  | uint8_t | The event that triggered the last state switch
+next_trigger | uint8_t | Incoming event from the trigger() method
 
-(variables marked with an asterisk * are not available in a TinyMachine subclass)

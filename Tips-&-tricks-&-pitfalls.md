@@ -1,16 +1,16 @@
 ## Tips & tricks ##
 
-### Sending and receiving messages with data ###
 ### Machines and factories within machines ###
-### Simulating priorities with TinyFactory ###
+
+### Poor man's state machine inside a callback ###
 
 ### Waiting while a led blinks ###
 
 ```cpp
 Atm_led led1;
 
-led1.begin( 3 ).repeat( 5 ).blink( 25 ).pause( 500 ).trigger( led1.EVT_BLINK );
-while ( led1.cycle().state() ) { };
+led1.begin( 3 ).blink( 25, 500, 5 ).trigger( led1.EVT_BLINK );
+while ( led1.cycle().state() );
 
 ```
 ### Taking timers beyond the 49.7 day millis() rollover limit ###
@@ -35,22 +35,5 @@ Taking the counter value up to the maximum 65534 would give you about 179 years.
 
 ## Pitfalls ##
 
-### Hanging messages in the message queue ###
-### Forgetting to use begin() on a timer ###
+### Race conditions ###
 
-In this case expire() will probably always return true and the timer will expire immediately.
-
-### Start up race condition with machine->trigger( EVT_XXX ) ###
-
-```c++
-void setup() {
-  led.begin( 3 );
-  led.cycle().trigger( EVT_ON );
-}
-
-void loop() {
-  led.cycle();
-}
-
-
-```
