@@ -1,9 +1,10 @@
 <!-- md-tocify-begin -->
+- Push Connectors
+- Pull connectors
+- Callbacks
++ Lambda functions (closures)  
 - trigger()
 - state()
-- Connectors
-- Callbacks
-- Lambda functions (closures)  
 - Calling custom methods
 
 <!-- md-tocify-end -->
