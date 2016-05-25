@@ -203,13 +203,12 @@ This pattern can be useful when you're starting up your sketch or when - for som
 ## Debugging ##
 
 
-### Machine & trace( Stream & stream ) ###
+### Machine& Machine::setTrace( Stream* stream, swcb_sym_t callback, const char symbols[] ) ###
 
 Log a machine's state changes and events to the serial Arduino terminal or any other Stream object;
 
 ```c++
-Serial.begin( 9600 );
-led1.trace( Serial );
+setTrace( &stream, callback, symbols );
 ```
 
 ### Machine variables ###
