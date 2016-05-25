@@ -1,7 +1,5 @@
 *Reactive, declarative, event driven, table based state machine framework for Arduino.*
 
-TODO: Fix link locations from development -> master!!!
-
 Automaton is a reactive state machine framework that allows you to create Arduino applications (appliances) that consist entirely of concurrently running finite state machines (FSM) interacting with one another. Changes are automatically propagated through the appliance like changes in a spreadsheet.
 
 ![Sierra Online - Incredible Machine](http://s.emuparadise.org/fup/up/93649-Incredible_Machine_%281993%29%28Sierra_Online%29-1.png)
@@ -80,8 +78,8 @@ To get you up and running quickly we've bundled a number of ready to use state m
 Monitor an analog pin with optional averaging (low pass filter).
 
 Links: [docs](The-analog-machine),
- [cpp](/tinkerspy/Automaton/blob/development/src/Atm_analog.cpp),
- [hpp](/tinkerspy/Automaton/blob/development/src/Atm_analog.hpp) 
+ [cpp](/tinkerspy/Automaton/blob/master/src/Atm_analog.cpp),
+ [hpp](/tinkerspy/Automaton/blob/master/src/Atm_analog.hpp) 
 
 #### Atm_bit state machine
 
@@ -89,32 +87,32 @@ Logical machine that holds just one value, true or false, 0 or 1, high or low.
 Can trigger other machines on changes and track its status on an indicator led.
 
 Links: [docs](The-bit-machine),
- [cpp](/tinkerspy/Automaton/blob/development/src/Atm_bit.cpp),
- [hpp](/tinkerspy/Automaton/blob/development/src/Atm_bit.hpp) 
+ [cpp](/tinkerspy/Automaton/blob/master/src/Atm_bit.cpp),
+ [hpp](/tinkerspy/Automaton/blob/master/src/Atm_bit.hpp) 
 
 #### Atm_button state machine
 
 A state machine for handling button presses, longpresses, repeats, debouncing, etc.
 
 Links: [docs](The-button-machine),
- [cpp](/tinkerspy/Automaton/blob/development/src/Atm_button.cpp),
- [hpp](/tinkerspy/Automaton/blob/development/src/Atm_button.hpp) 
+ [cpp](/tinkerspy/Automaton/blob/master/src/Atm_button.cpp),
+ [hpp](/tinkerspy/Automaton/blob/master/src/Atm_button.hpp) 
 
 #### Atm_command state machine
 
 A state machine that handles commands coming in over a serial line (Stream), parses and interprets them and fires off a handler callback.
 
 Links: [docs](The-command-machine),
- [cpp](/tinkerspy/Automaton/blob/development/src/Atm_command.cpp),
- [hpp](/tinkerspy/Automaton/blob/development/src/Atm_command.hpp) 
+ [cpp](/tinkerspy/Automaton/blob/master/src/Atm_command.cpp),
+ [hpp](/tinkerspy/Automaton/blob/master/src/Atm_command.hpp) 
 
 #### Atm_comparator state machine
 
 This state machine monitors an analog input with a configurable sample rate and fires off a callback or triggers (a) machine(s) whenever one of a list of thresholds are crossed. Optionally keeps a moving average to smooth out peaks and troughs.
 
 Links: [docs](The-comparator-machine),
- [cpp](/tinkerspy/Automaton/blob/development/src/Atm_comparator.cpp),
- [hpp](/tinkerspy/Automaton/blob/development/src/Atm_comparator.hpp) 
+ [cpp](/tinkerspy/Automaton/blob/master/src/Atm_comparator.cpp),
+ [hpp](/tinkerspy/Automaton/blob/master/src/Atm_comparator.hpp) 
 
 #### Atm_controller state machine
 
@@ -123,8 +121,8 @@ That value is calculated as a function of the states of machines/callbacks with 
 Can trigger other machines on changes and track its status on an indicator led.
 
 Links: [docs](The-controller-machine),
- [cpp](/tinkerspy/Automaton/blob/development/src/Atm_controller.cpp),
- [hpp](/tinkerspy/Automaton/blob/development/src/Atm_controller.hpp) 
+ [cpp](/tinkerspy/Automaton/blob/master/src/Atm_controller.cpp),
+ [hpp](/tinkerspy/Automaton/blob/master/src/Atm_controller.hpp) 
 
 #### Atm_digital state machine
 
@@ -132,56 +130,56 @@ Monitors a digital input pin.
 Can trigger other machines on changes and track its status on an indicator led.
 
 Links: [docs](The-digital-machine),
- [cpp](/tinkerspy/Automaton/blob/development/src/Atm_digital.cpp),
- [hpp](/tinkerspy/Automaton/blob/development/src/Atm_digital.hpp) 
+ [cpp](/tinkerspy/Automaton/blob/master/src/Atm_digital.cpp),
+ [hpp](/tinkerspy/Automaton/blob/master/src/Atm_digital.hpp) 
 
 #### Atm_encoder state machine
 
 Use a rotary controller as an input to control other state machines.
 
 Links: [docs](The-encoder-machine),
- [cpp](/tinkerspy/Automaton/blob/development/src/Atm_encoder.cpp),
- [hpp](/tinkerspy/Automaton/blob/development/src/Atm_encoder.hpp) 
+ [cpp](/tinkerspy/Automaton/blob/master/src/Atm_encoder.cpp),
+ [hpp](/tinkerspy/Automaton/blob/master/src/Atm_encoder.hpp) 
 
 #### Atm_fade state machine
 
 Control a led via a PWM enabled pin. Control blink speed, pause duration, fade in/out slope and number of repeats.
 
 Links: [docs](The-fade-machine),
- [cpp](/tinkerspy/Automaton/blob/development/src/Atm_fade.cpp),
- [hpp](/tinkerspy/Automaton/blob/development/src/Atm_fade.hpp) 
+ [cpp](/tinkerspy/Automaton/blob/master/src/Atm_fade.cpp),
+ [hpp](/tinkerspy/Automaton/blob/master/src/Atm_fade.hpp) 
 
 #### Atm_fan state machine
 
 Turn a single incoming event into multiple outgoing events.
 
 Links: [docs](The-fan machine),
- [cpp](/tinkerspy/Automaton/blob/development/src/Atm_fan.cpp),
- [hpp](/tinkerspy/Automaton/blob/development/src/Atm_fan.hpp) 
+ [cpp](/tinkerspy/Automaton/blob/master/src/Atm_fan.cpp),
+ [hpp](/tinkerspy/Automaton/blob/master/src/Atm_fan.hpp) 
 
 #### Atm_led state machine
 
 Control a led via a digital pin. Control blink speed, pause duration and number of repeats. Can also be used to control other on/off devices like relays and buzzers. Supports chaining.
 
 Links: [docs](The-led-machine),
- [cpp](/tinkerspy/Automaton/blob/development/src/Atm_led.cpp),
- [hpp](/tinkerspy/Automaton/blob/development/src/Atm_led.hpp) 
+ [cpp](/tinkerspy/Automaton/blob/master/src/Atm_led.cpp),
+ [hpp](/tinkerspy/Automaton/blob/master/src/Atm_led.hpp) 
 
 #### Atm_step state machine
 
 A step sequencer state machine. Create up to 8 steps which all trigger other machines via triggers or callbacks. Step patterns available: linear (default), sweep and burst. The linear pattern can be driven forward or backwards on different triggers. Use two steps in linear mode to create a flip-flop or toggle effect.
 
 Links: [docs](The-step-machine),
- [cpp](/tinkerspy/Automaton/blob/development/src/Atm_step.cpp),
- [hpp](/tinkerspy/Automaton/blob/development/src/Atm_step.hpp) 
+ [cpp](/tinkerspy/Automaton/blob/master/src/Atm_step.cpp),
+ [hpp](/tinkerspy/Automaton/blob/master/src/Atm_step.hpp) 
 
 #### Atm_timer state machine
 
 Simple state machine that provides standard timing event functionality. Configure interval and number of repeats. Can be controlled via the message queue. Fires a callback or triggers an event on a different machine when the timer runs out. Create timers of up to 136 years.
 
 Links: [docs](The-timer-machine),
- [cpp](/tinkerspy/Automaton/blob/development/src/Atm_timer.cpp),
- [hpp](/tinkerspy/Automaton/blob/development/src/Atm_timer.hpp) 
+ [cpp](/tinkerspy/Automaton/blob/master/src/Atm_timer.cpp),
+ [hpp](/tinkerspy/Automaton/blob/master/src/Atm_timer.hpp) 
 
 ### Examples ###
 
@@ -193,73 +191,74 @@ For the analog_bargraph example connect the Arduino's GND and +5V pins to the ou
 
 The result of the *Machine building tutorial*. A simple do-it-yourself state machine that blinks a led and nothing else. All code is included in one .ino file.
 
-Source code: [blink.ino](/tinkerspy/Automaton/blob/development/examples/blink/blink.ino)
+
+Source code: [blink.ino](/tinkerspy/Automaton/blob/master/examples/blink/blink.ino)
 
 #### blink_modular
 
 The blink example with the state machine neatly separated in .cpp and .h files.
 
 Source code:
-[blink_modular.ino](/tinkerspy/Automaton/blob/development/examples/blink_modular/blink_modular.ino),
- [Atm_blink.h](/tinkerspy/Automaton/blob/development/examples/blink_modular/Atm_blink.h),
- [Atm_blink.cpp](/tinkerspy/Automaton/blob/development/examples/blink_modular/Atm_blink.cpp)
+[blink_modular.ino](/tinkerspy/Automaton/blob/master/examples/blink_modular/blink_modular.ino),
+ [Atm_blink.h](/tinkerspy/Automaton/blob/master/examples/blink_modular/Atm_blink.h),
+ [Atm_blink.cpp](/tinkerspy/Automaton/blob/master/examples/blink_modular/Atm_blink.cpp)
 
 #### button
 
 Toggle three leds blinking at different frequencies on and off with one button.
 
-Source code: [button.ino](/tinkerspy/Automaton/blob/development/examples/button/button.ino)
+Source code: [button.ino](/tinkerspy/Automaton/blob/master/examples/button/button.ino)
 
 #### fade
 
 Fade two leds on and off at different speeds without using an appliance container.
 
-Source code: [fade.ino](/tinkerspy/Automaton/blob/development/examples/fade/fade.ino)
+Source code: [fade.ino](/tinkerspy/Automaton/blob/master/examples/fade/fade.ino)
 
 #### knight_rider1
 
 The knight rider sweeping led display using a timer machine that drives a step machine that drives 6 led machines.
 
-Source code: [knight_rider1.ino](/tinkerspy/Automaton/blob/development/examples/knight_rider1/knight_rider1.ino)
+Source code: [knight_rider1.ino](/tinkerspy/Automaton/blob/master/examples/knight_rider1/knight_rider1.ino)
 
 #### knight_rider2
 
 The knight rider sweeping led display using a custom made Atm_sweep state machine toggled on and off by a button.
 
 Source code: 
-[knight_rider2.ino](/tinkerspy/Automaton/blob/development/examples/knight_rider2/knight_rider2.ino),
- [Atm_sweep.h](/tinkerspy/Automaton/blob/development/examples/knight_rider2/Atm_sweep.h),
- [Atm_sweep.cpp](/tinkerspy/Automaton/blob/development/examples/knight_rider2/Atm_sweep.cpp)
+[knight_rider2.ino](/tinkerspy/Automaton/blob/master/examples/knight_rider2/knight_rider2.ino),
+ [Atm_sweep.h](/tinkerspy/Automaton/blob/master/examples/knight_rider2/Atm_sweep.h),
+ [Atm_sweep.cpp](/tinkerspy/Automaton/blob/master/examples/knight_rider2/Atm_sweep.cpp)
 
 #### led_test
 
 This example shows a button toggling a led while logging all state change information to the serial terminal. Set the Arduino terminal to 9600 baud to monitor the state changes.
 
-Source code: [led_test.ino](/tinkerspy/Automaton/blob/development/examples/led_test/led_test.ino)
+Source code: [led_test.ino](/tinkerspy/Automaton/blob/master/examples/led_test/led_test.ino)
 
 #### sos1
 
 Blink a led in a repeating dot-dot-dot-dash-dash-dash-dot-dot-dot pattern. This solution uses one led machine in a sequential pattern by using the timed version of cycle() as a wait/delay statement.
 
-Source code: [sos1.ino](/tinkerspy/Automaton/blob/development/examples/sos1/sos1.ino)
+Source code: [sos1.ino](/tinkerspy/Automaton/blob/master/examples/sos1/sos1.ino)
 
 #### sos2
 
 Blink a led in a repeating dot-dot-dot-dash-dash-dash-dot-dot-dot pattern. This solution uses two led machines driving by a step sequencer machine which is in turn driven by a timer machine.
 
-Source code: [sos2.ino](/tinkerspy/Automaton/blob/development/examples/sos2/sos2.ino)
+Source code: [sos2.ino](/tinkerspy/Automaton/blob/master/examples/sos2/sos2.ino)
 
 #### sos3
 
 Blink a led in a repeating dot-dot-dot-dash-dash-dash-dot-dot-dot pattern. This solution uses 3 timer machines and 3 led machines chained together in a never ending circle, like snakes biting each others tails.
 
-Source code: [sos3.ino](/tinkerspy/Automaton/blob/development/examples/sos3/sos3.ino)
+Source code: [sos3.ino](/tinkerspy/Automaton/blob/master/examples/sos3/sos3.ino)
 
 #### analog_bargraph
 
 An advanced example that uses a combination of comparator, step & led machines to create an interactive bargraph display that changes with the turning of a pot (analog value). 
 
-Source code: [analog_bargraph.ino](/tinkerspy/Automaton/blob/development/examples/analog_bargraph/analog_bargraph.ino)
+Source code: [analog_bargraph.ino](/tinkerspy/Automaton/blob/master/examples/analog_bargraph/analog_bargraph.ino)
 
 #### nuclear_missile_launcher
 
@@ -269,4 +268,4 @@ In this example we use Automaton to build such a launch trigger mechanism on an 
 
 We used two button machines connected to two bit machines with two timers to reset the bits after 2 second and a controller to check if both bit machines are in the on state. If that is the case the controller starts the countdown which fires the ignition to launch the missile.
 
-Source code: [nuclear_missile_launcher.ino](/tinkerspy/Automaton/blob/development/examples/nuclear_missile_launcher/nuclear_missile_launcher.ino)
+Source code: [nuclear_missile_launcher.ino](/tinkerspy/Automaton/blob/master/examples/nuclear_missile_launcher/nuclear_missile_launcher.ino)
