@@ -9,6 +9,7 @@
   * [Machine communication](Machine-communication)  
   * [Timers & counters](Timers-&-Counters)  
   * [Tips & tricks & pitfalls](Tips-&-tricks-&-pitfalls)
+  * [Contributed](Contributed)
 * Bundled state machines
   * [The analog machine](The-analog-machine)  
   * [The bit machine](The-bit-machine)  
