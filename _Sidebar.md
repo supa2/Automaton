@@ -22,6 +22,7 @@
   * [The fade machine](The-fade-machine)  
   * [The fan machine](The-fan-machine)  
   * [The led machine](The-led-machine)  
+  * [The player machine](The-player-machine)  
   * [The step machine](The-step-machine)  
   * [The timer machine](The-timer-machine)  
 
