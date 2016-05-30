@@ -210,6 +210,49 @@ void setup() {
 
 ```
 
+```c++
+
+int pattern[] = { 
+  1,  10, 0, // Frequency, Duration, Pause triplets
+  2, 980, 0,
+  3,  10, 0,
+  4,  10, 0,
+};
+
+// Switch two solenoids in order
+// Solenoid 1: ___|^^^^^^^^|____
+// Solenoid 2: ____|^^^^^^|_____
+
+void callback( int idx, int v, int up ) {
+  switch ( v ) {
+    case 1:
+      solenoid1.trigger( solenoid1.EVT_ON );
+      return;
+    case 2:
+      solenoid2.trigger( solenoid2.EVT_ON );
+      return;
+    case 3:
+      solenoid2.trigger( solenoid2.EVT_OFF );
+      return;
+    case 4:
+      solenoid1.trigger( solenoid1.EVT_OFF );
+      return;
+  } 
+}
+
+void setup() {
+
+  app.component( 
+    player.begin() 
+      .play( pattern1, sizeof( pattern1 ) )
+      .onNote( callback )
+  );
+
+}
+
+```
+
+
 ### Atm_player & trace( Stream & stream ) ###
 
 To monitor the behavior of this machine you may log state change events to a Stream object like Serial.
