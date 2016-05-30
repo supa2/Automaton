@@ -186,6 +186,7 @@ void setup() {
   
   app.component( 
     player.begin()
+      .play( pattern, sizeof( pattern ) )
       .onNote( true, led, led.EVT_ON ) // On note on
       .onNote( false, led, led.EVT_OFF ) // On note off
   );
@@ -231,7 +232,7 @@ void setup() {
 
   app.component( 
     player.begin() 
-      .play( pattern1, sizeof( pattern1 ) )
+      .play( pattern, sizeof( pattern ) )
       .onNote( callback )
   );
 
@@ -248,7 +249,7 @@ void setup() {
 
   app.component( 
     player.begin( 3 ) 
-      .play( pattern1, sizeof( pattern1 ) )
+      .play( pattern, sizeof( pattern ) )
       .onFinish( callback )
   );
 
