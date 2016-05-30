@@ -166,6 +166,15 @@ Links: [docs](The-led-machine),
  [cpp](/tinkerspy/Automaton/blob/master/src/Atm_led.cpp),
  [hpp](/tinkerspy/Automaton/blob/master/src/Atm_led.hpp) 
 
+
+#### Atm_player state machine
+
+Plays musical patterns over a piezo speaker. Can also serve as a generic pattern generator by controlling other machines and processing over the onNote() connectors.
+
+Links: [docs](The-player-machine),
+ [cpp](/tinkerspy/Automaton/blob/master/src/Atm_player.cpp),
+ [hpp](/tinkerspy/Automaton/blob/master/src/Atm_player.hpp) 
+
 #### Atm_step state machine
 
 A step sequencer state machine. Create up to 8 steps which all trigger other machines via triggers or callbacks. Step patterns available: linear (default), sweep and burst. The linear pattern can be driven forward or backwards on different triggers. Use two steps in linear mode to create a flip-flop or toggle effect.
