@@ -150,7 +150,7 @@ After the last repeat has finished the onFinish() connector is called.
 ### Atm_player& speed( int v ) ###
 
 Modifies the speed of the pattern, value is a percentage.
-At speed( 100 ) - the default - everything plays at the speed specified in the pattern array, at 50 everything plays at half speed, at 300 everyting plays at triple speed, etc... 
+At speed( 100 ) - the default - everything plays at the speed specified in the pattern array, at 50 everything plays at half speed, at 300 everything plays at triple speed, etc... 
 
 ```c++
 void setup() {
