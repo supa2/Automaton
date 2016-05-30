@@ -205,24 +205,24 @@ int pattern[] = {
   4,   0, 0,
 };
 
-// Switch two solenoids in order
-// Solenoid 1: ___|^^^^^^^^|____
-// Solenoid 2: ____|^^^^^^|_____
+// Open and close two solenoid valves in this order
+// Valve 1: ___|^^^^^^^^|____
+// Valve 2: ____|^^^^^^|_____
 
 void callback( int idx, int v, int up ) {
   if ( up ) {
     switch ( v ) {
       case 1:
-        solenoid1.trigger( solenoid1.EVT_ON );
+        valve1.trigger( valve1.EVT_ON );
         return;
       case 2:
-        solenoid2.trigger( solenoid2.EVT_ON );
+        valve2.trigger( valve2.EVT_ON );
         return;
       case 3:
-        solenoid2.trigger( solenoid2.EVT_OFF );
+        valve2.trigger( valve2.EVT_OFF );
         return;
       case 4:
-        solenoid1.trigger( solenoid1.EVT_OFF );
+        valve1.trigger( valve1.EVT_OFF );
         return;
     } 
   }
