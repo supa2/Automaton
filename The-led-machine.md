@@ -11,7 +11,7 @@ Control a led via a digital pin. Control blink speed, pause duration and number 
 * [onFinish()](#atm_led--onfinish-machine--next-int-event--evt_start-)  
 * [EVT_ON](#evt_on)  
 * [EVT_OFF](#evt_off)  
-* [EVT_START](#evt_start)  
+* [EVT_BLINK](#evt_start)  
 * [EVT_TOGGLE](#evt_toggle)  
 * [EVT_TOGGLE_BLINK](#evt_toggle_blink)  
 * [trace()](#atm_led--trace-stream--stream-)  
@@ -30,8 +30,8 @@ void setup() {
   led1.begin( 4 ).blink( 40, 250 ); // Setup blinking
   led2.begin( 5 ).blink( 40, 50 ); 
   factory.add (led1 ).add( led2 );  // Add to a factory
-  led1.trigger( led1.EVT_START );   // Start blinking
-  led2.trigger( led2.EVT_START );
+  led1.trigger( led1.EVT_BLINK );   // Start blinking
+  led2.trigger( led2.EVT_BLINK );
 }
 
 void loop() {
@@ -51,7 +51,7 @@ This is probably the shortest Automaton sketch (that actually does anything) pos
 Atm_led led;
 
 void setup() {
-  led.begin( 4 ).trigger( led.EVT_START );   
+  led.begin( 4 ).trigger( led.EVT_BLINK );   
 }
 
 void loop() {
@@ -66,7 +66,7 @@ If you try it you'll see that the led turns on, but it does not blink. For that 
 Atm_led led;
 
 void setup() {
-  led.begin( 4 ).trigger( led.EVT_START );   
+  led.begin( 4 ).trigger( led.EVT_BLINK );   
 }
 
 void loop() {
@@ -74,11 +74,11 @@ void loop() {
 }
 ```
 
-Please note that the Atm_led machine starts up in state *IDLE*. You can turn the led on by sending a EVT_ON message or start it blinking with a EVT_START message. EVT_TOGGLE toggles the led on and off, EVT_TOGGLE_BLINK toggles blinking on and off. These are the available external events:
+Please note that the Atm_led machine starts up in state *IDLE*. You can turn the led on by sending a EVT_ON message or start it blinking with a EVT_BLINK message. EVT_TOGGLE toggles the led on and off, EVT_TOGGLE_BLINK toggles blinking on and off. These are the available external events:
 
 ```c++
   led1.trigger( led1.EVT_ON );
-  led1.trigger( led1.EVT_START );
+  led1.trigger( led1.EVT_BLINK );
   led1.trigger( led1.EVT_OFF );
   led1.trigger( led1.EVT_TOGGLE );
   led1.trigger( led1.EVT_TOGGLE_BLINK );
@@ -127,15 +127,15 @@ Sets how many times the blink pattern should repeat. Default is *ATM_COUNTER_OFF
 
 ```c++
 void setup() {
-  led1.begin( 4 ).blink( 40, 100 ).repeat( 1 ).trigger( led1.EVT_START );
+  led1.begin( 4 ).blink( 40, 100 ).repeat( 1 ).trigger( led1.EVT_BLINK );
   ...
 }
 ```
 
 The example above gives off a single 40 millisecond pulse and then goes back to sleep (state IDLE).
 
-### Atm_led & onFinish( Machine & next, int event = EVT_START ) ###
-Alternatively: Atm_led & onFinish( Machine & next, Machine & previous, int event = EVT_START )
+### Atm_led & onFinish( Machine & next, int event = EVT_BLINK ) ###
+Alternatively: Atm_led & onFinish( Machine & next, Machine & previous, int event = EVT_BLINK )
 
 This method is used to trigger another machine when the current machina's blinking sequence has finished. This can be used to create sequences of blink patterns, but you can also trigger different types of machines in this manner.
 
@@ -143,7 +143,7 @@ This method is used to trigger another machine when the current machina's blinki
 led1.begin( 4 ).blink( 500, 500, 3 ).onFinish( led2 );
 led2.begin( 4 ).blink( 50, 50, 10 );
 factory.add( led1 ).add( led2 );
-led1.trigger( led1.EVT_START );
+led1.trigger( led1.EVT_BLINK );
 
 ```
 
@@ -164,7 +164,7 @@ void setup() {
   factory.add( led4.begin( 7 ).blink( 100, 1, 1 ).onFinish( led5, led3 ) );
   factory.add( led5.begin( 8 ).blink( 100, 1, 1 ).onFinish( led6, led4 ) );
   factory.add( led6.begin( 9 ).blink( 100, 1, 1 ).onFinish( led5 ) );
-  led1.trigger( led1.EVT_START );
+  led1.trigger( led1.EVT_BLINK );
 }
 
 void loop() {
@@ -188,13 +188,13 @@ Turns the led off.
 led.trigger( led.EVT_OFF );
 ```
 
-### EVT_START ###
+### EVT_BLINK ###
 
 Starts the led blinking.
 
 ```c++
 led.begin( 5 ).blink( 200 );
-led.trigger( led.EVT_START );
+led.trigger( led.EVT_BLINK );
 ```
 
 ### EVT_TOGGLE ###
