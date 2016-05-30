@@ -193,22 +193,7 @@ void setup() {
 }
 ```
 
-### Atm_player& onFinish( {connector}, {connector-arg} ) ###
-
-A connector that is called when playing stops (after the last repeat of a pattern has finished).
-
-```c++
-void setup() {
-
-  app.component( 
-    player.begin( 3 ) 
-      .play( pattern1, sizeof( pattern1 ) )
-      .onFinish( callback )
-  );
-
-}
-
-```
+The example below uses a callback combined with 'magic' values in the pattern/frequency field to trigger two solenoids in a particular order.
 
 ```c++
 
@@ -248,6 +233,23 @@ void setup() {
     player.begin() 
       .play( pattern1, sizeof( pattern1 ) )
       .onNote( callback )
+  );
+
+}
+
+```
+
+### Atm_player& onFinish( {connector}, {connector-arg} ) ###
+
+A connector that is called when playing stops (after the last repeat of a pattern has finished).
+
+```c++
+void setup() {
+
+  app.component( 
+    player.begin( 3 ) 
+      .play( pattern1, sizeof( pattern1 ) )
+      .onFinish( callback )
   );
 
 }
