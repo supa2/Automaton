@@ -1,5 +1,39 @@
 Not just a music player but a programmable pattern generator.
 
+## Synopsis ##
+
+```c++
+#include <Automaton.h>
+
+Atm_player player;
+Atm_button button;
+Appliance app;
+
+int pattern[] = { 
+  440, 100, 0, 
+  587, 100, 0,
+  880, 100, 100,
+};
+
+void setup() {
+ 
+  app.component( 
+    player.begin( 3 ) 
+      .play( pattern, sizeof( pattern ) )
+  );
+
+  app.component(
+    button.begin( 2 )
+      .onPress( player, player.EVT_TOGGLE )
+  );
+
+}
+
+void loop() {
+  app.run();
+}
+```
+
 ### Atm_player& begin( int pin = 1 ) ###
 
 ### Atm_player& play( int* pat, int patsize ) ###
