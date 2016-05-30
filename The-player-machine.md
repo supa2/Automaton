@@ -38,7 +38,7 @@ void loop() {
 
 ### Atm_player& play( int* pat, int patsize ) ###
 
-Pattern chaining requires extra repeat() in callback.
+Pattern chaining in callback.
 
 ```c++
 #include <Automaton.h>
@@ -62,9 +62,9 @@ int pattern2[] = {
 void callback( int idx, int v, int up ) {
   static int cnt = 0;
   if ( cnt % 2 == 0 ) {
-    player.play( pattern2, sizeof( pattern2 ) ).repeat( 1 );
+    player.play( pattern2, sizeof( pattern2 ) );
   } else {
-    player.play( pattern1, sizeof( pattern1 ) );
+    player.play( pattern1, sizeof( pattern1 ) ).trigger( player.EVT_STOP );
   }
   cnt++;  
 }
