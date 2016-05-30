@@ -34,7 +34,7 @@ void loop() {
 }
 ```
 
-### Atm_player& begin( int pin = 1 ) ###
+### Atm_player& begin( int pin = -1 ) ###
 
 ### Atm_player& play( int* pat, int patsize ) ###
 
