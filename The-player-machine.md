@@ -165,6 +165,12 @@ void setup() {
 The example below uses a callback combined with 'magic' values in the pattern/frequency field to trigger two solenoid valves in a particular order.
 
 ```c++
+#include <Automaton.h>
+
+Atm_player player;
+Atm_button button;
+Atm_led valve1, valve2;
+Appliance app;
 
 int pattern[] = { 
   1,  10, 0, // Frequency, Duration, Pause triplets
