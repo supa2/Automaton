@@ -12,17 +12,17 @@ To install the library, first quit the Arduino application. Drag the Automaton f
 
 Your Arduino library folder should now look like this (on Windows):
 
-- My Documents\Arduino\libraries\Automaton\Automaton.cpp
-- My Documents\Arduino\libraries\Automaton\Automaton.h
 - My Documents\Arduino\libraries\Automaton\examples
+- My Documents\Arduino\libraries\Automaton\extras
+- My Documents\Arduino\libraries\Automaton\src
 - ....
 
 
 or like this (on Mac and Linux):
 
-- Documents/Arduino/libraries/Automaton/Automaton.cpp
-- Documents/Arduino/libraries/Automaton/Automaton.h
 - Documents/Arduino/libraries/Automaton/examples
+- Documents/Arduino/libraries/Automaton/extras
+- Documents/Arduino/libraries/Automaton/src
 - ....
 
 Start your Arduino application and the library should be under `Sketch > Include library`.
@@ -30,25 +30,25 @@ Start your Arduino application and the library should be under `Sketch > Include
 
 ## Quick start ##
 
-Connect an led and an appropriate current limiting resistor (330 ohm will probably do) between pin 3 and GND.
+Connect an led and an appropriate current limiting resistor (330 ohm will probably do) between pin 4 and GND.
 
 In the Arduino menu choose: `File > Examples > Automaton > blink_modular`
 
 Run the example sketch.
 
 ```c++
+
 #include <Automaton.h>
 #include "Atm_blink.h"
 
 Atm_blink led;
 
-void setup()
-{
-  led.begin( 3, 200 );
+void setup() {
+  led.begin( 4, 200 );        // Setup a blink machine
+  led.trigger( led.EVT_ON );  // Turn it on
 }
 
-void loop()
-{
+void loop() {
   led.cycle();
 }
 ```
