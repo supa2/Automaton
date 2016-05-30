@@ -1,6 +1,6 @@
 Plays a single note or an array of frequency/period/pause triplets through a piezo speaker.
 
-But it's more useful than that. By using the onNote() connector the player machine can be used to drive other machines or process any task at the intervals given in the pattern array.
+But it's more useful than that. By using the onNote() connector the player machine can be used to drive other machines or process any task at the intervals given in the pattern array. The onFinish() connector allows for chaining different patterns into 'songs'.
 
 ![Player](images/player.jpg)
 
