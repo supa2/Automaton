@@ -86,54 +86,6 @@ The patsize argument contains the total number of *bytes* in the pattern array.
 
 The onFinish() connector can be used to chain different patterns together from a callback handler.
 
-```c++
-#include <Automaton.h>
-
-Atm_player player;
-Atm_button button;
-Appliance app;
-
-int pattern1[] = { 
-  440, 100, 0, 
-  587, 100, 0,
-  880, 100, 100,
-};
-
-int pattern2[] = { 
-  880, 100, 0, 
-  587, 100, 0,
-  440, 100, 100,
-};
-
-void callback( int idx, int v, int up ) {
-  static int cnt = 0;
-  if ( cnt % 2 == 0 ) {
-    player.play( pattern2, sizeof( pattern2 ) );
-  } else {
-    player.play( pattern1, sizeof( pattern1 ) ).trigger( player.EVT_STOP );
-  }
-  cnt++;  
-}
-
-void setup() {
-
-  app.component( 
-    player.begin( 4 ) 
-      .play( pattern1, sizeof( pattern1 ) )
-      .onFinish( callback )
-  );
-
-  app.component(
-    button.begin( 2 )
-      .onPress( player, player.EVT_TOGGLE )
-  );
-}
-
-void loop() {
-  app.run();
-}
-```
-
 ### Atm_player & play( int freq, int period, int pause = 0 ) ###
 
 Plays a single tone through the piezo speaker.
@@ -265,17 +217,54 @@ void setup() {
 
 A connector that is called when playing stops (after the last repeat of a pattern has finished).
 
+The code below uses onFinish() to chain two different patterns together.
+
 ```c++
+#include <Automaton.h>
+
+Atm_player player;
+Atm_button button;
+Appliance app;
+
+int pattern1[] = { 
+  440, 100, 0, 
+  587, 100, 0,
+  880, 100, 100,
+};
+
+int pattern2[] = { 
+  880, 100, 0, 
+  587, 100, 0,
+  440, 100, 100,
+};
+
+void callback( int idx, int v, int up ) {
+  static int cnt = 0;
+  if ( cnt % 2 == 0 ) {
+    player.play( pattern2, sizeof( pattern2 ) );
+  } else {
+    player.play( pattern1, sizeof( pattern1 ) ).trigger( player.EVT_STOP );
+  }
+  cnt++;  
+}
+
 void setup() {
 
   app.component( 
     player.begin( 4 ) 
-      .play( pattern, sizeof( pattern ) )
+      .play( pattern1, sizeof( pattern1 ) )
       .onFinish( callback )
   );
 
+  app.component(
+    button.begin( 2 )
+      .onPress( player, player.EVT_TOGGLE )
+  );
 }
 
+void loop() {
+  app.run();
+}
 ```
 
 
