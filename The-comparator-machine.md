@@ -155,7 +155,7 @@ void setup() {
   app.component( 
     cmp.begin( A0, 50 )
       .threshold( threshold_list, 10, true )
-      .average( avgbuffer, 256 )
+      .average( avgbuffer, sizeof( avgbuffer ) )
       .onChange( cmp_callback )
   );
 
