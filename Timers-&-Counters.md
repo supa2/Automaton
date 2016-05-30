@@ -23,16 +23,14 @@ Sets a timer or counter to a value.
 In the Atm_* class definition:
 ```c++
 atm_timer_millis timer1;
-atm_timer_micros timer2;
 atm_counter counter;
 ```
 In the Atm_*::begin() method:
 
 ```c++
-timer1.set( 10000 );  // Set timer to a 10 seconds delay
-timer2.set( 10000 );  // Set timer to a 10 millisecond delay
-timer1.set( 0 );  // Set timer to expire immediately
-timer1.set( ATM_TIMER_OFF );  // Set timer not to expire at all
+timer.set( 10000 );  // Set timer to a 10 seconds delay
+timer.set( 0 );  // Set timer to expire immediately
+timer.set( ATM_TIMER_OFF );  // Set timer not to expire at all
 
 counter.set( 10 ); // Set counter to expire after 10 decrements
 counter.set( 0 ); // Set counter to expire immediately
