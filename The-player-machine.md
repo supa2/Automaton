@@ -287,10 +287,22 @@ player.trace( Serial );
 
 The player machine starts playback on receipt of this event.
 
+```c++
+  player.trigger( player.EVT_START );
+```
+
 ### EVT_STOP ###
 
 The player machine stops playback on receipt of this event.
 
+```c++
+  player.trigger( player.EVT_STOP );
+```
+
 ### EVT_TOGGLE ###
 
 The player machine toggle playback on or off on receipt of this event.
+
+```c++
+  player.trigger( player.EVT_TOGGLE );
+```
