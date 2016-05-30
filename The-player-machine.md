@@ -136,7 +136,7 @@ void setup() {
       .range( 20, 300 )
       .onChange( []( int idx, int v, int up ) {
          player.speed( v );
-       });
+      });
   );
 
 }
