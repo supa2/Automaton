@@ -1,4 +1,4 @@
-*Reactive, declarative, event driven, table based state machine framework for Arduino.*
+*Reactive state machine framework for Arduino.*
 
 Automaton is a reactive state machine framework that allows you to create Arduino applications (appliances) that consist entirely of concurrently running finite state machines (FSM) interacting with one another. Changes are automatically propagated through the appliance like changes in a spreadsheet.
 
