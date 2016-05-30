@@ -1,5 +1,5 @@
 * [Home](.)  
-* Classes
+* **Classes**
   * [Automaton Appliance](Automaton-Appliance-class)  
   * [Automaton Machine](Automaton-Machine-class)  
 * Topics
