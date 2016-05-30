@@ -12,6 +12,9 @@ But it's more useful than that. By using the onNote() connector the player machi
 * [onNote()](#atm_player--onnote-connector-connector-arg-)  
 * [onFinish()](#atm_player--onfinish-connector-connector-arg-)  
 * [trace()](#atm_player--trace-stream--stream-)  
+* [EVT_START](#evt_start)  
+* [EVT_STOP](#evt_stop)  
+* [EVT_TOGGLE](#evt_toggle)  
 
 <!-- md-tocify-end -->
 
@@ -279,3 +282,15 @@ To monitor the behavior of this machine you may log state change events to a Str
 Serial.begin( 9600 );
 player.trace( Serial );
 ```
+
+### EVT_START ###
+
+The player machine starts playback on receipt of this event.
+
+### EVT_STOP ###
+
+The player machine stops playback on receipt of this event.
+
+### EVT_TOGGLE ###
+
+The player machine toggle playback on or off on receipt of this event.
