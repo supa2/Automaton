@@ -10,7 +10,7 @@ Atm_button button;
 Appliance app;
 
 int pattern[] = { 
-  440, 100, 0, 
+  440, 100, 0, // Frequency, Duration, Pause
   587, 100, 0,
   880, 100, 100,
 };
