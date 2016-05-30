@@ -216,7 +216,7 @@ int pattern[] = {
   1,  10, 0, // Frequency, Duration, Pause triplets
   2, 980, 0,
   3,  10, 0,
-  4,  10, 0,
+  4,   0, 0,
 };
 
 // Switch two solenoids in order
