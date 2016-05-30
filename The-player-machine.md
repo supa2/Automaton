@@ -38,6 +38,8 @@ void loop() {
 
 ### Atm_player& play( int* pat, int patsize ) ###
 
+Pattern chaining requires extra repeat() in callback.
+
 ### Atm_player& play( int freq, int period, int pause = 0 ) ###
 
 ### Atm_player& repeat( int v ) ###
