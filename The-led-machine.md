@@ -11,7 +11,7 @@ Control a led via a digital pin. Control blink speed, pause duration and number 
 * [onFinish()](#atm_led--onfinish-machine--next-int-event--evt_start-)  
 * [EVT_ON](#evt_on)  
 * [EVT_OFF](#evt_off)  
-* [EVT_BLINK](#evt_start)  
+* [EVT_BLINK](#evt_blink)  
 * [EVT_TOGGLE](#evt_toggle)  
 * [EVT_TOGGLE_BLINK](#evt_toggle_blink)  
 * [trace()](#atm_led--trace-stream--stream-)  
