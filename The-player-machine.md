@@ -42,7 +42,7 @@ void setup() {
 
   app.component( // Button on pin 2
     button.begin( 2 )
-      .onPress( player, player.EVT_TOGGLE )
+      .onPress( player, player.EVT_START ) // Linked by an event
   );
 
 }
