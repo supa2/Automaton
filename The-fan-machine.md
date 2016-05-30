@@ -3,9 +3,9 @@ The Atm_fan machine has a single purpose. It converts a single event trigger to 
 ![Fade](images/fan-small.jpg)
 
 <!-- md-tocify-begin -->
-* [begin()](#atm_player--begin-)  
-* [onInput()](#atm_player--onnote-connector-connector-arg-)  
-* [trace()](#atm_player--trace-stream--stream-)  
+* [begin()](#atm_fan--begin-void-)  
+* [onInput()](#atm_fan--oninput-connector-connector-arg-)  
+* [trace()](#atm_fan--trace-stream--stream-)  
 * [EVT_INPUT](#evt_input)  
 
 <!-- md-tocify-end -->
@@ -47,11 +47,11 @@ void loop() {
 }
 ```
 
-### Atm_player & begin( void ) ###
+### Atm_fan & begin( void ) ###
 
 Initializes a fan machine. 
 
-### Atm_player & onInput( {connector}, {connector-arg} ) ###
+### Atm_fan & onInput( {connector}, {connector-arg} ) ###
 
 Connects one of the four fan outputs to a machine or callback.
 
