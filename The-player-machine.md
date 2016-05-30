@@ -40,6 +40,33 @@ void loop() {
 
 Pattern chaining requires extra repeat() in callback.
 
+```c++
+int pattern1[] = { 
+  440, 100, 0, 
+  587, 100, 0,
+  880, 100, 100,
+};
+
+
+int pattern2[] = { 
+  880, 100, 0, 
+  587, 100, 0,
+  440, 100, 100,
+};
+
+void callback( int idx, int v, int up ) {
+  static int cnt = 0;
+  if ( cnt % 2 == 0 ) {
+    player.play( pattern2, sizeof( pattern2 ) ).repeat( 1 );
+  } else {
+    player.play( pattern1, sizeof( pattern1 ) );
+  }
+  cnt++;  
+}
+
+```
+
+
 ### Atm_player& play( int freq, int period, int pause = 0 ) ###
 
 ### Atm_player& repeat( int v ) ###
