@@ -33,7 +33,7 @@ int pattern[] = {
 void setup() {
  
   app.component( 
-    player.begin( 3 ) 
+    player.begin( 4 ) 
       .play( pattern, sizeof( pattern ) )
   );
 
@@ -115,7 +115,7 @@ void callback( int idx, int v, int up ) {
 void setup() {
 
   app.component( 
-    player.begin( 3 ) 
+    player.begin( 4 ) 
       .play( pattern1, sizeof( pattern1 ) )
       .onFinish( callback )
   );
@@ -145,7 +145,7 @@ pause | Duration of note off
 void setup() {
 
   app.component( 
-    player.begin( 3 ) 
+    player.begin( 4 ) 
       .play( 440, 200 ) // Play a 440 hz tone for 200 ms
   );
 
@@ -171,7 +171,7 @@ At speed( 100 ) - the default - everything plays at the speed specified in the p
 void setup() {
 
   app.component( 
-    player.begin( 3 ) 
+    player.begin( 4 ) 
       .play( pattern, sizeof( pattern ) )
       .repeat( ATM_COUNTER_OFF) // Repeat forever!
   );
@@ -261,7 +261,7 @@ A connector that is called when playing stops (after the last repeat of a patter
 void setup() {
 
   app.component( 
-    player.begin( 3 ) 
+    player.begin( 4 ) 
       .play( pattern, sizeof( pattern ) )
       .onFinish( callback )
   );
