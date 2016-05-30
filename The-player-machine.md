@@ -106,7 +106,7 @@ void setup() {
 
   app.component(
     button.begin( 2 )
-      .onPress( player, player.EVT_START )
+      .onPress( player, player.EVT_START ) // When the button is pressed
   );
 }
 
