@@ -252,6 +252,11 @@ void setup() {
       .onNote( callback )
   );
 
+  app.component(
+    button.begin( 2 )
+      .onPress( player, player.EVT_START )
+  );
+
 }
 
 ```
