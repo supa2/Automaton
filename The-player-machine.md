@@ -5,7 +5,7 @@ But it's more useful than that. By using the onNote() connector the player machi
 ![Player](images/player.jpg)
 
 <!-- md-tocify-begin -->
-* [begin()](#atm_player--begin-int-pin--1-)  
+* [begin()](#atm_player--begin-int-pin---1-)  
 * [play()](#atm_player--play-int-pat-int-patsize-)  
 * [repeat()](#atm_player--repeat-int-v-)  
 * [speed()](#atm_player--speed-int-v-)  
