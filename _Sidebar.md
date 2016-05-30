@@ -2,7 +2,7 @@
 * **Classes**
   * [Automaton Appliance](Automaton-Appliance-class)  
   * [Automaton Machine](Automaton-Machine-class)  
-* Topics
+* **Topics**
   * [Installation](Installation)  
   * [Automaton Testimonials](Automaton-Testimonials)  
   * [Machine building tutorial](Machine-building-tutorial)  
@@ -10,7 +10,7 @@
   * [Timers & counters](Timers-&-Counters)  
   * [Tips & tricks & pitfalls](Tips-&-tricks-&-pitfalls)
   * [Contributed](Contributed)
-* Bundled state machines
+* **Bundled state machines**
   * [The analog machine](The-analog-machine)  
   * [The bit machine](The-bit-machine)  
   * [The button machine](The-button-machine)  
