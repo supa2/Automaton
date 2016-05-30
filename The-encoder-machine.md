@@ -1,4 +1,6 @@
-The encoder state machine monitors a 2 pin (+GND) rotary encoder for changes. On every movement of the axis either an up or down connector is called. The encoder can be linked to a numeric range in which case the current value can be accessed via the state() method or referenced by a condition machine. Developed for and tested with the [Sparkfun rotary encoder](https://www.sparkfun.com/products/9117).
+The encoder state machine monitors a 2 pin (+GND) rotary encoder for changes. On every movement of the axis either an up or down connector is called. The encoder can be linked to a numeric range in which case the current value can be accessed via the state() method or referenced by a condition machine. The encoder machine is in many ways interchangeable with the analog machine.
+
+Developed for and tested with the [Sparkfun rotary encoder](https://www.sparkfun.com/products/9117).
 
 ![Rotary encoder](images/rotary-small.jpg)
 
