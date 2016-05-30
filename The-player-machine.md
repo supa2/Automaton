@@ -41,12 +41,17 @@ void loop() {
 Pattern chaining requires extra repeat() in callback.
 
 ```c++
+#include <Automaton.h>
+
+Atm_player player;
+Atm_button button;
+Appliance app;
+
 int pattern1[] = { 
   440, 100, 0, 
   587, 100, 0,
   880, 100, 100,
 };
-
 
 int pattern2[] = { 
   880, 100, 0, 
@@ -64,6 +69,25 @@ void callback( int idx, int v, int up ) {
   cnt++;  
 }
 
+void setup() {
+  Serial.begin( 9600 );
+//  player.trace( Serial );
+
+  app.component( 
+    player.begin( 3 ) 
+      .play( pattern1, sizeof( pattern1 ) )
+      .onFinish( callback )
+  );
+
+  app.component(
+    button.begin( 2 )
+      .onPress( player, player.EVT_TOGGLE )
+  );
+}
+
+void loop() {
+  app.run();
+}
 ```
 
 
