@@ -1,4 +1,6 @@
-Not just a music player but a programmable pattern generator.
+Plays a single note or an array of frequency/period/pause triplets through a piezo speaker.
+
+But it's more useful than that. By using the onNote() connector the player machine can be used to drive other machines or process any task at the intervals given in the pattern array.
 
 ## Synopsis ##
 
@@ -175,6 +177,44 @@ void setup() {
 
 ### Atm_player& onNote( {connector}, {connector-arg} ) ###
 
+This is where it gets interesting. By using the onNote() connector the player machine can be used to drive other machines or process any task at the intervals given in the pattern array. The frequency value (which may very well contain something totally different) is passed on to a callback in the *v* argument.
+
+```c++
+void setup() {
+
+  app.component( led.begin( 4 ) );
+  
+  app.component( 
+    player.begin()
+      .onNote( true, led, led.EVT_ON ) // On note on
+      .onNote( false, led, led.EVT_OFF ) // On note off
+  );
+
+}
+```
+
 ### Atm_player& onFinish( {connector}, {connector-arg} ) ###
 
-### trace( Stream & stream ) ###
+A connector that is called when playing stops (after the last repeat of a pattern has finished).
+
+```c++
+void setup() {
+
+  app.component( 
+    player.begin( 3 ) 
+      .play( pattern1, sizeof( pattern1 ) )
+      .onFinish( callback )
+  );
+
+}
+
+```
+
+### Atm_player & trace( Stream & stream ) ###
+
+To monitor the behavior of this machine you may log state change events to a Stream object like Serial.
+
+```c++
+Serial.begin( 9600 );
+player.trace( Serial );
+```
