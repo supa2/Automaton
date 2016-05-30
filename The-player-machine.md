@@ -2,6 +2,19 @@ Plays a single note or an array of frequency/period/pause triplets through a pie
 
 But it's more useful than that. By using the onNote() connector the player machine can be used to drive other machines or process any task at the intervals given in the pattern array.
 
+![Player](images/player.jpg)
+
+<!-- md-tocify-begin -->
+* [begin()](#atm_player--begin-int-pin--1-)  
+* [play()](#atm_player--play-int-pat-int-patsize-)  
+* [repeat()](#atm_player--repeat-int-v-)  
+* [speed()](#atm_player--speed-int-v-)  
+* [onNote()](#atm_player--onnote-connector-connector-arg-)  
+* [onFinish()](#atm_player--onfinish-connector-connector-arg-)  
+* [trace()](#atm_player--trace-stream--stream-)  
+
+<!-- md-tocify-end -->
+
 ## Synopsis ##
 
 ```c++
@@ -36,7 +49,7 @@ void loop() {
 }
 ```
 
-### Atm_player& begin( int pin = -1 ) ###
+### Atm_player & begin( int pin = -1 ) ###
 
 Initializes a player machine. If the pin argument is greater than -1 the machine will drive a piezo speaker connected to that pin through the Arduino tone() function. Leave the pin argument at -1 if you only want to use the onNote() connector.
 
@@ -56,7 +69,7 @@ void setup() {
 
 ```
 
-### Atm_player& play( int* pat, int patsize ) ###
+### Atm_player & play( int* pat, int patsize ) ###
 
 Sets a pattern to be played by the player machine. The pattern should be an array of int with 3 entries for every tone.
 
@@ -118,7 +131,7 @@ void loop() {
 }
 ```
 
-### Atm_player& play( int freq, int period, int pause = 0 ) ###
+### Atm_player & play( int freq, int period, int pause = 0 ) ###
 
 Plays just one tone through the piezo speaker.
 
@@ -144,12 +157,12 @@ void setup() {
 
 ```
 
-### Atm_player& repeat( int v ) ###
+### Atm_player & repeat( int v ) ###
 
 Specifies how often the pattern should be repeated. Default is once (1). 
 After the last repeat has finished the onFinish() connector is called.
 
-### Atm_player& speed( int v ) ###
+### Atm_player & speed( int v ) ###
 
 Modifies the speed of the pattern, value is a percentage.
 At speed( 100 ) - the default - everything plays at the speed specified in the pattern array, at 50 everything plays at half speed, at 300 everything plays at triple speed, etc... 
@@ -175,7 +188,7 @@ void setup() {
 
 ```
 
-### Atm_player& onNote( {connector}, {connector-arg} ) ###
+### Atm_player & onNote( {connector}, {connector-arg} ) ###
 
 This is where it gets interesting. By using the onNote() connector the player machine can be used to drive other machines or process any task at the intervals given in the pattern array. The frequency value (which may very well contain something totally different) is passed on to a callback in the *v* argument.
 
@@ -240,7 +253,7 @@ void setup() {
 
 ```
 
-### Atm_player& onFinish( {connector}, {connector-arg} ) ###
+### Atm_player & onFinish( {connector}, {connector-arg} ) ###
 
 A connector that is called when playing stops (after the last repeat of a pattern has finished).
 
