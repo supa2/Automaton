@@ -133,7 +133,7 @@ void loop() {
 
 ### Atm_player & play( int freq, int period, int pause = 0 ) ###
 
-Plays just one tone through the piezo speaker.
+Plays a single tone through the piezo speaker.
 
 Argument | Function
 ---- | ----
