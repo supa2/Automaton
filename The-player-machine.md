@@ -224,20 +224,22 @@ int pattern[] = {
 // Solenoid 2: ____|^^^^^^|_____
 
 void callback( int idx, int v, int up ) {
-  switch ( v ) {
-    case 1:
-      solenoid1.trigger( solenoid1.EVT_ON );
-      return;
-    case 2:
-      solenoid2.trigger( solenoid2.EVT_ON );
-      return;
-    case 3:
-      solenoid2.trigger( solenoid2.EVT_OFF );
-      return;
-    case 4:
-      solenoid1.trigger( solenoid1.EVT_OFF );
-      return;
-  } 
+  if ( up ) {
+    switch ( v ) {
+      case 1:
+        solenoid1.trigger( solenoid1.EVT_ON );
+        return;
+      case 2:
+        solenoid2.trigger( solenoid2.EVT_ON );
+        return;
+      case 3:
+        solenoid2.trigger( solenoid2.EVT_OFF );
+        return;
+      case 4:
+        solenoid1.trigger( solenoid1.EVT_OFF );
+        return;
+    } 
+  }
 }
 
 void setup() {
