@@ -155,7 +155,7 @@ void setup() {
           digitalWrite( i + startLedPin, ( v & ( 1 << i ) ) ? HIGH : LOW ); 
         }    
       })
-      .repeat( ATM_COUNTER_OFF ) // This means forever
+      .repeat( ATM_COUNTER_OFF ) // Repeat forever
       .trigger( player.EVT_START )
   );
   app.component( 
