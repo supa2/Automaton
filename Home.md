@@ -1,6 +1,6 @@
 *Reactive state machine framework for Arduino.*
 
-Automaton is a reactive state machine framework that allows you to create Arduino applications (appliances) that consist entirely of concurrently running finite state machines (FSM) interacting with one another. Changes are automatically propagated through the appliance like changes in a spreadsheet.
+The Automaton framework allows you to create Arduino applications (appliances) that consist entirely of concurrently running finite state machines (FSM) interacting with one another. Changes are automatically propagated through the appliance like changes in a spreadsheet.
 
 ![Sierra Online - Incredible Machine](http://s.emuparadise.org/fup/up/93649-Incredible_Machine_%281993%29%28Sierra_Online%29-1.png)
 
