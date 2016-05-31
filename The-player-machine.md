@@ -147,8 +147,8 @@ int pattern[] = {
 
 void setup() {
   app.component( 
-    player.begin( -1 )
-      .play( pattern, sizeof( pattern ) )
+    player.begin() // No sound this time!
+      .play( pattern, sizeof( pattern ) ) //  Set up the pattern
       .onNote( true, []( int idx, int v, int up ) { // Called on every note
         for ( int i = 0; i < 6; i++ ) {
           pinMode( i + startLedPin, OUTPUT ); // LED on/off according to bit  
@@ -156,11 +156,11 @@ void setup() {
         }    
       })
       .repeat( ATM_COUNTER_OFF ) // Repeat forever
-      .trigger( player.EVT_START )
+      .trigger( player.EVT_START ) // Kickoff!
   );
   app.component( 
-    speed.begin( speedPotPin )
-      .range( speedMin, speedMax )
+    speed.begin( speedPotPin ) 
+      .range( speedMin, speedMax ) // Set the range for the pot values
       .onChange( []( int idx, int v, int up ) {
         player.speed( v ); // Set speed on every change of the potmeter
       })
