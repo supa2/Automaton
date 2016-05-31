@@ -127,8 +127,8 @@ The example below displays a pulsing led pattern on pins 4..9 defined by a bitma
 ```c++
 #include <Automaton.h>
 
-Atm_player player;
-Atm_analog speed;
+Atm_player player; // A player machine
+Atm_analog speed; // An analog machine for the potmeter
 Appliance app;
 
 const int ledPinMin = 4; // Use pins 4..9
