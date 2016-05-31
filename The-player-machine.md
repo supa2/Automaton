@@ -122,26 +122,59 @@ After the last repeat has finished the onFinish() connector is called.
 Modifies the speed of the pattern, value is a percentage.
 At speed( 100 ) - the default - everything plays at the speed specified in the pattern array, at 50 everything plays at half speed, at 300 everything plays at triple speed, etc... 
 
+The example below displays a pulsing led pattern on pins 4..11. The speed of the display can be controlled with a potmeter on pin A0.
+
 ```c++
+#include <Automaton.h>
+
+Atm_player player;
+Atm_analog speed;
+Appliance app;
+
+const int startLedPin = 4;
+const int speedPotPin = A0;
+const int speedMin = 50;
+const int speedMax = 500;
+
+int pattern[] = { 
+  B00000000, 100, 0, 
+  B00011000, 100, 0, 
+  B00111100, 100, 0, 
+  B01111110, 100, 0, 
+  B11111111, 100, 0, 
+  B01111110, 100, 0, 
+  B00111100, 100, 0, 
+  B00011000, 100, 0, 
+};
+
 void setup() {
-
   app.component( 
-    player.begin( 4 ) 
+    player.begin( -1 )
       .play( pattern, sizeof( pattern ) )
-      .repeat( ATM_COUNTER_OFF) // Repeat forever!
+      .onNote( true, []( int idx, int v, int up ) {
+        for ( int i = 0; i < 10; i++ ) {
+          pinMode( i + startLedPin, OUTPUT );    
+          digitalWrite( i + startLedPin, ( v & ( 1 << i ) ) ? HIGH : LOW );
+        }    
+      })
+      .trigger( player.EVT_START )
+      .repeat( ATM_COUNTER_OFF )
   );
-
   app.component( 
-    potmeter.begin( A0 ) // Vary the playback speed with a pot on A0
-      .range( 20, 300 )
+    speed.begin( speedPotPin )
+      .range( speedMin, speedMax )
       .onChange( []( int idx, int v, int up ) {
-         player.speed( v );
-      });
+        player.speed( v );
+      })
   );
-
 }
 
+void loop() {
+  app.run();
+}
 ```
+
+Note that we don't use state machines to represent the leds. There's no need to since we're just switching them on and off and this way we need only 2 state machines instead of 10. State machines are a great tool, but there's no need to go overboard on them.
 
 ### Atm_player & onNote( {connector}, {connector-arg} ) ###
 
