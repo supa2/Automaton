@@ -172,7 +172,7 @@ void loop() {
 }
 ```
 
-Note that we don't use state machines to represent the leds. There's no need to since we're just switching them on and off and this way we need only 2 state machines instead of 10. State machines are a great tool, but there's no need to go overboard on them.
+Note that this time we don't use state machines to represent the leds. There's no need to since we're just switching them on and off and this way we need only 2 state machines instead of 10. State machines are a great tool, but there's no need to go overboard on them.
 
 ### Atm_player & onNote( {connector}, {connector-arg} ) ###
 
