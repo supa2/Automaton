@@ -149,20 +149,20 @@ void setup() {
   app.component( 
     player.begin( -1 )
       .play( pattern, sizeof( pattern ) )
-      .onNote( true, []( int idx, int v, int up ) {
+      .onNote( true, []( int idx, int v, int up ) { // Called on every note
         for ( int i = 0; i < 6; i++ ) {
           pinMode( i + startLedPin, OUTPUT );    
-          digitalWrite( i + startLedPin, ( v & ( 1 << i ) ) ? HIGH : LOW );
+          digitalWrite( i + startLedPin, ( v & ( 1 << i ) ) ? HIGH : LOW ); // LED on/off according to bit
         }    
       })
+      .repeat( ATM_COUNTER_OFF ) // This means forever
       .trigger( player.EVT_START )
-      .repeat( ATM_COUNTER_OFF )
   );
   app.component( 
     speed.begin( speedPotPin )
       .range( speedMin, speedMax )
       .onChange( []( int idx, int v, int up ) {
-        player.speed( v );
+        player.speed( v ); // Set speed on every change of the potmeter
       })
   );
 }
