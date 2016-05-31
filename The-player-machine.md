@@ -122,7 +122,7 @@ After the last repeat has finished the onFinish() connector is called.
 Modifies the speed of the pattern, value is a percentage.
 At speed( 100 ) - the default - everything plays at the speed specified in the pattern array, at 50 everything plays at half speed, at 300 everything plays at triple speed, etc... 
 
-The example below displays a pulsing led pattern on pins 4..9. The speed of the display can be controlled with a potmeter on pin A0.
+The example below displays a pulsing led pattern on pins 4..9 defined by a bitmapped pattern. The speed of the display can be controlled with a potmeter on pin A0.
 
 ```c++
 #include <Automaton.h>
