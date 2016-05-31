@@ -122,7 +122,7 @@ After the last repeat has finished the onFinish() connector is called.
 Modifies the speed of the pattern, value is a percentage.
 At speed( 100 ) - the default - everything plays at the speed specified in the pattern array, at 50 everything plays at half speed, at 300 everything plays at triple speed, etc... 
 
-The example below displays a pulsing led pattern on pins 4..11. The speed of the display can be controlled with a potmeter on pin A0.
+The example below displays a pulsing led pattern on pins 4..9. The speed of the display can be controlled with a potmeter on pin A0.
 
 ```c++
 #include <Automaton.h>
@@ -138,13 +138,11 @@ const int speedMax = 500;
 
 int pattern[] = { 
   B00000000, 100, 0, 
-  B00011000, 100, 0, 
-  B00111100, 100, 0, 
-  B01111110, 100, 0, 
-  B11111111, 100, 0, 
-  B01111110, 100, 0, 
-  B00111100, 100, 0, 
-  B00011000, 100, 0, 
+  B00001100, 100, 0, 
+  B00011110, 100, 0, 
+  B00111111, 100, 0, 
+  B00011110, 100, 0, 
+  B00001100, 100, 0, 
 };
 
 void setup() {
@@ -152,7 +150,7 @@ void setup() {
     player.begin( -1 )
       .play( pattern, sizeof( pattern ) )
       .onNote( true, []( int idx, int v, int up ) {
-        for ( int i = 0; i < 10; i++ ) {
+        for ( int i = 0; i < 6; i++ ) {
           pinMode( i + startLedPin, OUTPUT );    
           digitalWrite( i + startLedPin, ( v & ( 1 << i ) ) ? HIGH : LOW );
         }    
