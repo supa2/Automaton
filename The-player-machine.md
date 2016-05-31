@@ -9,6 +9,7 @@ But it's more useful than that. By using the onNote() connector the player machi
 * [play()](#atm_player--play-int-pat-int-patsize-)  
 * [repeat()](#atm_player--repeat-int-v-)  
 * [speed()](#atm_player--speed-int-v-)  
+* [pitch()](#atm_player--pitch-int-v-)  
 * [onNote()](#atm_player--onnote-connector-connector-arg-)  
 * [onFinish()](#atm_player--onfinish-connector-connector-arg-)  
 * [trace()](#atm_player--trace-stream--stream-)  
@@ -174,6 +175,41 @@ void loop() {
 ```
 
 Note that this time we don't use state machines to represent the leds. There's no need to since we're just switching them on and off and this way we need only 2 state machines instead of 10. State machines are a great tool, but there's no need to go overboard on them.
+
+### Atm_player & pitch( int v ) ###
+
+Modifies the pattern frequencies, value is a percentage.
+At speed( 100 ) - the default - everything plays at the frequency specified in the pattern array, at 50 everything plays at half the frequency, at 300 everything plays at triple frequency, etc... 
+
+```c++
+#include <Automaton.h>
+
+// Vary pitch and speed of a note by turning a pot
+
+Atm_player player;
+Atm_analog pot;
+Appliance app;
+
+void setup() {
+  app.component(
+    player.begin( 4 )
+      .play( 440, 100, 100 )
+  );
+  app.component(
+    pot.begin( A0 )
+      .range( 50, 300 )
+      .onChange( []( int idx, int v, int up ) {
+         player.speed( v );
+         player.pitch( v );
+      })
+  );
+}
+
+void loop() {
+  app.run();
+}
+
+```
 
 ### Atm_player & onNote( {connector}, {connector-arg} ) ###
 
