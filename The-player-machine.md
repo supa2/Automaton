@@ -233,6 +233,7 @@ void setup() {
 The example below uses a callback combined with 'magic' values in the pattern/frequency field to trigger two solenoid valves in a particular order.
 
 ```c++
+
 #include <Automaton.h>
 
 Atm_player player;
@@ -241,50 +242,30 @@ Atm_led valve1, valve2;
 Appliance app;
 
 int pattern[] = { 
-  1,  10, 0, // Frequency, Duration, Pause triplets
-  2, 980, 0,
-  3,  10, 0,
-  4,   0, 0,
+  B00000001,  10, 0, // Frequency, Duration, Pause triplets
+  B00000011, 980, 0,
+  B00000001,  10, 0,
+  B00000000,   0, 0,
 };
 
 // Open and close two solenoid valves in this order
 // Valve 1: ___|^^^^^^^^|____
 // Valve 2: ____|^^^^^^|_____
 
-void callback( int idx, int v, int up ) {
-  if ( up ) {
-    switch ( v ) {
-      case 1:
-        valve1.trigger( valve1.EVT_ON );
-        return;
-      case 2:
-        valve2.trigger( valve2.EVT_ON );
-        return;
-      case 3:
-        valve2.trigger( valve2.EVT_OFF );
-        return;
-      case 4:
-        valve1.trigger( valve1.EVT_OFF );
-        return;
-    } 
-  }
-}
-
 void setup() {
-
   app.component( 
     player.begin() 
       .play( pattern, sizeof( pattern ) )
-      .onNote( callback )
+      .onNote( true, []( int idx, int v, int up ) {
+        valve1.trigger( v & B00000001 > 0 ? valve1.EVT_ON : valve1.EVT_OFF );
+        valve2.trigger( v & B00000010 > 0 ? valve2.EVT_ON : valve2.EVT_OFF );	  
+	  }
   );
-
   app.component(
     button.begin( 2 )
       .onPress( player, player.EVT_START )
   );
-
 }
-
 ```
 
 ### Atm_player & onFinish( {connector}, {connector-arg} ) ###
