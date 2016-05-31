@@ -2,6 +2,8 @@ Plays a single note or a pattern defined by an array of frequency/period/pause t
 
 But it's more useful than that. By using the onNote() connector the player machine can be used to drive other machines or process any task at the intervals given in the pattern array. The onFinish() connector allows for chaining different patterns into 'songs'.
 
+Note that the Arduino tone() command cannot control more than one pin at the same time so playing music on two player machines at the same time unfortunately won't work.
+
 ![Player](images/player.jpg)
 
 <!-- md-tocify-begin -->
