@@ -297,7 +297,7 @@ int pattern2[] = {
 void callback( int idx, int v, int up ) {
   static int cnt = 0;
   if ( cnt % 2 == 0 ) {
-    player.play( pattern2, sizeof( pattern2 ) ); // Event counts
+    player.play( pattern2, sizeof( pattern2 ) ); // Even counts
   } else {
     player.play( pattern1, sizeof( pattern1 ) ).trigger( player.EVT_STOP ); // Odd counts
   }
