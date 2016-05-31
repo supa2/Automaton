@@ -282,13 +282,13 @@ Atm_player player;
 Atm_button button;
 Appliance app;
 
-int pattern1[] = { 
+int pattern1[] = { // Odd pattern
   440, 100, 0, 
   587, 100, 0,
   880, 100, 100,
 };
 
-int pattern2[] = { 
+int pattern2[] = { // Even pattern
   880, 100, 0, 
   587, 100, 0,
   440, 100, 100,
