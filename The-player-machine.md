@@ -230,7 +230,7 @@ void setup() {
 }
 ```
 
-The example below uses a callback combined with 'magic' values in the pattern/frequency field to trigger two solenoid valves in a particular order.
+The example below uses a callback combined with bitmapped values in the pattern/frequency field to trigger two solenoid valves in a particular order.
 
 ```c++
 
@@ -253,13 +253,15 @@ int pattern[] = {
 // Valve 2: ____|^^^^^^|_____
 
 void setup() {
+  app.component( valve1.begin( 4 ) );
+  app.component( valve2.begin( 5 ) );
   app.component( 
     player.begin() 
       .play( pattern, sizeof( pattern ) )
       .onNote( true, []( int idx, int v, int up ) {
         valve1.trigger( v & B00000001 > 0 ? valve1.EVT_ON : valve1.EVT_OFF );
         valve2.trigger( v & B00000010 > 0 ? valve2.EVT_ON : valve2.EVT_OFF );	  
-	  }
+      })
   );
   app.component(
     button.begin( 2 )
