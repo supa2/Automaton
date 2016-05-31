@@ -151,8 +151,8 @@ void setup() {
       .play( pattern, sizeof( pattern ) )
       .onNote( true, []( int idx, int v, int up ) { // Called on every note
         for ( int i = 0; i < 6; i++ ) {
-          pinMode( i + startLedPin, OUTPUT );    
-          digitalWrite( i + startLedPin, ( v & ( 1 << i ) ) ? HIGH : LOW ); // LED on/off according to bit
+          pinMode( i + startLedPin, OUTPUT ); // LED on/off according to bit  
+          digitalWrite( i + startLedPin, ( v & ( 1 << i ) ) ? HIGH : LOW ); 
         }    
       })
       .repeat( ATM_COUNTER_OFF ) // This means forever
