@@ -131,12 +131,13 @@ Atm_player player;
 Atm_analog speed;
 Appliance app;
 
-const int startLedPin = 4;
+const int ledPinMin = 4; // Use pins 4..9
+const int ledPinMax = 9; 
 const int speedPotPin = A0;
 const int speedMin = 50;
 const int speedMax = 500;
 
-int pattern[] = { 
+int pattern[] = {  // Bitmapped pattern
   B00000000, 100, 0, 
   B00001100, 100, 0, 
   B00011110, 100, 0, 
@@ -150,9 +151,9 @@ void setup() {
     player.begin() // No sound this time!
       .play( pattern, sizeof( pattern ) ) //  Set up the pattern
       .onNote( true, []( int idx, int v, int up ) { // Called on every note
-        for ( int i = 0; i < 6; i++ ) {
-          pinMode( i + startLedPin, OUTPUT ); // LED on/off according to bit  
-          digitalWrite( i + startLedPin, ( v & ( 1 << i ) ) ? HIGH : LOW ); 
+        for ( int i = ledPinMin; i <= ledPinMax; i++ ) {
+          pinMode( i, OUTPUT ); // LED on/off according to bit  
+          digitalWrite( i, v & ( 1 << ( i - ledPinMin ) ) ? HIGH : LOW ); 
         }    
       })
       .repeat( ATM_COUNTER_OFF ) // Repeat forever
