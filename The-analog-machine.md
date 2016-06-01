@@ -118,15 +118,31 @@ The buffer variable is used as a ring buffer to store the sampled values. The va
 Maps the analog readings to a different range.
 
 ```c++
-Atm_analog sensor;
+#include <Automaton.h>
+
+// Control the speed of a blinking led with a pot
+
+Atm_analog pot;
+Atm_led led;
+Appliance app;
 
 void setup() {
   app.component( 
-    sensor.begin( A0, 50 )
-      .range( 0, 10 )
+    led.begin( 4 )
+      .trigger( led.EVT_BLINK )
+  );
+  app.component( 
+    pot.begin( A0 )
+      .range( 10, 100 )
+      .onChange( []( int idx, int v, int up ) {
+         led.blink( v, v );    
+      })
   );
 }
 
+void loop() {
+  app.run();
+}
 ```
 This also affects the onChange() connector.
 
