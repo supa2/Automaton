@@ -22,8 +22,10 @@ char cmd_buffer[80];
 Atm_command cmd;
 Appliance app;
 
-enum { CMD_HIGH, CMD_LOW, CMD_READ, CMD_AREAD, CMD_AWRITE, CMD_MODE_INPUT, CMD_MODE_OUTPUT, CMD_MODE_PULLUP };
-const char cmdlist[] = "high low read aread awrite mode_input mode_output mode_pullup";
+enum { CMD_HIGH, CMD_LOW, CMD_READ, CMD_AREAD, CMD_AWRITE, 
+       CMD_MODE_INPUT, CMD_MODE_OUTPUT, CMD_MODE_PULLUP };
+const char cmdlist[] = 
+  "high low read aread awrite mode_input mode_output mode_pullup";
 
 void cmd_callback( int idx, int v, int up ) {
   int pin = atoi( cmd.arg( 1 ) );
