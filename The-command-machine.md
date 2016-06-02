@@ -22,13 +22,13 @@ char cmd_buffer[80];
 Atm_command cmd;
 Appliance app;
 
-enum { CMD_HIGH, CMD_LOW, CMD_READ, CMD_MODE_INPUT, CMD_MODE_OUTPUT, CMD_MODE_PULLUP };
-const char cmdlist[] = "high low read mode_input mode_output mode_pullup";
+enum { CMD_HIGH, CMD_LOW, CMD_READ, CMD_AREAD, CMD_AWRITE, CMD_MODE_INPUT, CMD_MODE_OUTPUT, CMD_MODE_PULLUP };
+const char cmdlist[] = "high low read aread awrite mode_input mode_output mode_pullup";
 
 void cmd_callback( int idx, int v, int up ) {
   int pin = atoi( cmd.arg( 1 ) );
   switch ( v ) {
-    case CMD_HIGH:
+    case CMD_HIGH: 
       digitalWrite( pin, HIGH );
       return;
     case CMD_LOW:
@@ -36,6 +36,12 @@ void cmd_callback( int idx, int v, int up ) {
       return;
     case CMD_READ:
       Serial.println( digitalRead( pin ) );
+      return;
+    case CMD_AREAD:
+      Serial.println( analogRead( pin ) );
+      return;
+    case CMD_AWRITE:
+      analogWrite( pin, atoi( cmd.arg( 2 ) ) );
       return;
     case CMD_MODE_INPUT:
       pinMode( pin, INPUT );
@@ -51,7 +57,6 @@ void cmd_callback( int idx, int v, int up ) {
 
 void setup() {
   Serial.begin( 9600 );
-
   app.component( 
     cmd.begin( Serial, cmd_buffer, sizeof( cmd_buffer ) )
       .list( cmdlist )
