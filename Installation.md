@@ -1,3 +1,5 @@
+Automaton requires version 1.6.6 of the Arduino IDE or higher.
+
 Download the library from Github  by clicking here: 
 
 <https://github.com/tinkerspy/Automaton/archive/master.zip>
