@@ -103,6 +103,36 @@ step.onStep( 0, led, led.EVT_ON ); // Turn a led on when this step is reached
 
 You can empty an existing step by calling step.onStep( id ) with just the id argument;
 
+You can get notification of any step change by using onStep() without the id parameter. This can be combined with onStep() with id parameter.
+
+```c++
+#include <Automaton.h>
+
+Atm_step step;
+Atm_button button;
+Appliance app;
+
+void setup() {
+  Serial.begin( 9600 );
+  app.component( 
+    step.begin() 
+      .onStep( []( int idx, int v, int up ) {        
+        Serial.print( step.state() );
+        Serial.print( ": " );
+        Serial.println( v );
+      })
+  );
+  app.component( 
+    button.begin( 2 )
+      .onPress( step, step.EVT_STEP )
+  );
+
+}
+
+void loop() {
+  app.run();
+}
+```
 
 The Atm_led machine already has a toggle event built in, but if it hadn't we could create one with the a two step sequencer connected to a button.
 
