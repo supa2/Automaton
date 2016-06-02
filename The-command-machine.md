@@ -65,16 +65,17 @@ void loop() {
 }
 ```
 
-This example turns your Arduino into a serial device to manipulate pins. 
+This simple example turns your Arduino into a serial device to read and manipulate pins. 
 
 ```
 // Set pin 4 to output and turn it on
->mode_output 4 
->high 4
+mode_output 4 
+high 4
 
 // Set pin 5 to input_pullup and read its state
->mode_pullup 5
->read 5
+mode_pullup 5
+read 5
+1
 ```
 
 ### Atm_command & begin( Stream & stream, char buffer[], int size ) ###
