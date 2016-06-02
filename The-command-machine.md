@@ -65,6 +65,18 @@ void loop() {
 }
 ```
 
+This example turns your Arduino into a serial device to manipulate pins. 
+
+```
+// Set pin 4 to output and turn it on
+>mode_output 4 
+>high 4
+
+// Set pin 5 to input_pullup and read its state
+>mode_pullup 5
+>read 5
+```
+
 ### Atm_command & begin( Stream & stream, char buffer[], int size ) ###
 
 Connects a stream and a command line character buffer to the state machine.
