@@ -49,7 +49,7 @@ void setup() {
   Serial.begin( 9600 );
 
   app.component( 
-    cmd.begin( Serial, cmd_buffer, sizeof( cmd_buffer )
+    cmd.begin( Serial, cmd_buffer, sizeof( cmd_buffer ) )
       .list( cmdlist )
       .onCommand( cmd_callback )
   );
