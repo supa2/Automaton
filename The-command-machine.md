@@ -22,25 +22,29 @@ char cmd_buffer[80];
 Atm_command cmd;
 Appliance app;
 
-enum { PULSE, LOCK };
-const char cmdlist[] = "pulse lock";
-enum { ON, OFF };
-const char on_off[] = "on off";
+enum { CMD_HIGH, CMD_LOW, CMD_READ, CMD_MODE_INPUT, CMD_MODE_OUTPUT, CMD_MODE_PULLUP };
+const char cmdlist[] = "high low read mode_input mode_output mode_pullup";
 
 void cmd_callback( int idx, int v, int up ) {
+  int pin = atoi( cmd.arg( 1 ) );
   switch ( v ) {
-    case PULSE :
-      // Do something for PULSE
+    case CMD_HIGH:
+      digitalWrite( pin, HIGH );
       return;
-    case LOCK :
-      switch ( cmd.lookup( 1, on_off) ) {
-        case ON : 
-          // Do something for LOCK ON
-          return;
-        case OFF : 
-          // Do something for LOCK OFF
-          return;
-      }
+    case CMD_LOW:
+      digitalWrite( pin, LOW );
+      return;
+    case CMD_READ:
+      Serial.println( digitalRead( pin ) );
+      return;
+    case CMD_MODE_INPUT:
+      pinMode( pin, INPUT );
+      return;
+    case CMD_MODE_OUTPUT:
+      pinMode( pin, OUTPUT );
+      return;
+    case CMD_MODE_PULLUP:
+      pinMode( pin, INPUT_PULLUP );
       return;
   }
 }
