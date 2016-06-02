@@ -110,6 +110,7 @@ You can get notification of any step change by using onStep() without the id par
 
 Atm_step step;
 Atm_button button;
+Atm_led led[4];
 Appliance app;
 
 void setup() {
@@ -122,6 +123,10 @@ void setup() {
         Serial.println( v );
       })
   );
+  for ( int i = 0; i < 4; i++ ) {
+    app.component( led[i].begin( i + 4 ) );
+    step.onStep( i, led[i], led[i].EVT_TOGGLE );
+  }
   app.component( 
     button.begin( 2 )
       .onPress( step, step.EVT_STEP )
