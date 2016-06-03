@@ -230,7 +230,9 @@ Source code: [fade.ino](/tinkerspy/Automaton/blob/master/examples/fade/fade.ino)
 Play back the french classic 'Frere Jacques' on a piezo speaker on pin 19. Music starts/stops by a button press and 
 the playback speed is controlled with an analog pot on A0.
 
-Source code: [frere_jacques.ino](/tinkerspy/Automaton/blob/master/examples/frere_jacques/frere_jacques.ino)
+Source code: 
+[frere_jacques.ino](/tinkerspy/Automaton/blob/master/examples/frere_jacques/frere_jacques.ino),
+[musical_notes.h](/tinkerspy/Automaton/blob/master/examples/frere_jacques/musical_notes.h)
 
 #### knight_rider1
 
