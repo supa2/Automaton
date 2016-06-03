@@ -249,6 +249,13 @@ Source code:
  [Atm_sweep.h](/tinkerspy/Automaton/blob/master/examples/knight_rider2/Atm_sweep.h),
  [Atm_sweep.cpp](/tinkerspy/Automaton/blob/master/examples/knight_rider2/Atm_sweep.cpp)
 
+#### knight_rider3
+
+The knight rider sweeping led display using the Atm_player machine as a generic pattern generator.
+
+Source code: 
+[knight_rider3.ino](/tinkerspy/Automaton/blob/master/examples/knight_rider3/knight_rider3.ino)
+
 #### led_test
 
 This example shows a button toggling a led while logging all state change information to the serial terminal. Set the Arduino terminal to 9600 baud to monitor the state changes.
