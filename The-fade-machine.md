@@ -23,20 +23,18 @@ Control a led via a PWM enabled pin. Control blink speed, pause duration, fade i
 #include <Automaton.h>
 
 Atm_fade led1, led2;
-Factory factory;
+Appliance app;
 
-void setup() 
-{
+void setup() {
   led1.begin( 5 ).blink( 40, 250 ).fade( 5 );  // Set up
   led2.begin( 6 ).blink( 40, 50 ).fade( 5 );
-  factory.add (led1 ).add( led2 );                     // Add to a factory
-  led1.trigger( led1.EVT_BLINK );                     // Start fading
+  app.add (led1 ).add( led2 );                 // Add to an appliance
+  led1.trigger( led1.EVT_BLINK );              // Start fading
   led2.trigger( led2.EVT_BLINK );
 }
 
-void loop() 
-{
-  factory.cycle();
+void loop() {
+  app.run();
 }
 ```
 
@@ -45,8 +43,7 @@ void loop()
 Attaches a PWM pin to the Atm_fade machine. Please note that the led will just blink haphazardly on a pin without PWM capability. For the fade effect PWM is required.
 
 ```c++
-void setup() 
-{
+void setup() {
   led1.begin( 5 );
   led1.blink( 40 );
   ...
@@ -71,8 +68,7 @@ Sets the time that the led is fully ON during a cycle in milliseconds.
 The three argument version sets the time the led is fully ON, the time the led is fully OFF and the number of repeats.
 
 ```c++
-void setup() 
-{
+void setup() {
   led1.begin( 5 );
   led1.blink( 40 );
   led1.blink( 500, 500 );
@@ -86,8 +82,7 @@ void setup()
 Sets the time that the led is fully OFF during a cycle in milliseconds.
 
 ```c++
-void setup() 
-{
+void setup() {
   led1.begin( 5 );
   led1.blink( 40 );
   led1.pause( 100 );
@@ -100,8 +95,7 @@ void setup()
 Sets the speed time each fade step takes in milliseconds. The lower this number, the faster the fade effect.
 
 ```c++
-void setup() 
-{
+void setup() {
   led1.begin( 5 ).blink( 50, 100 ).fade( 5 );
   ...
 }
@@ -119,8 +113,7 @@ Off | Fading in | On | Fading out
 Sets how many times the blink pattern should repeat. Default is *ATM_COUNTER_OFF* which means it will blink indefinitely. Use *1* to blink once, etc...
 
 ```c++
-void setup() 
-{
+void setup() {
   led1.begin( 5 ).blink( 50 ).repeat( 1 ).trigger( led1.EVT_BLINK );
   ...
 }

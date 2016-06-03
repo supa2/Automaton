@@ -24,18 +24,18 @@ Control a led via a digital pin. Control blink speed, pause duration and number 
 #include <Automaton.h>
 
 Atm_led led1, led2;
-Factory factory;
+Appliance app;
 
 void setup() {
   led1.begin( 4 ).blink( 40, 250 ); // Setup blinking
   led2.begin( 5 ).blink( 40, 50 ); 
-  factory.add (led1 ).add( led2 );  // Add to a factory
+  app.add (led1 ).add( led2 );  // Add to an appliance
   led1.trigger( led1.EVT_BLINK );   // Start blinking
   led2.trigger( led2.EVT_BLINK );
 }
 
 void loop() {
-  factory.cycle();
+  app.run();
 }
 ```
 
@@ -142,7 +142,7 @@ This method is used to trigger another machine when the current machina's blinki
 ```c++
 led1.begin( 4 ).blink( 500, 500, 3 ).onFinish( led2 );
 led2.begin( 4 ).blink( 50, 50, 10 );
-factory.add( led1 ).add( led2 );
+app.add( led1 ).add( led2 );
 led1.trigger( led1.EVT_BLINK );
 
 ```
@@ -155,20 +155,20 @@ By specifying two machine references in the onFinish() method call they will be 
 #include <Automaton.h>
 
 Atm_led led1, led2, led3, led4, led5, led6;
-Factory factory;
+Appliance app;
 
 void setup() {
-  factory.add( led1.begin( 4 ).blink( 100, 1, 1 ).onFinish( led2 ) ); 
-  factory.add( led2.begin( 5 ).blink( 100, 1, 1 ).onFinish( led3, led1 ) );
-  factory.add( led3.begin( 6 ).blink( 100, 1, 1 ).onFinish( led4, led2 ) );
-  factory.add( led4.begin( 7 ).blink( 100, 1, 1 ).onFinish( led5, led3 ) );
-  factory.add( led5.begin( 8 ).blink( 100, 1, 1 ).onFinish( led6, led4 ) );
-  factory.add( led6.begin( 9 ).blink( 100, 1, 1 ).onFinish( led5 ) );
+  app.add( led1.begin( 4 ).blink( 100, 1, 1 ).onFinish( led2 ) ); 
+  app.add( led2.begin( 5 ).blink( 100, 1, 1 ).onFinish( led3, led1 ) );
+  app.add( led3.begin( 6 ).blink( 100, 1, 1 ).onFinish( led4, led2 ) );
+  app.add( led4.begin( 7 ).blink( 100, 1, 1 ).onFinish( led5, led3 ) );
+  app.add( led5.begin( 8 ).blink( 100, 1, 1 ).onFinish( led6, led4 ) );
+  app.add( led6.begin( 9 ).blink( 100, 1, 1 ).onFinish( led5 ) );
   led1.trigger( led1.EVT_BLINK );
 }
 
 void loop() {
-  factory.cycle();
+  app.run();
 }
 ```
 
