@@ -37,8 +37,8 @@ int pattern[] = {
 };
 
 void setup() {
-  app.component( 
-    player.begin( 4 ) // Piezo speaker on pin 4
+  app.component( // Piezo speaker on pin 4
+    player.begin( 4 ) 
       .play( pattern, sizeof( pattern ) )
   );
   app.component( // Button on pin 2
