@@ -191,12 +191,14 @@ Appliance app;
 
 void setup() {
   app.component(
-    player.begin( 4 )
+    player.begin( 19 )
       .play( 440, 100, 100 )
+      .trigger( player.EVT_START )
+      .repeat( -1 )
   );
   app.component(
     pot.begin( A0 )
-      .range( 50, 300 )
+      .range( 30, 500 )
       .onChange( []( int idx, int v, int up ) {
          player.speed( v );
          player.pitch( v );
@@ -207,7 +209,6 @@ void setup() {
 void loop() {
   app.run();
 }
-
 ```
 
 ### Atm_player & onNote( {connector}, {connector-arg} ) ###
