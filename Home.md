@@ -225,6 +225,13 @@ Fade two leds on and off at different speeds without using an appliance containe
 
 Source code: [fade.ino](/tinkerspy/Automaton/blob/master/examples/fade/fade.ino)
 
+#### frere_jacques
+
+Play back the french classic 'Frere Jacques' on a piezo speaker on pin 19. Music starts/stops by a button press and 
+the playback speed is controlled with an analog pot on A0.
+
+Source code: [frere_jacques.ino](/tinkerspy/Automaton/blob/master/examples/frere_jacques/frere_jacques.ino)
+
 #### knight_rider1
 
 The knight rider sweeping led display using a timer machine that drives a step machine that drives 6 led machines.
