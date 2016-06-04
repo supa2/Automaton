@@ -54,7 +54,7 @@ void loop() {
 
 ### Atm_player & begin( int pin = -1 ) ###
 
-Initializes a player machine. If the pin argument is greater than -1 the machine will drive a piezo speaker connected to that pin through the Arduino tone() function. Leave out the pin argument if you only want to use the onNote() connector.
+Initializes a player machine. If the pin argument is greater than -1 the machine will drive a piezo speaker connected to that pin through the Arduino tone() function. Leave out the pin argument if you want to drive something else through the onNote() connector.
 
 ```c++
 void setup() {
