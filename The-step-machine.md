@@ -23,24 +23,23 @@ The Atm_step machine is useless on its own, but very useful for linking other ma
 Atm_step step;
 Atm_led led1, led2, led3;
 Atm_button button;
-Appliance app;
 
 void setup() {
-  app.component( led1.begin( 4 ) ); // Create 3 led machines
-  app.component( led2.begin( 5 ) );
-  app.component( led3.begin( 6 ) );
-  app.component( step.begin() ); // A step sequencer
-  app.component( 
-    button.begin( 2 )
-      .onPress( step, step.EVT_STEP ) // And a button
-  );
-  step.onStep( 0, led1, led1.EVT_TOGGLE ); // Each step triggers a different led
+  led1.begin( 4 ); // Create 3 led machines
+  led2.begin( 5 );
+  led3.begin( 6 );
+  step.begin(); // A step sequencer
+
+  button.begin( 2 )
+    .onPress( step, step.EVT_STEP ); // And a button
+
+    step.onStep( 0, led1, led1.EVT_TOGGLE ); // Each step triggers a different led
   step.onStep( 1, led2, led2.EVT_TOGGLE );
   step.onStep( 2, led3, led3.EVT_TOGGLE );
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -62,7 +61,6 @@ Registers a callback or registers a trigger to be called when a step becomes act
 #include <Automaton.h>
 
 Atm_step step;
-Appliance app;
 
 void step_callback( int idx, int v, int up ) {
   Serial.print( "Step id=" );
@@ -71,7 +69,7 @@ void step_callback( int idx, int v, int up ) {
 
 void setup() {
   Serial.begin( 9600 );
-  app.component( step.begin() );
+  step.begin();
   step.onStep( 0, step_callback );
   step.onStep( 1, step_callback );
   step.onStep( 2, step_callback );
@@ -82,7 +80,7 @@ void setup() {
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -111,31 +109,26 @@ You can get notification of any step change by using onStep() without the id par
 Atm_step step;
 Atm_button button;
 Atm_led led[4];
-Appliance app;
 
 void setup() {
   Serial.begin( 9600 );
-  app.component( 
-    step.begin() 
-      .onStep( []( int idx, int v, int up ) {        
-        Serial.print( step.state() );
-        Serial.print( ": " );
-        Serial.println( v );
-      })
-  );
+  step.begin() 
+    .onStep( []( int idx, int v, int up ) {        
+      Serial.print( step.state() );
+      Serial.print( ": " );
+      Serial.println( v );
+    });
   for ( int i = 0; i < 4; i++ ) {
-    app.component( led[i].begin( i + 4 ) );
+    led[i].begin( i + 4 );
     step.onStep( i, led[i], led[i].EVT_TOGGLE );
   }
-  app.component( 
-    button.begin( 2 )
-      .onPress( step, step.EVT_STEP )
-  );
+  button.begin( 2 )
+    .onPress( step, step.EVT_STEP );
 
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -147,24 +140,18 @@ The Atm_led machine already has a toggle event built in, but if it hadn't we cou
 Atm_step toggle;
 Atm_led led;
 Atm_button button;
-Appliance app;
-
 
 void setup() {
-  app.component( led.begin( 4 ) );
-  app.component( 
-    toggle.begin() 
-      .onStep( 0, led, led.EVT_ON );
-      .onStep( 1, led, led.EVT_OFF );
-  );
-  app.component( 
-    button.begin( 3 ) 
-      .onPress( toggle, toggle.EVT_STEP )
-  );
+  led.begin( 4 );
+  toggle.begin() 
+    .onStep( 0, led, led.EVT_ON )
+    .onStep( 1, led, led.EVT_OFF );
+  button.begin( 3 ) 
+    .onPress( toggle, toggle.EVT_STEP );
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -187,7 +174,7 @@ When an EVT_BACK trigger is received, the direction will be reversed in such a w
 ```c++
 void setup() {
   Serial.begin( 9600 );
-  app.component( step.begin() );
+  step.begin();
   for ( short i = 0; i <= 7; i++ ) {
     step.onStep( i, step_callback ); // Make all steps call the callback
   }
