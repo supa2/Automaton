@@ -33,7 +33,7 @@ void setup() {
   button.begin( 2 )
     .onPress( step, step.EVT_STEP ); // And a button
 
-    step.onStep( 0, led1, led1.EVT_TOGGLE ); // Each step triggers a different led
+  step.onStep( 0, led1, led1.EVT_TOGGLE ); // Each step triggers a different led
   step.onStep( 1, led2, led2.EVT_TOGGLE );
   step.onStep( 2, led3, led3.EVT_TOGGLE );
 }
