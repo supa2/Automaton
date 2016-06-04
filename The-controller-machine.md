@@ -187,7 +187,7 @@ void setup() {
   controller.begin() // The logical condition that handles it all
     .IF( sw1 ).XOR( sw2 ).XOR( sw3 ).XOR( sw4 )
     .onChange( true, light, light.EVT_ON )
-      .onChange( false, light, light.EVT_OFF );
+    .onChange( false, light, light.EVT_OFF );
 }
 
 void loop() {
