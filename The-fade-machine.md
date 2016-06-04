@@ -23,18 +23,16 @@ Control a led via a PWM enabled pin. Control blink speed, pause duration, fade i
 #include <Automaton.h>
 
 Atm_fade led1, led2;
-Appliance app;
 
 void setup() {
   led1.begin( 5 ).blink( 40, 250 ).fade( 5 );  // Set up
   led2.begin( 6 ).blink( 40, 50 ).fade( 5 );
-  app.add (led1 ).add( led2 );                 // Add to an appliance
   led1.trigger( led1.EVT_BLINK );              // Start fading
   led2.trigger( led2.EVT_BLINK );
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
