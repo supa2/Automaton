@@ -18,7 +18,6 @@ This state machine monitors an analog input with a configurable sample period an
 #include <Automaton.h>
 
 Atm_comparator cmp;
-Appliance app;
 
 void cmp_callback( int idx, int v, int up, int idx_threshold, int v_threshold ) {
   // Do something when one of the thresholds is crossed
@@ -31,15 +30,13 @@ void setup() {
   static uint16_t threshold_list[] = 
     { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }; 
 
-  app.component( 
-    cmp.begin( A0, 50 )
-      .threshold( threshold_list, 10 )
-      .onChange( cmp_callback )
-  );
+  cmp.begin( A0, 50 )
+    .threshold( threshold_list, 10 )
+    .onChange( cmp_callback );
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -54,11 +51,9 @@ void cmp_callback( int idx, int v, int up, int idx_threshold, int v_threshold ) 
 
 void setup() {
   ...
-  app.component( 
-    cmp.begin( A0, 50 )
-      .threshold( threshold_list, 10 )
-      .onChange( cmp_callback, 99 )
-  );
+  cmp.begin( A0, 50 )
+    .threshold( threshold_list, 10 )
+    .onChange( cmp_callback, 99 )
   ...
 }
 ```
@@ -82,11 +77,9 @@ void setup() {
   static uint16_t threshold_list[] = 
     { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }; 
 
-  app.component( 
     cmp.begin( A0, 50 )
       .threshold( threshold_list, 10, true )
-      .onChange( cmp_callback, 99 )
-  );
+      .onChange( cmp_callback, 99 );
 }
 ```
 Declare the list as a global variable or as *static*. The threshold list can hold a maximum of 64 entries.
@@ -102,12 +95,10 @@ void setup() {
   static uint16_t threshold_list[] = 
     { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }; 
 
-  app.component( 
-    cmp.begin( A0, 50 )
-      .threshold( threshold_list, 10, true )
-      .onChange( true, step, step.EVT_STEP )
-      .onChange( false, step, step.EVT_BACK )
-  );
+  cmp.begin( A0, 50 )
+    .threshold( threshold_list, 10, true )
+    .onChange( true, step, step.EVT_STEP )
+    .onChange( false, step, step.EVT_BACK );
 }
 
 ```
@@ -120,24 +111,21 @@ Specifies a machine or callback to be triggered whenever the comparator machine 
 #include <Automaton.h>
 
 Atm_comparator cmp;
-Appliance app;
 
 void setup() {
   static uint16_t threshold_list[] = 
     { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }; 
 
   Serial.begin( 9600 );
-  app.component( 
-    cmp.begin( A0, 50 )
-      .threshold( threshold_list, 10, true )
-      .onChange( [] ( int idx, int v, int up, int idx_threshold, int v_threshold ) {
-         Serial.println( v_threshold );
-      })
-  );
+  cmp.begin( A0, 50 )
+    .threshold( threshold_list, 10, true )
+    .onChange( [] ( int idx, int v, int up, int idx_threshold, int v_threshold ) {
+       Serial.println( v_threshold );
+    });
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -152,12 +140,10 @@ void setup() {
   static uint16_t threshold_list[] = 
     { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }; 
 
-  app.component( 
-    cmp.begin( A0, 50 )
-      .threshold( threshold_list, 10, true )
-      .average( avgbuffer, sizeof( avgbuffer ) )
-      .onChange( cmp_callback )
-  );
+  cmp.begin( A0, 50 )
+    .threshold( threshold_list, 10, true )
+    .average( avgbuffer, sizeof( avgbuffer ) )
+    .onChange( cmp_callback );
 
 }
 ```
