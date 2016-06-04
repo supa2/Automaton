@@ -51,7 +51,6 @@ void setup() {
     .IF( thermometer, '<', 500 )
     .onChange( true, heater, heater.EVT_ON )
     .onChange( false, heater, heater.EVT_OFF );
-
 }
 
 void loop() {
