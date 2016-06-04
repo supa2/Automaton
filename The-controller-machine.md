@@ -26,21 +26,18 @@ Unlike the other bundled machines the controller machine uses *pull* connectors 
 Atm_analog thermometer;
 Atm_controller thermostat;
 Atm_led heater;
-Appliance app;
 
 void setup() {
-  app.component( heater.begin( 4 ) ); // Heater controlled by pin 4
-  app.component( thermometer.begin( A0 ) ); // Temp sensor on A0
-  app.component( 
-    thermostat.begin()
-      .IF( thermometer, '<', 500 )
-      .onChange( true, heater, heater.EVT_ON )
-      .onChange( false, heater, heater.EVT_OFF )
-  );
+  heater.begin( 4 ); // Heater controlled by pin 4
+  thermometer.begin( A0 ); // Temp sensor on A0
+  thermostat.begin()
+    .IF( thermometer, '<', 500 )
+    .onChange( true, heater, heater.EVT_ON )
+    .onChange( false, heater, heater.EVT_OFF );
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -55,11 +52,9 @@ Specifies a machine or callback to be triggered whenever the controller machine 
 ```c++
 void setup() {
   ...
-  app.component( 
-    controller.begin()
-      .IF( sensor, '+', 500 )
-      .onChange( led, led.EVT_TOGGLE )
-  );
+  controller.begin()
+    .IF( sensor, '+', 500 )
+    .onChange( led, led.EVT_TOGGLE );
   ...
 }
 ```
@@ -71,12 +66,10 @@ Specifies a machine or callback to be triggered whenever the controller machine 
 ```c++
 void setup() {
   ...
-  app.component( 
-    controller.begin()
-      .IF( sensor, '+', 500 )
-      .onChange( true, led, led.EVT_ON )
-      .onChange( false, led, led.EVT_OFF )
-  );
+  controller.begin()
+    .IF( sensor, '+', 500 )
+    .onChange( true, led, led.EVT_ON )
+    .onChange( false, led, led.EVT_OFF );
   ...
 }
 ```
@@ -88,12 +81,10 @@ Specifies a machine or callback to be triggered whenever the controller machine 
 ```c++
 void setup() {
   ...
-  app.component( 
-    controller.begin()
-      .IF( sensor, '+', 500 )
-      .onInput( true, led, led.EVT_ON )
-      .onInput( false, led, led.EVT_OFF )
-  );
+  controller.begin()
+    .IF( sensor, '+', 500 )
+    .onInput( true, led, led.EVT_ON )
+    .onInput( false, led, led.EVT_OFF );
   ...
 }
 ```
@@ -117,22 +108,16 @@ Don't forget to use single quotes for the operator character, that's easy to do 
 void setup() {
   ...
   // Becomes true when led.state() > 0
-  app.component( 
-    controller.begin()
-      .IF( led )
-  );
+  controller1.begin()
+    .IF( led )
 
   // Becomes true when led.state() = 0
-  app.component( 
-    controller.begin()
-      .IF( led, '=', 0 )
-  );
+  controller2.begin()
+    .IF( led, '=', 0 )
 
   // Becomes true when sensor.state() >= 500
-  app.component( 
-    controller.begin()
-      .IF( sensor, '+', 500 )
-  );
+  controller3.begin()
+    .IF( sensor, '+', 500 )
   ...
 }
 ```
@@ -145,10 +130,8 @@ Adds an AND condition to the controller machine. You may add a total of one IF c
 void setup() {
   ...
   // Becomes true when all 4 led machines are on
-  app.component( 
-    controller.begin().
-      .IF( led1 ).AND( led2 ).AND( led3 ).AND( led4 )
-  );
+  controller.begin().
+    .IF( led1 ).AND( led2 ).AND( led3 ).AND( led4 );
   ...
 }
 ```
@@ -161,10 +144,8 @@ Adds an OR condition to the controller machine. You may add a total of one IF co
 void setup() {
   ...
   // Becomes true when anyone of 3 leds are on
-  app.component( 
-    controller.begin()
-      .IF( led1 ).OR( led2 ).OR( led3 )
-  );
+  controller.begin()
+    .IF( led1 ).OR( led2 ).OR( led3 );
   ...
 }
 ```
@@ -177,10 +158,8 @@ Adds an XOR condition to the controller machine. You may add a total of one IF c
 void setup() {
   ...
   // Becomes true when either, but not both are on
-  app.component( 
-    controller.begin()
-      .IF( led1 ).XOR( led2 )
-  );
+  controller.begin()
+    .IF( led1 ).XOR( led2 );
   ...
 }
 ```
@@ -188,71 +167,66 @@ void setup() {
 XOR conditions are great when you want to control something like a hallway light with more than one switch at the same time. Put the sketch below on an Arduino and it will handle 4 switches for you.
 
 ```c++
-  #include <Automaton.h>
+#include <Automaton.h>
 
-  Atm_digital sw1, sw2, sw3, sw4;
-  Atm_led light;
-  Atm_controller controller;
-  Appliance app;
+Atm_digital sw1, sw2, sw3, sw4;
+Atm_led light;
+Atm_controller controller;
 
-  void setup() {
-    // Any one of 4 switches can switch the light on and off
-    // at any time, regardless of the other switches
+void setup() {
+  // Any one of 4 switches can switch the light on and off
+  // at any time, regardless of the other switches
 
-    app.component( light.begin( 4 ) ); // The ceiling light on pin 4
+  light.begin( 4 ); // The ceiling light on pin 4
 
-    app.component( sw1.begin( 2, 5, true, true ) ); // Active low, pullup switches
-    app.component( sw2.begin( 3, 5, true, true ) );
-    app.component( sw3.begin( 6, 5, true, true ) );
-    app.component( sw4.begin( 7, 5, true, true ) );
+  sw1.begin( 2, 5, true, true ); // Active low, pullup switches
+  sw2.begin( 3, 5, true, true );
+  sw3.begin( 6, 5, true, true );
+  sw4.begin( 7, 5, true, true );
 
-    app.component( 
-      controller.begin() // The logical condition that handles it all
-        .IF( sw1 ).XOR( sw2 ).XOR( sw3 ).XOR( sw4 )
-        .onChange( true, light, light.EVT_ON )
-        .onChange( false, light, light.EVT_OFF )
-    );
-  }
+  controller.begin() // The logical condition that handles it all
+    .IF( sw1 ).XOR( sw2 ).XOR( sw3 ).XOR( sw4 )
+    .onChange( true, light, light.EVT_ON )
+      .onChange( false, light, light.EVT_OFF );
+}
 
-  void loop() {
-    app.run();
-  }
+void loop() {
+  automaton.run();
+}
 ```
 
 An alternative way of doing this with a callback connector (and a lambda function) and the modulo operator for checking for an odd or even result. This way is probably a little faster and it allows you to handle an arbitrary amount of switch inputs in a single controller machine. It's also a little less elegant depending on your taste. 
 
 ```c++
-  #include <Automaton.h>
+#include <Automaton.h>
 
-  Atm_digital sw1, sw2, sw3, sw4;
-  Atm_led light;
-  Atm_controller controller;
-  Appliance app;
+Atm_digital sw1, sw2, sw3, sw4;
+Atm_led light;
+Atm_controller controller;
 
-  void setup() {
-    // Any one of 4 switches can switch the light on and off
-    // at any time, regardless of the other switches
+void setup() {
+  // Any one of 4 switches can switch the light on and off
+  // at any time, regardless of the other switches
 
-    app.component( light.begin( 4 ) ); // The ceiling light on pin 4
+  light.begin( 4 ); // The ceiling light on pin 4
 
-    app.component( sw1.begin( 2, 5, true, true ) ); // Active low, pullup switches
-    app.component( sw2.begin( 3, 5, true, true ) );
-    app.component( sw3.begin( 6, 5, true, true ) );
-    app.component( sw4.begin( 7, 5, true, true ) );
+  sw1.begin( 2, 5, true, true ); // Active low, pullup switches
+  sw2.begin( 3, 5, true, true );
+  sw3.begin( 6, 5, true, true );
+  sw4.begin( 7, 5, true, true );
 
-    app.component( 
-      controller.begin() // The logical condition that handles it all
-        .IF( []( int idx ) {
-          return ( sw1.state() + sw2.state() + sw3.state() + sw4.state() ) % 2 == 0;
-        })
-        .onChange( true, light, light.EVT_ON )
-        .onChange( false, light, light.EVT_OFF )
-    );
-  }
+  controller.begin() // The logical condition that handles it all
+    .IF( []( int idx ) {
+      return ( sw1.state() + sw2.state() + sw3.state() + sw4.state() ) % 2 == 0;
+    })
+    .onChange( true, light, light.EVT_ON )
+    .onChange( false, light, light.EVT_OFF );
 
-  void loop() {
-    app.run();
-  }
+}
+
+void loop() {
+  automaton.run();
+}
 ```
 
 Sometimes it's useful to be able to mix the flexibility of your handcrafted C++ code and existing libraries with Automaton.
@@ -266,27 +240,22 @@ Use the led() method to assign a pin to be used as an state indicator for the co
 
 Atm_encoder rotaryEncoder;
 Atm_controller controller;
-Appliance app;
 
 void setup() {
 
   // Define a rotary encoder with range 0..10
-  app.component( 
-    rotaryEncoder.begin( 2, 3 )
-      .range( 0, 10 )
-  );
+  rotaryEncoder.begin( 2, 3 )
+    .range( 0, 10 );
 
   // Controller monitors if encoder > 5
-  app.component(
-    controller.begin()
-      .IF( rotaryEncoder, '>', 5 ) 
-      .led( 13 )      
-  );
+  controller.begin()
+    .IF( rotaryEncoder, '>', 5 ) 
+    .led( 13 );      
 
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 
 ```
@@ -298,15 +267,13 @@ Returns 0 if the condition is in state False (Off/Low/0) and 1 if the controller
 
 ```c++
 void setup() {
-  app.component( bit.begin() );
-  bit.trigger( bit.EVT_ON );
+  bit.begin()
+    .trigger( bit.EVT_ON );
   
-  app.component( 
-    controller.begin()
-      .IF(  bit )
-      .onChange( true, buzzer, buzzer.EVT_ON )
-      .onChange( false, buzzer, buzzer.EVT_OFF )
-  );
+  controller.begin()
+    .IF(  bit )
+    .onChange( true, buzzer, buzzer.EVT_ON )
+    .onChange( false, buzzer, buzzer.EVT_OFF );
 }
 ```
 
