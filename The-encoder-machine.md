@@ -21,29 +21,24 @@ Developed for and tested with the [Sparkfun rotary encoder](https://www.sparkfun
 
 Atm_encoder rotaryEncoder;
 Atm_controller controller[6];
-Appliance app;
 
 void setup() {
 
   // Define a rotary encoder with range 0..6
-  app.component( 
-    rotaryEncoder.begin( 2, 3 ) // Connected to pins 2 & 3
-      .range( 0, 6 )
-  );
+  rotaryEncoder.begin( 2, 3 ) // Connected to pins 2 & 3
+    .range( 0, 6 );
 
   // Create 6 controllers with indicator leds on 4, 5, 6, 7, 8, 9
   for ( int i = 0; i <= 5; i++ ) {
-    app.component( 
-      controller[i].begin()
-        .IF( rotaryEncoder, '>', i )
-        .led( i + 4 )
-    );
+    controller[i].begin()
+      .IF( rotaryEncoder, '>', i )
+      .led( i + 4 );
   }
   
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -61,10 +56,8 @@ Specifies a machine or callback to be triggered whenever the encoder machine cha
 ```c++
 void setup() {
   ...
-  app.component( 
-    encoder.begin( 2, 3 )
-      .onChange( led, led.EVT_BLINK )
-  );
+  encoder.begin( 2, 3 )
+    .onChange( led, led.EVT_BLINK );
   ...
 }
 ```
@@ -77,11 +70,9 @@ Specifies a machine or callback to be triggered whenever the encoder machine cha
 ```c++
 void setup() {
   ...
-  app.component( 
-    encoder.begin( 2, 3 )
-      .onChange( ATM_UP, led, led.EVT_BLINK )
-      .onChange( ATM_DOWN, led, led.EVT_BLINK )
-  );
+  encoder.begin( 2, 3 )
+    .onChange( ATM_UP, led, led.EVT_BLINK )
+    .onChange( ATM_DOWN, led, led.EVT_BLINK );
   ...
 }
 ```
@@ -91,11 +82,9 @@ Sets the internal position counter. It's your responsibility to make sure you se
 
 ```c++
 void setup() {
-  app.component( 
-    encoder.begin( 2, 3 ) 
-      .range( -10, 10 )
-      .set( 0 )
-  );
+  encoder.begin( 2, 3 ) 
+    .range( -10, 10 )
+    .set( 0 );
 }
 ```
 
@@ -107,11 +96,9 @@ If the wrap parameter is set to true the encoder will wrap past the end or begin
 
 ```c++
 void setup() {
-  app.component( 
-    encoder.begin( 2, 3 ) 
-      .range( -10, 10 )
-      .set( 0 )
-  );
+  encoder.begin( 2, 3 ) 
+    .range( -10, 10 )
+    .set( 0 );
 }
 ```
 
@@ -125,29 +112,24 @@ Returns the integer value of the internal position counter.
 Atm_encoder encoder;
 Atm_controller controller;
 Atm_led led;
-Appliance app;
 
 void setup() {
   Serial.begin( 9600 );
   // An encoder that prints its position to the serial monitor
-  app.component( 
-    encoder.begin( 2, 3 ) 
-      .range( 0, 10 )
-      .onChange( [] ( int idx, int v, int up ) {
-        Serial.print( up ? "Encoder moved up to: " : "Encoder moved down to: " );
-        Serial.println( encoder.state() ); // Uses state()        
-      })
-  );
+  encoder.begin( 2, 3 ) 
+    .range( 0, 10 )
+    .onChange( [] ( int idx, int v, int up ) {
+      Serial.print( up ? "Encoder moved up to: " : "Encoder moved down to: " );
+      Serial.println( encoder.state() ); // Uses state()        
+    });
   // And a controller that turns a led on if the encoder turns past position 5
-  app.component( 
-    controller.begin()
-      .IF( encoder, '>', 5  )  // Implicitly uses state()
-      .led( 4 )
-  );
+  controller.begin()
+    .IF( encoder, '>', 5  )  // Implicitly uses state()
+    .led( 4 );
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 In the callback function the v argument contains the same value as state().
