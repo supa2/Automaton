@@ -28,7 +28,6 @@ Note that the Arduino tone() command cannot control more than one pin at the sam
 
 Atm_player player;
 Atm_button button;
-Appliance app;
 
 int pattern[] = { 
   440, 100, 0, // Frequency, Duration, Pause triplets
@@ -37,18 +36,16 @@ int pattern[] = {
 };
 
 void setup() {
-  app.component( // Piezo speaker on pin 4
-    player.begin( 4 ) 
-      .play( pattern, sizeof( pattern ) )
-  );
-  app.component( // Button on pin 2
-    button.begin( 2 )
-      .onPress( player, player.EVT_START ) // Linked by an event
-  );
+  // Piezo speaker on pin 4
+  player.begin( 4 ) 
+    .play( pattern, sizeof( pattern ) );
+  // Button on pin 2
+  button.begin( 2 )
+    .onPress( player, player.EVT_START ); // Linked by an event
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -59,13 +56,11 @@ Initializes a player machine. If the pin argument is greater than -1 the machine
 ```c++
 void setup() {
  
-  app.component( 
-    player.begin() 
-      .play( pattern, sizeof( pattern ) )
-      .onNote( true, led, led.EVT_ON )
-      .onNote( false, led, led.EVT_OFF )
-      .trigger( player.EVT_START )
-  );
+  player.begin() 
+    .play( pattern, sizeof( pattern ) )
+    .onNote( true, led, led.EVT_ON )
+    .onNote( false, led, led.EVT_OFF )
+    .trigger( player.EVT_START );
 
 }
 
@@ -99,15 +94,11 @@ pause | Duration of note off
 ```c++
 void setup() {
 
-  app.component( 
-    player.begin( 4 ) 
-      .play( 440, 200 ) // Play a 440 hz tone for 200 ms
-  );
+  player.begin( 4 ) 
+    .play( 440, 200 ); // Play a 440 hz tone for 200 ms
 
-  app.component(
-    button.begin( 2 )
-      .onPress( player, player.EVT_START ) // When the button is pressed
-  );
+  button.begin( 2 )
+    .onPress( player, player.EVT_START ); // When the button is pressed
 }
 
 ```
@@ -129,7 +120,6 @@ The example below displays a pulsing led pattern on pins 4..9 defined by a bitma
 
 Atm_player player; // A player machine
 Atm_analog speed; // An analog machine for the potmeter
-Appliance app;
 
 const int ledPinMin = 4; // Use pins 4..9
 const int ledPinMax = 9; 
@@ -147,29 +137,25 @@ int pattern[] = {  // Bitmapped pattern
 };
 
 void setup() {
-  app.component( 
-    player.begin() // No sound this time!
-      .play( pattern, sizeof( pattern ) ) //  Set up the pattern
-      .onNote( true, []( int idx, int v, int up ) { // Called on every note
-        for ( int i = ledPinMin; i <= ledPinMax; i++ ) {
-          pinMode( i, OUTPUT ); // LED on/off according to bit  
-          digitalWrite( i, v & ( 1 << ( i - ledPinMin ) ) ? HIGH : LOW ); 
-        }    
-      })
-      .repeat( -1 ) // Repeat forever
-      .trigger( player.EVT_START ) // Kickoff!
-  );
-  app.component( 
-    speed.begin( speedPotPin ) 
-      .range( speedMin, speedMax ) // Set the range for the pot values
-      .onChange( []( int idx, int v, int up ) {
-        player.speed( v ); // Set speed on every change of the potmeter
-      })
-  );
+  player.begin() // No sound this time!
+    .play( pattern, sizeof( pattern ) ) //  Set up the pattern
+    .onNote( true, []( int idx, int v, int up ) { // Called on every note
+      for ( int i = ledPinMin; i <= ledPinMax; i++ ) {
+        pinMode( i, OUTPUT ); // LED on/off according to bit  
+        digitalWrite( i, v & ( 1 << ( i - ledPinMin ) ) ? HIGH : LOW ); 
+      }    
+    })
+    .repeat( -1 ) // Repeat forever
+    .trigger( player.EVT_START ); // Kickoff!
+  speed.begin( speedPotPin ) 
+    .range( speedMin, speedMax ) // Set the range for the pot values
+    .onChange( []( int idx, int v, int up ) {
+      player.speed( v ); // Set speed on every change of the potmeter
+    });
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -187,27 +173,22 @@ At speed( 100 ) - the default - everything plays at the frequency specified in t
 
 Atm_player player;
 Atm_analog pot;
-Appliance app;
 
 void setup() {
-  app.component(
-    player.begin( 19 )
-      .play( 440, 100, 100 )
-      .trigger( player.EVT_START )
-      .repeat( -1 )
-  );
-  app.component(
-    pot.begin( A0 )
-      .range( 30, 500 )
-      .onChange( []( int idx, int v, int up ) {
-         player.speed( v );
-         player.pitch( v );
-      })
-  );
+  player.begin( 19 )
+    .play( 440, 100, 100 )
+    .trigger( player.EVT_START )
+    .repeat( -1 );
+  pot.begin( A0 )
+    .range( 30, 500 )
+    .onChange( []( int idx, int v, int up ) {
+       player.speed( v );
+       player.pitch( v );
+    });
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -218,15 +199,12 @@ This is where it gets interesting. By using the onNote() connector the player ma
 ```c++
 void setup() {
 
-  app.component( led.begin( 4 ) );
+  led.begin( 4 );
   
-  app.component( 
-    player.begin()
-      .play( pattern, sizeof( pattern ) )
-      .onNote( true, led, led.EVT_ON ) // On note on
-      .onNote( false, led, led.EVT_OFF ) // On note off
-  );
-
+  player.begin()
+    .play( pattern, sizeof( pattern ) )
+    .onNote( true, led, led.EVT_ON ) // On note on
+    .onNote( false, led, led.EVT_OFF ); // On note off
 }
 ```
 
@@ -239,7 +217,6 @@ The example below uses a callback combined with bitmapped values in the pattern/
 Atm_player player;
 Atm_button button;
 Atm_led valve1, valve2;
-Appliance app;
 
 int pattern[] = { 
   B00000001,  10, 0, // Frequency, Duration, Pause triplets
@@ -253,20 +230,16 @@ int pattern[] = {
 // Valve 2: ____|^^^^^^|_____
 
 void setup() {
-  app.component( valve1.begin( 4 ) );
-  app.component( valve2.begin( 5 ) );
-  app.component( 
-    player.begin() 
-      .play( pattern, sizeof( pattern ) )
-      .onNote( true, []( int idx, int v, int up ) {
-        valve1.trigger( v & B00000001 > 0 ? valve1.EVT_ON : valve1.EVT_OFF );
-        valve2.trigger( v & B00000010 > 0 ? valve2.EVT_ON : valve2.EVT_OFF );	  
-      })
-  );
-  app.component(
-    button.begin( 2 )
-      .onPress( player, player.EVT_START )
-  );
+  valve1.begin( 4 );
+  valve2.begin( 5 );
+  player.begin() 
+    .play( pattern, sizeof( pattern ) )
+    .onNote( true, []( int idx, int v, int up ) {
+      valve1.trigger( v & B00000001 > 0 ? valve1.EVT_ON : valve1.EVT_OFF );
+      valve2.trigger( v & B00000010 > 0 ? valve2.EVT_ON : valve2.EVT_OFF );	  
+    });
+  button.begin( 2 )
+    .onPress( player, player.EVT_START );
 }
 ```
 
@@ -283,7 +256,6 @@ The code below uses onFinish() to chain two different patterns together.
 
 Atm_player player;
 Atm_button button;
-Appliance app;
 
 int pattern1[] = { // Odd pattern
   440, 100, 0, 
@@ -309,20 +281,16 @@ void callback( int idx, int v, int up ) {
 
 void setup() {
 
-  app.component( 
-    player.begin( 4 ) 
-      .play( pattern1, sizeof( pattern1 ) )
-      .onFinish( callback )
-  );
+  player.begin( 4 ) 
+    .play( pattern1, sizeof( pattern1 ) )
+    .onFinish( callback );
 
-  app.component(
-    button.begin( 2 )
-      .onPress( player, player.EVT_TOGGLE )
-  );
+  button.begin( 2 )
+    .onPress( player, player.EVT_TOGGLE );
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
