@@ -38,27 +38,24 @@ Documentation for the (Appliance & Machine) base classes and the bundled state m
 Atm_analog thermometer;
 Atm_controller thermostat;
 Atm_led heater;
-Appliance app;
 
 void setup() {
   // Heater controlled by pin 4
-  app.component( heater.begin( 4 ) ); 
+  heater.begin( 4 ); 
 
   // Temperature sensor on analog pin A0
-  app.component( thermometer.begin( A0 ) ); 
+  thermometer.begin( A0 ); 
 
   // Link them with a controller
-  app.component( 
-    thermostat.begin()
-      .IF( thermometer, '<', 500 )
-      .onChange( true, heater, heater.EVT_ON )
-      .onChange( false, heater, heater.EVT_OFF )
-  );
+  thermostat.begin()
+    .IF( thermometer, '<', 500 )
+    .onChange( true, heater, heater.EVT_ON )
+    .onChange( false, heater, heater.EVT_OFF );
 
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
