@@ -247,7 +247,7 @@ void loop() {
 }
 ```
 
-You can easily control 8 or more valves this way. In fact the pattern/player combination looks a bit like a state machine itself. So we have a state machine that combines with a pattern to form a new state machine controlling a bunch of valves. 
+You can easily control 8 or more valves this way. 
 
 ### Atm_player & onFinish( {connector}, {connector-arg} ) ###
 
