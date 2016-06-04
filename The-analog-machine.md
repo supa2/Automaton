@@ -22,27 +22,24 @@ This state machine monitors an analog input with a configurable sample period an
 Atm_analog thermometer;
 Atm_controller thermostat;
 Atm_led heater;
-Appliance app;
 
 void setup() {
   // Heater controlled by pin 4
-  app.component( heater.begin( 4 ) ); 
+  heater.begin( 4 ); 
 
   // Temperature sensor on analog pin A0
-  app.component( thermometer.begin( A0 ) ); 
+  thermometer.begin( A0 ); 
 
   // Link them with a controller
-  app.component( 
-    thermostat.begin()
-      .IF( thermometer, '<', 500 )
-      .onChange( true, heater, heater.EVT_ON )
-      .onChange( false, heater, heater.EVT_OFF )
-  );
+  thermostat.begin()
+    .IF( thermometer, '<', 500 )
+    .onChange( true, heater, heater.EVT_ON )
+    .onChange( false, heater, heater.EVT_OFF );
 
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 An analog machine ('thermometer') monitors a thermosensor on pin A0. A controller machine monitors the thermometer machine and turns a heater on (actually a led machine connected to pin 4) whenever the temperature reading drops below 500.
@@ -83,16 +80,12 @@ Specify a machine or callback to be triggered whenever the analog value changes.
 ```c++
 void setup() {
 
-  app.component( 
-    buzzer.begin( 4 )
-      .blink( 10, 0, 1 )
-  );
+  buzzer.begin( 4 )
+    .blink( 10, 0, 1 );
 
-  app.component( 
-    sensor.begin( A0, 50 )
-      .range( 0, 10 );
-      .onChange( buzzer, buzzer.EVT_BLINK )
-  );
+  sensor.begin( A0, 50 )
+    .range( 0, 10 );
+    .onChange( buzzer, buzzer.EVT_BLINK );
 
 }
 ```
@@ -105,10 +98,10 @@ Connects an averaging buffer to the state machine. This will cause the state mac
 uint16_t avgbuffer[256];
 
 void setup() {
-  app.component( 
+
     sensor.begin( A0, 50 )
-      .average( avgbuffer, 256 )
-  );
+      .average( avgbuffer, 256 );
+      
 }
 ```
 The buffer variable is used as a ring buffer to store the sampled values. The value the analog machine returns  is computed as the average of the values in the ring buffer. The call to average() fills up the ringbuffer with samples so that the reading will make sense right from the start.
@@ -124,24 +117,22 @@ Maps the analog readings to a different range.
 
 Atm_analog pot;
 Atm_led led;
-Appliance app;
 
 void setup() {
-  app.component( 
-    led.begin( 4 )
-      .trigger( led.EVT_BLINK )
-  );
-  app.component( 
-    pot.begin( A0 )
-      .range( 10, 100 )
-      .onChange( []( int idx, int v, int up ) {
-         led.blink( v, v );    
-      })
-  );
+
+  led.begin( 4 )
+    .trigger( led.EVT_BLINK );
+
+  pot.begin( A0 )
+    .range( 10, 100 )
+    .onChange( []( int idx, int v, int up ) {
+       led.blink( v, v );    
+    });
+    
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 This also affects the onChange() connector.
