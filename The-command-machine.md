@@ -20,7 +20,6 @@ A state machine that handles commands coming in over a serial line (Stream), par
 
 char cmd_buffer[80];
 Atm_command cmd;
-Appliance app;
 
 enum { CMD_HIGH, CMD_LOW, CMD_READ, CMD_AREAD, CMD_AWRITE, 
        CMD_MODE_INPUT, CMD_MODE_OUTPUT, CMD_MODE_PULLUP };
@@ -59,16 +58,14 @@ void cmd_callback( int idx, int v, int up ) {
 
 void setup() {
   Serial.begin( 9600 );
-  app.component( 
-    cmd.begin( Serial, cmd_buffer, sizeof( cmd_buffer ) )
-      .list( cmdlist )
-      .onCommand( cmd_callback )
-  );
+  cmd.begin( Serial, cmd_buffer, sizeof( cmd_buffer ) )
+    .list( cmdlist )
+    .onCommand( cmd_callback );
 
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -92,10 +89,9 @@ Connects a stream and a command line character buffer to the state machine.
 ```c++
 char cmd_buffer[80];
 Atm_command cmd;
-Appliance app;
 
 void setup() {
-  app.component( cmd.begin( Serial, cmd_buffer, sizeof( cmd_buffer ) );
+  cmd.begin( Serial, cmd_buffer, sizeof( cmd_buffer ) );
   ...
 }
 ```
