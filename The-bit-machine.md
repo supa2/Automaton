@@ -20,26 +20,21 @@ This state machine manages 1 bit of information, be it True/False, High/Low or 1
 Atm_button button;
 Atm_bit toggle;
 Atm_led led;
-Appliance app;
 
 void setup() {
-  app.component( led.begin( 4 ) ); // LED controlled by pin 4
+  led.begin( 4 ); // LED controlled by pin 4
 
-  app.component( 
-    button.begin( 2 ) // Button on pin 2
-      .onPress( toggle, toggle.EVT_TOGGLE )
-  ); 
+  button.begin( 2 ) // Button on pin 2
+    .onPress( toggle, toggle.EVT_TOGGLE );
 
-  app.component( 
-    toggle.begin() // Bit machine stores the toggle state
-      .onChange( true, led, led.EVT_ON ) // And turns the led on and off
-      .onChange( false, led, led.EVT_OFF )
-  );
+  toggle.begin() // Bit machine stores the toggle state
+    .onChange( true, led, led.EVT_ON ) // And turns the led on and off
+    .onChange( false, led, led.EVT_OFF );
 
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -52,11 +47,9 @@ Inititalizes the bit machine and sets the default state.
 Specifies a machine or callback to be triggered whenever the bit machine changes state.
 
 ```c++
-  app.component( 
-    bit.begin()
-      .onChange( led, led.EVT_TOGGLE )
-      .trigger( bit.EVT_ON );
-  );
+  bit.begin()
+    .onChange( led, led.EVT_TOGGLE )
+    .trigger( bit.EVT_ON );
 ```
 
 ### Atm_bit & onChange( bool new_state, {connector}, {connector-arg} ) ###
@@ -64,12 +57,10 @@ Specifies a machine or callback to be triggered whenever the bit machine changes
 Specifies a machine or callback to be triggered whenever the bit machine changes state to *new_state*.
 
 ```c++
-  app.component( 
-    bit.begin()
-      .onChange( true, led, led.EVT_ON )
-      .onChange( false, led, led.EVT_OFF )
-      .trigger( bit.EVT_ON );
-  );
+  bit.begin()
+    .onChange( true, led, led.EVT_ON )
+    .onChange( false, led, led.EVT_OFF )
+    .trigger( bit.EVT_ON );
 ```
 
 ### Atm_bit & onInput( bool cur_state, {connector}, {connector-arg} ) ###
@@ -77,12 +68,10 @@ Specifies a machine or callback to be triggered whenever the bit machine changes
 Specifies a machine or callback to be triggered whenever the bit machine receives an EVT_INPUT event. The machine can be made to respond diferently depending on the current state of the machine. (true or false)
 
 ```c++
-  app.component( 
-    bit.begin()
-      .onInput( true, led, led.EVT_ON )
-      .onInput( false, led, led.EVT_OFF )
-      .trigger( bit.EVT_INPUT )
-  );
+  bit.begin()
+    .onInput( true, led, led.EVT_ON )
+    .onInput( false, led, led.EVT_OFF )
+    .trigger( bit.EVT_INPUT )
 ```
 
 ### Atm_bit & led( int pin, activeLow = false ) ###
@@ -92,28 +81,23 @@ Use the led() method to assign a pin (driving a led or something else) to be use
 ```c++
 Atm_bit manual;
 Atm_button button;
-Appliance app;
 
 void setup() {
 
   // The 'manual' button on pin 2
-  app.component( 
-    button.begin( 2 )
-      .onPress( manual, manual.EVT_TOGGLE )
-  );
+  button.begin( 2 )
+    .onPress( manual, manual.EVT_TOGGLE );
 
   // The 'manual' status led on pin 4
-  app.component( 
-    manual.begin()
-      .led( 4 )
-  );
+  manual.begin()
+    .led( 4 );
 
   // manual.state() now reflects the status of the 'manual' selector
 
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 
 ```
@@ -127,24 +111,20 @@ Returns 0 if the bit is in state LOW (Off/False/0) and 1 if the bit machine is i
 
 Atm_bit bit;
 Atm_controller controller;
-Appliance app;
 
 void setup() {
-  app.component( 
-    bit.begin() 
-      .trigger( bit.EVT_ON )
-  );
-  
-  app.component( 
-    controller.begin()
-      .IF(  bit )
-      .onChange( true, buzzer, buzzer.EVT_ON )
-      .onChange( false, buzzer, buzzer.EVT_OFF )
-  );
+
+  bit.begin() 
+    .trigger( bit.EVT_ON );
+
+  controller.begin()
+    .IF(  bit )
+    .onChange( true, buzzer, buzzer.EVT_ON )
+    .onChange( false, buzzer, buzzer.EVT_OFF );
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 
 ```
