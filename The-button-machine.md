@@ -19,7 +19,6 @@ Atm_button is a state machine for implementing buttons. Connected to a digital i
 #include <Automaton.h>
 
 Atm_button button; 
-Appliance app; 
 
 void button_change( int idx, int v, int up ) {
   if ( v ) {
@@ -28,14 +27,12 @@ void button_change( int idx, int v, int up ) {
 }
 
 void setup() {
-  app.component( 
-    button.begin( 2 )
-      .onPress( button_change )
-  );
+  button.begin( 2 )
+    .onPress( button_change );
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -48,18 +45,15 @@ Initializes an Atm_button object and attaches it to an I/O pin. The I/O pin will
 
 Atm_button button;
 Atm_led led;
-Appliance app;
 
 void setup() {
-  app.component( led.begin( 4 ) );
-  app.component( 
-    button.begin( 2 )
-      .onPress( led, led.EVT_TOGGLE )
-  );
+  led.begin( 4 );
+  button.begin( 2 )
+    .onPress( led, led.EVT_TOGGLE );
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -77,11 +71,9 @@ void button_change( int idx, int v, int up ) {
 }
 
 void setup() {
-  app.component( led.begin( 4 ) );
-  app.component( 
+  led.begin( 4 );
     button.begin( 2 )
-      .onPress( button_change )
-  );
+      .onPress( button_change );
 }
 ```
 The v argument contains 0 if the event is a button release and 1 if the event is a button press. When in *longpress mode* the v argument may contain other values. 
@@ -93,7 +85,6 @@ Alternatively pass an idx parameter to the callback to reuse a single callback f
 
 Atm_button button1, button2;
 Atm_led led1, led2;
-Appliance app;
 
 void button_change( int idx, int v, int up ) 
 {
@@ -103,31 +94,24 @@ void button_change( int idx, int v, int up )
   }
 }
 
-void setup() 
-{
-  app.component( 
-    button1.begin( 2 )
-      .onPress( button_change, 1 ) 
-  );
-  app.component( 
-    button2.begin( 3 )
-      .onPress( button_change, 2 )
-  );
+void setup() {
+  button1.begin( 2 )
+    .onPress( button_change, 1 );
+  button2.begin( 3 )
+    .onPress( button_change, 2 );
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
 Triggering another machine on a button press (pressing the button will start a led blinking). 
 
 ```c++
-  app.component( led1.begin( 4 ) );
-  app.component( 
-    button.begin( 2 )
-      .onPress( led1, led1.EVT_BLINK )
-  );
+  led1.begin( 4 );
+  button.begin( 2 )
+    .onPress( led1, led1.EVT_BLINK );
 ```
 
 
@@ -139,12 +123,9 @@ Adds a debounce delay of *delay* milliseconds. Default debounce delay is 5 milli
 
 
 ```c++
-void setup() 
-{
-  app.component( 
-    btn.begin( 2 )
-      .debounce( 10 )
-  );
+void setup() {
+  btn.begin( 2 )
+    .debounce( 10 );
 }
 ```
 
@@ -155,13 +136,10 @@ Switches the Atm_button machine to *longpress* mode. In *longpress* mode the eve
 The *delay* parameter controls the time the user should keep the button pressed (in millis) for the next event to register. The *max* parameter controls how many events are handled by the button. 
 
 ```c++
-void setup() 
-{
-    app.component( 
-      btn.begin( 2 )
-        .onPress( btn_change )
-        .longPress( 2, 200 )
-    );
+void setup() {
+  btn.begin( 2 )
+    .onPress( btn_change )
+    .longPress( 2, 200 );
 }
 ```
 For the example above the machine will listen for two events. One if the button is pressed and released withing 200 milliseconds (fires -1, 1, 0 events). A second if the button is pressed, held for at least 200 ms and then released (fires -1, -2, 2, 0 events). If *max* is changed to 3, the machine will listen for another 200 ms hold.
@@ -183,11 +161,9 @@ Makes the button auto-repeat just like the keys on your keyboard. This is great 
 ```c++
 void setup() 
 {
-    app.component( 
-      btn.begin( 2 )
-        .onPress( led1, Atm_led::EVT_TOGGLE )
-        .repeat()
-    );
+  btn.begin( 2 )
+    .onPress( led1, Atm_led::EVT_TOGGLE )
+    .repeat();
 }
 ```
 
@@ -200,11 +176,9 @@ For testing purposes the machine may be configured to automatically generate *pr
 ```c++
 void setup() 
 {
-    app.component( 
-      btn.begin( 2 )
-        .onPress( btn_callback )
-        .autoPress( 1000, 1 )
-    );
+  btn.begin( 2 )
+    .onPress( btn_callback )
+    .autoPress( 1000, 1 );
 }
 ```
 ### Atm_button & trace( Stream & stream ) ###
