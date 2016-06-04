@@ -241,6 +241,10 @@ void setup() {
   button.begin( 2 )
     .onPress( player, player.EVT_START );
 }
+
+void loop() {
+  automaton.run();
+}
 ```
 
 You can easily control 8 or more valves this way. In fact the pattern/player combination looks a bit like a state machine itself. So we have a state machine that combines with a pattern to form a new state machine controlling a bunch of valves. 
