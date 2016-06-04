@@ -87,7 +87,7 @@ Please note that the Atm_led machine starts up in state *IDLE*. You can turn the
 The begin() method places the machine in the following blink configuration:
 
 ```c++
-  blink( 500, 500, ATM_COUNTER_OFF ); // Blink forever at 1 Herz
+  blink( 500, 500, -1 ); // Blink forever at 1 Herz
 ```
 
 ### Atm_led & blink( int duration ) ###
@@ -123,7 +123,7 @@ This is a dummy method for interface compatibility with the Atm_fade machine. It
 
 ### Atm_led & repeat( int repeat ) ###
 
-Sets how many times the blink pattern should repeat. Default is *ATM_COUNTER_OFF* which means it will blink indefinitely. Use *1* to blink once, etc...
+Sets how many times the blink pattern should repeat. Default is *ATM_COUNTER_OFF* (-1) which means it will blink indefinitely. Use *1* to blink once, etc...
 
 ```c++
 void setup() {

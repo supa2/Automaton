@@ -153,7 +153,7 @@ Synonym of interval_millis().
 
 ### Atm_timer & repeat( int v ) ###
 
-Sets the number of times the timer will be repeated. Default is 1. If you set this value to *ATM_COUNTER_OFF* the timer will repeat indefinitely.
+Sets the number of times the timer will be repeated. Default is 1. If you set this value to *ATM_COUNTER_OFF* (-1) the timer will repeat indefinitely.
 
 ```c++
 timer.interval( 2000 );
@@ -187,7 +187,7 @@ void setup() {
   ...
   app.component( 
     timer.begin( 100 )
-      .repeat( ATM_COUNTER_OFF )
+      .repeat( -1 )
   );
 
   app.component(

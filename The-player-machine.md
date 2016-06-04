@@ -156,7 +156,7 @@ void setup() {
           digitalWrite( i, v & ( 1 << ( i - ledPinMin ) ) ? HIGH : LOW ); 
         }    
       })
-      .repeat( ATM_COUNTER_OFF ) // Repeat forever
+      .repeat( -1 ) // Repeat forever
       .trigger( player.EVT_START ) // Kickoff!
   );
   app.component( 
