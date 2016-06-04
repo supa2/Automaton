@@ -22,23 +22,20 @@ Atm_timer implements a timer mechanism as a simple state machine. Atm_timer work
 #include <Automaton.h>
 
 Atm_timer timer;
-Appliance app;
 
 void timer_callback( int idx, int v, int up ) {
   // Something to do when the timer goes off
 }
 
 void setup() {
-  app.component(  
-    timer.begin( 2000 )
-      .repeat( 2 )
-      .onTimer( timer_callback )
-      .trigger( timer.EVT_START )
-  );
+  timer.begin( 2000 )
+    .repeat( 2 )
+    .onTimer( timer_callback )
+    .trigger( timer.EVT_START );
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -59,13 +56,11 @@ The default for the interval argument is 0, which effectively turns the timer in
 
 ```c++
 void setup() {
-  app.component( led.begin( 4 ) );
+  led.begin( 4 );
 
-  app.component(
-    timer.begin()
-      .onTimer( led, led.EVT_ON )
-      .trigger( timer.EVT_START ); // Turns the led on immediately
-  );
+  timer.begin()
+    .onTimer( led, led.EVT_ON )
+    .trigger( timer.EVT_START ); // Turns the led on immediately
 }
 ```
 Combining a null timer with repeat() can generate multiple events. In the example below, a single EVT_START sent to the timer will turn on 4 leds through the step sequencer without delay.
@@ -76,24 +71,21 @@ Combining a null timer with repeat() can generate multiple events. In the exampl
 Atm_step step;
 Atm_led led[6];
 Atm_timer timer;
-Appliance app;
 
 void setup() {
-  app.component( step.begin() );
+  step.begin();
   for ( short i = 0; i <= 5; i++ ) {
-    app.component( led[i].begin( 4 + i ) ); // Pins 4, 5, 6, 7, 8, 9
+    led[i].begin( 4 + i ); // Pins 4, 5, 6, 7, 8, 9
     step.onStep( i, led[i], Atm_led::EVT_ON ); // Create a step for each led
   }
-  app.component( 
-    timer.begin()
-      .repeat( 4 )
-      .onTimer( step, Atm_step::EVT_STEP ) 
-      .trigger( timer.EVT_START ) // Triggers 4 EVT_STEP events!
-  );
+  timer.begin()
+    .repeat( 4 )
+    .onTimer( step, Atm_step::EVT_STEP ) 
+    .trigger( timer.EVT_START ); // Triggers 4 EVT_STEP events!
 }
 
 void loop() {
-  run.app();
+  automaton.run();
 }
 ```
 
@@ -185,15 +177,11 @@ Does not trigger the onFinish() connector.
 ```c++
 void setup() {
   ...
-  app.component( 
-    timer.begin( 100 )
-      .repeat( -1 )
-  );
+  timer.begin( 100 )
+    .repeat( -1 );
 
-  app.component(
-    button.begin( 2 )
-      .onPress( timer, timer.EVT_TOGGLE )
-  );
+  button.begin( 2 )
+    .onPress( timer, timer.EVT_TOGGLE );
   ...
 }
 ```
