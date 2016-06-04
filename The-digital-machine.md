@@ -16,21 +16,18 @@ Monitor a digital pin for incoming pulses and fire a callback or trigger a machi
 #include <Automaton.h>
 
 Atm_digital pulse;
-Appliance app;
 
 void pulse_callback( int idx, int v, int up ) {
   // Do something when a pulse of at least 20 ms is detected on pin A0
 }
 
 void setup() {
-  app.component(
-    pulse.begin( A0, 20 )
-      .onChange( HIGH, pulse_callback )
-  );
+  pulse.begin( A0, 20 )
+    .onChange( HIGH, pulse_callback );
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 Pin A0 (all analog pins can also function as digital inputs) was chosen so that you can test this with the standard example setup which includes a pot on A0. Turn it up and down to simulate a pulse.
@@ -40,10 +37,8 @@ Pin A0 (all analog pins can also function as digital inputs) was chosen so that 
 Attaches an Atm_digital machine to a pin and sets the minimum duration of pulses to watch for.
 
 ```c++
-  app.component(
-    pulse.begin( A0, 20 )
-      .onChange( HIGH, pulse_callback )
-  );
+  pulse.begin( A0, 20 )
+    .onChange( HIGH, pulse_callback );
 ```
 
 The activeLow parameter (default false) makes the machine look for a LOW pulse instead of a HIGH pulse. The pullUp parameter (also default false) sets the pin in INPUT_PULLUP mode instead of INPUT.
@@ -51,10 +46,8 @@ The activeLow parameter (default false) makes the machine look for a LOW pulse i
 By using both activeLow and pullUp you can make Atm_digital work just like a simple version of Atm_button, more flexible in some ways, less in others:
 
 ```c++
-  app.component( 
-    pulse.begin( 3, 20, true, true )
-      .onChange( led, led.EVT_TOGGLE ) // Button on pin 3
-  );
+  pulse.begin( 3, 20, true, true )
+    .onChange( led, led.EVT_TOGGLE ); // Button on pin 3
 ```
 
 ### Atm_digital & onChange( bool status, {connector}, {connector-arg} ) ###
@@ -62,16 +55,15 @@ By using both activeLow and pullUp you can make Atm_digital work just like a sim
 Registers a callback or machine that gets called when a pulse is detected. The idx parameter (default 0) is passed on as the first parameter of the callback.
 
 ```c++
-  app.component( 
-    pulse.begin( A0, 20 );
-      .onChange( HIGH, pulse_callback, 5 );
+  pulse.begin( A0, 20 )
+    .onChange( HIGH, pulse_callback, 5 );
 ```
 
 Or registers a state machine that gets triggered when a pulse is detected.
 
 ```c++
-pulse.begin( A0, 20 )
-  .onChange( HIGH, door, door.EVT_OPEN );
+  pulse.begin( A0, 20 )
+    .onChange( HIGH, door, door.EVT_OPEN );
 ```
 
 ```c++
@@ -80,26 +72,21 @@ pulse.begin( A0, 20 )
 // Declare the state machines & appliance
 Atm_bit bit;
 Atm_digital sw;
-Appliance app;
 
 void setup() {
 
   // Create a bit machine that (also) controls led 4
-  app.component( 
-    bit.begin()
-      .led( 4 )
-  );
+  bit.begin()
+    .led( 4 );
 
   // Make the bit follow the status of pin 2 (active low, pullup)
-  app.component( 
-    sw.begin( 2, 20, true, true )
-      .onChange( HIGH, bit, bit.EVT_ON )
-      .onChange( LOW, bit, bit.EVT_OFF )
-  );
+  sw.begin( 2, 20, true, true )
+    .onChange( HIGH, bit, bit.EVT_ON )
+    .onChange( LOW, bit, bit.EVT_OFF );
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
@@ -113,17 +100,14 @@ Use the led() method to assign a pin to be used as an state indicator for the di
 #include <Automaton.h>
 
 Atm_digital sw;
-Appliance app;
 
 void setup() { // An led on pin 5 reflects the state of a dip-switch on pin 2
-  app.component( 
-    sw.begin( 2, 5, true, true )
-      .led( 5 )
-  );
+  sw.begin( 2, 5, true, true )
+    .led( 5 );
 }
 
 void loop() {
-  app.run();
+  automaton.run();
 }
 ```
 
