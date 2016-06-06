@@ -1,7 +1,7 @@
 * [Home](.)  
 * **Classes**
   * [Automaton](Automaton-class)  
-  * [Automaton Machine](Automaton-Machine-class)  
+  * [Machine](Automaton-Machine-class)  
 * **Topics**
   * [Installation](Installation)  
   * [Automaton Testimonials](Automaton-Testimonials)  
