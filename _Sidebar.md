@@ -1,6 +1,6 @@
 * [Home](.)  
 * **Classes**
-  * [Automaton Appliance](Automaton-class)  
+  * [Automaton](Automaton-class)  
   * [Automaton Machine](Automaton-Machine-class)  
 * **Topics**
   * [Installation](Installation)  
