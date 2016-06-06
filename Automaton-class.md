@@ -3,7 +3,7 @@ This is Automaton's built in scheduler. It takes care of multitasking (cycling) 
 Normal users will have little interaction with this class.
 
 <!-- md-tocify-begin -->
-* [component()](#automaton--add-machine--machine-)  
+* [add()](#automaton--add-machine--machine-)  
 * [run()](#automaton--run-uint32_t-time--0-)  
 
 <!-- md-tocify-end -->
