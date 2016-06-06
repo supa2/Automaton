@@ -5,10 +5,10 @@ Developed for and tested with the [Sparkfun rotary encoder](https://www.sparkfun
 ![Rotary encoder](images/rotary-small.jpg)
 
 <!-- md-tocify-begin -->
-* [begin()](#atm_bit--begin-int-pin1-int-pin2-int-divider--1-)  
-* [onChange()](#atm_bit--onchange-connector-connector-arg-)  
-* [set()](#atm_bit--set-int-v-)  
-* [range()](#atm_bit--range-int-tolow-int-tohigh-bool-wrap--false-)  
+* [begin()](#atm_encoder--begin-int-pin1-int-pin2-int-divider--1-)  
+* [onChange()](#atm_encoder--onchange-connector-connector-arg-)  
+* [set()](#atm_encoder--set-int-v-)  
+* [range()](#atm_encoder--range-int-tolow-int-tohigh-bool-wrap--false-)  
 * [state()](#int-state-void-)  
 * [trace()](#atm_encoder--trace-stream--stream-)  
 
@@ -42,14 +42,14 @@ void loop() {
 }
 ```
 
-### Atm_bit & begin( int pin1, int pin2, int divider = 1 ) ###
+### Atm_encoder & begin( int pin1, int pin2, int divider = 1 ) ###
 
 Inititalizes the rotary encoder machine and sets the control pins.
 Optionally sets a divider to slow the encoder down by discarding events.
 
 
 
-### Atm_bit & onChange( {connector}, {connector-arg} ) ###
+### Atm_encoder & onChange( {connector}, {connector-arg} ) ###
 
 Specifies a machine or callback to be triggered whenever the encoder machine changes position.
 
@@ -63,7 +63,7 @@ void setup() {
 ```
 
 
-### Atm_bit & onChange( bool status, {connector}, {connector-arg} ) ###
+### Atm_encoder & onChange( bool status, {connector}, {connector-arg} ) ###
 
 Specifies a machine or callback to be triggered whenever the encoder machine changes position in the clockwise (status true or ATM_UP) or counterclockwise (status false or ATM_DOWN) direction.
 
@@ -76,7 +76,7 @@ void setup() {
   ...
 }
 ```
-### Atm_bit & set( int v ) ###
+### Atm_encoder & set( int v ) ###
 
 Sets the internal position counter. It's your responsibility to make sure you set it within the limits set by range() method.
 
@@ -88,7 +88,7 @@ void setup() {
 }
 ```
 
-### Atm_bit & range( int toLow, int toHigh, bool wrap = false ) ###
+### Atm_encoder & range( int toLow, int toHigh, bool wrap = false ) ###
 
 Sets the range over which the internal position counter may move. If the current position counter is outside the set range it will be set to the *toLow* value. The position counter starts at 0 when the machine is first initialized.
 
