@@ -11,15 +11,36 @@ This is Automaton's built in scheduler. It takes care of multitasking (cycling) 
 Adds a State Machine (component) to the automaton scheduler. 
 
 ```c++
+#include <Automaton.h>
+
+Atm_led led1;
+
 void setup() {
   automaton.add( led1.begin( 5 ) ); // Add machine explicitly
+  led1.trigger( led1.EVT_BLINK ); // Start it blinking
 }
 
 void loop() {
   automaton.run();
 }
 ```	
-Note that every machine will add itself to the global automaton scheduler automatically when its begin() method is first called, so normally you won't need to use this method.
+Note that every machine will add itself to the global automaton scheduler automatically when its begin() method is first called, so normally you won't need to use this method and the example above would look like this:
+
+```c++
+#include <Automaton.h>
+
+Atm_led led1;
+
+void setup() {
+  led1.begin( 5 ); // Initialize led on pin 5
+  led1.trigger( led1.EVT_BLINK ); // Start it blinking
+}
+
+void loop() {
+  automaton.run();
+}
+```	
+
 
 ### Automaton & run( uint32_t time = 0 ) ###
 
