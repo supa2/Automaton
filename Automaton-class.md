@@ -1,5 +1,7 @@
 This is Automaton's built in scheduler. It takes care of multitasking (cycling) Automaton state machines. In normal use you will only see *automaton.run()* in the loop() section of your Arduino sketches.
 
+Normal users will have little interaction with this class.
+
 <!-- md-tocify-begin -->
 * [component()](#automaton--add-machine--machine-)  
 * [run()](#automaton--run-uint32_t-time--0-)  
