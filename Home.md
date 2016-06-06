@@ -9,7 +9,6 @@ As in the Incredible Machine game pictured above, Automaton state machines can t
 <!-- md-tocify-begin -->
 * [Features](#features)  
 * [Machine class](#machine-class)  
-* [Appliance class](#appliance-class)  
 * [Bundled state machines](#bundled-state-machines)  
 * [Examples](#examples)  
 
@@ -61,10 +60,6 @@ void loop() {
 ### Machine class ###
 
 Base class for creating state machines.
-
-### Appliance class ###
-
-Add your state machines to the appliance class (app) and run them from the Arduino loop().
 
 ### Bundled state machines ###
 
