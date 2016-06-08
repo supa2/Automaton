@@ -186,16 +186,16 @@ Links: [docs](The-timer-machine),
 
 For running the examples and code snippets on an Arduino Uno connect two buttons to pin 2 & 3 (and GND) and 6 leds to pins 4, ~5, ~6, 7, 8 and ~9 (with a current limiting 330 ohm resistor to GND). 
 
-For the analog_bargraph example connect the Arduino's GND and +5V pins to the outer terminals of a (1K or more) pot meter and pin A0 to the center terminal.
+For the led_fuel_gauge example connect the Arduino's GND and +5V pins to the outer terminals of a (1K or more) pot meter and pin A0 to the center terminal.
 
-#### blink
+#### Blink
 
 The result of the *Machine building tutorial*. A simple do-it-yourself state machine that blinks a led and nothing else. All code is included in one .ino file.
 
 
 Source code: [blink.ino](/tinkerspy/Automaton/blob/master/examples/blink/blink.ino)
 
-#### blink_modular
+#### Blink Modular
 
 The blink example with the state machine neatly separated in .cpp and .h files.
 
@@ -204,19 +204,19 @@ Source code:
  [Atm_blink.h](/tinkerspy/Automaton/blob/master/examples/blink_modular/Atm_blink.h),
  [Atm_blink.cpp](/tinkerspy/Automaton/blob/master/examples/blink_modular/Atm_blink.cpp)
 
-#### button
+#### Button
 
 Toggle three leds blinking at different frequencies on and off with one button.
 
 Source code: [button.ino](/tinkerspy/Automaton/blob/master/examples/button/button.ino)
 
-#### fade
+#### Fade
 
 Fade two leds on and off at different speeds without using an appliance container.
 
 Source code: [fade.ino](/tinkerspy/Automaton/blob/master/examples/fade/fade.ino)
 
-#### frere_jacques
+#### Frere Jacques
 
 Play back the french classic 'Frere Jacques' on a piezo speaker on pin 19. Music starts/stops by a button press and 
 the playback speed is controlled with an analog pot on A0.
@@ -225,13 +225,13 @@ Source code:
 [frere_jacques.ino](/tinkerspy/Automaton/blob/master/examples/frere_jacques/frere_jacques.ino),
 [musical_notes.h](/tinkerspy/Automaton/blob/master/examples/frere_jacques/musical_notes.h)
 
-#### knight_rider1
+#### Knight Rider 1
 
 The knight rider sweeping led display using a timer machine that drives a step machine that drives 6 led machines.
 
 Source code: [knight_rider1.ino](/tinkerspy/Automaton/blob/master/examples/knight_rider1/knight_rider1.ino)
 
-#### knight_rider2
+#### Knight Rider 2
 
 The knight rider sweeping led display using a custom made Atm_sweep state machine toggled on and off by a button.
 
@@ -240,44 +240,44 @@ Source code:
  [Atm_sweep.h](/tinkerspy/Automaton/blob/master/examples/knight_rider2/Atm_sweep.h),
  [Atm_sweep.cpp](/tinkerspy/Automaton/blob/master/examples/knight_rider2/Atm_sweep.cpp)
 
-#### knight_rider3
+#### Knight Rider 3
 
 The knight rider sweeping led display using the Atm_player machine as a generic pattern generator.
 
 Source code: 
 [knight_rider3.ino](/tinkerspy/Automaton/blob/master/examples/knight_rider3/knight_rider3.ino)
 
-#### led_test
+#### LED Test
 
 This example shows a button toggling a led while logging all state change information to the serial terminal. Set the Arduino terminal to 9600 baud to monitor the state changes.
 
 Source code: [led_test.ino](/tinkerspy/Automaton/blob/master/examples/led_test/led_test.ino)
 
-#### sos1
+#### S.O.S. 1
 
 Blink a led in a repeating dot-dot-dot-dash-dash-dash-dot-dot-dot pattern. This solution uses one led machine in a sequential pattern by using the timed version of cycle() as a wait/delay statement.
 
 Source code: [sos1.ino](/tinkerspy/Automaton/blob/master/examples/sos1/sos1.ino)
 
-#### sos2
+#### S.O.S. 2
 
 Blink a led in a repeating dot-dot-dot-dash-dash-dash-dot-dot-dot pattern. This solution uses two led machines driving by a step sequencer machine which is in turn driven by a timer machine.
 
 Source code: [sos2.ino](/tinkerspy/Automaton/blob/master/examples/sos2/sos2.ino)
 
-#### sos3
+#### S.O.S. 3
 
 Blink a led in a repeating dot-dot-dot-dash-dash-dash-dot-dot-dot pattern. This solution uses 3 timer machines and 3 led machines chained together in a never ending circle, like snakes biting each others tails.
 
 Source code: [sos3.ino](/tinkerspy/Automaton/blob/master/examples/sos3/sos3.ino)
 
-#### analog_bargraph
+#### LED Fuel Gauge
 
 An advanced example that uses a combination of comparator, step & led machines to create an interactive bargraph display that changes with the turning of a pot (analog value). 
 
-Source code: [analog_bargraph.ino](/tinkerspy/Automaton/blob/master/examples/analog_bargraph/analog_bargraph.ino)
+Source code: [led_fuel_gauge.ino](/tinkerspy/Automaton/blob/master/examples/led_fuel_gauge/led_fuel_gauge.ino)
 
-#### nuclear_missile_launcher
+#### Nuclear Missile_Launcher
 
 Back in the days of the cold war both sides had intercontinental ballistic missiles aimed at each others cities buried in underground silo's that were manned by soldiers who could launch the missiles in the event of an surprise enemy strike. To avoid the disastrous consequences of a suicidal soldier launching a missile and starting off world war III on his own the launch controls were designed to require at least two different operators to trigger a launch.
 
