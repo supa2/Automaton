@@ -87,7 +87,7 @@ Declare the list as a global variable or as *static*. The threshold list can hol
 
 If the optional catchUp argument is set to `true` the state machine will catch up to the current value as soon as the state machine starts cycling. It does this by calling your callback as many times as necessary if the current value is larger than at least one threshold value. So in the above situation, if you have a thermistor attached to A0 and its current value is 511, the callback will be called 5 times in quick succession, once each for the 100, 200, 300, 400 and 500 threshold values. If catchUp is set to `false` or omitted from the `threshold()` call, when the state machine starts, the callback will not be called until a threshold is crossed.
 
-Compatibility note: Note that the size argument now takes the byte size of the threshold array!
+Compatibility note: Note that, unlike in previous versions, the size argument now takes the byte size of the array!
 
 ### Atm_comparator & onChange( bool status, {connector}, {connector-arg} ) ###
 
@@ -151,6 +151,8 @@ void setup() {
 }
 ```
 The buffer variable is used as a ring buffer to store the sampled values. The value the comparator uses to check the thresholds is computed as the average of the values in the ring buffer. The call to average() fills up the ringbuffer with samples so the average will make sense right from the start.
+
+Compatibility note: Note that, unlike in previous versions, the size argument now takes the byte size of the array!
 
 ### int state( void ) ###
 
