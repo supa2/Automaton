@@ -100,11 +100,13 @@ uint16_t avgbuffer[256];
 void setup() {
 
     sensor.begin( A0, 50 )
-      .average( avgbuffer, 256 );
+      .average( avgbuffer, sizeof( avgbuffer ) );
       
 }
 ```
 The buffer variable is used as a ring buffer to store the sampled values. The value the analog machine returns  is computed as the average of the values in the ring buffer. The call to average() fills up the ringbuffer with samples so that the reading will make sense right from the start.
+
+Compatibility note: Note that, unlike in previous versions, the size argument now takes the byte size of the array!
 
 ### Atm_analog & range( int toLow, int toHigh ) ###
 
