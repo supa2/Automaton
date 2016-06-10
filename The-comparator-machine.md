@@ -7,7 +7,6 @@ This state machine monitors an analog input with a configurable sample period an
 * [threshold()](#atm_comparator--threshold-uint16_t--v-uint16_t-size-bool-catchup--false-)  
 * [onChange()](#atm_comparator--onchange-bool-status-connector-connector-arg-)  
 * [average()](#atm_comparator--average-uint16_t--v-uint16_t-size-)  
-* lastThreshold()
 * [state()](#int-state-void-)  
 * [trace()](#atm_comparator--trace-stream--stream-)  
 
@@ -46,7 +45,7 @@ void loop() {
 Attaches the comparator to an analog input pin and sets the sample period. The sample period is in milliseconds per sample.
 
 ```c++
-void cmp_callback( int idx, int v, int up, int idx_threshold, int v_threshold ) {
+void cmp_callback( int idx, int v, int up ) {
   // Do something when one of the thresholds is crossed
 }
 
@@ -59,15 +58,15 @@ void setup() {
 }
 ```
 
-The callback has 5 arguments:
+The callback has 3 arguments:
 
 Argument | Function
 -------- | --------
 idx | The idx value passed to the onChange method (in the example here: 99)
-v | the last measured value (or moving average)
+v | The index of the threshold that was crossed
 up  | The direction in which the threshold was crossed (1 = up, 0 = down)
-idx_threshold | The index of the threshold that was crossed
-v_threshold | The value of the threshold that was crossed
+
+The current value of the input can be accessed with the state() method.
 
 ### Atm_comparator & threshold( uint16_t * v, uint16_t size, bool catchUp = false ) ###
 
