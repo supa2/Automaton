@@ -19,7 +19,7 @@ This state machine monitors an analog input with a configurable sample period an
 
 Atm_comparator cmp;
 
-void cmp_callback( int idx, int v, int up, int idx_threshold, int v_threshold ) {
+void cmp_callback( int idx, int v, int up ) {
   // Do something when one of the thresholds is crossed
   Serial.print( "Value: " );
   Serial.println( v );
@@ -31,7 +31,7 @@ void setup() {
     { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }; 
 
   cmp.begin( A0, 50 )
-    .threshold( threshold_list, 10 )
+    .threshold( threshold_list, sizeof( threshold_list ) )
     .onChange( cmp_callback );
 }
 
@@ -52,7 +52,7 @@ void cmp_callback( int idx, int v, int up, int idx_threshold, int v_threshold ) 
 void setup() {
   ...
   cmp.begin( A0, 50 )
-    .threshold( threshold_list, 10 )
+    .threshold( threshold_list, sizeof( threshold_list ) )
     .onChange( cmp_callback, 99 )
   ...
 }
@@ -78,13 +78,15 @@ void setup() {
     { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }; 
 
     cmp.begin( A0, 50 )
-      .threshold( threshold_list, 10, true )
+      .threshold( threshold_list, sizeof( threshold_list ), true )
       .onChange( cmp_callback, 99 );
 }
 ```
 Declare the list as a global variable or as *static*. The threshold list can hold a maximum of 64 entries.
 
 If the optional catchUp argument is set to `true` the state machine will catch up to the current value as soon as the state machine starts cycling. It does this by calling your callback as many times as necessary if the current value is larger than at least one threshold value. So in the above situation, if you have a thermistor attached to A0 and its current value is 511, the callback will be called 5 times in quick succession, once each for the 100, 200, 300, 400 and 500 threshold values. If catchUp is set to `false` or omitted from the `threshold()` call, when the state machine starts, the callback will not be called until a threshold is crossed.
+
+Compatibility note: Note that the size argument now takes the byte size of the threshold array!
 
 ### Atm_comparator & onChange( bool status, {connector}, {connector-arg} ) ###
 
@@ -96,7 +98,7 @@ void setup() {
     { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }; 
 
   cmp.begin( A0, 50 )
-    .threshold( threshold_list, 10, true )
+    .threshold( threshold_list,  sizeof( threshold_list ), true )
     .onChange( true, step, step.EVT_STEP )
     .onChange( false, step, step.EVT_BACK );
 }
@@ -118,9 +120,9 @@ void setup() {
 
   Serial.begin( 9600 );
   cmp.begin( A0, 50 )
-    .threshold( threshold_list, 10, true )
-    .onChange( [] ( int idx, int v, int up, int idx_threshold, int v_threshold ) {
-       Serial.println( v_threshold );
+    .threshold( threshold_list,  sizeof( threshold_list ), true )
+    .onChange( [] ( int idx, int v, int up ) {
+       Serial.println( threshold_list[cmp.lastThreshold()] );
     });
 }
 
@@ -141,7 +143,7 @@ void setup() {
     { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 }; 
 
   cmp.begin( A0, 50 )
-    .threshold( threshold_list, 10, true )
+    .threshold( threshold_list,  sizeof( threshold_list ), true )
     .average( avgbuffer, sizeof( avgbuffer ) )
     .onChange( cmp_callback );
 
