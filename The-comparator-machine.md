@@ -22,7 +22,7 @@ Atm_comparator cmp;
 void cmp_callback( int idx, int v, int up ) {
   // Do something when one of the thresholds is crossed
   Serial.print( "Value: " );
-  Serial.println( v );
+  Serial.println( cmp.state() );
 }
 
 void setup() {
