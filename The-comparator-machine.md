@@ -122,7 +122,7 @@ void setup() {
   cmp.begin( A0, 50 )
     .threshold( threshold_list,  sizeof( threshold_list ), true )
     .onChange( [] ( int idx, int v, int up ) {
-       Serial.println( threshold_list[cmp.lastThreshold()] );
+       Serial.println( threshold_list[v] );
     });
 }
 
