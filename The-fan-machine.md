@@ -34,7 +34,7 @@ void setup() {
       
   // One button toggles 4 leds
   button.begin( 2 )
-    .onPress( fan, fan.EVT_TOGGLE );
+    .onPress( fan, fan.EVT_INPUT );
 
 }
 
