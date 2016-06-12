@@ -144,7 +144,7 @@ void setup() {
 ```
 For the example above the machine will listen for two events. One if the button is pressed and released withing 200 milliseconds (fires -1, 1, 0 events). A second if the button is pressed, held for at least 200 ms and then released (fires -1, -2, 2, 0 events). If *max* is changed to 3, the machine will listen for another 200 ms hold.
 
-In *longpress* mode the values received by the callback routine are no longer just 0 (release) and 1 (press).
+In *longpress* mode the values received by the callback routine (in the v parameter) are no longer just 0 (release) and 1 (press).
 
 Event code received | Meaning
 ------------ | -------------
@@ -171,7 +171,7 @@ The *delay* parameter controls the delay before the first button repeat (default
 
 ### Atm_button & autoPress( int delay, int press = 1 ) ###
 
-For testing purposes the machine may be configured to automatically generate *press* events with the *autoPress()* method. The *delay* parameter controls the delay between presses. The *press* parameter is passed straight to the callback routine as a parameter.
+For testing purposes the machine may be configured to automatically generate *press* events with the *autoPress()* method. The *delay* parameter controls the delay between presses. The *press* parameter is passed straight to the callback routine the v parameter.
 
 ```c++
 void setup() 
