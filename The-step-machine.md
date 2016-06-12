@@ -212,7 +212,7 @@ Step id=7
 Step id=0
 ```
 
-For an application of this have a look at the analog_bargraph example.
+For an application of this have a look at the led_fuel_gauge example.
 
 ### EVT_SWEEP ###
 
