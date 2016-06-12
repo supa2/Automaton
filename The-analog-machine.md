@@ -1,4 +1,4 @@
-This state machine monitors an analog input with a configurable sample period and fires off an optional callback whenever its value changes. Optionally keeps a moving average to smooth out peaks and troughs. The analog machine is great for monitoring potmeters.
+This state machine monitors an analog input with a configurable sample period and fires off an optional callback whenever its value changes. Optionally keeps a moving average to smooth out peaks and troughs. The analog machine is also great for monitoring potmeters.
 
 ![Sine](images/sine-graph-small.jpg)
 
