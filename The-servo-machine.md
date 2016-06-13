@@ -5,7 +5,9 @@ The servo state machine controls a rotary servo.
 * [begin()]()  
 * [onChange()](#atm_servo--onchange-connector-connector-arg-)  
 * [onFinish()](#atm_servo--onfinish-connector-connector-arg-)  
-* [set()](#atm_servo--position-int-v-)  * [state()](#int-state-void-)  
+* [step()](#atm_servo--position-int-v-)  
+* [position()](#atm_servo--position-int-v-)  
+* [state()](#int-state-void-)  
 * [trace()](#atm_servo--trace-stream--stream-)  
 
 <!-- md-tocify-end -->
