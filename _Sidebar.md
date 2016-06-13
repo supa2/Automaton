@@ -10,6 +10,8 @@
   * [Timers & counters](Timers-&-Counters)  
   * [Tips & tricks & pitfalls](Tips-&-tricks-&-pitfalls)
   * [Contributed](Contributed)
+* **Tools**
+  * [Machine template editor](http://wolkendek.nl/atm/)
 * **Bundled state machines**
   * [The analog machine](The-analog-machine)  
   * [The bit machine](The-bit-machine)  
@@ -23,6 +25,7 @@
   * [The fan machine](The-fan-machine)  
   * [The led machine](The-led-machine)  
   * [The player machine](The-player-machine)  
+  * [The servo machine](The-servo-machine)  
   * [The step machine](The-step-machine)  
   * [The timer machine](The-timer-machine)  
 
