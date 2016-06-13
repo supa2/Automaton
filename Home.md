@@ -2,9 +2,7 @@
 
 The Automaton framework allows you to create Arduino applications (appliances) that consist entirely of concurrently running finite state machines (FSM) interacting with one another. Changes are automatically propagated through the appliance like changes in a spreadsheet.
 
-![Sierra Online - Incredible Machine](http://s.emuparadise.org/fup/up/93649-Incredible_Machine_%281993%29%28Sierra_Online%29-1.png)
-
-As in the Incredible Machine game pictured above, Automaton state machines can trigger each other and form intricate control structures. Unlike the game Automaton allows you to create your own state machines and make them interact with the bundled machines and control whatever your Arduino or its peripherals are capable of doing. With Automaton it's easy to build your own incredible machines!
+Automaton state machines can trigger each other and form intricate control structures. Unlike the game Automaton allows you to create your own state machines and make them interact with the bundled machines and control whatever your Arduino or its peripherals are capable of doing.
 
 <!-- md-tocify-begin -->
 * [Features](#features)  
