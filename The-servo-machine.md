@@ -12,9 +12,9 @@ The servo state machine controls a rotary servo.
 
 <!-- md-tocify-end -->
 
-Source code:  
+Source code:
 [Atm_servo.cpp](/tinkerspy/Automaton/blob/master/src/Atm_servo.cpp),
-[Atm_servo.hpp](/tinkerspy/Automaton/blob/master/src/Atm_servo.hpp),
+[Atm_servo.hpp](/tinkerspy/Automaton/blob/master/src/Atm_servo.hpp)
 
 ## Synopsis ##
 
