@@ -164,6 +164,14 @@ Links: [docs](The-player-machine),
  [cpp](/tinkerspy/Automaton/blob/master/src/Atm_player.cpp),
  [hpp](/tinkerspy/Automaton/blob/master/src/Atm_player.hpp) 
 
+#### Atm_servo state machine
+
+Controls one or more servo's. 
+
+Links: [docs](The-servo-machine),
+ [cpp](/tinkerspy/Automaton/blob/master/src/Atm_servo.cpp),
+ [hpp](/tinkerspy/Automaton/blob/master/src/Atm_servo.hpp) 
+
 #### Atm_step state machine
 
 A step sequencer state machine. Create up to 8 steps which all trigger other machines via triggers or callbacks. Step patterns available: linear (default), sweep and burst. The linear pattern can be driven forward or backwards on different triggers. Use two steps in linear mode to create a flip-flop or toggle effect.
