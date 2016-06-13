@@ -52,6 +52,21 @@ void setup() {
   ...
 }
 ```
+
+### Atm_servo & onFinish( {connector}, {connector-arg} ) ###
+
+Specifies a machine or callback to be triggered whenever the servo machine reaches its destination position.
+
+```c++
+void setup() {
+  ...
+  servo.begin( 2 )
+    .onFinish( led, led.EVT_BLINK );
+  ...
+}
+```
+
+
 ### Atm_servo & position( int v ) ###
 
 
