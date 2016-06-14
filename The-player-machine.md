@@ -62,7 +62,7 @@ void setup() {
     .play( pattern, sizeof( pattern ) )
     .onNote( true, led, led.EVT_ON )
     .onNote( false, led, led.EVT_OFF )
-    .trigger( player.EVT_START );
+    .start();
 
 }
 
@@ -148,7 +148,7 @@ void setup() {
       }    
     })
     .repeat( -1 ) // Repeat forever
-    .trigger( player.EVT_START ); // Kickoff!
+    .start(); // Kickoff!
   speed.begin( speedPotPin ) 
     .range( speedMin, speedMax ) // Set the range for the pot values
     .onChange( []( int idx, int v, int up ) {
@@ -179,7 +179,7 @@ Atm_analog pot;
 void setup() {
   player.begin( 19 )
     .play( 440, 100, 100 )
-    .trigger( player.EVT_START )
+    .start()
     .repeat( -1 );
   pot.begin( A0 )
     .range( 30, 500 )
