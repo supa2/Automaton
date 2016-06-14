@@ -90,8 +90,8 @@ Plays a single tone through the piezo speaker.
 Argument | Function
 ---- | ----
 freq | Frequency in herz
-period | Duration of note on
-pause | Duration of note off
+period | Duration of note on in milliseconds
+pause | Duration of note off in milliseconds
 
 ```c++
 void setup() {
