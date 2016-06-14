@@ -214,7 +214,8 @@ void setup() {
   player.begin()
     .play( pattern, sizeof( pattern ) )
     .onNote( true, led, led.EVT_ON ) // On note on
-    .onNote( false, led, led.EVT_OFF ); // On note off
+    .onNote( false, led, led.EVT_OFF ) // On note off
+    .start();
 }
 ```
 
