@@ -66,6 +66,16 @@ void setup() {
 
 }
 
+```
+
+In its default setting the player machine will play a single 880 hz tone for 50 milliseconds.
+
+```c++
+
+void setup() {
+ 
+  player.begin( 19 ).start(); //Plays a 880 hz tone
+}
 
 ```
 
