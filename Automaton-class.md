@@ -44,7 +44,7 @@ void loop() {
 ```	
 
 
-### Automaton & run( uint32_t time = 0 ) ###
+### Automaton & run( void ) ###
 
 Executes an Automaton cycle. In a Automaton cycle all machines are cycled once. Normally called from the Arduino loop().
 
@@ -54,7 +54,9 @@ void loop() {
 }
 ```
 
-When the *time* argument is specified and greater than zero, the run() method will cycle until the corresponding number of milliseconds has passed. This can be useful if you want to run one or more state machines in a sequential pattern (normally from the setup method).
+### Automaton & delay( uint32_t time ) ###
+
+Cycles until the corresponding number of milliseconds has passed. This can be useful if you want to run one or more state machines in a sequential pattern (normally from the setup method). Unlike the regular delay this does not pause any running state machines.
 
 ```c++
 void setup() {
@@ -62,7 +64,7 @@ void setup() {
   led2.begin( 6 ).blink(  100,  100 ); // Blink a led quickly
   led1.trigger( led1.EVT_BLINK ); // Start them both blinking
   led2.trigger( led2.EVT_BLINK );
-  automaton.run( 10000 ); // Let them blink for 10 seconds
+  automaton.delay( 10000 ); // Let them blink for 10 seconds
   led1.trigger( led1.EVT_OFF ); // Stop the blinking
   led2.trigger( led2.EVT_OFF );
 }
