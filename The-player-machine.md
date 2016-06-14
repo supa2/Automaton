@@ -12,6 +12,8 @@ Note that the Arduino tone() command cannot control more than one pin at the sam
 * [repeat()](#atm_player--repeat-int-v-)  
 * [speed()](#atm_player--speed-int-v-)  
 * [pitch()](#atm_player--pitch-int-v-)  
+* [start()](#atm_player--start--)  
+* [stop()](#atm_player--stop--)  
 * [onNote()](#atm_player--onnote-connector-connector-arg-)  
 * [onFinish()](#atm_player--onfinish-connector-connector-arg-)  
 * [trace()](#atm_player--trace-stream--stream-)  
@@ -191,6 +193,14 @@ void loop() {
   automaton.run();
 }
 ```
+
+### Atm_player & start() ###
+
+Starts the player.
+
+### Atm_player & stop() ###
+
+Stops the player.
 
 ### Atm_player & onNote( {connector}, {connector-arg} ) ###
 
