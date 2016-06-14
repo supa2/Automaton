@@ -152,6 +152,14 @@ timer.interval( 2000 );
 timer.repeat( 2 );
 ```
 
+### Atm_timer & start() ###
+
+Starts the timer.
+
+### Atm_timer & stop() ###
+
+Stops the timer.
+
 ### EVT_START ###
 
 Turns an idle timer on or resets a running timer.
