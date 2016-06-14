@@ -9,6 +9,8 @@ Atm_timer implements a timer mechanism as a simple state machine. Atm_timer work
 * [interval_seconds()](#atm_timer--interval_seconds-int-v-)  
 * [interval()](#atm_timer--interval-int-v-)  
 * [repeat()](#atm_timer--repeat-int-v-)  
+* [start()](#atm_timer--start)  
+* [stop()](#atm_timer--stop)  
 * [EVT_START](#evt_start)  
 * [EVT_STOP](#evt_stop)  
 * [EVT_TOGGLE](#evt_toggle)  
