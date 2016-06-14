@@ -76,8 +76,8 @@ Sets a pattern to be played by the player machine. The pattern should be an arra
 Index | Function
 ---- | ----
 0 | Frequency in herz
-1 | Duration of note on
-2 | Duration of note off
+1 | Duration of note on in milliseconds
+2 | Duration of note off in milliseconds
 
 The patsize argument contains the total number of *bytes* in the pattern array.
 
