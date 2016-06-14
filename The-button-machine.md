@@ -5,6 +5,7 @@ Atm_button is a state machine for implementing buttons. Connected to a digital i
 <!-- md-tocify-begin -->
 * [begin()](#atm_button--begin-int-attached_pin-)  
 * [onPress()](#atm_button--onpress-connector-connector-argument-)  
+* [onRelease()](#atm_button--onrelease-connector-connector-argument-)  
 * [debounce()](#atm_button--debounce-int-delay-)  
 * [longPress()](#atm_button--longpress-int-max-int-delay-)  
 * [repeat()](#atm_button--repeat-int-delay--500-int-speed--50-)  
@@ -76,7 +77,7 @@ void setup() {
       .onPress( button_change );
 }
 ```
-The v argument contains 0 if the event is a button release and 1 if the event is a button press. When in *longpress mode* the v argument may contain other values. 
+The v argument 1 if the event is a button press. When in *longpress mode* the v argument may contain other values. 
 
 Alternatively pass an idx parameter to the callback to reuse a single callback for multiple Atm_button objects. Default value for idx is 0.
 
@@ -86,12 +87,9 @@ Alternatively pass an idx parameter to the callback to reuse a single callback f
 Atm_button button1, button2;
 Atm_led led1, led2;
 
-void button_change( int idx, int v, int up ) 
-{
-  if ( v ) {
-    if ( idx == 1 ) led1.trigger( led1.EVT_TOGGLE_BLINK );  
-    if ( idx == 2 ) led2.trigger( led2.EVT_TOGGLE_BLINK );  
-  }
+void button_change( int idx, int v, int up ) {
+  if ( idx == 1 ) led1.trigger( led1.EVT_TOGGLE_BLINK );  
+  if ( idx == 2 ) led2.trigger( led2.EVT_TOGGLE_BLINK );  
 }
 
 void setup() {
@@ -117,6 +115,10 @@ Triggering another machine on a button press (pressing the button will start a l
 
 The nice thing about using onPress() with an event argument is that a callback routine is not required. If you want to use the longpress mode you'll have to use a callback to handle all the different button press events.
 
+### Atm_button & onRelease( {connector}, {connector-argument} ) ###
+
+Registers a callback or a machine event to be triggered whenever the button is released.
+
 ### Atm_button & debounce( int delay ) ###
 
 Adds a debounce delay of *delay* milliseconds. Default debounce delay is 5 milliseconds.
@@ -136,19 +138,31 @@ Switches the Atm_button machine to *longpress* mode. In *longpress* mode the eve
 The *delay* parameter controls the time the user should keep the button pressed (in millis) for the next event to register. The *max* parameter controls how many events are handled by the button. 
 
 ```c++
+
+
+
 void setup() {
+  Serial.begin( 9600 );
   btn.begin( 2 )
-    .onPress( btn_change )
+    .onPress( [] ( int idx, int v, int up ) {
+      switch ( v ) {
+        case 1:
+          Serial.println( "Press 1" );
+          return;
+        case 2:
+          Serial.println( "Press 2" );
+          return;
+      }
+    })
     .longPress( 2, 200 );
 }
 ```
-For the example above the machine will listen for two events. One if the button is pressed and released withing 200 milliseconds (fires -1, 1, 0 events). A second if the button is pressed, held for at least 200 ms and then released (fires -1, -2, 2, 0 events). If *max* is changed to 3, the machine will listen for another 200 ms hold.
+For the example above the machine will listen for two events. One if the button is pressed and released within 200 milliseconds (fires -1, 1 events). A second if the button is pressed, held for at least 200 ms and then released (fires -1, -2, 2 events). If *max* is changed to 3, the machine will listen for another 200 ms hold.
 
-In *longpress* mode the values received by the callback routine (in the v parameter) are no longer just 0 (release) and 1 (press).
+In *longpress* mode the values received by the callback routine (in the v parameter) are:
 
 Event code received | Meaning
 ------------ | -------------
-0| The machine registered a release event
 -1..-n | The machine passed through a threshold
 1..n | The machine registered a press event
 
