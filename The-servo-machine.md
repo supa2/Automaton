@@ -52,7 +52,7 @@ void setup() {
   ...
   servo.begin( 2 )
     .onChange( ATM_UP, upLed, upLed.EVT_BLINK )
-    .onChange( ATM_DOWN,downLed, downLed.EVT_BLINK );
+    .onChange( ATM_DOWN, downLed, downLed.EVT_BLINK );
   ...
 }
 ```
