@@ -38,12 +38,15 @@ int pattern[] = {
 };
 
 void setup() {
+
   // Piezo speaker on pin 4
   player.begin( 4 ) 
     .play( pattern, sizeof( pattern ) );
+
   // Button on pin 2
   button.begin( 2 )
     .onPress( player, player.EVT_START ); // Linked by an event
+
 }
 
 void loop() {
