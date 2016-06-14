@@ -33,7 +33,7 @@ void setup() {
   timer.begin( 2000 )
     .repeat( 2 )
     .onTimer( timer_callback )
-    .trigger( timer.EVT_START );
+    .start();
 }
 
 void loop() {
@@ -49,7 +49,7 @@ The begin() method has one optional argument, the interval in milliseconds.
 void setup() {
   timer.begin();
   ...
-  timer.begin( 2000 ).trigger( timer.EVT_START );
+  timer.begin( 2000 ).start();
   ...
 }
 ```
@@ -62,7 +62,7 @@ void setup() {
 
   timer.begin()
     .onTimer( led, led.EVT_ON )
-    .trigger( timer.EVT_START ); // Turns the led on immediately
+    .start(); // Turns the led on immediately
 }
 ```
 Combining a null timer with repeat() can generate multiple events. In the example below, a single EVT_START sent to the timer will turn on 4 leds through the step sequencer without delay.
@@ -83,7 +83,7 @@ void setup() {
   timer.begin()
     .repeat( 4 )
     .onTimer( step, Atm_step::EVT_STEP ) 
-    .trigger( timer.EVT_START ); // Triggers 4 EVT_STEP events!
+    .start(); // Triggers 4 EVT_STEP events!
 }
 
 void loop() {
@@ -156,11 +156,11 @@ timer.repeat( 2 );
 
 ### Atm_timer & start() ###
 
-Starts the timer.
+Starts the timer. (Same as EVT_START)
 
 ### Atm_timer & stop() ###
 
-Stops the timer.
+Stops the timer. (Same as EVT_STOP)
 
 ### EVT_START ###
 
