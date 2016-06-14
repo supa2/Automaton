@@ -51,8 +51,8 @@ Specifies a machine or callback to be triggered whenever the servo machine chang
 void setup() {
   ...
   servo.begin( 2 )
-    .onChange( ATM_UP, led, led.EVT_BLINK )
-    .onChange( ATM_DOWN, led, led.EVT_BLINK );
+    .onChange( ATM_UP, upLed, upLed.EVT_BLINK )
+    .onChange( ATM_DOWN,downLed, downLed.EVT_BLINK );
   ...
 }
 ```
