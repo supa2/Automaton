@@ -61,8 +61,9 @@ void setup() {
   led.begin( 4 );
 
   timer.begin()
-    .onTimer( led, led.EVT_ON )
-    .start(); // Turns the led on immediately
+    .onTimer( led, led.EVT_ON );
+
+  timer.trigger( timer.EVT_START ); // Turns the led on immediately
 }
 ```
 Combining a null timer with repeat() can generate multiple events. In the example below, a single EVT_START sent to the timer will turn on 4 leds through the step sequencer without delay.
