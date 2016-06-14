@@ -92,7 +92,7 @@ void loop() {
 }
 ```
 
-Note that unlike earlier versions, the timer machine requires a EVT_START trigger to actually start the timer!
+Note that unlike earlier versions, the timer machine requires a EVT_START trigger or start() method call to actually start the timer!
 
 ### Atm_timer & onTimer( {connector}, {connector-arg} ) ###
 
