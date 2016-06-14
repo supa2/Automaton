@@ -179,8 +179,8 @@ Atm_analog pot;
 void setup() {
   player.begin( 19 )
     .play( 440, 100, 100 )
-    .start()
-    .repeat( -1 );
+    .repeat( -1 )
+    .start();
   pot.begin( A0 )
     .range( 30, 500 )
     .onChange( []( int idx, int v, int up ) {
