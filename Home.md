@@ -23,7 +23,7 @@ Automaton state machines can trigger each other and form intricate control struc
 - Encourages modular design and separation of concerns
 - State machines you create can be shared as stand alone Arduino libraries (dependent only on the Automaton library)
 
-Documentation for the (Appliance & Machine) base classes and the bundled state machines is linked in the textbox on the right. If you want to make your own machines, which is where the real fun is, look at the machine building tutorial.
+Documentation for the (Automaton & Machine) base classes and the bundled state machines is linked in the textbox on the right. If you want to make your own machines, which is where the real fun is, look at the machine building tutorial.
 
 <tinkerspy@myown.mailcan.com>
 
