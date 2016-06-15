@@ -146,11 +146,13 @@ led1.trigger( led1.EVT_BLINK );
 The example above will blink a led slowly 3 times and then blink the same led quickly 10 times.
 
 
-### EVT_ON ###
+### on() / EVT_ON ###
 
 Turns the led on.
 
 ```c++
+led.on();
+
 led.trigger( led.EVT_ON );
 ```
 
