@@ -69,7 +69,7 @@ Or registers a state machine that gets triggered when a pulse is detected.
 ```c++
 #include <Automaton.h>
 
-// Declare the state machines & appliance
+// Declare the state machines
 Atm_bit bit;
 Atm_digital sw;
 
