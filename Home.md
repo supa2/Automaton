@@ -1,6 +1,6 @@
 *Reactive state machine framework for Arduino.*
 
-The Automaton framework allows you to create Arduino applications (appliances) that consist entirely of concurrently running finite state machines (FSM) interacting with one another. Changes are automatically propagated through the appliance like changes in a spreadsheet.
+The Automaton framework allows you to create Arduino applications that consist entirely of concurrently running finite state machines (FSM) interacting with one another. Changes are automatically propagated through the application like changes in a spreadsheet.
 
 Automaton state machines can trigger each other and form intricate control structures. Unlike the game Automaton allows you to create your own state machines and make them interact with the bundled machines and control whatever your Arduino or its peripherals are capable of doing.
 
@@ -218,7 +218,7 @@ Source code: [button.ino](/tinkerspy/Automaton/blob/master/examples/button/butto
 
 #### Fade
 
-Fade two leds on and off at different speeds without using an appliance container.
+Fade two leds on and off at different speeds without using the automaton scheduler object.
 
 Source code: [fade.ino](/tinkerspy/Automaton/blob/master/examples/fade/fade.ino)
 
