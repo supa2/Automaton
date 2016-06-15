@@ -383,7 +383,7 @@ void setup() {
 
 ### Wrap up ###
 
-The advantage of using state machines is that you can run dozens of state machines at the same time, each performing its own subtask. The appliance scheduler object keeps them all running at their selected priority. The machines can communicate asynchronously via the message queue and you can easily perform complicated tasks while your Arduino stays responsive to user input. Many of today's hottest technologies like Node.JS and Python's twisted are based on event driven frameworks. Now your Arduino can have one too.
+The advantage of using state machines is that you can run dozens of state machines at the same time, each performing its own subtask. The auotomaton scheduler object keeps them all running at their selected priority. The machines can communicate asynchronously via the message queue and you can easily perform complicated tasks while your Arduino stays responsive to user input. Many of today's hottest technologies like Node.JS and Python's twisted are based on event driven frameworks. Now your Arduino can have one too.
 
 For the sake of this tutorial I've kept everything in a single .ino file, but ideally a state machine would be packaged in its own separate .cpp and .h files that can be distributed and shared just like any Arduino library. Look at the source of one of the bundled state machines to see how that's done. 
 
