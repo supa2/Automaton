@@ -158,7 +158,7 @@ led1.sleep( 1 );
 
 ### Machine & cycle( [uint32_t time] ) ###
 
-Executes one cycle of the state machine. Normally only called by the appliance class but can also be used directly inside the Arduino loop() function to bypass the appliance class altogether.
+Executes one cycle of the state machine. Normally only called by the automaton object but can also be used directly inside the Arduino loop() function.
 
 ```c++
 void loop()
