@@ -1,8 +1,8 @@
 * [Home](.)  
 * **The framework**
   * [The Syntax](The-Syntax)
-  * [Automaton](Automaton-class)  
-  * [Machine](Automaton-Machine-class)  
+  * [The Automaton class](Automaton-class)  
+  * [The Machine class](Automaton-Machine-class)  
 * **Topics**
   * [Installation](Installation)  
   * [Automaton Testimonials](Automaton-Testimonials)  
