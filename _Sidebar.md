@@ -1,6 +1,6 @@
 * [Home](.)  
 * **The framework**
-  * [The Syntax](The-Syntax)
+  * [Introduction](Introduction)
   * [The Automaton class](Automaton-class)  
   * [The Machine class](Automaton-Machine-class)  
 * **Topics**
