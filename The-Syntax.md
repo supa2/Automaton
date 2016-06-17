@@ -74,3 +74,21 @@ void setup() {
 ```
 We now have two buttons independently controlling two leds.
 
+Automaton has a so-called 'fluent interface'. Instead of repeating button.begin() and button.onPress() you can *chain* them together like this: button.begin().onPress() We insert newlines to make this more readable.
+
+```cpp++
+
+  // Start a led blinking at 200ms on and 200ms off
+  led.begin( 4 );
+  led.blink( 200, 200 );
+  led.start();
+
+  // Do the same using the 'fluent' syntax
+  led.begin( 4 )
+    .blink( 200, 200 )
+    .start();
+
+```
+
+Many people believe that this is a more readable syntax. With the proper indenting it is immediately obvious that these commands are grouped. Together they configure the 'led' component. This combination of event driven programming and fluent interface has been made popular by modern frameworks like jQuery and Node.js.
+
