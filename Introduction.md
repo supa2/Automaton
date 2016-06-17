@@ -96,7 +96,7 @@ Automaton has a so-called 'fluent interface'. Instead of repeating button.begin(
   }
 ```
 
-Many people believe that this is a more readable syntax. With the proper indenting it is immediately obvious that these commands are grouped and together they configure the 'led' component. This combination of event driven programming and fluent interface has been made popular by modern frameworks like jQuery and Node.js.
+This makes for more readable code. With the proper indenting it is immediately obvious that these commands are grouped and together they configure the 'led' component. This combination of event driven programming and fluent interface has been made popular by modern frameworks like jQuery and Node.js.
 
 ### Mix & match ###
 
