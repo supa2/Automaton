@@ -39,7 +39,7 @@ void loop() {
 }
 ```
 
-Now we have two initialized components but they're in no way connected to each other. They are however connected to the 'automaton' object. When we call the begin method on a component it will automatically attach itself to the global automaton object which means it will be kept running as long as the automaton.run() method is regularly executed.
+Now we have two initialized components but they're in no way connected to each other. They are however connected to the 'automaton' object. When we call the begin method on a component it will automatically attach itself to the global automaton object which means it will be kept running as long as the automaton.run() method is regularly executed. The sketch so far will compile and run, be nothing will happen when you press the button connected to pin 2.
 
 Now we want a button press event to trigger the led's 'EVT_BLINK' event. We specify that be extending the setup method:
 ```c++
@@ -49,3 +49,13 @@ void setup() {
   button.onPress( led, led.EVT_BLINK );
 }
 ```
+It would be nicer to make the blinking toggle on and off, fortunately that is easy to arrange, just change the event to EVT_TOGGLE_BLINK.
+
+```c++
+void setup() {
+  led.begin( 4 );
+  button.begin( 2 );
+  button.onPress( led, led.EVT_TOGGLE_BLINK );
+}
+```
+As you see, a change in the button component leads to an automatic change in the led component. Like in a spreadsheet a change in a component (cell) automatically propagates to other components (cells). We call this 'reactive' programming. 
