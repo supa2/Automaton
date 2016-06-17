@@ -2,6 +2,8 @@
 * Event driven
 * Method chaining/cascading
 
+### Framework ###
+
 Automaton is an event driven framework that makes writing multi tasking Arduino sketches easier than ever. It's called a framework instead of 'just' a library because it takes over the execution control of your sketch. Typically, you no longer write your sketch code inside the Arduino 'loop' function.
 
 Instead you initialize the components of your sketch (leds, buttons, servo's etc.) in the setup method and you specify how they should interact with each other when certain events occur. We call this 'Event driven programming'.
@@ -58,6 +60,9 @@ void setup() {
   button.onPress( led, led.EVT_TOGGLE_BLINK );
 }
 ```
+
+### Event driven & reactive programming ###
+
 As you see, a change in the button component leads to an automatic change in the led component. Like in a spreadsheet a change in a component (cell) automatically propagates to other components (cells). We call this 'reactive' programming. 
 
 A pleasant side effect of this way of programming is that it is extremely easy to expand our simple sketch to two or three leds and buttons. It's much easier to scale than the typical Arduino code.
@@ -73,6 +78,8 @@ void setup() {
 }
 ```
 We now have two buttons independently controlling two leds.
+
+### Fluent interface ###
 
 Automaton has a so-called 'fluent interface'. Instead of repeating button.begin() and button.onPress() you can *chain* them together like this: button.begin().onPress() We insert newlines to make this more readable.
 
@@ -90,5 +97,5 @@ Automaton has a so-called 'fluent interface'. Instead of repeating button.begin(
 
 ```
 
-Many people believe that this is a more readable syntax. With the proper indenting it is immediately obvious that these commands are grouped. Together they configure the 'led' component. This combination of event driven programming and fluent interface has been made popular by modern frameworks like jQuery and Node.js.
+Many people believe that this is a more readable syntax. With the proper indenting it is immediately obvious that these commands are grouped and together they configure the 'led' component. This combination of event driven programming and fluent interface has been made popular by modern frameworks like jQuery and Node.js.
 
