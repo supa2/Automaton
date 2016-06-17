@@ -40,7 +40,7 @@ void loop() {
 }
 ```
 
-Now we have two initialized components but they're in no way connected to each other. They are however connected to the 'automaton' object. When we call the begin method on a component it will automatically attach itself to the global automaton object which means it will be kept running as long as the automaton.run() method is regularly executed. The sketch so far will compile and run, be nothing will happen when you press the button connected to pin 2.
+Now we have two initialized components but they're in no way connected to each other. They are however connected to the 'automaton' object. When we call the begin method on an Automaton component it will automatically attach itself to the global automaton object which means it will be kept running as long as the automaton.run() method is regularly executed. The sketch so far will compile and run, be nothing will happen when you press the button connected to pin 2.
 
 Now we want a button press event to trigger the led's 'EVT_BLINK' event. We specify that be extending the setup method:
 ```c++
