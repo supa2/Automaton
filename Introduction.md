@@ -77,7 +77,7 @@ void setup() {
   button2.onPress( led2, led.EVT_TOGGLE_BLINK );
 }
 ```
-We now have two buttons independently controlling two leds.
+We now have two buttons independently controlling two leds. I told you it was easy...
 
 ### Fluent interface ###
 
