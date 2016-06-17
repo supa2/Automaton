@@ -61,6 +61,8 @@ It would be nicer to make the blinking toggle on and off, fortunately that is ea
 
 As you see, a change in the button component leads to an automatic change in the led component. Like in a spreadsheet a change in a component (cell) automatically propagates to other components (cells). We call this 'reactive' programming. 
 
+[Reactive Programming on wikipedia](https://en.m.wikipedia.org/wiki/Reactive_programming)
+
 A pleasant side effect of this way of programming is that it is extremely easy to expand our simple sketch to two or three leds and buttons. It's much easier to scale than the typical Arduino code.
 
 ```c++
