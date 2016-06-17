@@ -1,6 +1,7 @@
-* Framework
-* Event driven
-* Method chaining/cascading
+* [Framework]()
+* [Programming style]()
+* [Fluent Interface]()
+* [Mix & Match]()
 
 ### Framework ###
 
@@ -61,7 +62,7 @@ void setup() {
 }
 ```
 
-### Event driven & reactive programming ###
+### Programming style ###
 
 As you see, a change in the button component leads to an automatic change in the led component. Like in a spreadsheet a change in a component (cell) automatically propagates to other components (cells). We call this 'reactive' programming. 
 
@@ -99,3 +100,6 @@ Automaton has a so-called 'fluent interface'. Instead of repeating button.begin(
 
 Many people believe that this is a more readable syntax. With the proper indenting it is immediately obvious that these commands are grouped and together they configure the 'led' component. This combination of event driven programming and fluent interface has been made popular by modern frameworks like jQuery and Node.js.
 
+### Mix & match ###
+
+You can combine Automaton's event driven code with other code as long as you make sure that the automaton.run() method is regularly called to update the running state machines.
