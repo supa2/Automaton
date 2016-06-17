@@ -59,3 +59,18 @@ void setup() {
 }
 ```
 As you see, a change in the button component leads to an automatic change in the led component. Like in a spreadsheet a change in a component (cell) automatically propagates to other components (cells). We call this 'reactive' programming. 
+
+A pleasant side effect of this way of programming is that it is extremely easy to expand our simple sketch to two or three leds and buttons. It's much easier to scale than the typical Arduino code.
+
+```c++
+void setup() {
+  led.begin( 4 );
+  button.begin( 2 );
+  button.onPress( led, led.EVT_TOGGLE_BLINK );
+  led2.begin( 5 );
+  button2.begin( 3 );
+  button2.onPress( led2, led.EVT_TOGGLE_BLINK );
+}
+```
+We now have two buttons independently controlling two leds.
+
