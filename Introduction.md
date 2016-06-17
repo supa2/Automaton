@@ -80,7 +80,7 @@ We now have two buttons independently controlling two leds.
 
 ### Fluent interface ###
 
-Automaton has a so-called 'fluent interface'. Instead of repeating button.begin() and button.onPress() you can *chain* them together like this: button.begin().onPress() We insert newlines to make this more readable.
+Automaton has a so-called 'fluent interface'. Instead of repeating button.begin() and button.onPress() you can *chain* them together like this: button.begin().onPress() We insert newlines to make it more readable.
 
 ```c++
   void setup() {
