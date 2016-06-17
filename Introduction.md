@@ -123,7 +123,7 @@ void setup() {
 ```
 
 Another unfamiliar thing in the Arduino world is the use of Lambda Expressions.
-The use of a separate callback function makes the code more fragmented. By using a so called lambda expression (only available in the Arduino IDE since version 1.6.6) we can keep the code together.
+The use of a separate callback function makes the code more fragmented. By using a so called lambda expression (only available in the Arduino IDE since version 1.6.6) we can keep the code that defines the button nicely together.
 
 ```c++
 void setup() {
@@ -139,6 +139,16 @@ void setup() {
 
 }
 ```
+
+For comparison have a look at these jQuery fragments.
+
+```javascipt
+$("#p1").css("color", "red")
+  .slideUp(2000)
+  .slideDown(2000);
+
+```
+
 
 ### Mix & match ###
 
