@@ -112,10 +112,13 @@ void callback( int idx, int v, int up ) {
 }
 
 void setup() {
+
   led.begin( 4 );
   led2.begin( 5 );
+
   button.begin( 2 )
     .onPress( callback );
+
 }
 ```
 
@@ -123,6 +126,19 @@ Another unfamiliar thing in the Arduino world is the use of Lambda Expressions.
 The use of a separate callback function makes the code more fragmented. By using a so called lambda expression (only available in the Arduino IDE since version 1.6.6) we can keep the code together.
 
 ```c++
+void setup() {
+
+  led.begin( 4 );
+  led2.begin( 5 );
+
+  button.begin( 2 )
+    .onPress( [] ( int idx, int v, int up ) {
+      led.toggle();
+      led2.toggle();
+    });
+
+}
+```
 
 ### Mix & match ###
 
