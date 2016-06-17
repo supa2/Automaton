@@ -1,3 +1,39 @@
 * Framework
 * Event driven
 * Method chaining/cascading
+
+Automaton is a framework that makes writing multi tasking Arduino sketches easier than ever. It's called a framework instead of 'just' a library because it takes over the execution control of your sketch. Typically, you no longer write your sketch code inside the Arduino 'loop' function.
+
+Instead you initialize the components of your sketch (leds, buttons, servo's etc.) in the setup method and you specify how they should interact with each other when certain events occur. We call this 'Event driven programming'.
+
+Let's have a look at a simple sketch with a blinking led and a button to turn the blinking on or off.
+
+First we need to include the Automaton.h file and declare two objects, a button and a led. This is done at the top of the sketch.
+
+```c++
+#include <Automaton.h>
+
+Atm_led led;
+Atm_button button;
+
+```
+[Documentation for the Atm_led class](/tinkerspy/Automaton/wiki/The-led-machine)  
+[Documentation for the Atm_button class](/tinkerspy/Automaton/wiki/The-button-machine)
+
+We now have two component (they're actually state machine object, but you can forget about that for now). Next we initialize these components in the Arduino setup() method.
+
+```c++
+void setup() {
+  led.begin( 4 );
+  button.begin( 2 );
+}
+```
+
+Now the led is connected to pin 4 and the button is connected to pin 2.
+
+To complete the sketch we need a loop() function. The loop function for an Automaton sketch typically looks like this.
+
+```c++
+void loop() {
+  automaton.run();
+}
