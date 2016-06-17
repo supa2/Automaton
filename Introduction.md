@@ -20,8 +20,6 @@ Atm_led led;
 Atm_button button;
 
 ```
-[Documentation for the Atm_led class](/tinkerspy/Automaton/wiki/The-led-machine)  
-[Documentation for the Atm_button class](/tinkerspy/Automaton/wiki/The-button-machine)
 
 We now have two component (they're actually state machine object, but you can forget about that for now). Next we initialize these components in the Arduino setup() method.
 
@@ -103,3 +101,6 @@ Many people believe that this is a more readable syntax. With the proper indenti
 ### Mix & match ###
 
 You can combine Automaton's event driven code with other code as long as you make sure that the automaton.run() method is regularly called to update the running state machines.
+
+[Documentation for the Atm_led class](/tinkerspy/Automaton/wiki/The-led-machine)  
+[Documentation for the Atm_button class](/tinkerspy/Automaton/wiki/The-button-machine)
