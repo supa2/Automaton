@@ -101,6 +101,11 @@ This makes for more readable code. With the proper indenting it is immediately o
 
 It will work either way and you can mix the fluent syntax with the more traditional object.method() calls. Use whatever fits best. 
 
+### Callbacks & Lambda expressions ###
+
+Anytime you use one of the onXx methods, like button.onPress() you have the choice between sending an event to another component object and calling a callback fumction.
+
+Another unfamiliar thing in the Arduino world is the use of Lambda Expressions.
 ### Mix & match ###
 
 You can combine Automaton's event driven code with other code as long as you make sure that the automaton.run() method is regularly called to update the running state machines.
