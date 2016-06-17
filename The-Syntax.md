@@ -1,7 +1,7 @@
-* [Framework]()
-* [Programming style]()
-* [Fluent Interface]()
-* [Mix & Match]()
+* [Framework](#framework)
+* [Programming style](#programming-style)
+* [Fluent Interface](#fluent-interface)
+* [Mix & Match](#mix-&-match)
 
 ### Framework ###
 
