@@ -98,6 +98,8 @@ Automaton has a so-called 'fluent interface'. Instead of repeating button.begin(
 
 This makes for more readable code. With the proper indenting it is immediately obvious that these commands are grouped and together they configure the 'led' component. This combination of event driven programming and fluent interface has been made popular by modern frameworks like jQuery and Node.js.
 
+It will work either way and you can mix the fluent syntax with the more traditional object.method() calls. Use whatever fits best. 
+
 ### Mix & match ###
 
 You can combine Automaton's event driven code with other code as long as you make sure that the automaton.run() method is regularly called to update the running state machines.
