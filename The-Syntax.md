@@ -2,7 +2,7 @@
 * Event driven
 * Method chaining/cascading
 
-Automaton is a framework that makes writing multi tasking Arduino sketches easier than ever. It's called a framework instead of 'just' a library because it takes over the execution control of your sketch. Typically, you no longer write your sketch code inside the Arduino 'loop' function.
+Automaton is an event driven framework that makes writing multi tasking Arduino sketches easier than ever. It's called a framework instead of 'just' a library because it takes over the execution control of your sketch. Typically, you no longer write your sketch code inside the Arduino 'loop' function.
 
 Instead you initialize the components of your sketch (leds, buttons, servo's etc.) in the setup method and you specify how they should interact with each other when certain events occur. We call this 'Event driven programming'.
 
