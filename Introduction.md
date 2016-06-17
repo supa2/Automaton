@@ -1,5 +1,5 @@
 * [Framework](#framework)
-* [Programming style](#programming-style)
+* [Reactive Programming ](#reactive-programming)
 * [Fluent Interface](#fluent-interface)
 * [Mix & Match](#mix--match)
 
@@ -60,7 +60,7 @@ void setup() {
 }
 ```
 
-### Programming style ###
+### Reactive Programming ###
 
 As you see, a change in the button component leads to an automatic change in the led component. Like in a spreadsheet a change in a component (cell) automatically propagates to other components (cells). We call this 'reactive' programming. 
 
