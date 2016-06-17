@@ -51,14 +51,10 @@ void setup() {
   button.onPress( led, led.EVT_BLINK );
 }
 ```
-It would be nicer to make the blinking toggle on and off, fortunately that is easy to arrange, just change the event to EVT_TOGGLE_BLINK.
+It would be nicer to make the blinking toggle on and off, fortunately that is easy to arrange because it's built into the led component, just change the event to EVT_TOGGLE_BLINK.
 
 ```c++
-void setup() {
-  led.begin( 4 );
-  button.begin( 2 );
   button.onPress( led, led.EVT_TOGGLE_BLINK );
-}
 ```
 
 ### Reactive Programming ###
