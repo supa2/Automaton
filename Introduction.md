@@ -103,7 +103,21 @@ It will work either way and you can mix the fluent syntax with the more traditio
 
 ### Callbacks & Lambda expressions ###
 
-Anytime you use one of the on* methods, like button.onPress(), you have the choice between sending an event to another component object and calling a callback fuction.
+Anytime you use one of the on* methods, like button.onPress(), you have the choice between sending an event to another component object and calling a callback fuction. You could use a callback to modify the example above so that one button toggles two leds.
+
+'''c+++
+void callback( int idx, int v, int up ) {
+  led.toggle();
+  led2.toggle();
+}
+
+void setup() {
+  led.begin( 4 );
+  led2.begin( t);
+  button.begin( 2 )
+    .onPress( callback );
+}
+'''
 
 Another unfamiliar thing in the Arduino world is the use of Lambda Expressions.
 
