@@ -65,8 +65,8 @@ void setup() {
   servo.begin( 5 )
     .step( 1, 10 ); // Move 1 degree in 10 ms
   servo.begin( 5 )
-    .step( 1, 10 ); // Move 1 degree in 20 ms
-  servo.position( 180 ); // Move!
+    .step( 5, 20 ); // Move 5 degrees in 20 ms
+  servo.position( 180 ); // Start moving!
 }
 ```
 
