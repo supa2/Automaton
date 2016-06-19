@@ -19,6 +19,33 @@ Source code:
 ## Synopsis ##
 
 ```c++
+#include <Automaton.h>
+
+// Sweep the servo slowly from 0 to 180 degrees on two buttons
+// Blink a led when position is reached
+
+Atm_servo servo;
+Atm_button button1, button2;
+Atm_led led;
+
+void setup() {
+  led.begin( 4 )
+    .blink( 500, 0 , 1 ); // Led indicates movement finished 
+
+  servo.begin( A3 ) // Servo on pin 9
+    .step( 1, 20 ) // 1 degree steps in 20 ms (slow)
+    .onFinish( led, led.EVT_BLINK ); // Blink a led when position reached
+
+  button1.begin( 2 )
+    .onPress( servo, 0 ); // Button on pin 2 turns servo to pos 0
+
+  button2.begin( 3 )
+    .onPress( servo, 180 ); // Button on pin 3 turns servo to pos 180
+}
+
+void loop () {
+  automaton.run();
+}
 ```
 
 ### Atm_servo & begin( int pin1 ) ###
