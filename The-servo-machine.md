@@ -32,7 +32,7 @@ void setup() {
   led.begin( 4 )
     .blink( 500, 0 , 1 ); // Led indicates movement finished 
 
-  servo.begin( A3 ) // Servo on pin 9
+  servo.begin( 5 ) // Servo on pin 5
     .step( 1, 20 ) // 1 degree steps in 20 ms (slow)
     .onFinish( led, led.EVT_BLINK ); // Blink a led when position reached
 
