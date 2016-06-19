@@ -54,7 +54,21 @@ Attaches the servo machine to a digital pin.
 
 ### Atm_servo & step( int step_size, int step_time ) ###
 
-Sets the step size and speed.
+Sets the step size and speed. The step_size parameter sets the numer of degrees the servo should move at a time. 
+The step_time parameter sets the number of milliseconds reserved for the servo to move step_size degrees.
+
+Default setting is step( 180, 0), the servo will move immediately in zero time. This will work fine if you want your servo to move at full 
+speed and you don't care when it finishes.
+
+```c++
+void setup() {
+  servo.begin( 5 )
+    .step( 1, 10 ); // Move 1 degree in 10 ms
+  servo.begin( 5 )
+    .step( 1, 10 ); // Move 1 degree in 20 ms
+  servo.position( 180 ); // Move!
+}
+```
 
 ### Atm_servo & onChange( {connector}, {connector-arg} ) ###
 
@@ -87,12 +101,16 @@ void setup() {
 ### Atm_servo & onFinish( {connector}, {connector-arg} ) ###
 
 Specifies a machine or callback to be triggered whenever the servo machine reaches its destination position.
+This is only useful when a step size and time are specified, otherwise the servo will report a finish event immediately
+after a new position has been set.
 
 ```c++
 void setup() {
   ...
   servo.begin( 2 )
+    .step( 1, 10 )
     .onFinish( led, led.EVT_BLINK );
+  servo.position( 180 );
   ...
 }
 ```
@@ -100,6 +118,8 @@ void setup() {
 
 ### Atm_servo & position( int v ) ###
 
+Set the servo position from 0 to 180 degrees.
+If the new position differs from the current posituion, the servo will start moving at the speed of step_size degrees per step_time milliseconds until it reaches the new position.
 
 ```c++
 void setup() {
