@@ -11,6 +11,7 @@
   * [Timers & counters](Timers-&-Counters)  
   * [Tips & tricks & pitfalls](Tips-&-tricks-&-pitfalls)
   * [Contributed](Contributed)
+  * [Examples](/tinkerspy/Automaton/wiki#examples)
 * **Tools**
   * [Machine template editor](http://wolkendek.nl/atm/)
 * **Bundled state machines**
