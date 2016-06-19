@@ -57,8 +57,7 @@ Attaches the servo machine to a digital pin.
 Sets the step size and speed. The step_size parameter sets the numer of degrees the servo should move at a time. 
 The step_time parameter sets the number of milliseconds reserved for the servo to move step_size degrees.
 
-Default setting is step( 180, 0), the servo will move immediately in zero time. This will work fine if you want your servo to move at full 
-speed and you don't care when it finishes.
+Default setting is step( 180, 0), the servo will move immediately in zero time. This will work fine if you want your servo to move at full speed and you don't care when it finishes. In case of a continuous rotation servo, leave step() at its default setting.
 
 ```c++
 void setup() {
