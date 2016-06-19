@@ -267,7 +267,7 @@ Source code: [sos1.ino](/tinkerspy/Automaton/blob/master/examples/sos1/sos1.ino)
 
 #### S.O.S. 2
 
-Blink a led in a repeating dot-dot-dot-dash-dash-dash-dot-dot-dot pattern. This solution uses two led machines driving by a step sequencer machine which is in turn driven by a timer machine.
+Blink a led in a repeating dot-dot-dot-dash-dash-dash-dot-dot-dot pattern. This solution uses two led machines driven by a step sequencer machine which is in turn driven by a timer machine.
 
 Source code: [sos2.ino](/tinkerspy/Automaton/blob/master/examples/sos2/sos2.ino)
 
