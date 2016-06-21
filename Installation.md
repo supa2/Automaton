@@ -66,5 +66,5 @@ If your led blinks the installation was successful!
 
 ### Platform.io 
 
-Automaton is also available via [platform.io[(http://platformio.org/lib/show/545/Automaton)
+Automaton is also available via [platform.io](http://platformio.org/lib/show/545/Automaton)
  
