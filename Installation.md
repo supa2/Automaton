@@ -1,3 +1,10 @@
+* [Download](#download)
+* [Quick Start](#quick-start)
+* [Platform.io](#platform-io)
+
+
+### Download
+
 Automaton requires version 1.6.6 of the Arduino IDE or higher.
 
 Download the library from Github  by clicking here: 
@@ -56,3 +63,8 @@ void loop() {
 ```
 
 If your led blinks the installation was successful!
+
+### Platform.io 
+
+Automaton is also available via [platform.io[(http://platformio.org/lib/show/545/Automaton)
+ 
