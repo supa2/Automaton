@@ -1,6 +1,6 @@
 * [Download](#download)
 * [Quick Start](#quick-start)
-* [Platform.io](#platform-io)
+* [Platform.io](#platformio)
 
 
 ### Download
