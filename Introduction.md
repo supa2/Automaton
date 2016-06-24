@@ -109,7 +109,7 @@ It will work either way and you can mix the fluent syntax with the more traditio
 
 ### Callbacks & Lambda expressions ###
 
-Anytime you use one of the on* methods, like button.onPress(), you have the choice between sending an event to another component object and calling a callback fuction. You could use a callback to modify the example above so that one button toggles two leds.
+Anytime you use one of the on* methods, like button.onPress(), you have the choice between sending an event to another component object and calling a callback function. You could use a callback to modify the example above so that one button toggles two leds.
 
 ```c++
 void callback( int idx, int v, int up ) {
@@ -128,8 +128,10 @@ void setup() {
 }
 ```
 
+The onPress() method is what we call a *Push Connector* because it connects the button object to a callback function in such a way that a change (press) in the button object results in the callback being triggered. The press event is being pushed to the callback. Callbacks used in a *Push Connector* always have the three *idx*, *v* and *up* integer arguments. Their function may vary from component to component, check the documentation for details.
+
 Another newcomer in the Arduino world is the use of Lambda Expressions.
-The use of a separate callback function makes the code more fragmented. By using a so called lambda expression (only available in the Arduino IDE since version 1.6.6) we can keep the code that defines the button nicely together.
+The use of a separate callback function makes the code in the example above appear more fragmented. By using a so called lambda expression (only available in the Arduino IDE since version 1.6.6) we can keep the code that defines the button nicely together.
 
 ```c++
 void setup() {
