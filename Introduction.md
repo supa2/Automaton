@@ -22,7 +22,7 @@ Atm_button button;
 
 ```
 
-We now have two component (they're actually state machine object, but you can forget about that for now). Next we initialize these components in the Arduino setup() method.
+We now have two component (they're actually state machine objects, but we can forget about that for now). Next we initialize these components in the Arduino setup() method.
 
 ```c++
 void setup() {
