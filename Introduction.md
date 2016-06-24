@@ -128,7 +128,7 @@ void setup() {
 }
 ```
 
-Another unfamiliar thing in the Arduino world is the use of Lambda Expressions.
+Another newcomer in the Arduino world is the use of Lambda Expressions.
 The use of a separate callback function makes the code more fragmented. By using a so called lambda expression (only available in the Arduino IDE since version 1.6.6) we can keep the code that defines the button nicely together.
 
 ```c++
