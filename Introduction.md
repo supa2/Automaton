@@ -97,6 +97,9 @@ Automaton has a so-called 'fluent interface'. Instead of repeating button.begin(
     led.begin( 4 )
       .blink( 200, 200 )
       .start();
+
+    // Or all on one line is you prefer
+    led.begin( 4 ).blink( 200, 200 ).start();
   }
 ```
 
