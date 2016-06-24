@@ -41,9 +41,10 @@ void loop() {
 }
 ```
 
-Now we have two initialized components but they're in no way connected to each other. They are however connected to the 'automaton' object. When we call the begin method on an Automaton component it will attach itself to the global automaton object which means it will be kept running as long as the automaton.run() method is regularly executed. The sketch so far will compile and run, be nothing will happen when you press the button connected to pin 2.
+Now we have two initialized components but they're in no way connected to each other. They are however connected to the 'automaton' object. When we call the begin() method on an Automaton component it will attach itself to the global automaton scheduler. This means it will be kept running as long as the automaton.run() method is regularly executed. The sketch so far will compile and run, be nothing will happen when you press the button connected to pin 2.
 
-Now we want a button press event to trigger the led's 'EVT_BLINK' event. We specify that by extending the setup method:
+If we want a button press event to start the led blinking we specify that by extending the setup method like this:
+
 ```c++
 void setup() {
   led.begin( 4 );
@@ -51,6 +52,7 @@ void setup() {
   button.onPress( led, led.EVT_BLINK );
 }
 ```
+
 It would be nicer to make the blinking toggle on and off, fortunately that is easy to arrange because it's built into the led component, just change the event to EVT_TOGGLE_BLINK.
 
 ```c++
@@ -75,6 +77,7 @@ void setup() {
   button2.onPress( led2, led.EVT_TOGGLE_BLINK );
 }
 ```
+
 We now have two buttons independently controlling two leds. I told you it was easy...
 
 ### Fluent interface ###
