@@ -99,10 +99,38 @@ Note that unlike earlier versions, the timer machine requires a EVT_START trigge
 Registers a callback to be called when the timer expires with the specified idx argument. Alternatively registers a state machine object to be triggered and the event type to be trigger.
 
 ```c++
-timer.onTimer( timer_callback );
+#include <Automaton.h>
 
-timer.onTimer( door, door.EVT_OPEN );
+// Run a countdown timer for 70 seconds, display the remaining time on the serial monitor
+// and activate a led when the timer finishes
+
+Atm_timer countdown;
+Atm_led relay;
+
+void setup() {
+  Serial.begin( 9600 );
+
+  relay.begin( 4 ); // Led on pin 4
+  
+  countdown.begin( 1000 ) // Each step takes 1 second
+    .repeat( 70 ) // Set to 70 seconds
+    .onTimer( [] ( int idx, int v, int up ) {
+      char buffer[50];
+      sprintf( buffer, "Time left: %02d:%02d", v / 60, v % 60 );      
+      Serial.println( buffer );
+    })
+    .onFinish( [] ( int idx, int v, int up ) {
+      relay.on();
+    })
+    .start();
+}
+
+void loop() {
+  automaton.run();
+}
 ```
+
+The callback function is called with the remaining repeat count in the *v* parameter,
 
 ### Atm_timer & interval_millis( int v ) ###
 
