@@ -97,7 +97,7 @@ Note that unlike earlier versions, the timer machine requires a EVT_START trigge
 
 ### Atm_timer & onTimer( {connector}, {connector-arg} ) ###
 
-Registers a callback to be called when the timer expires with the specified idx argument. Alternatively registers a state machine object to be triggered and the event type to be trigger.
+Registers a callback to be called when the timer expires with the specified idx argument. Alternatively registers a state machine object to be triggered and the event type to be triggered.
 
 ```c++
 #include <Automaton.h>
@@ -135,7 +135,7 @@ The callback function is called with the remaining repeat count in the *v* param
 
 ### Atm_timer & onFinish( {connector}, {connector-arg} ) ###
 
-Registers a callback to be called when the last repeat of the timer finishes. Alternatively registers a state machine object to be triggered and the event type to be trigger.
+Registers a callback to be called when the last repeat of the timer finishes. Alternatively registers a state machine object to be triggered and the event type to be triggered.
 
 ### Atm_timer & interval_millis( int v ) ###
 
