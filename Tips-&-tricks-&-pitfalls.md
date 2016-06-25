@@ -33,6 +33,34 @@ counter.set( 365 );
 ```
 Taking the counter value up to the maximum 65534 would give you about 179 years. 
 
+```c++
+Atm_timer t1, t2, t3;
+
+void setup() {
+
+  t1.begin()
+   .interval( 10000 )
+   .onTimer( [] ( int idx, int v, int up ) {
+     Serial.println( "It is now 10 seonds later" );
+   });
+
+  t2.begin()
+   .interval_seconds( 3155760000 )
+   .onTimer( [] ( int idx, int v, int up ) {
+     Serial.println( "It is now 100 years later" );
+   });
+
+  t3.begin()
+   .interval_seconds( 3155760000 )
+   .repeat( 65000 )
+   .onTimer( [] ( int idx, int v, int up ) {
+     Serial.println( "It is now 6.5 million years later" );
+   });
+
+}
+
+```
+
 ## Pitfalls ##
 
 ### Race conditions ###
