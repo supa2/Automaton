@@ -5,6 +5,7 @@ Atm_timer implements a timer mechanism as a simple state machine. Atm_timer work
 <!-- md-tocify-begin -->
 * [begin()](#atm_timer--begin-int-ms--0-)  
 * [onTimer()](#atm_timer--ontimer-connector-connector-arg-)  
+* [onFinish()](#atm_timer--onfinish-connector-connector-arg-)  
 * [interval_millis()](#atm_timer--interval_millis-int-v-)  
 * [interval_seconds()](#atm_timer--interval_seconds-int-v-)  
 * [interval()](#atm_timer--interval-int-v-)  
@@ -101,8 +102,8 @@ Registers a callback to be called when the timer expires with the specified idx 
 ```c++
 #include <Automaton.h>
 
-// Run a countdown timer for 70 seconds, display the remaining time on the serial monitor
-// and activate a led when the timer finishes
+// Run a countdown timer for 70 seconds, display the remaining time on 
+// the serial monitor and activate an led when the timer finishes
 
 Atm_timer countdown;
 Atm_led relay;
@@ -131,6 +132,10 @@ void loop() {
 ```
 
 The callback function is called with the remaining repeat count in the *v* parameter,
+
+### Atm_timer & onFinish( {connector}, {connector-arg} ) ###
+
+Registers a callback to be called when the last repeat of the timer finishes. Alternatively registers a state machine object to be triggered and the event type to be trigger.
 
 ### Atm_timer & interval_millis( int v ) ###
 
