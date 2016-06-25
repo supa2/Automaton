@@ -33,6 +33,8 @@ counter.set( 365 );
 ```
 Taking the counter value up to the maximum 65534 would give you about 179 years. 
 
+The Atm_timer machine has no problems with very long intervals:
+
 ```c++
 Atm_timer t1, t2, t3;
 
@@ -53,7 +55,7 @@ void setup() {
   t3.begin()
    .interval_seconds( 3155760000 )
    .repeat( 65000 )
-   .onTimer( [] ( int idx, int v, int up ) {
+   .onFinish( [] ( int idx, int v, int up ) {
      Serial.println( "It is now 6.5 million years later" );
    });
 
