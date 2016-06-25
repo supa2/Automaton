@@ -120,9 +120,7 @@ void setup() {
       sprintf( buffer, "Time left: %02d:%02d", v / 60, v % 60 );      
       Serial.println( buffer );
     })
-    .onFinish( [] ( int idx, int v, int up ) {
-      relay.on();
-    })
+    .onFinish( relay, relay.EVT_ON )
     .start();
 }
 
