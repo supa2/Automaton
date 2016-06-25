@@ -103,7 +103,7 @@ Registers a callback to be called when the timer expires with the specified idx 
 #include <Automaton.h>
 
 // Run a countdown timer for 70 seconds, display the remaining time on 
-// the serial monitor and activate an led when the timer finishes
+// the serial monitor and activate a relay when the timer finishes
 
 Atm_timer countdown;
 Atm_led relay;
