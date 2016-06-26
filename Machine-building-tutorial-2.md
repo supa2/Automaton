@@ -8,9 +8,11 @@ to cycle through its phases on its own. We use the Dutch traffic light sequence:
 ![Machine Editor](images/mb2a.png)
 
 To start building the state machine template go to [http://wolkendek.nl/atmdev/index.php](http://wolkendek.nl/atmdev/index.php) and press the *Create new blank state machine* button. Then think of a good name for your machine 
-(I suggest Atm_trafficlight) and press *Rename state machine*. The Machine editor is now ready to start defining 
-your machine. Click the *States* option in the top menu to enter the state table editor.
+(Atm_trafficlight would be a good one) and press *Rename state machine*. The Machine editor is now ready to start defining your machine. Click the *States* option in the top menu to enter the state table editor.
 
 ![State Table Editor](images/mb2b2.png)
 
+A Dutch traffic light only has three phases, one for each of the colors. We create a state for each color. Type the traffic light colors (green, yellow, red) in the text field and press the *Add State* button. You may enter one or more state names in the field as long as they are separated by white space or commas. The State Table Editor will update the table to show the new states, with every state in its own row.
+
+![State Table Editor](images/mb2c.png)
 
