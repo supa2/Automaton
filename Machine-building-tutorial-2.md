@@ -36,6 +36,10 @@ That concludes our business with the State Table Editor. There's one thing left 
 
 ![Connector Editor](images/mb2h.png)
 
-The Machine Editor is ready to generate the code template. Click on the '.cpp' option in the top menu to admire the result. Then click on the *File* option in the top menu and export the .cpp, .h and .ino files to your local hard drive. Save them in a folder called 'trafficlight' in you local Arduino folder.
+The Machine Editor is ready to generate the code template. Click on the '.cpp' option in the top menu to admire the result. 
 
 ![Connector Editor](images/mb2i.png)
+
+Now click on the *File* option in the top menu and export the .cpp, .h and .ino files to your local hard drive. Save them in a folder called 'trafficlight' in you local Arduino folder.
+
+![Connector Editor](images/mb2j.png)
