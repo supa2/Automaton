@@ -15,9 +15,9 @@ We use an object most of us encounter every day as our subject, a traffic light.
 traffic light state machine that can be controlled with commands (or events) so it will easily integrate
 with the other Automaton state machines so that we can change its phase with a button press. We also want an automatic mode so that the light will be able to cycle through its phases on its own. We use the light sequence: Green -> Yellow -> Red -> Green.
 
-![Machine Editor](images/mb2a.png)
-
 ### The Machine Editor
+
+![Machine Editor](images/mb2a.png)
 
 To start building the state machine template go to [http://wolkendek.nl/atm/](http://wolkendek.nl/atm/) and press the *Create new blank state machine* button. Then think of a good name for your machine 
 (Atm_trafficlight would be a good one) and press *Rename state machine*. The Machine editor is now ready to start defining your machine. Click the *States* option in the top menu to enter the state table editor.
