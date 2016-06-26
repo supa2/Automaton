@@ -9,5 +9,8 @@ to cycle through its phases on its own. We use the Dutch traffic light sequence:
 
 To start building the state machine template go to [http://wolkendek.nl/atmdev/index.php](http://wolkendek.nl/atmdev/index.php) and press the *Create new blank state machine* button. Then think of a good name for your machine 
 (I suggest Atm_trafficlight) and press *Rename state machine*. The Machine editor is now ready to start defining 
-your machine
+your machine. Click the *States* option in the top menu to enter the state table editor.
+
+![State Table Editor](images/mb2b.png)
+
 
