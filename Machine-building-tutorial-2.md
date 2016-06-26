@@ -283,7 +283,8 @@ Atm_trafficlight& Atm_trafficlight::automatic( int g, int y, int r ) {
 With a matching entry in the ```Atm_trafficlight.h``` file:
 
 ```c++
-Atm_trafficlight& automatic( int g, int y, int r );
+ public:
+  Atm_trafficlight& automatic( int g, int y, int r );
 ```
 
 This completes our state machine. With a slight change to the trafficlight.ino we can now see the light automatically cycling from green to yellow to red and back to green just as we configured it in the state table.
