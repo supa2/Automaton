@@ -230,7 +230,7 @@ void Atm_trafficlight::action( int id ) {
 }
 ```
 
-We also wanted the state machine to generate events whenever a state change took place. The Machine Editor lists the push connector(s) available. We just copy & paste it and edit the value to be passed to match the state ( 0, 1 & 2 ).
+We also wanted the state machine to generate events whenever a state change took place. The Machine Editor lists the push connector(s) available in the preceding comment. We just copy & paste it and edit the value to be passed to match the state ( 0, 1 & 2 ).
 
 ```c++ 
 /* Add C++ code for each action
