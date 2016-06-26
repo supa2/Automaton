@@ -16,3 +16,6 @@ A Dutch traffic light only has three phases, one for each of the colors. We crea
 
 ![State Table Editor](images/mb2c.png)
 
+Our traffic light state machine will also need events. Events are conditions that will cause the machine to change its state. We need two types of events, timers to make the light change automatically and 'external' events that can be triggered from the outside. We want to be able to give the machine a ```c++ machine.next()``` command to make it advance through the light sequence. We'll need three timers ( timer_g, timer_y, timer_r ) for each of the states and we'll need the following public events: next, green, yellow, red. Enter them in the text field and press the *Add event* button.
+ 
+![State Table Editor](images/mb2c.png)
