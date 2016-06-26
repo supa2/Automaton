@@ -270,4 +270,22 @@ void Atm_trafficlight::action( int id ) {
 
 ### Adding the auto() method
 
+We have no way of setting the timers so we need to add a custom method for that, just below the action() method:
+
+```c++
+Atm_trafficlight& Atm_trafficlight::automatic( int g, int y, int r ) {
+  timer_g.set( g );
+  timer_y.set( y );
+  timer_r.set( r );
+  return *this;
+}
+```
+With a matching entry in the ```Atm_trafficlight.h``` file:
+
+```c++
+Atm_trafficlight& automatic( int g, int y, int r );
+```
+
+This completes our state machine, let's play with the result a little to see how we can use it.
+
 ### To be continued...
