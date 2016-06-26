@@ -3,7 +3,7 @@
 * [Creating the Events](#creating-the-events)
 * [Linking the Events with the States](#linking-the-events-with-the-states)
 * [Creating the Action Handlers](#creating-the-action-handlers)
-* [Adding the Push Connector](#adding-the-push-connector)
+* [Adding a Push Connector](#adding-a-push-connector)
 * [Generating the Code](#generating-the-code)
 * [First Compile...](#first-compile)
 
@@ -50,7 +50,7 @@ The check boxes in the green table area are for creating action handlers. If our
 
 ![State Table Editor](images/mb2g.png)
 
-### Adding the Push Connector
+### Adding a Push Connector
 
 That concludes our business with the State Table Editor. There's one thing left to add to our traffic light machine. Most Automaton state machines have on* methods ( like onPress(), onTimer() or onChange() ) to communicate changes in the state machine to the outside world. The button machine can call a callback function or send and EVT_ON event to a led machine in response to a button press. In order to communicate a change in the state of our traffic light we want to add an onChange() method to the machine. We call this type of communication function a *Push connector*. Click on the *Connectors* option in the top menu, enter 'change' in the text field and press *Add connector* leave the number of slots at '1' and the other options unchecked.
 
