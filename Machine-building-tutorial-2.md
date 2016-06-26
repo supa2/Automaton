@@ -70,8 +70,42 @@ Now click on the *File* option in the top menu and export the Atm_trafficlight.c
 
 ### First Compile...
 
-Load the trafficlight.ino sketch in the Arduino IDE and press the *verify/compile* or *Upload* button. The sketch should compile without errors but it won't do anything yet. For that we have to fill in some blanks.
+Load the trafficlight.ino sketch in the Arduino IDE and press the *verify/compile* or *Upload* button.
 
 ![Connector Editor](images/mb2k.png)
 
+ The sketch should compile without errors but it won't do anything yet. For that we have to fill in some blanks.
+
+### Adapting the begin() method
+
+To implement a traffic light we'll need to be able to pass the pins for each light to the machine in the begin method call, like this:
+
+```c++
+  trafficlight.begin( 4, 5, 6 );
+```
+
+We need to modify the begin() method to handle that. We'll also add some code to put the pins in OUTPUT mode and initialize the Automaton timer objects. In the Atm_trafficlight.cpp file we edit the begin() method declaration:
+
+```c++
+Atm_trafficlight& Atm_trafficlight::begin( int pin_g, int pin_y, int pin_r ) { // Add pins
+```
+
+And furher down in the body of the method:
+
+```c++
+  Machine::begin( state_table, ELSE );
+  this->pin_g = pin_g; // Save the pins
+  this->pin_y = pin_y;
+  this->pin_r = pin_r;
+  pinMode( pin_g, OUPTPUT ); // Set the pin modes
+  pinMode( pin_y, OUPTPUT );
+  pinMode( pin_r, OUPTPUT );
+  timer_g.set( -1 ); // Initialize the timers
+  timer_y.set( -1 );
+  timer_r.set( -1 );
+  return *this;          
+}
+```
+
+ 
 ### To be continued...
