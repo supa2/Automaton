@@ -6,7 +6,7 @@
 * [Adding the Push Connector](#adding-the-push-connector)
 * [Generating the Code](#generating-the-code)
 
-This tutorial demonstrates the process of building a custom Automaton component (state machine) using the [Machine Editor](http://www.wolkendek.nl/atm/). The Machine Editor is a tool for creating a state machine template. I takes care of most of the grunt work involved in building a machine. The Editor produces templates that normally just require some editing to customize the begin(), event() and action() methods.
+This tutorial demonstrates the process of building a custom Automaton component (state machine) using the [Machine Editor](http://www.wolkendek.nl/atm/). The Machine Editor is a tool for creating a state machine template. It takes care of most of the grunt work involved in building a machine. The Editor produces templates that normally just require some editing to customize the begin(), event() and action() methods.
 
 We use an object most of us encounter every day as a subject, a traffic light. Our goal is to create a 
 traffic light state machine that can be controlled with commands (or events) so it will easily integrate
