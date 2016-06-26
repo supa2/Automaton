@@ -197,7 +197,7 @@ void Atm_trafficlight::action( int id ) {
 }
 ```
 
-In our machine when the machine enters a state (ENT_*) the matching led must be turned on and when it leaves the state (EXT_*) the matching led should be turned off again. Like this:
+In our machine when the machine enters a state (ENT_) the matching led must be turned on and when it leaves the state (EXT_) the matching led should be turned off again. Like this:
 
 ```c++ 
 /* Add C++ code for each action
