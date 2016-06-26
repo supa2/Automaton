@@ -168,5 +168,105 @@ int Atm_trafficlight::event( int id ) {
 
 ### Adapting the action() handler
 
+The action() handler is where the action takes place. The Machine Editor sets up an empty handler for us with entries for all the checked actions in the state table.
+
+```c++ 
+/* Add C++ code for each action
+ * This generates the 'output' for the state machine
+ *
+ * Available connectors:
+ *   push( connectors, ON_CHANGE, 0, <v>, <up> );
+ */
+
+void Atm_trafficlight::action( int id ) {
+  switch ( id ) {
+    case ENT_GREEN:
+      return;
+    case EXT_GREEN:
+      return;
+    case ENT_YELLOW:
+      return;
+    case EXT_YELLOW:
+      return;
+    case ENT_RED:
+      return;
+    case EXT_RED:
+      return;
+  }
+}
+```
+
+In our machine when the machine enters a state (ENT_*) the matching led must be turned on and when it leaves the state (EXT_*) the matching led should be turned off again. Like this:
+
+```c++ 
+/* Add C++ code for each action
+ * This generates the 'output' for the state machine
+ *
+ * Available connectors:
+ *   push( connectors, ON_CHANGE, 0, <v>, <up> );
+ */
+
+void Atm_trafficlight::action( int id ) {
+  switch ( id ) {
+    case ENT_GREEN:
+      digitalWrite( pin_g, HIGH );
+      return;
+    case EXT_GREEN:
+      digitalWrite( pin_g, LOW );
+      return;
+    case ENT_YELLOW:
+      digitalWrite( pin_y, HIGH );    
+      return;
+    case EXT_YELLOW:
+      digitalWrite( pin_y, LOW );    
+      return;
+    case ENT_RED:
+      digitalWrite( pin_r, HIGH );    
+      return;
+    case EXT_RED:
+      digitalWrite( pin_r, LOW );    
+      return;
+  }
+}
+```
+
+We also wanted the state machine to generate events whenever a state change took place. The Machine Editor lists the push connector(s) available. We just copy & paste it and edit the value to be passed to match the state ( 0, 1 & 2 ).
+
+```c++ 
+/* Add C++ code for each action
+ * This generates the 'output' for the state machine
+ *
+ * Available connectors:
+ *   push( connectors, ON_CHANGE, 0, <v>, <up> );
+ */
+
+void Atm_trafficlight::action( int id ) {
+  switch ( id ) {
+    case ENT_GREEN:
+      digitalWrite( pin_g, HIGH );
+      push( connectors, ON_CHANGE, 0, 0, 0 );
+      return;
+    case EXT_GREEN:
+      digitalWrite( pin_g, LOW );
+      return;
+    case ENT_YELLOW:
+      digitalWrite( pin_y, HIGH );    
+      push( connectors, ON_CHANGE, 0, 1, 0 );
+      return;
+    case EXT_YELLOW:
+      digitalWrite( pin_y, LOW );    
+      return;
+    case ENT_RED:
+      digitalWrite( pin_r, HIGH );    
+      push( connectors, ON_CHANGE, 0, 2, 0 );
+      return;
+    case EXT_RED:
+      digitalWrite( pin_r, LOW );    
+      return;
+  }
+}
+```
+
+### Adding the auto() method
 
 ### To be continued...
