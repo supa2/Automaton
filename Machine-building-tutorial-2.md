@@ -5,6 +5,7 @@
 * [Creating the Action Handlers](#creating-the-action-handlers)
 * [Adding the Push Connector](#adding-the-push-connector)
 * [Generating the Code](#generating-the-code)
+* [First Compile...](#first-compile)
 
 This tutorial demonstrates the process of building a custom Automaton component (state machine) using the [Machine Editor](http://www.wolkendek.nl/atm/). The Machine Editor is a tool for creating a state machine template. It takes care of most of the grunt work involved in building a machine. The Editor produces templates that normally just require some editing to customize the begin(), event() and action() methods.
 
@@ -64,6 +65,8 @@ The Machine Editor is ready to generate the code template. Click on the '.cpp' o
 Now click on the *File* option in the top menu and export the Atm_trafficlight.cpp, Atm_trafficlight.h and trafficlight.ino files. Save all three files in a folder called 'trafficlight' in your local Arduino folder.
 
 ![Connector Editor](images/mb2j.png)
+
+### First Compile...
 
 Load the trafficlight.ino sketch in the Arduino IDE and press the *verify/compile* or *Upload* button. The sketch should compile without errors but it won't do anything yet. For that we have to fill in some blanks.
 
