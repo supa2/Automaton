@@ -11,6 +11,6 @@ To start building the state machine template go to [http://wolkendek.nl/atmdev/i
 (I suggest Atm_trafficlight) and press *Rename state machine*. The Machine editor is now ready to start defining 
 your machine. Click the *States* option in the top menu to enter the state table editor.
 
-![State Table Editor](images/mb2b.png)
+![State Table Editor](images/mb2b2.png)
 
 
