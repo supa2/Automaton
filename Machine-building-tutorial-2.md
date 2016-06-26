@@ -286,7 +286,7 @@ With a matching entry in the ```Atm_trafficlight.h``` file:
 Atm_trafficlight& automatic( int g, int y, int r );
 ```
 
-This completes our state machine, with a slight change to the trafficlight.ino we can see the light automatically cycling from green to yellow to red.
+This completes our state machine. With a slight change to the trafficlight.ino we can now see the light automatically cycling from green to yellow to red and back to green just as we configured it in the state table.
 
 ```c++
 #include <Automaton.h>
