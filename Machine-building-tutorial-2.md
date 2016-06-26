@@ -97,9 +97,9 @@ And furher down in the body of the method:
   this->pin_g = pin_g; // Save the pins
   this->pin_y = pin_y;
   this->pin_r = pin_r;
-  pinMode( pin_g, OUPTPUT ); // Set the pin modes
-  pinMode( pin_y, OUPTPUT );
-  pinMode( pin_r, OUPTPUT );
+  pinMode( pin_g, OUTPUT ); // Set the pin modes
+  pinMode( pin_y, OUTPUT );
+  pinMode( pin_r, OUTPUT );
   timer_g.set( -1 ); // Initialize the timers
   timer_y.set( -1 );
   timer_r.set( -1 );
@@ -107,5 +107,22 @@ And furher down in the body of the method:
 }
 ```
 
- 
+We also have to change the declaration in the Atm_trafficlight.h file to match this and while we're add it add the (private) variables we need to store the pins and timers as well:
+
+```c++
+  // In Atm_trafficlight.h
+  Atm_trafficlight& begin( int pin_g, int pin_y, int pin_r );
+
+ private:
+  int pin_g, pin_y, pin_r;
+  atm_timer_millis timer_g, timer_y, timer_r;
+```  
+
+Lastly, change the begin() method call in trafficlight.ino to ```c++ trafficlight.begin( 4, 5, 6 ); ``` or something similar.
+
+The sketch should now compile without errors, but it still won't do anything useful...
+
+### Adapting the event() handler
+
+
 ### To be continued...
