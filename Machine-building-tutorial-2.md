@@ -8,6 +8,7 @@
 * [First Compile...](#first-compile)
 * [Adapting the Event Handler](#adapting-the-event-handler)
 * [Adapting the Action Handler](#adapting-the-action-handler)
+* [Adding the auto() method](#adding-the-auto-method)
 
 This tutorial demonstrates the process of building a custom Automaton component (state machine) using the [Machine Editor](http://www.wolkendek.nl/atm/). The Machine Editor is a tool for creating state machine templates. It takes care of most of the grunt work involved in building a machine. The Editor produces templates that normally just require some editing to customize the begin(), event() and action() methods. 
 
