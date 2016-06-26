@@ -124,5 +124,47 @@ The sketch should now compile without errors, but it still won't do anything use
 
 ### Adapting the event() handler
 
+The event() handler is called by the state machine cycle method to check if any of the events specified in the state table have occured. The Machine Editor sets it up for us with the id's of the events that should be handled. 
+
+```c++
+/* Add C++ code for each internally handled event (input) 
+ * The code must return 1 to trigger the event
+ */
+
+int Atm_trafficlight::event( int id ) {
+  switch ( id ) {
+    case EVT_TIMER_G:
+      return 0;
+    case EVT_TIMER_Y:
+      return 0;
+    case EVT_TIMER_R:
+      return 0;
+  }
+  return 0;
+}
+```
+
+In this case all (private) events are timers. An Automaton timer is checked by calling its expired() method with a reference to the machine object as an argument so this is all that's required to handle them:
+
+```c++
+/* Add C++ code for each internally handled event (input) 
+ * The code must return 1 to trigger the event
+ */
+
+int Atm_trafficlight::event( int id ) {
+  switch ( id ) {
+    case EVT_TIMER_G:
+      return timer_g.expired( this );
+    case EVT_TIMER_Y:
+      return timer_y.expired( this );
+    case EVT_TIMER_R:
+      return timer_r.expired( this );
+  }
+  return 0;
+}
+```
+
+### Adapting the action() handler
+
 
 ### To be continued...
