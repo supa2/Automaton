@@ -65,5 +65,8 @@ Now click on the *File* option in the top menu and export the Atm_trafficlight.c
 
 ![Connector Editor](images/mb2j.png)
 
+Load the trafficlight.ino sketch in the Arduino IDE and press the *verify/compile* or *Upload* button. The sketch should compile without errors but it won't do anything yet. For that we have to fill in some blanks.
+
+![Connector Editor](images/mb2k.png)
 
 ### To be continued...
