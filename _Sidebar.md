@@ -7,6 +7,7 @@
   * [Installation](Installation)  
   * [Automaton Testimonials](Automaton-Testimonials)  
   * [Machine building tutorial](Machine-building-tutorial)  
+  * [Machine building tutorial 2](Machine-building-tutorial-2)  
   * [Machine communication](Machine-communication)  
   * [Timers & counters](Timers-&-Counters)  
   * [Tips & tricks & pitfalls](Tips-&-tricks-&-pitfalls)
