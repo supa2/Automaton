@@ -62,7 +62,7 @@ The Machine Editor is ready to generate the code template. Click on the '.cpp' o
 
 ![Connector Editor](images/mb2i.png)
 
-Now click on the *File* option in the top menu and export the Atm_trafficlight.cpp, Atm_trafficlight.h and trafficlight.ino files to your local hard drive. Save them in a folder called 'trafficlight' in your local Arduino folder.
+Now click on the *File* option in the top menu and export the Atm_trafficlight.cpp, Atm_trafficlight.h and trafficlight.ino files. Save them in a folder called 'trafficlight' in your local Arduino folder.
 
 ![Connector Editor](images/mb2j.png)
 
