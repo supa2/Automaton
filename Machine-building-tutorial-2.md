@@ -1,3 +1,12 @@
+
+### The Traffic Light Machine
+
+This tutorial demonstrates the process of building a custom Automaton component (state machine) using the [Machine Editor](http://www.wolkendek.nl/atm/). The Machine Editor is a tool for creating state machine templates. It takes care of most of the grunt work involved in building a machine. The Editor produces templates that normally just require some editing to customize the begin(), event() and action() methods. 
+
+We use an object most of us encounter every day as our subject, a traffic light. Our goal is to create a 
+traffic light state machine that can be controlled with commands (or events) so it will easily integrate
+with the other Automaton state machines so that we can change its phase with a button press. We also want an automatic mode so that the light will be able to cycle through its phases on its own. We use the light sequence: Green -> Yellow -> Red -> Green.
+
 * [The Machine Editor](#the-machine-editor)
 * [Creating the States](#creating-the-states)
 * [Creating the Events](#creating-the-events)
@@ -9,14 +18,6 @@
 * [Adapting the Event Handler](#adapting-the-event-handler)
 * [Adapting the Action Handler](#adapting-the-action-handler)
 * [Adding the automatic() method](#adding-the-automatic-method)
-
-### The Traffic Light Machine
-
-This tutorial demonstrates the process of building a custom Automaton component (state machine) using the [Machine Editor](http://www.wolkendek.nl/atm/). The Machine Editor is a tool for creating state machine templates. It takes care of most of the grunt work involved in building a machine. The Editor produces templates that normally just require some editing to customize the begin(), event() and action() methods. 
-
-We use an object most of us encounter every day as our subject, a traffic light. Our goal is to create a 
-traffic light state machine that can be controlled with commands (or events) so it will easily integrate
-with the other Automaton state machines so that we can change its phase with a button press. We also want an automatic mode so that the light will be able to cycle through its phases on its own. We use the light sequence: Green -> Yellow -> Red -> Green.
 
 ### The Machine Editor
 
