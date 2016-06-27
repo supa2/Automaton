@@ -10,6 +10,8 @@
 * [Adapting the Action Handler](#adapting-the-action-handler)
 * [Adding the automatic() method](#adding-the-automatic-method)
 
+### The Traffic Light Machine
+
 This tutorial demonstrates the process of building a custom Automaton component (state machine) using the [Machine Editor](http://www.wolkendek.nl/atm/). The Machine Editor is a tool for creating state machine templates. It takes care of most of the grunt work involved in building a machine. The Editor produces templates that normally just require some editing to customize the begin(), event() and action() methods. 
 
 We use an object most of us encounter every day as our subject, a traffic light. Our goal is to create a 
