@@ -1,7 +1,7 @@
 * [Framework](#framework)
 * [Reactive Programming ](#reactive-programming)
 * [Fluent Interface](#fluent-interface)
-* [Callbacks & lambda functions](#callbacks--lambda-functions)
+* [Callbacks & lambda expressions](#callbacks--lambda-expressions)
 * [Mix & Match](#mix--match)
 
 ### Framework ###
