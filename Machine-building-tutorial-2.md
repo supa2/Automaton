@@ -152,10 +152,6 @@ int Atm_trafficlight::event( int id ) {
 In this case all (private) events are timers. An Automaton timer is checked by calling its expired() method with a reference to the machine object as an argument so this is all that's required to handle them:
 
 ```c++
-/* Add C++ code for each internally handled event (input) 
- * The code must return 1 to trigger the event
- */
-
 int Atm_trafficlight::event( int id ) {
   switch ( id ) {
     case EVT_TIMER_G:
@@ -202,13 +198,6 @@ void Atm_trafficlight::action( int id ) {
 In our machine when the machine enters a state (ENT_) the matching led must be turned on and when it leaves the state (EXT_) the matching led should be turned off again. Like this:
 
 ```c++ 
-/* Add C++ code for each action
- * This generates the 'output' for the state machine
- *
- * Available connectors:
- *   push( connectors, ON_CHANGE, 0, <v>, <up> );
- */
-
 void Atm_trafficlight::action( int id ) {
   switch ( id ) {
     case ENT_GREEN:
@@ -236,13 +225,6 @@ void Atm_trafficlight::action( int id ) {
 We also wanted the state machine to generate events whenever a state change took place. The Machine Editor lists the push connector(s) available in the preceding comment. We just copy & paste it and edit the value to be passed to match the state ( 0, 1 & 2 ).
 
 ```c++ 
-/* Add C++ code for each action
- * This generates the 'output' for the state machine
- *
- * Available connectors:
- *   push( connectors, ON_CHANGE, 0, <v>, <up> );
- */
-
 void Atm_trafficlight::action( int id ) {
   switch ( id ) {
     case ENT_GREEN:
