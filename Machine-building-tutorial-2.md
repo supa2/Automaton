@@ -272,7 +272,7 @@ With a matching entry in the ```Atm_trafficlight.h``` file:
   Atm_trafficlight& automatic( int g, int y, int r );
 ```
 
-This completes our state machine. With a small change to the trafficlight.ino we can now see the light automatically cycling from green to yellow to red and back to green just as we configured it in the state table.
+This completes our state machine. By setting light in the trafficlight.ino sketch to automatic we can now see the light automatically cycling from green to yellow to red and back to green just as we configured it above in the state table.
 
 ```c++
 #include <Automaton.h>
@@ -285,8 +285,8 @@ void setup() {
   // Serial.begin( 9600 );
   // trafficlight.trace( Serial );
 
-  trafficlight.begin( 4, 5, 6 )
-    .automatic( 5000, 2000, 5000 );
+  trafficlight.begin( 4, 5, 6 ) // Pins 4, 5 & 6
+    .automatic( 5000, 2000, 5000 ); // Green 5s, yellow 2s, red 5s
 
 }
 
