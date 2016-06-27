@@ -65,7 +65,7 @@ As you see, a change in the button component leads to an automatic change in the
 
 [Reactive Programming on wikipedia](https://en.m.wikipedia.org/wiki/Reactive_programming)
 
-A pleasant side effect of this way of programming is that it is extremely easy to expand our simple sketch to two or three leds and buttons. It's much easier to scale than the typical Arduino code.
+A pleasant side effect of this way of programming is that it is extremely easy to expand our simple sketch to two or three leds and buttons. It scales much easier in terms of sketch complexity than the typical Arduino code.
 
 ```c++
 void setup() {
