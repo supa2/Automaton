@@ -170,7 +170,7 @@ Looks familiar, doesn't it?
 
 ### Mix & match ###
 
-You can combine Automaton's event driven code with other code as long as you make sure that the automaton.run() method is regularly called to update the running state machines.
+You can combine Automaton's event driven code with regular Arduino code as long as you make sure that the automaton.run() method is regularly called to update the running state machines.
 
 [Documentation for the Atm_led class](/tinkerspy/Automaton/wiki/The-led-machine)  
 [Documentation for the Atm_button class](/tinkerspy/Automaton/wiki/The-button-machine)
