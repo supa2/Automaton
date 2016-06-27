@@ -110,7 +110,7 @@ And furher down in the body of the method:
 }
 ```
 
-We also have to change the declaration in the Atm_trafficlight.h file to match this and while we're add it add the (private) variables we need to store the pins and timers as well:
+We also have to change the declaration in the Atm_trafficlight.h file to match this and while we're at it add the (private) variables we need to store the pins and timers as well:
 
 ```c++
   // In Atm_trafficlight.h
