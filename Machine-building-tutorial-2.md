@@ -90,7 +90,7 @@ To implement a traffic light we'll need to be able to pass the pins for each lig
 We need to modify the begin() method to handle that. We'll also add some code to put the pins in OUTPUT mode and initialize the Automaton timer objects. In the Atm_trafficlight.cpp file we edit the begin() method declaration:
 
 ```c++
-Atm_trafficlight& Atm_trafficlight::begin( int pin_g, int pin_y, int pin_r ) { // Add pins
+Atm_trafficlight& Atm_trafficlight::begin( int pin_g, int pin_y, int pin_r ) {
 ```
 
 And furher down in the body of the method:
