@@ -5,7 +5,7 @@
 * [Creating the Action Handlers](#creating-the-action-handlers)
 * [Adding a Push Connector](#adding-a-push-connector)
 * [Generating the Code](#generating-the-code)
-* [First Compile...](#first-compile)
+* [First Compile](#first-compile)
 * [Adapting the Event Handler](#adapting-the-event-handler)
 * [Adapting the Action Handler](#adapting-the-action-handler)
 * [Adding the automatic() method](#adding-the-automatic-method)
@@ -73,7 +73,7 @@ Now click on the *File* option in the top menu and export the Atm_trafficlight.c
 
 ![Connector Editor](images/mb2j.png)
 
-### First Compile...
+### First Compile
 
 Load the trafficlight.ino sketch in the Arduino IDE and press the *verify/compile* or *Upload* button.
 
