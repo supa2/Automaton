@@ -265,7 +265,7 @@ Atm_trafficlight& Atm_trafficlight::automatic( int g, int y, int r ) {
   return *this;
 }
 ```
-With a matching entry in the ```Atm_trafficlight.h``` file:
+With a matching entry in ```Atm_trafficlight.h```:
 
 ```c++
  public:
