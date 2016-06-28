@@ -255,7 +255,7 @@ void Atm_trafficlight::action( int id ) {
 
 ### Adding the automatic() method
 
-We have no way of setting the timers so we need to add a custom method for that, just below the action() method:
+We have no way of setting the timers yet so we need to add a custom method for that, just below the action() method:
 
 ```c++
 Atm_trafficlight& Atm_trafficlight::automatic( int g, int y, int r ) {
@@ -272,7 +272,7 @@ With a matching entry in the ```Atm_trafficlight.h``` file:
   Atm_trafficlight& automatic( int g, int y, int r );
 ```
 
-This completes our state machine. By setting light in the trafficlight.ino sketch to automatic we can now see the light automatically cycling from green to yellow to red and back to green just as we configured it above in the state table.
+This completes our state machine. By setting the trafficlight object in the trafficlight.ino sketch to automatic we can now see the light automatically cycling from green to yellow to red and back to green just as we configured it above in the state table.
 
 ```c++
 #include <Automaton.h>
