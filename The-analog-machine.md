@@ -95,13 +95,18 @@ void setup() {
 Connects an averaging buffer to the state machine. This will cause the state machine to monitor a *moving average* instead of the momentary value. Tune the size of this buffer and the sample rate to get the smoothing behavior you want.
 
 ```c++
-uint16_t avgbuffer[256];
+#include <Automaton.h>
+
+Atm_analog sensor;
+uint16_t avgbuffer[16];
 
 void setup() {
+  sensor.begin( A0, 50 )
+    .average( avgbuffer, sizeof( avgbuffer ) );     
+}
 
-    sensor.begin( A0, 50 )
-      .average( avgbuffer, sizeof( avgbuffer ) );
-      
+void loop() {
+  automaton.run();
 }
 ```
 The buffer variable is used as a ring buffer to store the sampled values. The value the analog machine returns  is computed as the average of the values in the ring buffer. The call to average() fills up the ringbuffer with samples so that the reading will make sense right from the start.
