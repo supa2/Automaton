@@ -295,6 +295,6 @@ void loop() {
 }
 ```
 
-Our traffic light state machine is now ready to function in a reactive multi-tasking environment. It can generate events to control other machines and in its be controlled by other machines all without take up more than the tiniest slice of microcontroller time.
+Our traffic light state machine is now ready to function in a reactive multi-tasking environment. It can generate events to control other machines and in itself be controlled by other machines all without taking up more than the tiniest slice of microcontroller time.
 
 ### To be continued...
