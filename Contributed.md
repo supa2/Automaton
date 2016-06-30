@@ -4,4 +4,4 @@ Automaton aware libraries & state machines will be linked here.
 
   * [Automaton-Servo machine](/tinkerspy/Automaton-Servo) A Servo State Machine for the Automaton Framework. Documentation for this machine is in the Main Automaton Wiki.
 
-Contact me at tinkerspy@myown.mailcan.com if you want something added.
+Contact me at tinkerspy@myown.mailcan.com if you would like something added.
