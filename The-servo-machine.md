@@ -12,7 +12,7 @@ The servo state machine controls a rotary servo.
 
 <!-- md-tocify-end -->
 
-The Atm_servo code has been moved to a separate library:
+The Atm_servo code has been moved to a separate library:  
 https://github.com/tinkerspy/Automaton-Servo
 
 
