@@ -5,7 +5,7 @@ Normal users will have little interaction with this class.
 <!-- md-tocify-begin -->
 * [add()](#automaton--add-machine--machine-)  
 * [run()](#automaton--run-void-)  
-* [delay()](#automaton--run-uint32_t-time--0-)  
+* [delay()](#automaton--delay-uint32_t-time--0-)  
 
 <!-- md-tocify-end -->
 
