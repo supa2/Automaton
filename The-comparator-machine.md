@@ -6,7 +6,7 @@ This state machine monitors an analog input with a configurable sample period an
 * [begin()](#atm_comparator--begin-int-attached_pin-int-samplerate-)  
 * [threshold()](#atm_comparator--threshold-uint16_t--v-uint16_t-size-bool-catchup--false-)  
 * [onChange()](#atm_comparator--onchange-bool-status-connector-connector-arg-)  
-+ [skip()]()
++ skip()
 * [average()](#atm_comparator--average-uint16_t--v-uint16_t-size-)  
 * [state()](#int-state-void-)  
 * [trace()](#atm_comparator--trace-stream--stream-)  
