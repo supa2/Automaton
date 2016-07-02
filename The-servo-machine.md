@@ -20,6 +20,7 @@ https://github.com/tinkerspy/Automaton-Servo
 
 ```c++
 #include <Automaton.h>
+#include <Atm_servo.h>
 
 // Sweep the servo slowly from 0 to 180 degrees on two buttons
 // Blink a led when position is reached
