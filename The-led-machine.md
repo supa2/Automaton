@@ -8,7 +8,7 @@ Control a led via a digital pin. Control blink speed, pause duration and number 
 * [pause()](#atm_led--pause-int-duration-)  
 * [fade()](#atm_led--fade-int-fade-)  
 * [repeat()](#atm_led--repeat-int-repeat-)  
-* [onFinish()](#atm_led--onfinish-machine--next-int-event--evt_start-)  
+* [onFinish()](#atm_led--onfinish-connector-connector-argument-)  
 * [EVT_ON](#evt_on)  
 * [EVT_OFF](#evt_off)  
 * [EVT_BLINK](#evt_blink)  
