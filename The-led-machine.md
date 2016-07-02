@@ -132,13 +132,13 @@ void setup() {
 
 The example above gives off a single 40 millisecond pulse and then goes back to sleep (state IDLE).
 
-### Atm_led & onFinish( Machine & next, int event = EVT_BLINK ) ###
-Alternatively: Atm_led & onFinish( Machine & next, Machine & previous, int event = EVT_BLINK )
+### Atm_led & onFinish( Machine & next, int event = 0 ) ###
+Alternatively: Atm_led & onFinish( Machine & next, Machine & previous, int event = 0 )
 
 This method is used to trigger another machine when the current machina's blinking sequence has finished. This can be used to create sequences of blink patterns, but you can also trigger different types of machines in this manner.
 
 ```c++
-led1.begin( 4 ).blink( 500, 500, 3 ).onFinish( led2 );
+led1.begin( 4 ).blink( 500, 500, 3 ).onFinish( led2, led.EVT_BLINK );
 led2.begin( 4 ).blink( 50, 50, 10 );
 led1.trigger( led1.EVT_BLINK );
 ```
