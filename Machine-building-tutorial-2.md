@@ -300,4 +300,57 @@ https://gist.github.com/tinkerspy/6ca5ad01e9a3477658b32c1b36e4bad9
 
 Our traffic light state machine is now ready to function in a reactive multi-tasking environment. It can generate events to control other machines and in itself be controlled by other machines all without taking up more than the tiniest slice of microcontroller time.
 
+### Controlling the traffic light with a button
+
+```c++
+#include <Automaton.h>
+#include "Atm_trafficlight.h"
+
+Atm_trafficlight trafficlight;
+Atm_button button;
+
+void setup() {
+
+  trafficlight.begin( 4, 5, 6 ); // Pins 4, 5 & 6
+
+  button.begin( 2 )
+   .onPress( trafficlight, trafficlight.EVT_NEXT );
+}
+
+void loop() {
+  automaton.run();
+}
+```
+
+The button machine on pin 2 sends an EVT_NEXT event to th etrafficlight whenever th ebutton is pressed, cycling manually through the phases.
+
+We can also do a half automatic mode:
+
+```c++
+#include <Automaton.h>
+#include "Atm_trafficlight.h"
+
+Atm_trafficlight trafficlight;
+Atm_button button_g, button_r;
+
+void setup() {
+
+  trafficlight.begin( 4, 5, 6 )
+    .automatic( -1, 2000, -1 );
+
+  button_g.begin( 2 )
+   .onPress( trafficlight, trafficlight.EVT_GREEN );
+  button_r.begin( 3 )
+   .onPress( trafficlight, trafficlight.EVT_YELLOW );
+}
+
+void loop() {
+  automaton.run();
+}
+```
+
+The automatic timers for red & green are disabled (-1), the timer for yellow is at 2 seconds. When a user pressed the button on pin 3 the light will switch to yellow and then advance to red after two seconds. When the user pressed the button on pin 2 the light will immediately switch to green.
+
+
+
 ### To be continued...
