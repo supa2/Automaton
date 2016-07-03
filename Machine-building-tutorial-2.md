@@ -295,7 +295,7 @@ void loop() {
 }
 ```
 
-You can download the finished files here:  
+You can download the completed files for the state machine here:  
 https://gist.github.com/tinkerspy/6ca5ad01e9a3477658b32c1b36e4bad9
 
 Our traffic light state machine is now ready to function in a reactive multi-tasking environment. It can generate events to control other machines and in itself be controlled by other machines all without taking up more than the tiniest slice of microcontroller time.
