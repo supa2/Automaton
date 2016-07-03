@@ -24,7 +24,7 @@ with the other Automaton state machines so that we can change its phase with a b
 ![Machine Editor](images/mb2a.png)
 
 To start building the state machine template go to [http://wolkendek.nl/atm/](http://wolkendek.nl/atm/) and press the *Create new blank state machine* button. Then think of a good name for your machine 
-(Atm_trafficlight would be a good one) and press *Rename state machine*. The Machine editor is now ready to start defining your machine. Click the *States* option in the top menu to enter the state table editor.
+(I strongly suggest Atm_trafficlight to match the rest of the tutorial) and press *Rename state machine*. The Machine editor is now ready to start defining your machine. Click the *States* option in the top menu to enter the state table editor.
 
 ![State Table Editor](images/mb2b2.png)
 
