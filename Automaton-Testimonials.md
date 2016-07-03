@@ -28,3 +28,6 @@ girishso on reddit
 
 harmon on Github
 
+>Thank you for your work! Even though I only use a small part of Automaton, it has made my code so much more concise and understandable!
+
+mannkind on Github
