@@ -322,7 +322,7 @@ void loop() {
 }
 ```
 
-The button machine on pin 2 sends an EVT_NEXT event to th etrafficlight whenever th ebutton is pressed, cycling manually through the phases.
+The button machine on pin 2 sends an EVT_NEXT event to the trafficlight whenever the button is pressed, cycling manually through the phases.
 
 We can also do a half automatic mode:
 
@@ -349,7 +349,7 @@ void loop() {
 }
 ```
 
-The automatic timers for red & green are disabled (-1), the timer for yellow is at 2 seconds. When a user pressed the button on pin 3 the light will switch to yellow and then advance to red after two seconds. When the user pressed the button on pin 2 the light will immediately switch to green.
+The automatic timers for red & green are disabled (-1), the timer for yellow is at 2 seconds. When a user presses the button on pin 3 the light will switch to yellow and then advance to red after two seconds. When the user presses the button on pin 2 the light will immediately switch to green.
 
 
 
