@@ -363,7 +363,7 @@ The advantage of building state machine components this way is that they integra
 #include <Atm_esp8266.h>
 #include "Atm_trafficlight.h"
 
-// Control a traffic light with a webserver.
+// Control a traffic light through a webserver.
 
 Atm_trafficlight trafficlight;
 Atm_esp8266_wifi wifi;
