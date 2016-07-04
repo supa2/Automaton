@@ -355,7 +355,7 @@ The automatic timers for red & green are disabled (-1), the timer for yellow is 
 
 ### Controlling the traffic light with a web browser
 
-The advantage of building state machine components this way is that they integrate seamlessly with all the other Automaton components like the Esp8255 server state machines. Creating a web connecting traffic light becomes real easy now...
+The advantage of building state machine components this way is that they integrate seamlessly with all the other Automaton components like the Esp8266 server state machines. Creating a web connecting traffic light becomes real easy now...
 
 
 ```c++
