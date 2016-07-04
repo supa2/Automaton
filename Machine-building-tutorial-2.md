@@ -341,7 +341,7 @@ void setup() {
   button_g.begin( 2 )
    .onPress( trafficlight, trafficlight.EVT_GREEN );
   button_r.begin( 3 )
-   .onPress( trafficlight, trafficlight.EVT_YELLOW );
+    .onPress( trafficlight, trafficlight.EVT_YELLOW );
 }
 
 void loop() {
