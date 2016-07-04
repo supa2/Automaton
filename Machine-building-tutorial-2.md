@@ -355,7 +355,7 @@ The automatic timers for red & green are disabled (-1), the timer for yellow is 
 
 ### Controlling the traffic light with a web browser
 
-The advantage of building state machine components this way is that they integrate seamlessly with all the other Automaton components like the Esp8266 state machines. Creating a web connected traffic light becomes real easy now...
+The advantage of building state machine components this way is that they integrate seamlessly with all the other Automaton components like the esp8266 state machines. Creating a web connected traffic light becomes real easy now...
 
 
 ```c++
@@ -401,7 +401,7 @@ void loop() {
 }
 ```
 
-Now our traffic light is being controlled with a web browser via the urls below (use the ip address assigned
+Now our traffic light can be controlled with a web browser via the urls below (use the ip address assigned
 to the esp8266 instead of '123.124.125.126'):
 
 ```
