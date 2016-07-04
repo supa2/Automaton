@@ -400,7 +400,8 @@ void loop() {
 }
 ```
 
-Now the trafficlight is being controlled with a web browser:
+Now the trafficlight is being controlled with a web browser via the urls below (use the ip address assigned
+to the esp8266 instead of '123.124.125.126'):
 
 ```
 http://123.124.125.126/red
@@ -408,5 +409,5 @@ http://123.124.125.126/yellow
 http://123.124.125.126/green
 http://123.124.125.126/next
 ```
+The web server wil respond with a simple 'OK' and send the event to our traffic light machine.
 
-### To be continued...
