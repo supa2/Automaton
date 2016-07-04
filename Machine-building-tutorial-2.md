@@ -18,6 +18,8 @@ with the other Automaton state machines so that we can change its phase with a b
 * [Adapting the Event Handler](#adapting-the-event-handler)
 * [Adapting the Action Handler](#adapting-the-action-handler)
 * [Adding the automatic() method](#adding-the-automatic-method)
+* [Controlling the traffic light with a button](#controlling-the-traffic-light-with-a-button)
+* [Controlling the traffic light with a web browser](#controlling-the-traffic-light-with-a-web-browser)
 
 ### The Machine Editor
 
