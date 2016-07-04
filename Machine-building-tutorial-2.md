@@ -351,6 +351,62 @@ void loop() {
 
 The automatic timers for red & green are disabled (-1), the timer for yellow is at 2 seconds. When a user presses the button on pin 3 the light will switch to yellow and then advance to red after two seconds. When the user presses the button on pin 2 the light will immediately switch to green.
 
+### Controlling the traffic light with a web browser
 
+The advantage of building state machine components this way is that they integrate seamlessly with all the other Automaton 
+components like the Esp8255 server state machines. 
+
+
+```c++
+#include <Automaton.h>
+#include <Atm_esp8266.h>
+#include "Atm_trafficlight.h"
+
+// Control a traffic light with a webserver.
+
+Atm_trafficlight trafficlight;
+Atm_esp8266_wifi wifi;
+Atm_esp8266_httpd_simple server( 80 );
+
+void setup() {
+  Serial.begin( 9600 );
+  Serial.println( "Connecting to WIFI" );
+
+  // The light to be controlled
+
+  trafficlight.begin( D5, D6, D7 );
+	
+  // The Wifi machine manages the wifi connection
+  
+  wifi.begin( "MySSID", "MyPASSWORD" ) 
+    .onChange( true, [] ( int idx, int v, int up  ) {
+      Serial.print( "Connected to Wifi, browse to http://");
+      Serial.println( wifi.ip() );
+      server.start();
+    })
+    .start();
+
+  // The Http server machine handles incoming requests
+
+  server.begin() 
+    .onRequest( "/red", trafficlight, trafficlight.EVT_RED )
+    .onRequest( "/yellow", trafficlight, trafficlight.EVT_YELLOW )
+    .onRequest( "/green", trafficlight, trafficlight.EVT_GREEN )
+    .onRequest( "/next", trafficlight, trafficlight.EVT_NEXT );
+}
+
+void loop() {
+  automaton.run();
+}
+```
+
+Now the trafficlight is being controlled with a web browser:
+
+```
+http://123.124.125.126/red
+http://123.124.125.126/yellow
+http://123.124.125.126/green
+http://123.124.125.126/next
+```
 
 ### To be continued...
