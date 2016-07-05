@@ -59,6 +59,25 @@ It would be nicer to make the blinking toggle on and off, fortunately that is ea
   button.onPress( led, led.EVT_TOGGLE_BLINK );
 ```
 
+A ful sketch with a blinking led and a button that toggles it on and off looks like this.
+
+```c++
+#include <Automaton.h>
+
+Atm_led led;
+Atm_button button;
+
+void setup() {
+  led.begin( 4 );
+  button.begin( 2 );
+  button.onPress( led, led.EVT_BLINK );
+}
+
+void loop() {
+  automaton.run();
+}
+```
+
 ### Reactive Programming ###
 
 As you see, a change in the button component leads to an automatic change in the led component. Like in a spreadsheet a change in a component (cell) automatically propagates to other components (cells). We call this 'reactive' programming. 
