@@ -138,8 +138,9 @@ Switches the Atm_button machine to *longpress* mode. In *longpress* mode the eve
 The *delay* parameter controls the time the user should keep the button pressed (in millis) for the next event to register. The *max* parameter controls how many events are handled by the button. 
 
 ```c++
+#include <Automaton.h>
 
-
+Atm_button btn;
 
 void setup() {
   Serial.begin( 9600 );
@@ -155,6 +156,10 @@ void setup() {
       }
     })
     .longPress( 2, 200 );
+}
+
+void loop() {
+  automaton.run();
 }
 ```
 For the example above the machine will listen for two events. One if the button is pressed and released within 200 milliseconds (fires -1, 1 events). A second if the button is pressed, held for at least 200 ms and then released (fires -1, -2, 2 events). If *max* is changed to 3, the machine will listen for another 200 ms hold.
