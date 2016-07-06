@@ -213,7 +213,9 @@ Atm_led led;
 Atm_button button;
 
 void setup() {
+
   led.begin( D6 );
+
   button.begin( D5 )
     .onPress( led, led.EVT_TOGGLE_BLINK );
     
@@ -235,7 +237,8 @@ void loop() {
 The modifications loads the Automaton-Esp8266 extension and adds two state machines. 
 The first one ('wifi') manages the wifi connection and starts the second ('server', the web server component) as soon as a wifi connection is established. When a
 request for the `/on` url comes in the webserver sends the led component an EVT_BLINK event, when 
-a request for the `/off` url comes in, the led is turned off. It could hardly be simpler.
+a request for the `/off` url comes in, the led is turned off. It could hardly be simpler. A led controlled
+by a toggle button and a web browser in just a few lines of code.
 
 
 ### Mix & match ###
