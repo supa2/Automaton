@@ -241,6 +241,7 @@ When a HTTP request for the `/on` url comes in the webserver sends an EVT_BLINK 
 When a request for the `/off` url comes in, the led is turned off. It could hardly be simpler. A led controlled
 by a toggle button and a web browser in just a few lines of fully multitasking code.
 
+Welcome to the Internet Of Things.
 
 ### Mix & match ###
 
