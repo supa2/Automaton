@@ -216,7 +216,7 @@ void loop() {
 ```
 
 The new code loads the [Automaton-Esp8266 extension](https://github.com/tinkerspy/Automaton-Esp8266) and adds two esp8266 specific components. 
-The first one ('wifi') makes the wifi connection and starts the second ('server', the web server component) as soon as a connection is established. 
+The first component ('wifi') makes the wifi connection and starts the web server component ('server') as soon as a connection is established. 
 
 When a HTTP request for the `/on` url comes in the webserver sends an EVT_BLINK event to the led component.
 When a request for the `/off` url comes in, the led is turned off. It could not be simpler. A blinking led simultaneously controlled by a toggle button and a web browser in just a few lines of fully multitasking code. Everything without delay!
