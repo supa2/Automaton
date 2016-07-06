@@ -202,7 +202,7 @@ extension makes it easy to connect your reactive sketches to the web using the s
 Automaton coding technique.
 
 Starting with the button+led sketch we created above, we extend our code to allow turning the blinking 
-led on and off from a web browser by calling two urls.
+led on and off from a web browser.
 
 ```c++
 #include <Automaton.h>
