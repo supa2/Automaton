@@ -191,7 +191,7 @@ Looks familiar, doesn't it?
 ### Joining the Internet Of Things with the esp8266
 
 Automaton provides a way to separate processes into running components and to make them work
-together in a clear event-driven way. It comes with a collection of bundled component to 
+together in a clear event-driven way. It comes with a collection of bundled components to 
 control and monitor digital pins, control relays, leds and piezo speakers. To receive input
 from serial ports, rotary encoders, buttons and timers. We won't go into all of these in this
 introduction.
