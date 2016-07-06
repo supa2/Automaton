@@ -193,11 +193,12 @@ Looks familiar, doesn't it?
 Automaton provides a way to separate processes into running components and to make them work
 together in a clear event-driven way. It comes with a collection of bundled component to 
 control and monitor digital pins, control relays, leds and piezo speakers. To receive input
-from serial ports, rotary encoders, buttons and timers. 
+from serial ports, rotary encoders, buttons and timers. We won't go into all of these in this
+introduction.
 
-There's an Automaton extension for the popular range of development boards for the esp8266 
+But there's an Automaton extension for the popular range of development boards for the esp8266 
 wifi-enabled microcontrollers that makes it easy to connect your reactive sketches to the web
-using the same event-driven coding technique.
+using the same event-driven coding technique that's worth taking an introductory look at.
 
 Starting with the button+led sketch we created above, we could extend our code to allow turning the blinking 
 led on and off from a web browser by calling two urls.
