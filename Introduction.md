@@ -195,9 +195,9 @@ Atm_button button;
 
 void setup() {
 
-  led.begin( D6 );
+  led.begin( D6 ); // Led on the esp8266 D6 pin
 
-  button.begin( D5 )
+  button.begin( D5 ) // Button on the esp8266 D5 pin
     .onPress( led, led.EVT_TOGGLE_BLINK );
     
   wifi.begin( "MySSID", "MyPASSWORD" ) // Connect to the WIFI network
