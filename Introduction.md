@@ -238,7 +238,7 @@ The modifications loads the Automaton-Esp8266 extension and adds two state machi
 The first one ('wifi') manages the wifi connection and starts the second ('server', the web server component) as soon as a wifi connection is established. When a
 request for the `/on` url comes in the webserver sends the led component an EVT_BLINK event, when 
 a request for the `/off` url comes in, the led is turned off. It could hardly be simpler. A led controlled
-by a toggle button and a web browser in just a few lines of code.
+by a toggle button and a web browser in just a few lines of fully multitasking code.
 
 
 ### Mix & match ###
