@@ -2,6 +2,7 @@
 * [Reactive Programming ](#reactive-programming)
 * [Fluent Interface](#fluent-interface)
 * [Callbacks & lambda expressions](#callbacks--lambda-expressions)
+* [Adding a web interface](#adding-a-web-interface)
 * [Mix & Match](#mix--match)
 
 ### Framework ###
