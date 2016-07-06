@@ -195,7 +195,8 @@ together in a clear event-driven way. It comes with a collection of bundled comp
 control and monitor digital pins, control relays, leds and piezo speakers. To receive input
 from serial ports, rotary encoders, buttons and timers. 
 
-There's an Automaton extension for the popular range development boards for the esp8266 
+There's an Automaton [extension](https://github.com/tinkerspy/Automaton-Esp8266) for the 
+popular range of development boards for the esp8266 
 wifi-enabled microcontrollers that makes it easy to connect your reactive sketches to the web
 using the same event-driven coding technique.
 
