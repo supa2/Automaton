@@ -199,7 +199,7 @@ There's an Automaton extension for the popular range of development boards for t
 wifi-enabled microcontrollers that makes it easy to connect your reactive sketches to the web
 using the same event-driven coding technique.
 
-Starting with the sketch we created above, we could extend it to allow turning the blinking 
+Starting with the button+led sketch we created above, we could extend it to allow turning the blinking 
 led on and off from a browser by calling two urls.
 
 ```c++
