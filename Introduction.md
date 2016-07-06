@@ -167,7 +167,7 @@ void setup() {
 
 }
 ```
-### Joining the Internet Of Things with the esp8266
+### Joining the Internet Of Things (IoT) with the esp8266
 
 Automaton provides a way to separate processes into running components and to make them work
 together in a clear event-driven way. It comes with a collection of bundled components to 
