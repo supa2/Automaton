@@ -2,7 +2,7 @@
 * [Reactive Programming ](#reactive-programming)
 * [Fluent Interface](#fluent-interface)
 * [Callbacks & lambda expressions](#callbacks--lambda-expressions)
-* [Joining-the-Internet-Of-Things with the esp8266](#joining-the-internet-of-things-with-the-esp8266)
+* [Joining the Internet Of Things with the esp8266](#joining-the-internet-of-things-with-the-esp8266)
 * [Mix & Match](#mix--match)
 
 ### Framework ###
@@ -223,7 +223,7 @@ void setup() {
     .onChange( true, server, server.EVT_START )
     .start();
     
-  server.begin() 
+  server.begin()  // Hello IoT!
     .onRequest( "/on", led, led.EVT_BLINK )
     .onRequest( "/off", led, led.EVT_OFF );
     
