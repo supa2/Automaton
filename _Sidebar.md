@@ -15,7 +15,7 @@
   * [Examples](/tinkerspy/Automaton/wiki#examples)
 * **Tools**
   * [Machine template editor](http://wolkendek.nl/atm/)
-* **Bundled state machines**
+* **Bundled components**
   * [The analog machine](The-analog-machine)  
   * [The bit machine](The-bit-machine)  
   * [The button machine](The-button-machine)  
