@@ -187,7 +187,7 @@ $.get( "test.php", function( data ) {
 
 Looks familiar, doesn't it?
 
-### Expanding to new territories
+### Adding a web interface
 
 Automaton provides a way to separate processes into running components and to make them work
 together in a clear event-driven way. It comes with a collection of bundled component to 
