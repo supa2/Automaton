@@ -59,7 +59,7 @@ It would be nicer to make the blinking toggle on and off, fortunately that is ea
   button.onPress( led, led.EVT_TOGGLE_BLINK );
 ```
 
-A ful sketch with a blinking led and a button that toggles it on and off looks like this.
+A full sketch with a blinking led and a button that toggles it on and off looks like this.
 
 ```c++
 #include <Automaton.h>
@@ -69,8 +69,8 @@ Atm_button button;
 
 void setup() {
   led.begin( 4 );
-  button.begin( 2 );
-  button.onPress( led, led.EVT_BLINK );
+  button.begin( 2 )
+    .onPress( led, led.EVT_TOGGLE_BLINK );
 }
 
 void loop() {
@@ -186,6 +186,56 @@ $.get( "test.php", function( data ) {
 ```
 
 Looks familiar, doesn't it?
+
+### Expanding to new territories
+
+Automaton provides a way to separate processes into running components and to make them work
+together in a clear event-driven way. It comes with a collection of bundled component to 
+control and monitor digital pins, control relays, leds and piezo speakers. To receive input
+from serial ports, rotary encoders, buttons and timers. 
+
+There's an Automaton extension for the popular range development boards for the esp8266 
+wifi-enabled microcontrollers that makes it easy to connect your reactive sketches to the web
+using the same event-driven coding technique.
+
+Starting with the sketch we created above, we could extend it to allow turning the blinking 
+led on and off from a browser by calling two urls.
+
+```c++
+#include <Automaton.h>
+#include <Atm_esp8266.h>
+
+Atm_esp8266_wifi wifi;
+Atm_esp8266_httpd_simple server( 80 );
+
+Atm_led led;
+Atm_button button;
+
+void setup() {
+  led.begin( D6 );
+  button.begin( D5 )
+    .onPress( led, led.EVT_TOGGLE_BLINK );
+    
+  wifi.begin( "MySSID", "MyPASSWORD" ) // Connect to the WIFI network
+    .onChange( true, server, server.EVT_START )
+    .start();
+    
+  server.begin() 
+    .onRequest( "/on", led, led.EVT_BLINK )
+    .onRequest( "/off", led, led.EVT_OFF );
+    
+}
+
+void loop() {
+  automaton.run();
+}
+```
+
+The modifications add two state machines, one ('wifi') manages the wifi connection and starts 
+the second ('server', the web server) as soon as a wifi connection is established. When a
+request for the /on url comes in the webserver send the led component an EVT_BLINK event, when 
+a request for the /off url comes in, the led is turned off.
+
 
 ### Mix & match ###
 
