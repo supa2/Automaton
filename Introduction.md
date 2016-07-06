@@ -167,27 +167,6 @@ void setup() {
 
 }
 ```
-
-Just for comparison have a look at these jQuery fragments.
-
-```javascript
-
-// Method chaining here
-$("#p1").css("color", "red")
-  .slideUp(2000)
-  .slideDown(2000);
-
-// Lambda expressions (called closures in javascript)
-$.get( "test.php", function( data ) {
-  $( "body" )
-    .append( "Name: " + data.name ) // John
-    .append( "Time: " + data.time ); //  2pm
-}, "json" );
-
-```
-
-Looks familiar, doesn't it?
-
 ### Joining the Internet Of Things with the esp8266
 
 Automaton provides a way to separate processes into running components and to make them work
