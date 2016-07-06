@@ -197,8 +197,9 @@ from serial ports, rotary encoders, buttons and timers. We won't go into all of 
 introduction.
 
 But there's an Automaton extension for the popular range of development boards for the esp8266 
-wifi-enabled microcontrollers that makes it easy to connect your reactive sketches to the web
-using the same event-driven coding technique that's worth taking an introductory look at.
+wifi-enabled microcontrollers that's worth taking an introductory look at. The Automaton-Esp8266 
+extension makes it easy to connect your reactive sketches to the web using the same event-driven 
+Automaton coding technique.
 
 Starting with the button+led sketch we created above, we could extend our code to allow turning the blinking 
 led on and off from a web browser by calling two urls.
