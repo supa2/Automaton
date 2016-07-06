@@ -231,10 +231,11 @@ void loop() {
 }
 ```
 
-The modifications add two state machines, one ('wifi') manages the wifi connection and starts 
+The modifications loads the Automaton-Esp8266 extension and adds two state machines, 
+one ('wifi') manages the wifi connection and starts 
 the second ('server', the web server) as soon as a wifi connection is established. When a
-request for the /on url comes in the webserver send the led component an EVT_BLINK event, when 
-a request for the /off url comes in, the led is turned off.
+request for the /on url comes in the webserver sends the led component an EVT_BLINK event, when 
+a request for the /off url comes in, the led is turned off. It could hardly be simpler.
 
 
 ### Mix & match ###
