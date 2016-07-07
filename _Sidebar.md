@@ -17,6 +17,7 @@
   * [Machine template editor](http://wolkendek.nl/atm/)
 * **Libraries**
   * [Automaton Esp8266](/tinkerspy/Automaton-Esp8266)
+  * [Automaton Servo](/tinkerspy/Automaton-Servo)
 * **Bundled components**
   * [The analog machine](The-analog-machine)  
   * [The bit machine](The-bit-machine)  
