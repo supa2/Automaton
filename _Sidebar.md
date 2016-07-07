@@ -15,7 +15,7 @@
   * [Examples](/tinkerspy/Automaton/wiki#examples)
 * **Tools**
   * [Machine template editor](http://wolkendek.nl/atm/)
-* **Libraries**
+* **Component libraries**
   * [Automaton Esp8266](/tinkerspy/Automaton-Esp8266)
   * [Automaton Servo](/tinkerspy/Automaton-Servo)
 * **Bundled components**
