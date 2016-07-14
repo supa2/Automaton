@@ -15,6 +15,7 @@ with the other Automaton state machines so that we can change its phase with a b
 * [Adding a Push Connector](#adding-a-push-connector)
 * [Generating the Code](#generating-the-code)
 * [First Compile](#first-compile)
+* [Adapting the begin method](#adapting-the-begin-method)
 * [Adapting the Event Handler](#adapting-the-event-handler)
 * [Adapting the Action Handler](#adapting-the-action-handler)
 * [Adding the automatic() method](#adding-the-automatic-method)
