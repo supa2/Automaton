@@ -99,7 +99,7 @@ We need to modify the begin() method to handle that. We'll also add some code to
 Atm_trafficlight& Atm_trafficlight::begin( int pin_g, int pin_y, int pin_r ) {
 ```
 
-And furher down in the body of the method:
+And further down in the body of the method:
 
 ```c++
   Machine::begin( state_table, ELSE );
