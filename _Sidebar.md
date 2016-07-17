@@ -16,7 +16,7 @@
 * **Tools**
   * [Machine template editor](http://wolkendek.nl/atm/)
 * **Extensions**
-  * [Automaton Esp8266](/tinkerspy/Automaton-Esp8266)
+  * [Automaton Esp8266](/tinkerspy/Automaton-Esp8266/wiki)
   * [Automaton Servo](/tinkerspy/Automaton-Servo)
 * **Bundled components**
   * [The analog machine](The-analog-machine)  
