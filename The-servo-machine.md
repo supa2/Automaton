@@ -140,7 +140,7 @@ Intermediate values result in intermediate speeds.
 
 ### int state( void ) ###
 
-Returns the integer value of the current servo position (at least the machines view of it).
+Returns the integer value of the current servo position (at least the machine's view of where it should be, the actual servo position cannot be known without some additional feedback mechanism).
 
 ```c++
 ```
