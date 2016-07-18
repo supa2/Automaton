@@ -42,7 +42,7 @@ void loop() {
 }
 ```
 
-Now we have two initialized components but they're in no way connected to each other. They are however connected to the 'automaton' object. When we call the begin() method on an Automaton component it will attach itself to the global automaton scheduler. This means it will be kept running as long as the automaton.run() method is regularly executed. The sketch so far will compile and run, be nothing will happen when you press the button connected to pin 2.
+Now we have two initialized components but they're in no way connected to each other. They are however invisibly connected to the 'automaton' object. When we call the begin() method on an Automaton component it will attach itself to the global automaton scheduler. This means it will be kept running as long as the automaton.run() method is regularly executed. The sketch so far will compile and run, be nothing will happen when you press the button connected to pin 2.
 
 If we want a button press event to start the led blinking we specify that by extending the setup method like this:
 
