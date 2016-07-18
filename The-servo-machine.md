@@ -127,6 +127,16 @@ void setup() {
     .position( 180 );
 }
 ```
+With a continuous rotation servo the position method is used to set the speed and direction of movement like this:
+
+| Position | Effect on continuous rotation servo |
+|----------|-------------------------------------|
+| 0        | Full speed in direction A           |
+| 91       | Minimum speed in direction A        |
+| 89       | Minimum speed in direction B        |
+| 180      | Full speed in direction B           |
+
+Intermediate values result in intermediate speeds.
 
 ### int state( void ) ###
 
