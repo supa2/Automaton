@@ -173,8 +173,8 @@ Links: [docs](The-player-machine),
 Controls one or more servo's. 
 
 Links: [docs](The-servo-machine),
- [cpp](/tinkerspy/Automaton/blob/master/src/Atm_servo.cpp),
- [hpp](/tinkerspy/Automaton/blob/master/src/Atm_servo.hpp) 
+ [cpp](/tinkerspy/Automaton-Servo/blob/master/src/Atm_servo.cpp),
+ [h](/tinkerspy/Automaton-Servo/blob/master/src/Atm_servo.h)
 
 #### Atm_step component
 
