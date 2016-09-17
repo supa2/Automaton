@@ -33,24 +33,22 @@ If you want to make your own components, which is where the real fun is, look at
 ```c++
 #include <Automaton.h>
 
-// A software thermostat monitors a sensor and controls a heater 
+// Toggle a blinking led with a button
 
-Atm_analog thermometer;
-Atm_controller thermostat;
-Atm_led heater;
+int ledPin = 5;
+int buttonPin = 2;
+
+Atm_led led;
+Atm_button button;
 
 void setup() {
-  // Heater controlled by pin 4
-  heater.begin( 4 ); 
 
-  // Temperature sensor on analog pin A0
-  thermometer.begin( A0 ); 
+  led.begin( ledPin )
+    .blink( 200, 200 ); // Set up a led to blink 200ms/200ms
 
-  // Link them with a controller
-  thermostat.begin()
-    .IF( thermometer, '<', 500 )
-    .onChange( true, heater, heater.EVT_ON )
-    .onChange( false, heater, heater.EVT_OFF );
+  button.begin( buttonPin )
+    .onPress( led, led.EVT_TOGGLE_BLINK ); / Toggle the led when button pressed
+
 }
 
 void loop() {
