@@ -47,7 +47,7 @@ void setup() {
     .blink( 200, 200 ); // Set up a led to blink 200ms/200ms
 
   button.begin( buttonPin )
-    .onPress( led, led.EVT_TOGGLE_BLINK ); / Toggle the led when button pressed
+    .onPress( led, led.EVT_TOGGLE_BLINK ); // Toggle the led when button pressed
 
 }
 
