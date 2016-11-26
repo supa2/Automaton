@@ -133,7 +133,7 @@ void setup() {
   led2.begin( 5 );
 
   button.begin( 3 )
-    .longPress( 2, 1000 )
+    .longPress( 2, 400 )
     .onPress( 1, led1, led1.EVT_TOGGLE )  // Short press
     .onPress( 2, led2, led2.EVT_TOGGLE ); // Long press
 }
@@ -142,7 +142,7 @@ void loop() {
   automaton.run();
 }
 ```
-Note that only the values 1 and 2 are allowed for the id argument. If you want to handle multiple long button presses you'll have to use the 2 argument version of onPress().
+Note that only the values 1 and 2 are allowed for the id argument. If you want to handle multiple long button presses you'll have to use the 2 argument version of onPress(). The three argument version is useful for simple press/long press scenarios.
 
 ### Atm_button & onRelease( {connector}, {connector-argument} ) ###
 
