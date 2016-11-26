@@ -108,6 +108,8 @@ Off | Fading in | On | Fading out
 ------------ | ------------- | ------------- | -------------
 100 | 160 | 50 | 160
 
+Starting with version 1.0.2 the fade() setting also affects the EVT_ON, EVT_OFF and EVT_TOGGLE events. 
+
 ### Atm_fade & repeat( int repeat ) ###
 
 Sets how many times the blink pattern should repeat. Default is *ATM_COUNTER_OFF* which means it will blink indefinitely. Use *1* to blink once, etc...
