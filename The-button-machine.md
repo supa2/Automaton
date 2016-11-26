@@ -115,6 +115,35 @@ Triggering another machine on a button press (pressing the button will start a l
 
 The nice thing about using onPress() with an event argument is that a callback routine is not required. If you want to use the longpress mode you'll have to use a callback to handle all the different button press events.
 
+### Atm_button & onPress( int id, {connector}, {connector-argument} ) ###
+
+The three argument version of onPress allows you to install a handler for a short or a (single) long press.
+
+```c++
+#include <Automaton.h>
+
+// Short and long press toggle different leds on and off
+
+Atm_led ready, led1, led2;
+Atm_button button;
+
+void setup() {
+
+  led1.begin( 4 );
+  led2.begin( 5 );
+
+  button.begin( 3 )
+    .longPress( 2, 1000 )
+    .onPress( 1, led1, led1.EVT_TOGGLE )  // Short press
+    .onPress( 2, led2, led2.EVT_TOGGLE ); // Long press
+}
+
+void loop() {
+  automaton.run();
+}
+```
+Note that only the values 1 and 2 are allowed for the id argument. If you want to handle multiple long button presses you'll have to use the 2 argument version of onPress().
+
 ### Atm_button & onRelease( {connector}, {connector-argument} ) ###
 
 Registers a callback or a machine event to be triggered whenever the button is released.
