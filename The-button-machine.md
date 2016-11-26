@@ -150,7 +150,7 @@ The three-argument and two argument versions can be used together and can both f
 #include <Automaton.h>
 
 // Short and long press toggle different leds on and off
-// Provide an audible beep when a button press is registered
+// Provides audible feedback when a button press is registered
 
 Atm_led ready, led1, led2;
 Atm_button button;
@@ -160,13 +160,13 @@ void setup() {
 
   led1.begin( 4 );
   led2.begin( 5 );
-  player.begin( 19 ).play( 4400, 10 );
+  player.begin( 19 ).play( 4400, 10 ); // Play a 4400 Hz tone for 10 ms
 
   button.begin( 3 )
     .longPress( 2, 400 )
-    .onPress( player, player.EVT_START )
-    .onPress( 1, led1, led1.EVT_TOGGLE )
-    .onPress( 2, led2, led2.EVT_TOGGLE );
+    .onPress( player, player.EVT_START )  // Any press short or long
+    .onPress( 1, led1, led1.EVT_TOGGLE )  // Short press 
+    .onPress( 2, led2, led2.EVT_TOGGLE ); // Long press
 
 }
 
