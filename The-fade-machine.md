@@ -125,10 +125,11 @@ The example above gives off a single 50 millisecond pulse and then goes back to 
 
 This method is used to trigger another machine when the current machine's blinking sequence has finished. This can be used to create sequences of blink patterns, but you can also trigger different types of machines in this manner.
 
+```c++
 led1.begin( 4 ).blink( 500, 500, 3 ).onFinish( led2, led.EVT_BLINK );
 led2.begin( 4 ).blink( 50, 50, 10 );
 led1.trigger( led1.EVT_BLINK );
-
+```
 The example above will blink a led slowly 3 times and then blink the same led quickly 10 times.
 
 ### EVT_ON ###
