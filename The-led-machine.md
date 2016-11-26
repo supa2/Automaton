@@ -7,6 +7,7 @@ Control a led via a digital pin. Control blink speed, pause duration and number 
 * [blink()](#atm_led--blink-int-duration-)  
 * [pause()](#atm_led--pause-int-duration-)  
 * [fade()](#atm_led--fade-int-fade-)  
+* [wait()](#atm_led--wait-int-ms-)  
 * [repeat()](#atm_led--repeat-int-repeat-)  
 * [onFinish()](#atm_led--onfinish-connector-connector-argument-)  
 * [EVT_ON](#evt_on)  
@@ -119,6 +120,34 @@ void setup() {
 ### Atm_led & fade( int fade ) ###
 
 This is a dummy method for interface compatibility with the Atm_fade machine. It does nothing here.
+
+### Atm_led & wait( int ms ) ###
+
+Inserts a waiting period before start() or on() becomes active. 
+
+```c++
+#include <Automaton.h>
+
+// When the button is pressed, wait for 500 ms and then blink 3 times
+
+Atm_led led;
+Atm_button button;
+
+void setup() {
+  
+  led.begin( 4 )
+    .wait( 500 )
+    .blink( 200, 200, 3 );
+
+  button.begin( 2 )
+    .onPress( led, led.EVT_START );
+
+}
+
+void loop() {
+  automaton.run();
+}
+```
 
 ### Atm_led & repeat( int repeat ) ###
 
