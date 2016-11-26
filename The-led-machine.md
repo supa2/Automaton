@@ -121,7 +121,7 @@ void setup() {
 
 This is a dummy method for interface compatibility with the Atm_fade machine. It does nothing here.
 
-### Atm_led & wait( int ms ) ###
+### Atm_led & lead( int ms ) ###
 
 Inserts a leading waiting period before start() or on() becomes active. 
 
