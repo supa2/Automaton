@@ -77,12 +77,14 @@ void loop() {
 Please note that the Atm_led machine starts up in state *IDLE*. You can turn the led on by sending a EVT_ON message or start it blinking with a EVT_BLINK message. EVT_TOGGLE toggles the led on and off, EVT_TOGGLE_BLINK toggles blinking on and off. These are the available external events:
 
 ```c++
-  led1.trigger( led1.EVT_ON );
-  led1.trigger( led1.EVT_BLINK );
-  led1.trigger( led1.EVT_OFF );
-  led1.trigger( led1.EVT_TOGGLE );
-  led1.trigger( led1.EVT_TOGGLE_BLINK );
+  led1.trigger( led1.EVT_ON ); // Same as led1.on()
+  led1.trigger( led1.EVT_BLINK ); // Same as led1.blink()
+  led1.trigger( led1.EVT_START ); // Same as led1.start()
+  led1.trigger( led1.EVT_OFF ); // Same as led1.off()
+  led1.trigger( led1.EVT_TOGGLE ); // Same as led1.toggle()
+  led1.trigger( led1.EVT_TOGGLE_BLINK ); // Same as led1.toggle_blink()
 ```
+EVT_START and EVT_BLINK are equivalent.
 
 The begin() method places the machine in the following blink configuration:
 
@@ -137,7 +139,8 @@ void setup() {
   
   led.begin( 4 )
     .lead( 500 )
-    .blink( 200, 200, 3 );
+    .blink( 200, 200 )
+    .repeat( 3 );
 
   button.begin( 2 )
     .onPress( led, led.EVT_START );
@@ -155,7 +158,7 @@ Sets how many times the blink pattern should repeat. Default is *ATM_COUNTER_OFF
 
 ```c++
 void setup() {
-  led1.begin( 4 ).blink( 40, 100 ).repeat( 1 ).trigger( led1.EVT_BLINK );
+  led1.begin( 4 ).blink( 40, 100 ).repeat( 1 ).start();
   ...
 }
 ```
@@ -169,7 +172,7 @@ This method is used to trigger another machine when the current machine's blinki
 ```c++
 led1.begin( 4 ).blink( 500, 500, 3 ).onFinish( led2, led.EVT_BLINK );
 led2.begin( 4 ).blink( 50, 50, 10 );
-led1.trigger( led1.EVT_BLINK );
+led1.start();
 ```
 
 The example above will blink a led slowly 3 times and then blink the same led quickly 10 times.
