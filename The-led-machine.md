@@ -130,7 +130,7 @@ Sets a leading waiting period before start() or on() becomes active. Default is 
 ```c++
 #include <Automaton.h>
 
-// When the button is pressed, wait for 500 ms and then blink 3 times
+// When the button is pressed, wait for 500 ms and then blink the led 3 times
 
 Atm_led led;
 Atm_button button;
