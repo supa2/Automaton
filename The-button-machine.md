@@ -152,7 +152,7 @@ The three-argument and two argument versions can be used together and can both f
 // Short and long press toggle different leds on and off
 // Provides audible feedback when a button press is registered
 
-Atm_led ready, led1, led2;
+Atm_led led1, led2;
 Atm_button button;
 Atm_player player;
 
