@@ -8,9 +8,11 @@ Control a led via a PWM enabled pin. Control blink speed, pause duration, fade i
 * [pause()](#atm_fade--pause-int-duration-)  
 * [fade()](#atm_fade--fade-int-fade-)  
 * [repeat()](#atm_fade--repeat-int-repeat-)  
+* [onFinish()](#atm_fade--onfinish-connector-connector-argument-)  
 * [EVT_ON](#evt_on)  
 * [EVT_OFF](#evt_off)  
 * [EVT_BLINK](#evt_blink)  
+* [EVT_START](#evt_start)  
 * [EVT_TOGGLE](#evt_toggle)  
 * [EVT_TOGGLE_BLINK](#evt_toggle_blink)  
 * [trace()](#atm_fade--trace-stream--stream-)  
@@ -119,6 +121,15 @@ void setup() {
 
 The example above gives off a single 50 millisecond pulse and then goes back to sleep (state IDLE).
 
+### Atm_fade & onFinish( {connector}, {connector-argument} ) ###
+
+This method is used to trigger another machine when the current machine's blinking sequence has finished. This can be used to create sequences of blink patterns, but you can also trigger different types of machines in this manner.
+
+led1.begin( 4 ).blink( 500, 500, 3 ).onFinish( led2, led.EVT_BLINK );
+led2.begin( 4 ).blink( 50, 50, 10 );
+led1.trigger( led1.EVT_BLINK );
+
+The example above will blink a led slowly 3 times and then blink the same led quickly 10 times.
 
 ### EVT_ON ###
 
@@ -144,6 +155,10 @@ Starts the led blinking.
 led.begin( 5 ).blink( 200 );
 led.trigger( Atm_fade:EVT_BLINK );
 ```
+
+### EVT_START ###
+
+Starts the led blinking. (same as EVT_BLINK)
 
 ### EVT_TOGGLE ###
 
