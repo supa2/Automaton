@@ -144,6 +144,37 @@ void loop() {
 ```
 Note that only the values 1 and 2 are allowed for the id argument. If you want to handle multiple long button presses you'll have to use the 2 argument version of onPress(). The three argument version is useful for simple press/long press scenarios.
 
+The three-argument and two argument versions can be used together and can both fire at the same time. This can be useful for making a button 'beep' when a press or long press is registered.
+
+```c++
+#include <Automaton.h>
+
+// Short and long press toggle different leds on and off
+// Provide an audible beep when a button press is registered
+
+Atm_led ready, led1, led2;
+Atm_button button;
+Atm_player player;
+
+void setup() {
+
+  led1.begin( 4 );
+  led2.begin( 5 );
+  player.begin( 19 ).play( 4400, 10 );
+
+  button.begin( 3 )
+    .longPress( 2, 400 )
+    .onPress( player, player.EVT_START )
+    .onPress( 1, led1, led1.EVT_TOGGLE )
+    .onPress( 2, led2, led2.EVT_TOGGLE );
+
+}
+
+void loop() {
+  automaton.run();
+}
+```
+
 ### Atm_button & onRelease( {connector}, {connector-argument} ) ###
 
 Registers a callback or a machine event to be triggered whenever the button is released.
