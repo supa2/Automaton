@@ -12,6 +12,7 @@ Control a led via a digital pin. Control blink speed, pause duration and number 
 * [EVT_ON](#evt_on)  
 * [EVT_OFF](#evt_off)  
 * [EVT_BLINK](#evt_blink)  
+* [EVT_START](#evt_start)  
 * [EVT_TOGGLE](#evt_toggle)  
 * [EVT_TOGGLE_BLINK](#evt_toggle_blink)  
 * [trace()](#atm_led--trace-stream--stream-)  
@@ -170,6 +171,10 @@ Starts the led blinking.
 led.begin( 5 ).blink( 200 );
 led.trigger( led.EVT_BLINK );
 ```
+
+### EVT_START ###
+
+Starts the led blinking. (same as EVT_BLINK)
 
 ### EVT_TOGGLE ###
 
