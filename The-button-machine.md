@@ -160,10 +160,10 @@ void setup() {
 
   led1.begin( 4 );
   led2.begin( 5 );
-  player.begin( 19 ).play( 4400, 10 ); // Play a 4400 Hz tone for 10 ms
+  player.begin( 19 ).play( 4400, 10 );    // Play a 4400 Hz tone for 10 ms
 
   button.begin( 3 )
-    .longPress( 2, 400 )
+    .longPress( 2, 400 )                  // Long press after 400 ms
     .onPress( player, player.EVT_START )  // Any press short or long
     .onPress( 1, led1, led1.EVT_TOGGLE )  // Short press 
     .onPress( 2, led2, led2.EVT_TOGGLE ); // Long press
