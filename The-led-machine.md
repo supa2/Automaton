@@ -136,7 +136,7 @@ Atm_button button;
 void setup() {
   
   led.begin( 4 )
-    .wait( 500 )
+    .lead( 500 )
     .blink( 200, 200, 3 );
 
   button.begin( 2 )
