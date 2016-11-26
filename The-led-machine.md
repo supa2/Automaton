@@ -123,7 +123,7 @@ This is a dummy method for interface compatibility with the Atm_fade machine. It
 
 ### Atm_led & lead( int ms ) ###
 
-Inserts a leading waiting period before start() or on() becomes active. 
+Sets a leading waiting period before start() or on() becomes active. Default is 0.
 
 ```c++
 #include <Automaton.h>
