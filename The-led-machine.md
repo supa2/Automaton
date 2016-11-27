@@ -167,6 +167,7 @@ Sets the brightness level (relative to either range() or map()).
     .brightness( 128 ); // 50% brightness
 
 ```
+_IMPORTANT_ Note that setting brightness is only supported on PWM (~) enabled pins.
 
 Returns the current setting of brightness.
 
