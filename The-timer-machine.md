@@ -129,7 +129,7 @@ void loop() {
 }
 ```
 
-The callback function is called with the remaining repeat count in the *v* parameter and the number of repeats until now in the *up* parameter.
+The callback function is called with the remaining repeat count in the *v* parameter and the number of repeats up to that point in the *up* parameter.
 
 ### Atm_timer & onFinish( {connector}, {connector-arg} ) ###
 
