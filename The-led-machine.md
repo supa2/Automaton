@@ -7,10 +7,10 @@ Control a led via a digital pin. Control blink speed, pause duration and number 
 * [blink()](#atm_led--blink-int-duration-)  
 * [pause()](#atm_led--pause-int-duration-)  
 * [fade()](#atm_led--fade-int-fade-)  
-* brightness()
-* range()
-* levels()
-* brighten()
+* [brightness()](#int-brightness-int-level-)
+* [range()](#atm_led--range-int-tolow-int-tohigh-bool-wrap--false-)
+* [levels()](#atm_led--levels-unsigned-char-map-int-mapsize-bool-wrap--false-)
+* [brighten()](#int-brighten-int-v--1-)
 * [lead()](#atm_led--lead-int-ms-)  
 * [repeat()](#atm_led--repeat-int-repeat-)  
 * [onFinish()](#atm_led--onfinish-connector-connector-argument-)  
@@ -225,6 +225,15 @@ void loop() {
 Implicitly calls ```range( 0, mapSize - 1, wrap )``` and ```brightness( mapSize - 1 )```.
 
 ### int brighten( int v = 1 ) ###
+
+Raises or lowers the brightness with one step.
+
+```c++
+  led.brighten( 1 ); // Increases brightness
+  led.brighten( -1 ); // Decreases brightness
+  led.brighten(); // Increases brightness
+```
+Returns the current brightness value;
 
 ### Atm_led & repeat( int repeat ) ###
 
