@@ -20,8 +20,8 @@ Control a led via a digital pin. Control blink speed, pause duration and number 
 * [EVT_START](#evt_start)  
 * [EVT_TOGGLE](#evt_toggle)  
 * [EVT_TOGGLE_BLINK](#evt_toggle_blink) 
-* EVT_BRUP 
-* EVT_BRDN
+* [EVT_BRUP](#evt_brup) 
+* [EVT_BRDN](#evt_brdn)
 * [trace()](#atm_led--trace-stream--stream-)  
 
 <!-- md-tocify-end -->
@@ -232,6 +232,25 @@ led.begin( 5 ).blink( 100, 900 );
 led.trigger( led.EVT_TOGGLE_BLINK );
 ```
 
+### EVT_BRUP ###
+
+Increases the led brightness with one step.
+
+```c++
+led.begin( 5 ).range( 0, 10 );
+led.trigger( led.EVT_BRUP );
+led.trigger( led.EVT_BRUP );
+```
+
+### EVT_BRUP ###
+
+Lowers the led brightness with one step.
+
+```c++
+led.begin( 5 ).range( 0, 10 );
+led.trigger( led.EVT_BRDN );
+led.trigger( led.EVT_BRDN );
+```
 
 ### Atm_led & trace( Stream & stream ) ###
 
