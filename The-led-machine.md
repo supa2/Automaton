@@ -158,6 +158,74 @@ void loop() {
 }
 ```
 
+### int brightness( int level ) ###
+
+Sets the brightness level (relative to either range() or map()).
+
+```c++
+  led.begin( 5 )
+    .brightness( 128 ); // 50% brightness
+
+```
+
+Returns the current setting of brightness.
+
+### Atm_led & range( int toLow, int toHigh, bool wrap = false ) ###
+
+Sets the brightness range, mapped to 0..255.
+
+```c++
+  led.begin( 5 )
+    .range( 0, 9, true );
+  
+  // Button cycles through 10 brightness levels 0..9
+  button.begin( 3 )
+    .onPress( led, led.EVT_BRUP ); 
+```
+
+Range uses the Arduino map() function to map the toLow/toHigh values to 0..255 (the analogWrite range). 
+
+This means that range( 0, 9 ) corresponds to (0, 28, 56, 85, 113, 141, 170, 198, 226, 255). If you need finer control over brightness, try the levels() method instead.
+
+The wrap argument controls what happens when the sketch attempts brightness above or below the range. 
+
+Implicitly sets ```brightness( toHigh )```.
+
+
+### Atm_led & levels( unsigned char* map, int mapSize, bool wrap = false ) ###
+
+Defines a map of brightness levels to be used by the various brightness setting commands. 
+
+The example below uses a long press to toggle a led on/off and a short press to cycle through the 5 predefined brightness levels.
+
+```c++
+#include <Automaton.h>
+
+unsigned char brightness[] = { 50, 100, 150, 200, 255 };
+
+Atm_led led;
+Atm_button button;
+
+void setup() {
+
+  led.begin( 5 )
+    .levels( brightness, sizeof( brightness ), true );
+    
+  button.begin( 3 )
+    .longPress( 2, 400 )
+    .onPress( 1, led, led.EVT_BRUP )
+    .onPress( 2, led, led.EVT_TOGGLE );
+}
+
+void loop() {
+  automaton.run();
+}
+```
+
+Implicitly calls ```range( 0, mapSize - 1, wrap )``` and ```brightness( mapSize - 1 )```.
+
+### int brighten( int v = 1 ) ###
+
 ### Atm_led & repeat( int repeat ) ###
 
 Sets how many times the blink pattern should repeat. Default is *ATM_COUNTER_OFF* (-1) which means it will blink indefinitely. Use *1* to blink once, etc...
@@ -242,7 +310,7 @@ led.trigger( led.EVT_BRUP );
 led.trigger( led.EVT_BRUP );
 ```
 
-### EVT_BRUP ###
+### EVT_BRDN ###
 
 Lowers the led brightness with one step.
 
