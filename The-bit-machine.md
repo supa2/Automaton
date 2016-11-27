@@ -9,16 +9,16 @@ This state machine manages 1 bit of information, be it True/False, High/Low or 1
 * [led()](#atm_bit--led-int-pin-activelow--false-)  
 * [state()](#int-state-void-)  
 * [trace()](#atm_bit--trace-stream--stream-)  
-* on()
-* off()
-* toggle()
-* input() 
-* refresh()
-* EVT_ON
-* EVT_OFF
-* EVT_TOGGLE
-* EVT_INPUT
-* EVT_REFRESH
+* [on()](#atm_bit--on-void-)
+* [off()](#atm_bit--off-void-)
+* [toggle()](#atm_bit--toggle-void-)
+* [input()](#atm_bit--input-void-) 
+* [refresh()](#atm_bit--refresh-void-)
+* [EVT_ON](#evt_on)
+* [EVT_OFF](#evt_off)
+* [EVT_TOGGLE](#evt_toggle)
+* [EVT_INPUT](#evt_input)
+* [EVT_REFRESH](#evt_refresh)
 
 <!-- md-tocify-end -->
 
