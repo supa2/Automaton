@@ -9,6 +9,7 @@ Control a led via a digital pin. Control blink speed, pause duration and number 
 * [fade()](#atm_led--fade-int-fade-)  
 * brightness()
 * range()
+* levels()
 * brighten()
 * [lead()](#atm_led--lead-int-ms-)  
 * [repeat()](#atm_led--repeat-int-repeat-)  
