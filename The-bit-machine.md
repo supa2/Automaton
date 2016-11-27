@@ -9,6 +9,16 @@ This state machine manages 1 bit of information, be it True/False, High/Low or 1
 * [led()](#atm_bit--led-int-pin-activelow--false-)  
 * [state()](#int-state-void-)  
 * [trace()](#atm_bit--trace-stream--stream-)  
+* on()
+* off()
+* toggle()
+* input() 
+* refresh()
+* EVT_ON
+* EVT_OFF
+* EVT_TOGGLE
+* EVT_INPUT
+* EVT_REFRESH
 
 <!-- md-tocify-end -->
 
@@ -128,6 +138,45 @@ void loop() {
 }
 
 ```
+### Atm_bit & on( void ) ###
+
+Triggers an EVT_ON event.
+
+### Atm_bit & off( void ) ###
+
+Triggers an EVT_OFF event.
+
+### Atm_bit & toggle( void ) ###
+
+Triggers an EVT_TOGGLE event.
+
+### Atm_bit & input( void ) ###
+
+Triggers an EVT_INPUT event.
+
+### Atm_bit & refresh( void ) ###
+
+Triggers an EVT_REFRESH event.
+
+### EVT_ON ###
+
+Switches the machine from ON to OFF state.
+
+### EVT_OFF ###
+
+Switches the machine from OFF to ON state.
+
+### EVT_TOGGLE ###
+
+Switches the machine from OFF to ON or from ON to OFF depending on the current state.
+
+### EVT_INPUT ###
+
+Generates an input event, this causes one of the onInput() handlers to be called depending on the current state.
+
+### EVT_REFRESH ###
+
+This causes one of the onChange() handlers to be called depending on the current state.
 
 ### Atm_bit & trace( Stream & stream ) ###
 
