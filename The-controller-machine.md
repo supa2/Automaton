@@ -91,7 +91,7 @@ void setup() {
 
 ### Atm_controller IF( {connector}, char operator = '>', int compare_value = 0 ) ###
 
-Specifies the primary controller of a controller machine. There must always be an IF() condition and it must be specified as the first condition. The argument is a connector with its argument. If the connector is a Machine or Tinymachine it will retrieve the state() value of that machine. If the connector is a callback, it will retrieve the return value of the callback. The (single character) operator specifies the relational operator to be used. The compare value specifies the value to apply the operator to.
+Specifies the primary controller of a controller machine. There must always be an IF() condition and it must be specified as the first condition. The argument is a connector with its argument. If the connector is a Machine it will retrieve the state() value of that machine. If the connector is a callback, it will retrieve the return value of the callback. The (single character) operator specifies the relational operator to be used. The compare value specifies the value to apply the operator to.
 
  controller operator | C++ equivalent| Meaning
 ---- | ---- | ----
