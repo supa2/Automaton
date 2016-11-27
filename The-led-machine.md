@@ -210,12 +210,12 @@ Atm_button button;
 void setup() {
 
   led.begin( 5 )
-    .levels( brightness, sizeof( brightness ), true );
+    .levels( brightness, sizeof( brightness ), true ); // Set levels map
     
   button.begin( 3 )
     .longPress( 2, 400 )
-    .onPress( 1, led, led.EVT_BRUP )
-    .onPress( 2, led, led.EVT_TOGGLE );
+    .onPress( 1, led, led.EVT_BRUP ) // Short press: brightness up
+    .onPress( 2, led, led.EVT_TOGGLE ); // Long press: toggle on/off
 }
 
 void loop() {
