@@ -1,4 +1,4 @@
-Control a led via a digital pin. Control blink speed, pause duration and number of repeats. Also very useful for controlling other types of hardware asynchronously, like pulsing buzzers or relays. 
+Control a led via a digital pin. Control blink speed, pause duration and number of repeats. Also very useful for controlling other types of hardware asynchronously, like pulsing buzzers or relays. On PWM enabled pins LED brightness control is available.
 
 ![Led](images/led-small.jpg)
 
