@@ -169,11 +169,12 @@ The example below displays a pulsing led pattern on pins 4..9 defined by a bitma
 Atm_player player; // A player machine
 Atm_analog speed; // An analog machine for the potmeter
 
-const int ledPinMin = 4; // Use pins 4..9
-const int ledPinMax = 9; 
+// These pins correspond to the bitmap bit positions
+const uint8_t pin[] = { 4, 5, 6, 7, 8, 9 }; 
+
 const int speedPotPin = A0;
-const int speedMin = 50;
-const int speedMax = 500;
+const int speedMin = 50; // Half speed
+const int speedMax = 500; // Quintuple speed
 
 int pattern[] = {  // Bitmapped pattern
   B00000000, 100, 0, 
@@ -188,9 +189,9 @@ void setup() {
   player.begin() // No sound this time!
     .play( pattern, sizeof( pattern ) ) //  Set up the pattern
     .onNote( true, []( int idx, int v, int up ) { // Called on every note
-      for ( int i = ledPinMin; i <= ledPinMax; i++ ) {
-        pinMode( i, OUTPUT ); // LED on/off according to bit  
-        digitalWrite( i, v & ( 1 << ( i - ledPinMin ) ) ? HIGH : LOW ); 
+      for ( int i = 0; i <= sizeof( pin ); i++ ) {
+        pinMode( pin[i], OUTPUT ); // LED on/off according to bit  
+        digitalWrite( pin[i], v & ( 1 << i ) ? HIGH : LOW ); 
       }    
     })
     .repeat( -1 ) // Repeat forever
