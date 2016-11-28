@@ -293,8 +293,8 @@ void setup() {
   player.begin() 
     .play( pattern, sizeof( pattern ) )
     .onNote( true, []( int idx, int v, int up ) {
-      valve1.trigger( v & B00000001 > 0 ? valve1.EVT_ON : valve1.EVT_OFF );
-      valve2.trigger( v & B00000010 > 0 ? valve2.EVT_ON : valve2.EVT_OFF );	  
+      valve1.trigger( ( v & B00000001 ) > 0 ? valve1.EVT_ON : valve1.EVT_OFF );
+      valve2.trigger( ( v & B00000010 ) > 0 ? valve2.EVT_ON : valve2.EVT_OFF );	  
     });
   button.begin( 2 )
     .onPress( player, player.EVT_START );
