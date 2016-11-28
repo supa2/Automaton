@@ -98,10 +98,10 @@ The onFinish() connector can be used to chain different patterns together from a
 
 ### Atm_player & play( uint32_t* pat, int patsize ) ###
 
-This variant plays 32 bit patterns. This is probably not very useful for plying sounds over the standard tone() command but it enables the use of 32 bit patterns to control e.g. 32 output pins connected to 32 leds.
+This variant plays 32 bit patterns. This is probably not very useful for playing sounds over the standard tone() command but it enables the use of 32 bit patterns to control e.g. 32 output pins connected to 32 leds which is something many people like to do.
 
 ```c++
-uint32_t pattern[] = {  // Bitmapped pattern
+uint32_t pattern[] = {  // Bitmapped pattern (32 bits)
   B4INT( B00000000, B00000000, B00000001, B00100000 ), 100, 0,
   B4INT( B00000000, B00000000, B00000010, B00010000 ), 100, 0,
   B4INT( B00000000, B00000000, B00000001, B00001000 ), 100, 0,
@@ -112,6 +112,11 @@ uint32_t pattern[] = {  // Bitmapped pattern
   B4INT( B00000000, B00000000, B00000010, B00000100 ), 100, 0,
   B4INT( B00000000, B00000000, B00000001, B00001000 ), 100, 0,
   B4INT( B00000000, B00000000, B00000010, B00010000 ), 100, 0,
+};
+
+int pattern2[] = {  // Bitmapped pattern (16 bits)
+  B2INT( B00000011, B11111111 ), 200, 0,
+  B2INT( B00000000, B00000000 ), 200, 0,
 };
 
 void setup() {
