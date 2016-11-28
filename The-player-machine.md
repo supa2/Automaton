@@ -96,6 +96,32 @@ The patsize argument contains the total number of *bytes* in the pattern array.
 
 The onFinish() connector can be used to chain different patterns together from a callback handler.
 
+### Atm_player & play( uint32_t* pat, int patsize ) ###
+
+This variant plays 32 bit patterns. This is probably not very useful for plying sounds over the standard tone() command but it enables the use of 32 bit patterns to control e.g. 32 output pins connected to 32 leds.
+
+```c++
+uint32_t pattern[] = {  // Bitmapped pattern
+  B4INT( B00000000, B00000000, B00000001, B00100000 ), 100, 0,
+  B4INT( B00000000, B00000000, B00000010, B00010000 ), 100, 0,
+  B4INT( B00000000, B00000000, B00000001, B00001000 ), 100, 0,
+  B4INT( B00000000, B00000000, B00000010, B00000100 ), 100, 0,
+  B4INT( B00000000, B00000000, B00000001, B00000010 ), 100, 0,
+  B4INT( B00000000, B00000000, B00000010, B00000001 ), 100, 0,
+  B4INT( B00000000, B00000000, B00000001, B00000010 ), 100, 0,
+  B4INT( B00000000, B00000000, B00000010, B00000100 ), 100, 0,
+  B4INT( B00000000, B00000000, B00000001, B00001000 ), 100, 0,
+  B4INT( B00000000, B00000000, B00000010, B00010000 ), 100, 0,
+};
+
+void setup() {
+
+  player.begin() 
+    .play( pattern, sizeof( pattern ) );
+
+```
+The B4INT macro (defined in automaton.h) maps 4 bytes to a 32 bit unsigned integer so that we can use the handy Arduino Bxxxxxxxx constants. There's also a B2INT macro that does the same for 2 byte integers.
+
 ### Atm_player & play( int freq, int period, int pause = 0 ) ###
 
 Plays a single tone through the piezo speaker.
