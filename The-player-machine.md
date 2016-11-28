@@ -127,6 +127,8 @@ void setup() {
 ```
 The B4INT macro (defined in automaton.h) maps 4 bytes to a 32 bit unsigned integer so that we can use the handy Arduino Bxxxxxxxx constants. There's also a B2INT macro that does the same for 2 byte integers.
 
+For 32 bit mode the lower 16 bits are in the *v* argument of the callback and the upper 16 bits are in the *up* argument.
+
 ### Atm_player & play( int freq, int period, int pause = 0 ) ###
 
 Plays a single tone through the piezo speaker.
