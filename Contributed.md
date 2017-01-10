@@ -6,4 +6,7 @@ Automaton aware libraries & state machines will be linked here.
 
   * [Automaton-esp8266](/tinkerspy/Automaton-Esp8266/wiki) Automaton components supporting Internet communication on the esp8266.
 
+  * [atm_j1939_command](https://github.com/DarrenInwood/atm_j1939_command) This machine, made by Darren Tastic, enables several arduinos to communicate state to each other via the J1939 protocol, via the CAN bus. 
+
+
 Contact me at tinkerspy@myown.mailcan.com if you would like something added.
