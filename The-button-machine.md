@@ -73,8 +73,8 @@ void button_change( int idx, int v, int up ) {
 
 void setup() {
   led.begin( 4 );
-    button.begin( 2 )
-      .onPress( button_change );
+  button.begin( 2 )
+    .onPress( button_change );
 }
 ```
 The v argument 1 if the event is a button press. When in *longpress mode* the v argument may contain other values. 
