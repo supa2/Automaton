@@ -66,7 +66,7 @@ void loop() {
   automaton.run();
 }
 ```
-You'll also need the [musical_notes.h](/tinkerspy/Automaton/blob/master/examples/frere_jacques/musical_notes.h) file to run this.
+You'll also need the [musical_notes.h](/tinkerspy/Automaton/blob/master/examples/frere_jacques/musical_notes.h) file to compile this.
 
 ### Atm_player & begin( int pin = -1 ) ###
 
