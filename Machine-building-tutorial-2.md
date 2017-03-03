@@ -366,7 +366,6 @@ The advantage of building state machine components this way is that they integra
 // Control a traffic light through a webserver.
 
 Atm_trafficlight trafficlight;
-Atm_esp8266_wifi wifi;
 Atm_esp8266_httpd_simple server( 80 );
 
 void setup() {
