@@ -2,8 +2,6 @@
 
 ### Machines and factories within machines ###
 
-### Poor man's state machine inside a callback ###
-
 ### Waiting while a led blinks ###
 
 ```cpp
