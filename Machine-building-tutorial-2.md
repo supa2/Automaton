@@ -358,7 +358,7 @@ The automatic timers for red & green are disabled (-1), the timer for yellow is 
 
 The advantage of building state machine components this way is that they integrate seamlessly with all the other Automaton components like for example the esp8266 state machines. That makes creating a web connected traffic light very easy...
 
-(note that this code runs *on* the esp8266, it will not run on an Arduino UNO)
+(note that this code runs *on* the esp8266, it will not run on an Arduino UNO, I used a Wemos D1 mini esp8266 board)
 
 ```c++
 #include <Automaton.h>
