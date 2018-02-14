@@ -27,7 +27,7 @@ void setup() {
   led.begin( 4 ) .led on pin 4
     .start(); // Blink repeatedly
 
-  frequency.begin( 2, 3 ) // Set frequency with encoder on pins 2 & 3
+  frequency.begin( 2, 3 ) // Set blink frequency with encoder on pins 2 & 3
     .range( 1, 50 ) // 1 to 50 Hz
     .onChange( [] ( int idx, int v, int up ) {
        led.frequency( v );   
