@@ -19,22 +19,20 @@ Developed for and tested with the [Sparkfun rotary encoder](https://www.sparkfun
 ```c++
 #include <Automaton.h>
 
-Atm_encoder rotaryEncoder;
-Atm_controller controller[6];
+Atm_led led;
+Atm_encoder frequency;
 
 void setup() {
 
-  // Define a rotary encoder with range 0..6
-  rotaryEncoder.begin( 2, 3 ) // Connected to pins 2 & 3
-    .range( 0, 6 );
+  led.begin( 4 ) .led on pin 4
+    .start(); // Blink repeatedly
 
-  // Create 6 controllers with indicator leds on 4, 5, 6, 7, 8, 9
-  for ( int i = 0; i <= 5; i++ ) {
-    controller[i].begin()
-      .IF( rotaryEncoder, '>', i )
-      .led( i + 4 );
-  }
-  
+  frequency.begin( 2, 3 ) // Set frequency with encoder on pins 2 & 3
+    .range( 1, 50 ) // 1 to 50 Hz
+    .onChange( [] ( int idx, int v, int up ) {
+       led.frequency( v );   
+    });
+
 }
 
 void loop() {
