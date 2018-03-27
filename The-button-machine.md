@@ -93,6 +93,8 @@ void button_change( int idx, int v, int up ) {
 }
 
 void setup() {
+  led1.begin( 4 );
+  led2.begin( 5 );
   button1.begin( 2 )
     .onPress( button_change, 1 );
   button2.begin( 3 )
