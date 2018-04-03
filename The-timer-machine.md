@@ -6,6 +6,8 @@ Atm_timer implements a timer mechanism as a simple state machine. Atm_timer work
 * [begin()](#atm_timer--begin-int-ms--0-)  
 * [onTimer()](#atm_timer--ontimer-connector-connector-arg-)  
 * [onFinish()](#atm_timer--onfinish-connector-connector-arg-)  
+* onStart(#atm_timer--ontimer-connector-connector-arg-)
+* onStop(#atm_timer--ontimer-connector-connector-arg-)
 * [interval_millis()](#atm_timer--interval_millis-int-v-)  
 * [interval_seconds()](#atm_timer--interval_seconds-int-v-)  
 * [interval()](#atm_timer--interval-int-v-)  
