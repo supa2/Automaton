@@ -261,6 +261,53 @@ led1.start();
 
 The example above will blink a led slowly 3 times and then blink the same led quickly 10 times.
 
+## Virtual methods
+
+### virtual void initLED() ###
+
+This internal (`protected`) method is called inside `Atm_led.begin()`. It is used to initialize the led output.
+The default implementation sets the specified pin to `OUTPUT` mode and to off state (0 if activeLow is false, 1 if activeLow is true). As this method is virtual, you can create your own class that is derived from `Atm_led` to initialize other I/O hardware (e.g. I2C IO extender like MCP23017).
+
+Example (own class named `Atm_led_mcp` that has a member variable `gpio` to access an IO extender):
+```C++
+void Atm_led_mcp::initLED() {
+	gpio.pinMode(pin, OUTPUT);
+	gpio.digitalWrite(pin, activeLow ? HIGH : LOW);
+}
+```
+
+### virtual void switchOn() ###
+### virtual void switchOff() ###
+
+These internal (`protected`) methods are called inside `Atm_led.action()` method to switch on (or off, respectively) the configured LED output
+
+The default implementation sets the specified pin to On (or off) state (activeLow considered).
+
+As these methods are virtual, you can create your own class that is derived from `Atm_led` to switch other I/O hardware (e.g. I2C IO extender like MCP23017).
+
+Example (own class named `Atm_led_mcp` that has a member variable `gpio` to access an IO extender):
+```C++
+void Atm_led_mcp::switchOn() {
+	gpio.digitalWrite(pin, !activeLow);
+}
+```
+### virtual void setBrightness(int value) ###
+
+This internal (`protected`) method is called inside `Atm_led.begin()`. It is used to set the led brightness.
+
+The default implementation sets the brightness value with a `analogwrite()`to the specified pin.
+As this method is virtual, you can create your own class that is derived from `Atm_led` to initialize other I/O hardware (e.g. I2C IO extender like MCP23017).
+
+Example (own class named `Atm_led_mcp` that has a member variable `gpio` to access an IO extender). The I/O extender in use it not capable of controling the brightness, so an error is shown on Serial (except the brightness value is fully on or off):
+```C++
+void Atm_led_mcp::setBrightness(int value) {
+	if (value == toHigh) switchOn(); else if(value==toLow) switchOff(); else
+	Serial.printf("ERROR: Setting brightness on GPIO expander is not possible (pin: %d)\n", pin);
+}
+```
+
+## Events
+
 ### EVT_ON ###
 
 Turns the led on.
