@@ -145,7 +145,7 @@ Triggered events can not be stored but are processed immediately or are discarde
 
 Returns true if the object is in sleeping state (which is the case if the current state has the ATM\_SLEEP constant on the ON\_LOOP column). A machine in a sleeping state does not execute its event loop and does not call its action() handler, it does, however, process incoming messages.
 
-By setting the v argument to a non zero value the machine is brought into a sleeping state. By setting the v value to zero the machine is put to sleep.
+By setting the v argument to a non zero value the machine is brought into a sleeping state. By setting the v value to zero the machine is woken up.
 
 ```c++
 if ( led1.sleep() ) {
